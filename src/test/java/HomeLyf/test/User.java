@@ -3,12 +3,14 @@ package HomeLyf.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 
 import HomeLyf.Payload.SignUP_Payload;
+import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
 import io.restassured.response.Response;
 
@@ -18,6 +20,7 @@ public class User {
 	VendorDetail vendorDetail;
 	Address address;
 	List<Integer> serviceCategories;
+	UserLogin_Payload userlogin;
 
 	@BeforeTest
 	public void data() {
@@ -26,6 +29,7 @@ public class User {
 		address = new Address();
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
+		userlogin = new UserLogin_Payload();
 	}
 
 	@Test(priority = 1)
@@ -55,7 +59,22 @@ public class User {
 
 		Response response = UserEndPoints.signUP(signup);
 		response.then().log().all();
-		org.testng.Assert.assertEquals(response.statusCode(), 200);
+		Assert.assertEquals(response.statusCode(), 200);
 	}
+	@Test
+	public void userLogin() {
+		userlogin.setEmailAddress("galetoy998@shaflyn.com");
+		userlogin.setMobileNumber(7815124556L);
+		userlogin.setType("v");
+		userlogin.setPassword("Kalyani@12");
+		userlogin.setLocation("Pune");
+		
+		Response response = UserEndPoints.userLogin(userlogin);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
+		
+	}
+	
+	
 
 }
