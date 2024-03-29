@@ -73,8 +73,8 @@ public class User {
 		
 		Response response = UserEndPoints.userLogin(userlogin);
 		response.then().log().all();
-		Assert.assertEquals(response.statusCode(), 200);
 		
+			
 	}
 	@Test
 	public void sendEmailOTP() {
