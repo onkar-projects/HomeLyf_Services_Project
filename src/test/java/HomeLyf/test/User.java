@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
-
+import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
@@ -21,6 +21,7 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
+	SendEmailOTP_Payload sendemail;
 
 	@BeforeTest
 	public void data() {
@@ -30,6 +31,7 @@ public class User {
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
 		userlogin = new UserLogin_Payload();
+		sendemail = new SendEmailOTP_Payload();
 	}
 
 	@Test(priority = 1)
@@ -73,6 +75,14 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 		
+	}
+	@Test
+	public void sendEmailOTP() {
+		sendemail.setEmailAddress("yagigi8204@otemdi.com");
+		sendemail.setMobileNumber(9860562353L);		
+		Response response  = UserEndPoints.sendEmailOTP(sendemail);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
 	
