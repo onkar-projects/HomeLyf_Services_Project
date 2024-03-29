@@ -41,7 +41,7 @@ public class User {
 		signup.setName("onkarClassic");
 		signup.setMobileNumber("1234567890");
 		signup.setType("C");
-		signup.setEmailAddress("sexirey425@shaflyn.com");
+		signup.setEmailAddress("cojeto6952@otemdi.com");
 		vendorDetail.setId(0);
 		vendorDetail.setAadharNumber(123456789012L);
 		address.setCityID(1);
