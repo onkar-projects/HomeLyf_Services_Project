@@ -23,7 +23,6 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
-	userSendEmailOtp_Payload usersend;
 	RestPass_Payload resetpass;
 	@BeforeTest
 	public void data() {
@@ -33,8 +32,6 @@ public class User {
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
 		userlogin = new UserLogin_Payload();
-		usersend = new userSendEmailOtp_Payload();
-        resetpass = new RestPass_Payload();
 	}
 
 	@Test(priority = 1)
@@ -79,6 +76,14 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 		
+	}
+	@Test
+	public void sendEmailOTP() {
+		sendemail.setEmailAddress("yagigi8204@otemdi.com");
+		sendemail.setMobileNumber(9860562353L);		
+		Response response  = UserEndPoints.sendEmailOTP(sendemail);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
 	@Test
