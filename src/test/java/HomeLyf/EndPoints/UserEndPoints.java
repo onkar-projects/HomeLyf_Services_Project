@@ -1,10 +1,10 @@
 package HomeLyf.EndPoints;
-
 import static io.restassured.RestAssured.*;
-
-import HomeLyf.Payload.SendEmailOTP_Payload;
+import com.fasterxml.jackson.core.util.RequestPayload
+import HomeLyf.Payload.RestPass_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
+import HomeLyf.Payload.userSendEmailOtp_Payload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -30,16 +30,16 @@ public class UserEndPoints {
 		return response;
 	}
 	
-	public static Response sendEmailOTP(SendEmailOTP_Payload Payload) {
+
+	public static Response resetPass(RestPass_Payload Payload) {
 		Response response = given()
-				           .contentType(ContentType.JSON)
-				           .body(Payload)
-				           .log().all()
-				           .when().post(Routes.acccount_emailOTP);
+		.contentType(ContentType.JSON)
+		.body(Payload)
+		.log().all()
+		.when().post(Routes.acccount_emailOTP);
+		
 		return response;
 	}
-	
-	
 
 
 }
