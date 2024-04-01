@@ -43,6 +43,7 @@ public class UserEndPoints {
 		return response;
 	}
 	
+	
 	public static Response resetPass(RestPass_Payload Payload) {
 		Response response = given()
 		.contentType(ContentType.JSON)

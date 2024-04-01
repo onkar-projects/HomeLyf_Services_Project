@@ -17,6 +17,7 @@ import io.restassured.response.Response;
 
 public class User {
 
+	
 	SignUP_Payload signup;
 	VendorDetail vendorDetail;
 	Address address;
