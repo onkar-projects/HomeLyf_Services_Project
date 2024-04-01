@@ -15,14 +15,12 @@ import HomeLyf.Payload.VendorDetail;
 import io.restassured.response.Response;
 
 public class User {
-
 	SignUP_Payload signup;
 	VendorDetail vendorDetail;
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
 	SendEmailOTP_Payload sendemail;
-
 	@BeforeTest
 	public void data() {
 		signup = new SignUP_Payload();
@@ -33,10 +31,8 @@ public class User {
 		userlogin = new UserLogin_Payload();
 		sendemail = new SendEmailOTP_Payload();
 	}
-
 	@Test(priority = 1)
 	public void userSignUp() {
-
 		signup.setEmailAddress("Onkar@123");
 		signup.setName("onkarClassic");
 		signup.setMobileNumber("1234567890");
@@ -58,7 +54,6 @@ public class User {
 		vendorDetail.setServiceCategories(serviceCategories);
 		signup.setVendorsDetail(vendorDetail);
 		signup.setPassword("Onkar@123");
-
 		Response response = UserEndPoints.signUP(signup);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
@@ -70,11 +65,8 @@ public class User {
 		userlogin.setType("v");
 		userlogin.setPassword("Kalyani@12");
 		userlogin.setLocation("Pune");
-		
 		Response response = UserEndPoints.userLogin(userlogin);
-		response.then().log().all();
-		
-			
+		response.then().log().all();		
 	}
 	@Test
 	public void sendEmailOTP() {
@@ -84,7 +76,4 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
-	
-	
-
 }

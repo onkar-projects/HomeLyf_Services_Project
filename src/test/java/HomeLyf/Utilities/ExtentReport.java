@@ -28,12 +28,12 @@ public class ExtentReport implements ITestListener {
 		sparkReporter = new ExtentSparkReporter(".\\reports\\"+repName);
 		
 		sparkReporter.config().setDocumentTitle("DSS");
-		sparkReporter.config().setReportName("QSTAS");
+		sparkReporter.config().setReportName("HomeLyf_Services");
 		sparkReporter.config().setTheme(Theme.STANDARD);
 		
 		extent = new ExtentReports();
 		extent.attachReporter(sparkReporter);
-		extent.setSystemInfo("WebApplication", "QDTAS");
+		extent.setSystemInfo("WebApplication", "HomeLyf_Services");
 		extent.setSystemInfo("Operating System",System.getProperty("os.name"));
 		extent.setSystemInfo("User Name", System.getProperty("user.name"));
 		extent.setSystemInfo("user", "Onkar");
