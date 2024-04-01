@@ -2,6 +2,7 @@ package HomeLyf.EndPoints;
 
 import static io.restassured.RestAssured.*;
 
+import HomeLyf.Payload.ForgetPassword_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import io.restassured.http.ContentType;
@@ -25,6 +26,17 @@ public class UserEndPoints {
 		.body(Payload)
 		.log().all()
 		.when().post(Routes.account_login);
+		
+		return response;
+	}
+	
+	public static Response forgetpassword(ForgetPassword_Payload Payload)
+	{
+		Response response=given()
+				.contentType(ContentType.JSON)
+				.body(Payload)
+				.log().all()
+				.when().post(Routes.account_forgotPass);
 		
 		return response;
 	}

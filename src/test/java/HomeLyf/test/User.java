@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
-
+import HomeLyf.Payload.ForgetPassword_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
@@ -21,6 +21,7 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
+	ForgetPassword_Payload forgetpassword;
 
 	@BeforeTest
 	public void data() {
@@ -30,6 +31,7 @@ public class User {
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
 		userlogin = new UserLogin_Payload();
+		forgetpassword=new ForgetPassword_Payload();
 	}
 
 	@Test(priority = 1)
@@ -74,7 +76,16 @@ public class User {
 		Assert.assertEquals(response.statusCode(), 200);
 		
 	}
-	
+	@Test
+	public void forgetpassword()
+	{
+		forgetpassword.setEmailAddress("prajkitavisapure02@gmail.com");
+		forgetpassword.setMobilenumber("7066099108");
+		
+		Response response=UserEndPoints.forgetpassword(forgetpassword);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
+	}
 	
 
 }
