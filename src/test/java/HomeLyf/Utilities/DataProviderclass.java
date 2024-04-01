@@ -1,14 +1,12 @@
 package HomeLyf.Utilities;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-public class DataProvider {
+import org.testng.annotations.*;
+public class DataProviderclass {
 	static String path = System.getProperty("user.dir") + "\\TestData\\HomeLyfDataSheet.xlsx";
 	static UserUtility lu = new UserUtility(path);
 
-	@org.testng.annotations.DataProvider(name = "Data")
+	@DataProvider(name = "Data")
 	public static String[][] getAllData() throws IOException {
 
 		int rownum = lu.getRowCount("Sheet1");
@@ -16,16 +14,22 @@ public class DataProvider {
 
 		String apiData[][] = new String[rownum][colcount];
 
-		for (int i = 1; i < rownum; i++) {
-			for (int j = 0; j < colcount - 1; j++) {
+		for (int i = 1; i <= rownum; i++) {
+			for (int j = 0; j < colcount; j++) {
 				apiData[i][j] = lu.getCellData("Sheet1", i, j);
 				System.out.println(apiData[i][j]);
 			}
 		}
 		return apiData;
 	}
-
-	@org.testng.annotations.DataProvider(name = "userEmail")
+	
+	@DataProvider(name = "vendordata")
+	public String[] SignupasVendor() {
+	String [] data= {"{\"name\":\"Mona\",\"mobileNumber\":2393741495,\"type\":\"v\",\"emailAddress\":\"hakepi4818@sntrau.com\",\"vendorDetail\":{\"id\":1,\"serviceCategories\":[1],\"servicePostCodes\":[1],\"aadharNumber\":232356894245,\"experience\":\"2\",\"address\":{\"name\":\"Mona\",\"type\":\"Painting\",\"line1\":\"string\",\"line2\":\"string1\",\"line3\":\"string2\",\"location\":\"Pune\",\"postCodeID\":2,\"cityID\":1}},\"password\":\"String1234@\"}"};
+	return data;
+	}
+	
+	@DataProvider(name = "userEmail")
 	public static String[] getEmpId() throws IOException {
 
 		int rownum = lu.getRowCount("Sheet1");
@@ -36,7 +40,7 @@ public class DataProvider {
 		return apiData;
 	}
 
-	@org.testng.annotations.DataProvider(name = "useremailAndPassword")
+	@DataProvider(name = "useremailAndPassword")
 	public static Object[][] getPassword() throws IOException {
 		int rownum = lu.getRowCount("Sheet1");
 		Object[][] emailAndPassword = new Object[rownum - 1][2];
@@ -48,7 +52,7 @@ public class DataProvider {
 		return emailAndPassword;
 	}
 
-	@org.testng.annotations.DataProvider(name = "userEmailAndNewPass")
+	@DataProvider(name = "userEmailAndNewPass")
 	public static Object[][] getemailAndNewPass() throws IOException {
 
 		int rownum = lu.getRowCount("Sheet1");
@@ -65,7 +69,7 @@ public class DataProvider {
 
 //	------------------------------------------QDTASK User----------------------------------------------------//
 
-	@org.testng.annotations.DataProvider(name = "qdtasUserAlldata")
+	@DataProvider(name = "qdtasUserAlldata")
 	public static String[][] qdtaskUserAllData() throws IOException {
 
 		int rownum = lu.getRowCount("QDTAS1");
@@ -87,7 +91,7 @@ public class DataProvider {
 		return apiData;
 	}
 
-	@org.testng.annotations.DataProvider(name = "qdtasLoginDetails")
+	@DataProvider(name = "qdtasLoginDetails")
 	public static String[][] qdtasLoginDetail() throws IOException {
 
 		String adminData[][] = new String[1][2];
@@ -96,7 +100,7 @@ public class DataProvider {
 		return adminData;
 	}
 
-	@org.testng.annotations.DataProvider(name = "qdtasNewUserDetails")
+	@DataProvider(name = "qdtasNewUserDetails")
 		public static String[][] qdtasNewUserData() throws IOException {
 	
 			int rowcount = lu.getRowCount("QDTAS1");
@@ -113,7 +117,7 @@ public class DataProvider {
 			return NewUserData;
 		}
 
-	@org.testng.annotations.DataProvider(name = "qdtasNewLoginDetails")
+	@DataProvider(name = "qdtasNewLoginDetails")
 	public static String[][] qdtasNewLoginDetail() throws IOException {
 
 		int rowcount = lu.getRowCount("QDTAS1");

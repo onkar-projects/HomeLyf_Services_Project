@@ -1,17 +1,23 @@
 package HomeLyf.test;
 
+import static io.restassured.RestAssured.given;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import HomeLyf.EndPoints.Routes;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class User {
@@ -32,7 +38,7 @@ public class User {
 		userlogin = new UserLogin_Payload();
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void userSignUp() {
 
 		signup.setEmailAddress("Onkar@123");
@@ -57,11 +63,32 @@ public class User {
 		signup.setVendorsDetail(vendorDetail);
 		signup.setPassword("Onkar@123");
 
-		Response response = UserEndPoints.signUP(signup);
+	  /*Response response = UserEndPoints.signUP(signup);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);*/
+	}
+	
+	@Test(priority = 1, dataProvider = "Data", dataProviderClass = HomeLyf.Utilities.DataProviderclass.class )
+	public void userSignUpforVendor(String data) {
+		Response response = given()
+				.contentType(ContentType.JSON)
+				.body(data)
+				.log().all()
+				.when().post(Routes.account_signUp);
+    
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
-	@Test
+	
+	
+//	@Test(priority = 1)
+//	public void userSignUpforVendor() throws FileNotFoundException {
+//
+//        Response response = UserEndPoints.signUP();
+//		response.then().log().all();
+//		Assert.assertEquals(response.statusCode(), 200);
+//	}
+	@Test (priority = 2)
 	public void userLogin() {
 		userlogin.setEmailAddress("galetoy998@shaflyn.com");
 		userlogin.setMobileNumber(7815124556L);
