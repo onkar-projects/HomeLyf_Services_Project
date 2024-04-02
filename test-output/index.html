@@ -48,7 +48,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1950133803\testng-customsuite.xml</span>
+                    <span>C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1499596571\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -90,7 +90,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">2 methods,   2 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -101,7 +101,12 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="sendEmailOTP">sendEmailOTP</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="forgot_Pass(9965238755, merovar806@dacgu.com)">forgot_Pass(9965238755, merovar806@dacgu.com)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="forgot_Pass(7789562325, yayibi8752@dacgu.com)">forgot_Pass(7789562325, yayibi8752@dacgu.com)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -124,9 +129,18 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="sendEmailOTP">
-                  </a> <!-- sendEmailOTP -->
-                  <span class="method-name">sendEmailOTP</span>
+                  <a name="forgot_Pass(9965238755, merovar806@dacgu.com)">
+                  </a> <!-- forgot_Pass(9965238755, merovar806@dacgu.com) -->
+                  <span class="method-name">forgot_Pass</span>
+                  <span class="parameters">(9965238755, merovar806@dacgu.com)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="forgot_Pass(7789562325, yayibi8752@dacgu.com)">
+                  </a> <!-- forgot_Pass(7789562325, yayibi8752@dacgu.com) -->
+                  <span class="method-name">forgot_Pass</span>
+                  <span class="parameters">(7789562325, yayibi8752@dacgu.com)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -134,7 +148,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1950133803\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\DELL\AppData\Local\Temp\testng-eclipse--1499596571\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -145,7 +159,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;HomeLyf.test.User&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;sendEmailOTP&quot;/&gt;
+          &lt;include name=&quot;forgot_Pass&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- HomeLyf.test.User --&gt;
     &lt;/classes&gt;
@@ -187,16 +201,20 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(2);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'sendEmailOTP')
+data.setCell(0, 1, 'forgot_Pass')
 data.setCell(0, 2, 'HomeLyf.test.User')
-data.setCell(0, 3, 13133);
+data.setCell(0, 3, 8870);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'forgot_Pass')
+data.setCell(1, 2, 'HomeLyf.test.User')
+data.setCell(1, 3, 2069);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 13 seconds</span>
+              <span class="suite-total-time">Total running time: 10 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -211,12 +229,16 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">HomeLyf.test.User</span>
               <div class="ignored-methods-div">
+                <span class="ignored-method-name">resetPass</span>
+                <br/>
+                <span class="ignored-method-name">sendEmailOTP</span>
+                <br/>
                 <span class="ignored-method-name">userLogin</span>
                 <br/>
                 <span class="ignored-method-name">userSignUp</span>
@@ -237,8 +259,12 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
-                <span class="method-name">sendEmailOTP</span>
-                <span class="method-start">181 ms</span>
+                <span class="method-name">forgot_Pass(7789562325, yayibi8752@dacgu.com)</span>
+                <span class="method-start">7315 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">forgot_Pass(9965238755, merovar806@dacgu.com)</span>
+                <span class="method-start">16205 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

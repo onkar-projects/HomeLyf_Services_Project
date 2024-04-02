@@ -5,8 +5,8 @@
     <classes>
       <class name="HomeLyf.test.User">
         <methods>
+          <include name="userLogin" invocation-numbers="0"/>
           <include name="data"/>
-          <include name="userSignUp"/>
         </methods>
       </class> <!-- HomeLyf.test.User -->
     </classes>

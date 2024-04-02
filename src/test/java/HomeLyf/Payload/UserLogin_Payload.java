@@ -38,8 +38,5 @@ public class UserLogin_Payload {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
-	
-	
-	
+
 }
