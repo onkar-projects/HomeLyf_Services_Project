@@ -4,9 +4,9 @@ package HomeLyf.Payload;
 public class RestPass_Payload {
 	String emailAddress;
 	long mobileNumber;
-	String oneTimePass;
+	String OneTimePassword;
 	String password;
-	String confirmpass;
+	String ConfirmPassword;
 	public String getEmailAddress() {
 		return emailAddress;
 	}
@@ -19,11 +19,11 @@ public class RestPass_Payload {
 	public void setMobileNumber(long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public String getOneTimePass() {
-		return oneTimePass;
+	public String getOneTimePassword() {
+		return OneTimePassword;
 	}
-	public void setOneTimePass(String oneTimePass) {
-		this.oneTimePass = oneTimePass;
+	public void setOneTimePassword(String oneTimePassword) {
+		OneTimePassword = oneTimePassword;
 	}
 	public String getPassword() {
 		return password;
@@ -31,12 +31,14 @@ public class RestPass_Payload {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getConfirmpass() {
-		return confirmpass;
+	public String getConfirmPassword() {
+		return ConfirmPassword;
 	}
-	public void setConfirmpass(String confirmpass) {
-		this.confirmpass = confirmpass;
+	public void setConfirmPassword(String confirmPassword) {
+		ConfirmPassword = confirmPassword;
 	}
+	
+	
 	
 	
 	

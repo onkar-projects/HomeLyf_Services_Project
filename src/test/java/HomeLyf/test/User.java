@@ -1,18 +1,18 @@
 package HomeLyf.test;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.RestPass_Payload;
+import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
-import HomeLyf.Payload.userSendEmailOtp_Payload;
 import io.restassured.response.Response;
 
 public class User {
@@ -23,7 +23,8 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
-	RestPass_Payload resetpass;
+	RestPass_Payload resetpass = new RestPass_Payload();
+	SendEmailOTP_Payload sendemail;
 	@BeforeTest
 	public void data() {
 	    signup = new SignUP_Payload();
@@ -32,6 +33,7 @@ public class User {
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
 		userlogin = new UserLogin_Payload();
+		sendemail=new SendEmailOTP_Payload();
 	}
 
 	@Test(priority = 1)
@@ -86,24 +88,15 @@ public class User {
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
-	@Test
-	public void userSendEmailOtp() {
-		usersend.setEmailAddress("dhondekalyani@gmail.com");
-		
-		Response response = UserEndPoints.userSendEmailOtp(usersend);
-		response.then().log().all();
-		Assert.assertEquals(response.statusCode(), 200);
-		
-	}
 	
 	@Test
 	public void resetPass() {
-		resetpass.setEmailAddress("dhondekalyani@gmail.com");
-		resetpass.setMobileNumber(2345677865L);
-		resetpass.setOneTimePass("wertyui");
-		resetpass.setPassword("Kalyani@123");
-		resetpass.setConfirmpass("Kalyani@123");
-		
+		resetpass.setEmailAddress("mihonip152@ikumaru.com");
+		resetpass.setMobileNumber(6534896754L);
+		resetpass.setOneTimePassword("spFuLKob");
+		resetpass.setPassword("Ramesh@123456");
+		resetpass.setConfirmPassword("Ramesh@123456");
+		//System.out.println(resetpass.getConfirmPassword());
 		Response response = UserEndPoints.resetPass(resetpass);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);

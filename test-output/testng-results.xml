@@ -2,16 +2,16 @@
 <testng-results total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-03-27T05:49:47Z" name="Default suite" finished-at="2024-03-27T05:49:50Z" duration-ms="3041">
+  <suite started-at="2024-04-01T09:33:37Z" name="Default suite" finished-at="2024-04-01T09:33:40Z" duration-ms="2737">
     <groups>
     </groups>
-    <test started-at="2024-03-27T05:49:47Z" name="Default test" finished-at="2024-03-27T05:49:50Z" duration-ms="3041">
+    <test started-at="2024-04-01T09:33:37Z" name="Default test" finished-at="2024-04-01T09:33:40Z" duration-ms="2737">
       <class name="HomeLyf.test.User">
-        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@56673b2c]" started-at="2024-03-27T11:19:47Z" name="data" finished-at="2024-03-27T11:19:47Z" duration-ms="18" status="PASS">
+        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@132e0cc]" started-at="2024-04-01T15:03:37Z" name="data" finished-at="2024-04-01T15:03:37Z" duration-ms="15" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- data -->
-        <test-method signature="sendEmailOTP_Test()[pri:1, instance:HomeLyf.test.User@56673b2c]" started-at="2024-03-27T11:19:47Z" name="sendEmailOTP_Test" finished-at="2024-03-27T11:19:50Z" duration-ms="3002" status="FAIL">
+        <test-method signature="resetPass()[pri:0, instance:HomeLyf.test.User@132e0cc]" started-at="2024-04-01T15:03:37Z" name="resetPass" finished-at="2024-04-01T15:03:40Z" duration-ms="2710" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [200] but found [400]]]>
@@ -23,7 +23,7 @@
 	at org.testng.Assert.assertEquals(Assert.java:125)
 	at org.testng.Assert.assertEquals(Assert.java:372)
 	at org.testng.Assert.assertEquals(Assert.java:382)
-	at HomeLyf.test.User.sendEmailOTP_Test(User.java:59)
+	at HomeLyf.test.User.resetPass(User.java:102)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -53,7 +53,7 @@
           </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- sendEmailOTP_Test -->
+        </test-method> <!-- resetPass -->
       </class> <!-- HomeLyf.test.User -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
