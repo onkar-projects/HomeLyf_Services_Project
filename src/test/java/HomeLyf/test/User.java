@@ -1,18 +1,22 @@
-package HomeLyf.test;
 
+package HomeLyf.test;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
+import HomeLyf.Payload.ForgotPassword_Payload;
 import HomeLyf.Payload.RestPass_Payload;
 import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
+import HomeLyf.Utilities.DataProviderClass;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class User {
@@ -23,17 +27,23 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
-	RestPass_Payload resetpass = new RestPass_Payload();
+	RestPass_Payload resetpass;
 	SendEmailOTP_Payload sendemail;
+	ForgotPassword_Payload forgotPassword;
+	String token;
+
+	
 	@BeforeTest
 	public void data() {
+		
 	    signup = new SignUP_Payload();
 		vendorDetail = new VendorDetail();
 		address = new Address();
 		serviceCategories = new ArrayList<>();
 		signup = new SignUP_Payload();
 		userlogin = new UserLogin_Payload();
-		sendemail=new SendEmailOTP_Payload();
+		sendemail = new SendEmailOTP_Payload();
+		forgotPassword = new ForgotPassword_Payload();
 	}
 
 	@Test(priority = 1)
@@ -66,37 +76,58 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
-	@Test
-	public void userLogin() {
-		userlogin.setEmailAddress("repara8922@mnsaf.com");
-		userlogin.setMobileNumber(2345677865L);
-		userlogin.setType("a");
-		userlogin.setPassword("Mahi@123456");
-		userlogin.setLocation("Pune");
+	
+	
+	
+	@Test(priority = 2, dataProvider = "userlogin", dataProviderClass = DataProviderClass.class)
+	public void userLogin(String mobileNumber, String type, String emailAddress, String password, String location ) {
+		userlogin.setEmailAddress(emailAddress);
+		userlogin.setMobileNumber(Long.parseLong(mobileNumber));
+		userlogin.setPassword(password);
+		userlogin.setType(type);
+		userlogin.setLocation(location);
 		
 		Response response = UserEndPoints.userLogin(userlogin);
 		response.then().log().all();
+		String res = response.asPrettyString();
+		JsonPath js = new JsonPath(res);
+		
+		token = js.getString("token");
+		System.out.println("Generated Token Id: "+token);
+		
 		Assert.assertEquals(response.statusCode(), 200);
 		
 	}
-	@Test
-	public void sendEmailOTP() {
-		sendemail.setEmailAddress("yagigi8204@otemdi.com");
-		sendemail.setMobileNumber(9860562353L);		
+	
+	@Test(priority = 3, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
+	public void sendEmailOTP(String emailAddress ) {
+		
+		sendemail.setEmailAddress(emailAddress);
+		
 		Response response  = UserEndPoints.sendEmailOTP(sendemail);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
+	@Test(priority = 4, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
+	public void forgot_Pass(String mobileNumber, String emailAddres) {
+		
+		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
+		forgotPassword.setEmailAddress(emailAddres);
+		Response response = UserEndPoints.forgotPass(forgotPassword);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
+	}
 	
-	@Test
+	
+	@Test(priority = 5, dataProvider = "", dataProviderClass = DataProviderClass.class)
 	public void resetPass() {
-		resetpass.setEmailAddress("mihonip152@ikumaru.com");
-		resetpass.setMobileNumber(6534896754L);
-		resetpass.setOneTimePassword("spFuLKob");
-		resetpass.setPassword("Ramesh@123456");
-		resetpass.setConfirmPassword("Ramesh@123456");
-		//System.out.println(resetpass.getConfirmPassword());
+		resetpass.setEmailAddress("dhondekalyani@gmail.com");
+		resetpass.setMobileNumber(2345677865L);
+		resetpass.setOneTimePassword("wertyui");
+		resetpass.setPassword("Kalyani@123");
+		resetpass.setConfirmPassword("Kalyani@123");
+		
 		Response response = UserEndPoints.resetPass(resetpass);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
@@ -107,3 +138,4 @@ public class User {
 	
 
 }
+
