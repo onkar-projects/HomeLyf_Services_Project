@@ -1,7 +1,12 @@
 package HomeLyf.Utilities;
 
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Properties;
+
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -11,6 +16,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
+import com.testing.framework.EmailUtils;
 
 public class ExtentReport implements ITestListener {
 	
@@ -77,6 +83,7 @@ public class ExtentReport implements ITestListener {
 	
 	public void onFinish(ITestContext context) {
 		extent.flush();
+		
 	}
 
 

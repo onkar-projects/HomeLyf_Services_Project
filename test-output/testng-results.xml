@@ -1,48 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results total="2" passed="2" failed="0" skipped="0">
+<testng-results total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-04-02T04:55:41Z" name="Default suite" finished-at="2024-04-02T04:55:59Z" duration-ms="18305">
+  <suite started-at="2024-04-03T07:55:46Z" name="Default suite" finished-at="2024-04-03T07:55:56Z" duration-ms="10230">
     <groups>
     </groups>
-    <test started-at="2024-04-02T04:55:41Z" name="Default test" finished-at="2024-04-02T04:55:59Z" duration-ms="18305">
+    <test started-at="2024-04-03T07:55:46Z" name="Default test" finished-at="2024-04-03T07:55:56Z" duration-ms="10230">
       <class name="HomeLyf.test.User">
-        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@172b013]" started-at="2024-04-02T10:25:41Z" name="data" finished-at="2024-04-02T10:25:41Z" duration-ms="203" status="PASS">
+        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@7daa61f3]" started-at="2024-04-03T13:25:46Z" name="data" finished-at="2024-04-03T13:25:46Z" duration-ms="22" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- data -->
-        <test-method signature="forgot_Pass(java.lang.String, java.lang.String)[pri:4, instance:HomeLyf.test.User@172b013]" started-at="2024-04-02T10:25:48Z" name="forgot_Pass" data-provider="useremailAndMobile" finished-at="2024-04-02T10:25:57Z" duration-ms="8870" status="PASS">
+        <test-method signature="userLogin(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:2, instance:HomeLyf.test.User@7daa61f3]" started-at="2024-04-03T13:25:49Z" name="userLogin" data-provider="userlogin" finished-at="2024-04-03T13:25:56Z" duration-ms="7405" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[7789562325]]>
+                <![CDATA[9874563210]]>
               </value>
             </param>
             <param index="1">
               <value>
-                <![CDATA[yayibi8752@dacgu.com]]>
+                <![CDATA[v]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[gehoci4718@felibg.comm]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[Priyanka@123]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Pune]]>
               </value>
             </param>
           </params>
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [200] but found [401]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [200] but found [401]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:496)
+	at org.testng.Assert.assertEquals(Assert.java:125)
+	at org.testng.Assert.assertEquals(Assert.java:372)
+	at org.testng.Assert.assertEquals(Assert.java:382)
+	at HomeLyf.test.User.userLogin(User.java:104)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- forgot_Pass -->
-        <test-method signature="forgot_Pass(java.lang.String, java.lang.String)[pri:4, instance:HomeLyf.test.User@172b013]" started-at="2024-04-02T10:25:57Z" name="forgot_Pass" data-provider="useremailAndMobile" finished-at="2024-04-02T10:25:59Z" duration-ms="2069" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[9965238755]]>
-              </value>
-            </param>
-            <param index="1">
-              <value>
-                <![CDATA[merovar806@dacgu.com]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- forgot_Pass -->
+        </test-method> <!-- userLogin -->
       </class> <!-- HomeLyf.test.User -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

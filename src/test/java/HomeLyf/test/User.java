@@ -1,11 +1,20 @@
 package HomeLyf.test;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
+import com.testing.framework.EmailUtils;
+
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.ForgotPassword_Payload;
@@ -29,6 +38,7 @@ public class User {
 	SendEmailOTP_Payload sendemail;
 	ForgotPassword_Payload forgotPassword;
 	String token;
+	public static final Logger logger=LogManager.getLogger(User.class);
 
 	@BeforeTest
 	public void data() {
@@ -41,6 +51,8 @@ public class User {
 		userlogin = new UserLogin_Payload();
 		sendemail = new SendEmailOTP_Payload();
 		forgotPassword = new ForgotPassword_Payload();
+		//obtain logger
+		//logger = LogManager.getLogger(User.class);
 	}
 
 	@Test(priority = 1)
@@ -76,6 +88,7 @@ public class User {
 
 	@Test(priority = 2, dataProvider = "userlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin(String mobileNumber, String type, String emailAddress, String password, String location) {
+		try {
 		userlogin.setEmailAddress(emailAddress);
 		userlogin.setMobileNumber(Long.parseLong(mobileNumber));
 		userlogin.setPassword(password);
@@ -84,32 +97,40 @@ public class User {
         Response response = UserEndPoints.userLogin(userlogin);
 		response.then().log().all();
 		String responsebody = response.asPrettyString();
-		/*JsonPath jsonpath = new JsonPath(responsebody);
+		JsonPath jsonpath = new JsonPath(responsebody);
         token = jsonpath.getString("token");
-		System.out.println("Generated TokenId: " + token);*/
+		System.out.println("Generated TokenId: " + token);
 
 		Assert.assertEquals(response.statusCode(), 200);
+		 logger.info("Login successful");
+    } catch (Exception e) {
+        logger.error("Exception occurred during login", e);
+    }
 
 	}
 
 	@Test(priority = 3, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
 	public void sendEmailOTP(String emailAddress) {
-
+		
 		sendemail.setEmailAddress(emailAddress);
 
 		Response response = UserEndPoints.sendEmailOTP(sendemail);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("OTP send successfully");
 	}
 
 	@Test(priority = 4, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
 	public void forgot_Pass(String mobileNumber, String emailAddres) {
 
+		
 		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
 		forgotPassword.setEmailAddress(emailAddres);
 		Response response = UserEndPoints.forgotPass(forgotPassword);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("Password Rec");
+		
 	}
 
 	@Test(priority = 5, dataProvider = "", dataProviderClass = DataProviderClass.class)
@@ -124,5 +145,17 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
+	
+	/*@AfterTest
+	public void afterTest() throws Exception  {
+		EmailUtils emailUtils = new EmailUtils();
+		Properties pro = new Properties();
+		pro.load(new FileInputStream("C:/Users/DELL/Documents/HomeLyf_Services/HomeLyf_Services_Project/Config/config-Email.properties"));
+		List<String> attachments = new ArrayList<>();
+		attachments.add("C:/Users/DELL/Documents/HomeLyf_Services/HomeLyf_Services_Project/test-output/emailable-report.html");
+		emailUtils.sendUsingGmail(pro, "Test Execution Results", "Hi Team, Execution is successful", attachments);
+		
+		
+	}*/
 
 }
