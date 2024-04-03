@@ -16,7 +16,7 @@ public class DataProviderclass {
 
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 0; j < colcount; j++) {
-				apiData[i][j] = lu.getCellData("Sheet1", i, j);
+				apiData[i-1][j] = lu.getCellData("Sheet1", i, j);
 				System.out.println(apiData[i][j]);
 			}
 		}

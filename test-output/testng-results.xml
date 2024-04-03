@@ -2,22 +2,22 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-04-01T13:22:34 IST" name="Default suite" finished-at="2024-04-01T13:22:36 IST" duration-ms="2159">
+  <suite started-at="2024-04-01T18:14:51 IST" name="Default suite" finished-at="2024-04-01T18:14:52 IST" duration-ms="989">
     <groups>
     </groups>
-    <test started-at="2024-04-01T13:22:34 IST" name="Default test" finished-at="2024-04-01T13:22:36 IST" duration-ms="2159">
+    <test started-at="2024-04-01T18:14:51 IST" name="Default test" finished-at="2024-04-01T18:14:52 IST" duration-ms="989">
       <class name="HomeLyf.test.User">
-        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@1ca3b418]" started-at="2024-04-01T13:22:34 IST" name="data" finished-at="2024-04-01T13:22:34 IST" duration-ms="16" status="PASS">
+        <test-method is-config="true" signature="data()[pri:0, instance:HomeLyf.test.User@2034b64c]" started-at="2024-04-01T18:14:51 IST" name="data" finished-at="2024-04-01T18:14:51 IST" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- data -->
-        <test-method signature="userSignUpforVendor(java.lang.String)[pri:1, instance:HomeLyf.test.User@1ca3b418]" started-at="2024-04-01T13:22:36 IST" name="userSignUpforVendor" data-provider="Data" finished-at="2024-04-01T13:22:36 IST" duration-ms="0" status="FAIL">
+        <test-method signature="userSignUpforVendor(java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.util.List,int,long,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String,java.lang.String)[pri:1, instance:HomeLyf.test.User@2034b64c]" started-at="2024-04-01T18:14:52 IST" name="userSignUpforVendor" data-provider="Data" finished-at="2024-04-01T18:14:52 IST" duration-ms="0" status="FAIL">
           <exception class="java.lang.RuntimeException">
             <message>
-              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.apache.poi.xssf.usermodel.XSSFRow.getCell(int)" because "this.row" is null]]>
+              <![CDATA[java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.RuntimeException: java.lang.NullPointerException: Cannot invoke "org.apache.poi.xssf.usermodel.XSSFRow.getCell(int)" because "this.row" is null
+              <![CDATA[java.lang.RuntimeException: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:57)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:157)
 at org.testng.internal.Parameters.handleParameters(Parameters.java:812)
@@ -44,9 +44,8 @@ at org.testng.TestNG.run(TestNG.java:1101)
 at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.NullPointerException: Cannot invoke "org.apache.poi.xssf.usermodel.XSSFRow.getCell(int)" because "this.row" is null
-at HomeLyf.Utilities.UserUtility.getCellData(UserUtility.java:50)
-at HomeLyf.Utilities.DataProviderclass.getAllData(DataProviderclass.java:19)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+at HomeLyf.Utilities.DataProviderclass.getAllData(DataProviderclass.java:20)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\monik\AppData\Local\Temp\testng-eclipse--379315199\testng-customsuite.xml</span>
+                    <span>C:\Users\monik\AppData\Local\Temp\testng-eclipse-2104960455\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -129,7 +129,7 @@
                   <a name="userSignUpforVendor">
                   </a> <!-- userSignUpforVendor -->
                   <span class="method-name">userSignUpforVendor</span>
-                  <div class="stack-trace">java.lang.RuntimeException: java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.xssf.usermodel.XSSFRow.getCell(int)&quot; because &quot;this.row&quot; is null
+                  <div class="stack-trace">java.lang.RuntimeException: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:57)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:157)
 	at org.testng.internal.Parameters.handleParameters(Parameters.java:812)
@@ -156,9 +156,8 @@
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-Caused by: java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.xssf.usermodel.XSSFRow.getCell(int)&quot; because &quot;this.row&quot; is null
-	at HomeLyf.Utilities.UserUtility.getCellData(UserUtility.java:50)
-	at HomeLyf.Utilities.DataProviderclass.getAllData(DataProviderclass.java:19)
+Caused by: java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at HomeLyf.Utilities.DataProviderclass.getAllData(DataProviderclass.java:20)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -176,7 +175,7 @@ Caused by: java.lang.NullPointerException: Cannot invoke &quot;org.apache.poi.xs
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\monik\AppData\Local\Temp\testng-eclipse--379315199\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\monik\AppData\Local\Temp\testng-eclipse-2104960455\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -253,7 +252,7 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">2 ignored methods</span>
+            <span class="header-content">4 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
@@ -261,7 +260,11 @@ return data;
               <div class="ignored-methods-div">
                 <span class="ignored-method-name">userLogin</span>
                 <br/>
+                <span class="ignored-method-name">sendEmailOTP</span>
+                <br/>
                 <span class="ignored-method-name">userSignUp</span>
+                <br/>
+                <span class="ignored-method-name">resetPass</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
