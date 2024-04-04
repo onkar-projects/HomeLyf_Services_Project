@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.ForgotPassword_Payload;
-import HomeLyf.Payload.RestPass_Payload;
 import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
@@ -28,7 +27,6 @@ public class User {
 	Address address;
 	List<Integer> serviceCategories;
 	UserLogin_Payload userlogin;
-	RestPass_Payload resetpass;
 	SendEmailOTP_Payload sendemail;
 	ForgotPassword_Payload forgotPassword;
 	String token;

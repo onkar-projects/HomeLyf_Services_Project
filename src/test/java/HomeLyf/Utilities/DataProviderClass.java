@@ -209,6 +209,7 @@ public class DataProviderClass {
 	}
 	
 	
+	
 	@DataProvider(name = "useremailAndMobile")
 	public static String[][] getEmailandMobile() throws IOException {
 		int rownum = lu.getRowCount("user");
