@@ -16,6 +16,7 @@ import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
 import HomeLyf.Utilities.DataProviderClass;
+import Validations.ErrorValidation;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -91,15 +92,38 @@ public class User {
 		response.then().log().all();
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
-		
 		token = js.getString("token");
 		System.out.println("Generated Token Id: "+token);
 		
 		Assert.assertEquals(response.statusCode(), 200);
 		
 	}
+	@Test(priority = 3, dataProvider = "invalid_userlogin", dataProviderClass = DataProviderClass.class)
+	public void userLogin_With_Invalid_Data(String mobileNumber, String type, String emailAddress, String password, String location ) {
+		userlogin.setEmailAddress(emailAddress);
+		userlogin.setMobileNumber(Long.parseLong(mobileNumber));
+		userlogin.setPassword(password);
+		userlogin.setType(type);
+		userlogin.setLocation(location);
+		
+		Response response = UserEndPoints.userLogin(userlogin);
+		response.then().log().all();
+		String res = response.asPrettyString();
+		JsonPath js = new JsonPath(res);
+		String Mnum=js.getString("errors.MobileNumber[0]");
+		String email=js.getString("errors.EmailAddress[0]");
+		String pass=js.getString("errors.Password[0]");
+		
+		Assert.assertEquals(Mnum ,ErrorValidation.mobileNumber);
+		Assert.assertEquals(email ,ErrorValidation.emailAddress);
+		Assert.assertEquals(pass ,ErrorValidation.password);
+		Assert.assertEquals(response.statusCode(), 400);
+		
+		
+	}
 	
-	@Test(priority = 3, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
+	
+	@Test(priority = 4, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
 	public void sendEmailOTP(String emailAddress ) {
 		
 		sendemail.setEmailAddress(emailAddress);
@@ -109,7 +133,23 @@ public class User {
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
-	@Test(priority = 4, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 5, dataProvider = "invalidemail", dataProviderClass = DataProviderClass.class)
+	public void sendInvalidEmail(String emailAddress ) {
+		
+		sendemail.setEmailAddress(emailAddress);
+		
+		Response response  = UserEndPoints.sendEmailOTP(sendemail);
+		response.then().log().all();
+		
+		String res = response.asPrettyString();
+		JsonPath js = new JsonPath(res);
+		String email=js.getString("errors.EmailAddress[0]");
+		
+		Assert.assertEquals(email ,ErrorValidation.emailAddress);
+		Assert.assertEquals(response.statusCode(), 400);
+	}
+	
+	@Test(priority = 6, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
 	public void forgot_Pass(String mobileNumber, String emailAddres) {
 		
 		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
@@ -119,23 +159,24 @@ public class User {
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 	
-	
-	@Test(priority = 5, dataProvider = "", dataProviderClass = DataProviderClass.class)
-	public void resetPass() {
-		resetpass.setEmailAddress("dhondekalyani@gmail.com");
-		resetpass.setMobileNumber(2345677865L);
-		resetpass.setOneTimePassword("wertyui");
-		resetpass.setPassword("Kalyani@123");
-		resetpass.setConfirmPassword("Kalyani@123");
+	@Test(priority = 7, dataProvider = "InvaliduseremailAndMobile", dataProviderClass = DataProviderClass.class)
+	public void forgot_PassInvalidData(String mobileNumber, String emailAddres) {
 		
-		Response response = UserEndPoints.resetPass(resetpass);
-		response.then().log().all();
-		Assert.assertEquals(response.statusCode(), 200);
+		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
+		forgotPassword.setEmailAddress(emailAddres);
+		Response response = UserEndPoints.forgotPass(forgotPassword);
+		response.then().log().all();String res = response.asPrettyString();
+		JsonPath js = new JsonPath(res);
+		String Mnum=js.getString("errors.MobileNumber[0]");
+		String email=js.getString("errors.EmailAddress[0]");
+		
+		
+		Assert.assertEquals(Mnum ,ErrorValidation.mobileNumber);
+		Assert.assertEquals(email ,ErrorValidation.emailAddress);
+		
+		Assert.assertEquals(response.statusCode(), 400);
+		
+		
 	}
-	
-	
-	
-	
-
 }
 
