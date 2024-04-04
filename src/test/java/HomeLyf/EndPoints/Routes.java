@@ -5,7 +5,7 @@ package HomeLyf.EndPoints;
 public class Routes {
 
 //	USER_API
-	public static String base_url = "https://bd73-49-36-58-91.ngrok-free.app/";
+	public static String base_url = "https://08b6-49-36-58-91.ngrok-free.app";
 	
 	public static String account_login = base_url + "/UserAPI/api/Account/Login";
 	public static String account_signUp = base_url + "/UserAPI/api/Account/SignUp";

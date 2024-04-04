@@ -50,14 +50,14 @@ public class Address {
 	public int getPostcodeId() {
 		return postcodeId;
 	}
-	public void setPostcodeId(int postcodeId) {
-		this.postcodeId = postcodeId;
+	public void setPostcodeId(int postid) {
+		this.postcodeId = postid;
 	}
 	public int getCityID() {
 		return cityID;
 	}
-	public void setCityID(int cityID) {
-		this.cityID = cityID;
+	public void setCityID(int cityid2) {
+		this.cityID = cityid2;
 	}
 	
 }
