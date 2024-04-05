@@ -1,6 +1,7 @@
 package HomeLyf.Payload;
 
 public class Address {
+
 	
 	String name;
 	String type;

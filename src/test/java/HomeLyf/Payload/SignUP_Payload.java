@@ -2,6 +2,7 @@ package HomeLyf.Payload;
 
 public class SignUP_Payload {
 
+	
 	String name;
 	long mobileNumber;
 	String type;

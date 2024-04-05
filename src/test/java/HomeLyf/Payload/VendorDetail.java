@@ -5,6 +5,7 @@ import java.util.List;
 
 public class VendorDetail {
 
+	
 	private int id;
 	private List<Integer> serviceCategories;
 	private List<Integer> servicePostCodes;
