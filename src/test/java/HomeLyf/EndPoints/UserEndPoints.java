@@ -2,26 +2,14 @@
 
 package HomeLyf.EndPoints;
 
-import HomeLyf.Payload.Address;
 import HomeLyf.Payload.ForgotPassword_Payload;
 import HomeLyf.Payload.RestPass_Payload;
 import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
-import HomeLyf.Payload.VendorDetail;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONObject;
-import org.json.JSONTokener;
-import org.testng.annotations.BeforeTest;
 
 public class UserEndPoints {
 	
