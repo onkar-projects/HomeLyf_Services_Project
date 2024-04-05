@@ -53,6 +53,7 @@ public class User {
 		signup.setName("Mahi");
 		signup.setMobileNumber("2345677865");
 		signup.setType("a");
+		
 		signup.setEmailAddress("repara8922@mnsaf.com");
 		vendorDetail.setId(0);
 		vendorDetail.setAadharNumber(123456789012L);
