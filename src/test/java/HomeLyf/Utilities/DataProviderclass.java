@@ -14,21 +14,36 @@ public class DataProviderClass {
 	@org.testng.annotations.DataProvider(name = "Data")
 	public static String[][] getAllData() throws IOException {
 
-		int rownum = lu.getRowCount("Sheet1");
-		int colcount = lu.getCellCount("sheet1", 1);
+		int rownum = lu.getRowCount("user");
+		int colcount = lu.getCellCount("user", 1);
 
 		String apiData[][] = new String[rownum][colcount];
 
 		for (int i = 1; i < rownum; i++) {
-			for (int j = 0; j < colcount - 1; j++) {
-				apiData[i][j] = lu.getCellData("Sheet1", i, j);
+			for (int j = 0; j < 5 - 1; j++) {
+				apiData[i][j] = lu.getCellData("user", i, j);
 				System.out.println(apiData[i][j]);
 			}
 		}
 		return apiData;
 	}
+        @DataProvider (name= "Vendordata")
+	public static String[][] getcustomerData() throws IOException {
 
-	
+		int rownum = lu.getRowCount("user");
+		String apiData[][] = new String[rownum][18];
+
+		for (int i = 1; i <= rownum; i++) {
+			for (int j = 0; j < 18; j++) {
+				apiData[i-1][j] = lu.getCellData("user", i,j );
+				
+				System.out.println("Given data: "+ apiData[i-1][j]);
+			}
+		}
+		return apiData;
+    	}
+        
+		
 
 	@org.testng.annotations.DataProvider(name = "useremailAndPassword")
 	public static Object[][] getPassword() throws IOException {
