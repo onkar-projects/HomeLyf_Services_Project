@@ -1,10 +1,9 @@
-
 package HomeLyf.EndPoints;
 
 import static io.restassured.RestAssured.*;
 
 import HomeLyf.Payload.ForgotPassword_Payload;
-import HomeLyf.Payload.RestPass_Payload;
+
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.SendEmailOTP_Payload;
@@ -41,11 +40,6 @@ public class UserEndPoints {
 		return response;
 	}
 
-	public static Response resetPass(RestPass_Payload Payload) {
-		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
-				.post(Routes.account_resetPass);
-
-		return response;
-	}
+	
 
 }
