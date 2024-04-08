@@ -2,10 +2,12 @@
 
 <html>
   <head>
+  <meta charset='utf-8'>
   <title>TestNG reports</title>
 
-    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
-    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="testng-reports.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type='text/javascript'>
@@ -19,11 +21,11 @@
      -->
   </head>
 
-  <body>
-    <div class="top-banner-root">
+  <body>    <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -37,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-failed">Default suite</span>
+              <span class="suite-name border-passed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -48,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\DELL-PC\AppData\Local\Temp\testng-eclipse-856823893\testng-customsuite.xml</span>
+                    <span>C:\Users\monik\AppData\Local\Temp\testng-eclipse--68610501\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -90,21 +92,36 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">4 methods,   4 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content failed suite-Default_suite">
+                    <div class="method-list-content passed suite-Default_suite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="sendEmailOTP_Test">sendEmailOTP_Test</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="forgot_Pass(6537405705, fatey39034@dacgu.com)">forgot_Pass(6537405705, fatey39034@dacgu.com)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Default_suite -->
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="sendEmailOTP(fatey39034@dacgu.com)">sendEmailOTP(fatey39034@dacgu.com)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="userLogin(6537405705, V, fatey39034@dacgu.com, Naptol@123, 0)">userLogin(6537405705, V, fatey39034@dacgu.com, Naptol@123, 0)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="HomeLyf.test.User" class="method navigator-link" hash-for-method="userSignUp(TarakMehta, 6537405705, V, fatey39034@dacgu.com, Naptol@123, 0, 1, 1, 12093490102, 3, string, string...)">userSignUp(TarakMehta, 6537405705, V, fatey39034@dacgu.com, Naptol@123, 0, 1, 1, 12093490102, 3, string, string...)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -116,71 +133,59 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-failed">
+          <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">HomeLyf.test.User</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="sendEmailOTP_Test">
-                  </a> <!-- sendEmailOTP_Test -->
-                  <span class="method-name">sendEmailOTP_Test</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [200] but found [400]
-	at org.testng.Assert.fail(Assert.java:94)
-	at org.testng.Assert.failNotEquals(Assert.java:496)
-	at org.testng.Assert.assertEquals(Assert.java:125)
-	at org.testng.Assert.assertEquals(Assert.java:372)
-	at org.testng.Assert.assertEquals(Assert.java:382)
-	at HomeLyf.test.User.sendEmailOTP_Test(User.java:59)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:774)
-	at org.testng.TestRunner.run(TestRunner.java:624)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
-	at org.testng.TestNG.run(TestNG.java:1024)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-
-</div> <!-- stack-trace -->
+                  <a name="forgot_Pass(6537405705, fatey39034@dacgu.com)">
+                  </a> <!-- forgot_Pass(6537405705, fatey39034@dacgu.com) -->
+                  <span class="method-name">forgot_Pass</span>
+                  <span class="parameters">(6537405705,fatey39034@dacgu.com)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="sendEmailOTP(fatey39034@dacgu.com)">
+                  </a> <!-- sendEmailOTP(fatey39034@dacgu.com) -->
+                  <span class="method-name">sendEmailOTP</span>
+                  <span class="parameters">(fatey39034@dacgu.com)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="userLogin(6537405705, V, fatey39034@dacgu.com, Naptol@123, 0)">
+                  </a> <!-- userLogin(6537405705, V, fatey39034@dacgu.com, Naptol@123, 0) -->
+                  <span class="method-name">userLogin</span>
+                  <span class="parameters">(6537405705,V,fatey39034@dacgu.com,Naptol@123,0)</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="userSignUp(TarakMehta, 6537405705, V, fatey39034@dacgu.com, Naptol@123, 0, 1, 1, 12093490102, 3, string, string...)">
+                  </a> <!-- userSignUp(TarakMehta, 6537405705, V, fatey39034@dacgu.com, Naptol@123, 0, 1, 1, 12093490102, 3, string, string...) -->
+                  <span class="method-name">userSignUp</span>
+                  <span class="parameters">(TarakMehta,6537405705,V,fatey39034@dacgu.com,Naptol@123,0,1,1,12093490102,3,string,string,line1,line2 ,line3,pune,3,1)</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-failed -->
+          </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\DELL-PC\AppData\Local\Temp\testng-eclipse-856823893\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\monik\AppData\Local\Temp\testng-eclipse--68610501\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite parallel=&quot;none&quot; name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
-  &lt;test name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;HomeLyf.test.User&quot;&gt;
-        &lt;methods&gt;
-          &lt;include name=&quot;sendEmailOTP_Test&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- HomeLyf.test.User --&gt;
+      &lt;class name=&quot;HomeLyf.test.User&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -220,16 +225,28 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(1);
+data.addRows(4);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'sendEmailOTP_Test')
+data.setCell(0, 1, 'userSignUp')
 data.setCell(0, 2, 'HomeLyf.test.User')
-data.setCell(0, 3, 3002);
+data.setCell(0, 3, 2737);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'userLogin')
+data.setCell(1, 2, 'HomeLyf.test.User')
+data.setCell(1, 3, 963);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'forgot_Pass')
+data.setCell(2, 2, 'HomeLyf.test.User')
+data.setCell(2, 3, 351);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'sendEmailOTP')
+data.setCell(3, 2, 'HomeLyf.test.User')
+data.setCell(3, 3, 204);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 3 seconds</span>
+              <span class="suite-total-time">Total running time: 4 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -256,19 +273,26 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">HomeLyf.test.User</div> <!-- chronological-class-name -->
-              <div class="configuration-test before">
-                <span class="method-name">data</span>
-                <span class="method-start">0 ms</span>
-              </div> <!-- configuration-test before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">sendEmailOTP_Test</span>
-                <span class="method-start">30 ms</span>
+                <span class="method-name">userSignUp(TarakMehta, 6537405705, V, fatey39034@dacgu.com, Naptol@123, 0, 1, 1, 12093490102, 3, string, string...)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">userLogin(6537405705, V, fatey39034@dacgu.com, Naptol@123, 0)</span>
+                <span class="method-start">2926 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">sendEmailOTP(fatey39034@dacgu.com)</span>
+                <span class="method-start">3933 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">forgot_Pass(6537405705, fatey39034@dacgu.com)</span>
+                <span class="method-start">4199 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->
     </div> <!-- wrapper -->
   </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
 </html>

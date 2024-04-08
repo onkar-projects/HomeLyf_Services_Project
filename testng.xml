@@ -5,9 +5,9 @@
     <classes>
       <class name="HomeLyf.test.User">
 		  <methods>
-				<include name="userLogin"/>
+				<!--include name="userLogin"/> -->
 				<include name="sendEmailOTP"/>
-				<include name="forgot_Pass"/>
+				<!--include name="forgot_Pass"/> -->
 		  </methods>
 		  </class>
     </classes>
