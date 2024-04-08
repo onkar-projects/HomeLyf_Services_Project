@@ -25,13 +25,12 @@ public class CommonMethods {
 	public static SendEmailOTP_Payload sendemail;
 	public static ForgotPassword_Payload forgotPassword;
 
-
 	public static JsonPath jsonToString(Response response) {
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
 		return js;
 	}
-	
+
 	public static SignUP_Payload signUpData(String name, String mobileNumber, String type, String emailAddress,
 			String password, String Id, String scategories, String spostcodes, String addharnum, String exp,
 			String addressname, String addresstype, String line1, String line2, String line3, String location,
@@ -67,7 +66,20 @@ public class CommonMethods {
 		signup.setVendorsDetail(vendorDetail);
 		return signup;
 	}
-	public static UserLogin_Payload userLogin(String mobileNumber, String type, String emailAddress, String password, String location) {
+	
+	public static SignUP_Payload invaliduserSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
+			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
+			String addresstype, String line1, String line2, String line3, String location, String postid,
+			String cityid) {
+		signup = new SignUP_Payload();
+		signup.setMobileNumber(Long.parseLong(mobileNumber));
+		signup.setEmailAddress(emailAddress);
+		signup.setPassword(password);
+		return signup;
+		}
+	
+	public static UserLogin_Payload userLogin(String mobileNumber, String type, String emailAddress, String password,
+			String location) {
 		userlogin = new UserLogin_Payload();
 
 		userlogin.setEmailAddress(emailAddress);
@@ -76,15 +88,43 @@ public class CommonMethods {
 		userlogin.setType(type);
 		userlogin.setLocation(location);
 		return userlogin;
-}
+	}
+
+	public UserLogin_Payload userLogin_With_Invalid_Data(String mobileNumber, String type, String emailAddress,
+			String password, String location) {
+		userlogin = new UserLogin_Payload();
+
+		userlogin.setEmailAddress(emailAddress);
+		userlogin.setMobileNumber(Long.parseLong(mobileNumber));
+		userlogin.setPassword(password);
+		userlogin.setType(type);
+		userlogin.setLocation(location);
+		return userlogin;
+	}
+
 	public static SendEmailOTP_Payload sendEmailOTP(String emailAddress) {
 		sendemail = new SendEmailOTP_Payload();
 		sendemail.setEmailAddress(emailAddress);
 		return sendemail;
-		}
+	}
+
+	public static SendEmailOTP_Payload sendInvalidEmail(String emailAddress) {
+		sendemail = new SendEmailOTP_Payload();
+		sendemail.setEmailAddress(emailAddress);
+		return sendemail;
+	}
+
 	public static ForgotPassword_Payload forgot_Pass(String mobileNumber, String emailAddres) {
 		forgotPassword = new ForgotPassword_Payload();
 		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
 		forgotPassword.setEmailAddress(emailAddres);
-	return forgotPassword;}
+		return forgotPassword;
 	}
+
+	public ForgotPassword_Payload forgot_PassInvalidData(String mobileNumber, String emailAddres) {
+		forgotPassword = new ForgotPassword_Payload();
+		forgotPassword.setMobileNumber(Long.parseLong(mobileNumber));
+		forgotPassword.setEmailAddress(emailAddres);
+		return forgotPassword;
+	}
+}
