@@ -1,3 +1,4 @@
+
 package HomeLyf.Payload;
 
 public class SendEmailOTP_Payload {
@@ -14,3 +15,4 @@ public class SendEmailOTP_Payload {
 	}
 	
 }
+

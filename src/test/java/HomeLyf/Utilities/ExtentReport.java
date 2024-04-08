@@ -1,11 +1,9 @@
 package HomeLyf.Utilities;
 
-import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -16,7 +14,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
-import com.testing.framework.EmailUtils;
+
 
 public class ExtentReport implements ITestListener {
 	
@@ -34,12 +32,16 @@ public class ExtentReport implements ITestListener {
 		sparkReporter = new ExtentSparkReporter(".\\reports\\"+repName);
 		
 		sparkReporter.config().setDocumentTitle("DSS");
-		sparkReporter.config().setReportName("HomeLyf_Services");
+
+		sparkReporter.config().setReportName("HomeLyf");
+
 		sparkReporter.config().setTheme(Theme.STANDARD);
 		
 		extent = new ExtentReports();
 		extent.attachReporter(sparkReporter);
-		extent.setSystemInfo("WebApplication", "HomeLyf_Services");
+
+		extent.setSystemInfo("WebApplication", "HomeLyf");
+
 		extent.setSystemInfo("Operating System",System.getProperty("os.name"));
 		extent.setSystemInfo("User Name", System.getProperty("user.name"));
 		extent.setSystemInfo("user", "Onkar");

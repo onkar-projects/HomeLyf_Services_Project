@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
@@ -16,3 +17,20 @@
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="HomeLyf.test.User">
+		  <methods>
+				<!--include name="userLogin"/> -->
+				<include name="sendEmailOTP"/>
+				<!--include name="forgot_Pass"/> -->
+		  </methods>
+		  </class>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
+>>>>>>> 1eb6b5958c4b803d65fe4bbed87c087e47c1d81f
