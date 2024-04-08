@@ -33,16 +33,16 @@ public class User {
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
-	
+
 	@Test(priority = 2, dataProvider = "invalidvendordata", dataProviderClass = DataProviderClass.class)
 
 	public void invaliduserSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
 			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
 			String addresstype, String line1, String line2, String line3, String location, String postid,
 			String cityid) {
-		Response response = UserEndPoints.signUP(
-				CommonMethods.invaliduserSignUp(name, mobileNumber, type, emailAddress, password, Id, scategories, spostcodes,
-					addharnum, exp, addressname, addresstype, line1, line2, line3, location, postid, cityid));
+		Response response = UserEndPoints.signUP(CommonMethods.invaliduserSignUp(name, mobileNumber, type, emailAddress,
+				password, Id, scategories, spostcodes, addharnum, exp, addressname, addresstype, line1, line2, line3,
+				location, postid, cityid));
 		response.then().log().all();
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
