@@ -1,20 +1,17 @@
 package HomeLyf.test;
 
-import java.io.FileInputStream;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
 
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
-import com.testing.framework.EmailUtils;
-
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.ForgotPassword_Payload;
@@ -24,6 +21,7 @@ import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
 import HomeLyf.Utilities.DataProviderClass;
+
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -38,7 +36,8 @@ public class User {
 	SendEmailOTP_Payload sendemail;
 	ForgotPassword_Payload forgotPassword;
 	String token;
-	public static final Logger logger=LogManager.getLogger(User.class);
+	
+	public static final Logger logger=LogManager.getLogger("HomeLyf_Services_Project");
 
 	@BeforeTest
 	public void data() {
@@ -51,6 +50,8 @@ public class User {
 		userlogin = new UserLogin_Payload();
 		sendemail = new SendEmailOTP_Payload();
 		forgotPassword = new ForgotPassword_Payload();
+		
+		  
 		//obtain logger
 		//logger = LogManager.getLogger(User.class);
 	}
@@ -88,7 +89,7 @@ public class User {
 
 	@Test(priority = 2, dataProvider = "userlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin(String mobileNumber, String type, String emailAddress, String password, String location) {
-		try {
+		
 		userlogin.setEmailAddress(emailAddress);
 		userlogin.setMobileNumber(Long.parseLong(mobileNumber));
 		userlogin.setPassword(password);
@@ -100,24 +101,23 @@ public class User {
 		JsonPath jsonpath = new JsonPath(responsebody);
         token = jsonpath.getString("token");
 		System.out.println("Generated TokenId: " + token);
-
-		Assert.assertEquals(response.statusCode(), 200);
-		 logger.info("Login successful");
-    } catch (Exception e) {
-        logger.error("Exception occurred during login", e);
-    }
-
+         Assert.assertEquals(response.statusCode(), 200);
+	
 	}
 
 	@Test(priority = 3, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
 	public void sendEmailOTP(String emailAddress) {
 		
+		
+		
 		sendemail.setEmailAddress(emailAddress);
 
 		Response response = UserEndPoints.sendEmailOTP(sendemail);
-		response.then().log().all();
+//		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("OTP send successfully");
+		logger.info("otp send successfully");
+		logger.error("otp not send successfully");
+		
 	}
 
 	@Test(priority = 4, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
@@ -129,7 +129,7 @@ public class User {
 		Response response = UserEndPoints.forgotPass(forgotPassword);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("Password Rec");
+		
 		
 	}
 

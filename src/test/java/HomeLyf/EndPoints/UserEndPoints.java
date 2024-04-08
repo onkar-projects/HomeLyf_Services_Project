@@ -13,7 +13,7 @@ import io.restassured.response.Response;
 public class UserEndPoints {
 
 	public static Response signUP(SignUP_Payload Payload) {
-		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
+		Response response = given().contentType(ContentType.JSON).body(Payload).when()
 				.post(Routes.account_signUp);
 
 		return response;

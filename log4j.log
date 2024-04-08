@@ -1,0 +1,78 @@
+2024-04-04 14:00:12 DEBUG BasicClientConnectionManager:161 - Get connection for route {s}->https://156d-49-36-58-91.ngrok-free.app:443
+2024-04-04 14:00:12 DEBUG DefaultClientConnectionOperator:177 - Connecting to 156d-49-36-58-91.ngrok-free.app:443
+2024-04-04 14:00:12 DEBUG RequestAddCookies:123 - CookieSpec selected: ignoreCookies
+2024-04-04 14:00:12 DEBUG RequestAuthCache:77 - Auth cache not set in the context
+2024-04-04 14:00:12 DEBUG RequestTargetAuthentication:80 - Target auth state: UNCHALLENGED
+2024-04-04 14:00:12 DEBUG RequestProxyAuthentication:89 - Proxy auth state: UNCHALLENGED
+2024-04-04 14:00:12 DEBUG DefaultHttpClient:677 - Attempt 1 to execute request
+2024-04-04 14:00:12 DEBUG DefaultClientConnection:274 - Sending request: POST /UserAPI/api/Account/ForgotPassword HTTP/1.1
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "POST /UserAPI/api/Account/ForgotPassword HTTP/1.1[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Accept: */*[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Content-Type: application/json[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Content-Length: 66[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Host: 156d-49-36-58-91.ngrok-free.app[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Connection: Keep-Alive[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "User-Agent: Apache-HttpClient/4.5.13 (Java/21.0.2)[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  >> "[\r][\n]"
+2024-04-04 14:00:12 DEBUG headers:278 - >> POST /UserAPI/api/Account/ForgotPassword HTTP/1.1
+2024-04-04 14:00:12 DEBUG headers:281 - >> Accept: */*
+2024-04-04 14:00:12 DEBUG headers:281 - >> Content-Type: application/json
+2024-04-04 14:00:12 DEBUG headers:281 - >> Content-Length: 66
+2024-04-04 14:00:12 DEBUG headers:281 - >> Host: 156d-49-36-58-91.ngrok-free.app
+2024-04-04 14:00:12 DEBUG headers:281 - >> Connection: Keep-Alive
+2024-04-04 14:00:12 DEBUG headers:281 - >> User-Agent: Apache-HttpClient/4.5.13 (Java/21.0.2)
+2024-04-04 14:00:12 DEBUG headers:281 - >> Accept-Encoding: gzip,deflate
+2024-04-04 14:00:12 DEBUG wire:87 -  >> "{"emailAddress":"gehoci4718@felibg.com","mobileNumber":9874563210}"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "HTTP/1.1 404 Not Found[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Connection: close[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Content-Type: text/html[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Ngrok-Error-Code: ERR_NGROK_3200[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Ngrok-Trace-Id: bd0496c074cd4a76b862cf9b97aa0004[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Referrer-Policy: no-referrer[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Date: Thu, 04 Apr 2024 08:30:13 GMT[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "Transfer-Encoding: chunked[\r][\n]"
+2024-04-04 14:00:12 DEBUG wire:73 -  << "[\r][\n]"
+2024-04-04 14:00:12 DEBUG DefaultClientConnection:259 - Receiving response: HTTP/1.1 404 Not Found
+2024-04-04 14:00:12 DEBUG headers:262 - << HTTP/1.1 404 Not Found
+2024-04-04 14:00:12 DEBUG headers:265 - << Connection: close
+2024-04-04 14:00:12 DEBUG headers:265 - << Content-Type: text/html
+2024-04-04 14:00:12 DEBUG headers:265 - << Ngrok-Error-Code: ERR_NGROK_3200
+2024-04-04 14:00:12 DEBUG headers:265 - << Ngrok-Trace-Id: bd0496c074cd4a76b862cf9b97aa0004
+2024-04-04 14:00:12 DEBUG headers:265 - << Referrer-Policy: no-referrer
+2024-04-04 14:00:12 DEBUG headers:265 - << Date: Thu, 04 Apr 2024 08:30:13 GMT
+2024-04-04 14:00:12 DEBUG headers:265 - << Transfer-Encoding: chunked
+2024-04-04 14:00:13 DEBUG RequestSpecificationImpl$RestAssuredHttpBuilder:547 - Parsing response as: text/html
+2024-04-04 14:00:13 DEBUG RequestSpecificationImpl$RestAssuredHttpBuilder:550 - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+2024-04-04 14:00:13 DEBUG wire:73 -  << "97d[\r][\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "<!DOCTYPE html>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "<html class="h-full" lang="en-US" dir="ltr">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "  <head>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Regular-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-RegularItalic-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Medium-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-Semibold-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/euclid-square/EuclidSquare-MediumItalic-WebS.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:87 -  << "    <link rel="preload" hr"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "ef="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-Text.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-TextItalic.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-SemiBold.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link rel="preload" href="https://cdn.ngrok.com/static/fonts/ibm-plex-mono/IBMPlexMono-SemiBoldItalic.woff" as="font" type="font/woff" crossorigin="anonymous" />[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <meta charset="utf-8">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <meta name="author" content="ngrok">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <meta name="description" content="ngrok is the fastest way to put anything on the internet with a single command.">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <meta name="robots" content="noindex, nofollow">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <meta name="viewport" content="width=device-width, initial-scale=1">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <link id="style" rel="stylesheet" href="https://cdn.ngrok.com/static/css/error.css">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <noscript>Tunnel 156d-49-36-58-91.ngrok-free.app not found (ERR_NGROK_3200)</noscript>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <script id="script" src="https://cdn.ngrok.com/static/js/error.js" type="text/javascript"></script>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "  </head>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "  <body class="h-full" id="ngrok">[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "    <div id="root" data-payload="eyJjZG5CYXNlIjoiaHR0cHM6Ly9jZG4ubmdyb2suY29tLyIsImNvZGUiOiIzMjAwIiwibWVzc2FnZSI6IlR1bm5lbCAxNTZkLTQ5LTM2LTU4LTkxLm5ncm9rLWZyZWUuYXBwIG5vdCBmb3VuZCIsInRpdGxlIjoiTm90IEZvdW5kIn0="></div>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "  </body>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "</html>[\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "[\r][\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "0[\r][\n]"
+2024-04-04 14:00:13 DEBUG wire:73 -  << "[\r][\n]"
+2024-04-04 14:00:13 DEBUG BasicClientConnectionManager:200 - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@27dc335a
+2024-04-04 14:00:13 DEBUG DefaultClientConnection:164 - Connection 0.0.0.0:54505<->3.6.122.107:443 shut down
