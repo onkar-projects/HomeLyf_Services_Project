@@ -3,9 +3,7 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="HomeLyf.test.User"><methods>
-		<include name="userSignUp"/>
-	  </methods></class>
+      <class name= "HomeLyf.test.User"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
