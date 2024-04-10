@@ -21,29 +21,33 @@ import io.restassured.response.Response;
 public class User {
 
 	String token;
+	private static Logger logger = LogManager.getLogger(User.class);
 
 	@Test(priority = 1, dataProvider = "Vendordata", dataProviderClass = DataProviderClass.class)
+
 	public void userSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
 			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
 			String addresstype, String line1, String line2, String line3, String location, String postid,
 			String cityid) {
-
+		logger.info("Starting userSignUp test...");
 		Response response = UserEndPoints.signUP(
 				CommonMethods.signUpData(name, mobileNumber, type, emailAddress, password, Id, scategories, spostcodes,
 						addharnum, exp, addressname, addresstype, line1, line2, line3, location, postid, cityid));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("User signed up successfully");
 	}
-	
+
 	@Test(priority = 2, dataProvider = "invalidvendordata", dataProviderClass = DataProviderClass.class)
 
 	public void invaliduserSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
 			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
 			String addresstype, String line1, String line2, String line3, String location, String postid,
 			String cityid) {
-		Response response = UserEndPoints.signUP(
-				CommonMethods.invaliduserSignUp(name, mobileNumber, type, emailAddress, password, Id, scategories, spostcodes,
-					addharnum, exp, addressname, addresstype, line1, line2, line3, location, postid, cityid));
+		Response response = UserEndPoints.signUP(CommonMethods.invaliduserSignUp(name, mobileNumber, type, emailAddress,
+				password, Id, scategories, spostcodes, addharnum, exp, addressname, addresstype, line1, line2, line3,
+				location, postid, cityid));
+		logger.info("Starting invaliduserSignUp test...");
 		response.then().log().all();
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
@@ -55,11 +59,12 @@ public class User {
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
 		Assert.assertEquals(pass, ErrorValidation.password);
 		Assert.assertEquals(response.statusCode(), 400);
+		logger.warn("Invalid user sign up attempted, expected validation errors");
 	}
 
 	@Test(priority = 3, dataProvider = "userlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin(String mobileNumber, String type, String emailAddress, String password, String location) {
-
+		logger.info("Starting userLogin test...");
 		Response response = UserEndPoints
 				.userLogin(CommonMethods.userLogin(mobileNumber, type, emailAddress, password, location));
 		response.then().log().all();
@@ -67,14 +72,17 @@ public class User {
 		JsonPath js = new JsonPath(res);
 
 		token = js.getString("token");
-		System.out.println("Generated Token Id: " + token);
+//		System.out.println("Generated Token Id: " + token);
+		logger.debug("Generated Token Id: {}", token);
 
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("User logged in successfully");
 	}
 
 	@Test(priority = 4, dataProvider = "invalid_userlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin_With_Invalid_Data(String mobileNumber, String type, String emailAddress, String password,
 			String location) {
+		logger.info("Starting userLogin_With_Invalid_Data test...");
 		Response response = UserEndPoints
 				.userLogin(CommonMethods.userLogin(mobileNumber, type, emailAddress, password, location));
 		response.then().log().all();
@@ -88,42 +96,47 @@ public class User {
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
 		Assert.assertEquals(pass, ErrorValidation.password);
 		Assert.assertEquals(response.statusCode(), 400);
+		logger.warn("User login attempted with invalid data");
 
 	}
 
 	@Test(priority = 5, dataProvider = "emailOTP", dataProviderClass = DataProviderClass.class)
 	public void sendEmailOTP(String emailAddress) {
-
+		logger.info("Starting sendEmailOTP test...");
 		Response response = UserEndPoints.sendEmailOTP(CommonMethods.sendEmailOTP(emailAddress));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("Email OTP sent successfully");
 	}
 
 	@Test(priority = 6, dataProvider = "invalidemail", dataProviderClass = DataProviderClass.class)
 	public void sendInvalidEmail(String emailAddress) {
 
+		logger.info("Starting sendInvalidEmail test...");
 		Response response = UserEndPoints.sendEmailOTP(CommonMethods.sendInvalidEmail(emailAddress));
 		response.then().log().all();
 
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
 		String email = js.getString("errors.EmailAddress[0]");
-
+		logger.debug("Response emailId: " + email);
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
 		Assert.assertEquals(response.statusCode(), 400);
+		logger.warn("Sending email with invalid email address attempted");
 	}
 
 	@Test(priority = 7, dataProvider = "useremailAndMobile", dataProviderClass = DataProviderClass.class)
 	public void forgot_Pass(String mobileNumber, String emailAddres) {
-
+		logger.info("Starting forgot_Pass test...");
 		Response response = UserEndPoints.forgotPass(CommonMethods.forgot_Pass(mobileNumber, emailAddres));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("Password reset request sent successfully");
 	}
 
 	@Test(priority = 8, dataProvider = "InvaliduseremailAndMobile", dataProviderClass = DataProviderClass.class)
 	public void forgot_PassInvalidData(String mobileNumber, String emailAddres) {
-
+		logger.info("Starting forgot_PassInvalidData test...");
 		Response response = UserEndPoints.forgotPass(CommonMethods.forgot_Pass(mobileNumber, emailAddres));
 		response.then().log().all();
 		String res = response.asPrettyString();
@@ -135,7 +148,7 @@ public class User {
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
 
 		Assert.assertEquals(response.statusCode(), 400);
-
+		logger.warn("Password reset request attempted with invalid data");
 	}
 
 }
