@@ -23,22 +23,22 @@ public class ExtentReport implements ITestListener {
 	
 	public void onStart(ITestContext context) {
 		String timeStamp = new SimpleDateFormat("yyyy.mm.dd.hh.mm.ss").format(new Date());
-		repName = "Test-Report-"+ timeStamp+".html";
+		repName = "Test-Report.html";
 		
 		sparkReporter = new ExtentSparkReporter(".\\reports\\"+repName);
 		
 		sparkReporter.config().setDocumentTitle("DSS");
 		sparkReporter.config().setReportName("HomeLyf");
 		sparkReporter.config().setTheme(Theme.STANDARD);
-		
+
 		extent = new ExtentReports();
 		extent.attachReporter(sparkReporter);
 		extent.setSystemInfo("WebApplication", "HomeLyf");
 		extent.setSystemInfo("Operating System",System.getProperty("os.name"));
-		extent.setSystemInfo("User Name", System.getProperty("user.name"));
+		//extent.setSystemInfo("User Name", System.getProperty("user.name"));
 		extent.setSystemInfo("user", "Onkar");
 		extent.setSystemInfo("Environment", "QA");
-		
+		extent.setSystemInfo("Date", timeStamp);
 		
 	}
 
