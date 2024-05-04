@@ -17,6 +17,21 @@ public class Routes {
 	public static String account_verifySMS= base_url + "/UserAPI/api/Account/VerifySMS";
 	public static String account_googleSignIn= base_url + "/UserAPI/api/Account/GoogleSignIn";
 	public static String account_appleSignIn= base_url + "/UserAPI/api/Account/AppleSignIn";
+
 	
+	
+	//-------------------------------------------Customer Routes----------------------------------------------
+
+	
+	
+	public static String customer_service = base_url+"/CustomerAPI/api/Service/{subCategoryId}";
+	
+	
+	
+	//-------------------------------------------Vendor Routes----------------------------------------------
+	
+	
+	
+	public static String vendor_getbooking = base_url+"/VendorAPI/api/Booking";
 }
 

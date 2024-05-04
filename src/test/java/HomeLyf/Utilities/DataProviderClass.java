@@ -188,4 +188,21 @@ public static String[][] getInvalidUser() throws IOException {
 		
 	}
 	return apiData;
+}
+@DataProvider(name = "Customerlogin")
+public static String[][] getCustomerEmp() throws IOException {
+
+	int rownum = lu.getRowCount("Customer");
+//	int colCount = lu.getCellCount("user", 1);
+
+	String apiData[][] = new String[rownum][5];
+
+	for (int i = 1; i <= rownum; i++) {
+		for (int j = 1; j <= 5; j++) {
+			apiData[i-1][j-1] = lu.getCellData("Customer", i,j );
+			
+			System.out.println("Given data: "+ apiData[i-1][j-1]);
+		}
+	}
+	return apiData;
 }}

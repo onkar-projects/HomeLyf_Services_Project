@@ -6,7 +6,6 @@
       <class name="HomeLyf.test.User">
         <methods>
           <include name="userSignUp" invocation-numbers="0"/>
-          <include name="userLogin" invocation-numbers="0"/>
         </methods>
       </class> <!-- HomeLyf.test.User -->
     </classes>

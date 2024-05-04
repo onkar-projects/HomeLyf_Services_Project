@@ -8,17 +8,17 @@ import org.testng.annotations.Test;
 
 import HomeLyf.EndPoints.CustomerEndPoints;
 import HomeLyf.EndPoints.UserEndPoints;
-
+import HomeLyf.EndPoints.VendorEndPoints;
 import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-public class Customer {
+public class Vendor {
 	private static Logger logger = LogManager.getLogger(User.class);
 	String token;
 
-	@Test(priority = 1, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 1, dataProvider = "userlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin(ITestContext context, String mobileNumber, String type, String emailAddress, String password,
 			String location) {
 		logger.info("Starting userLogin test...");
@@ -38,15 +38,15 @@ public class Customer {
 	}
 
 	@Test(priority = 2)
-	public void customer_service(ITestContext context) {
+	public void vendor_get_booking(ITestContext context) {
+		logger.info("Starting vendor_get_booking...");
 
-		logger.info("Starting customer_service...");
-		Response response = CustomerEndPoints.customer_service(context);
+		Response response = VendorEndPoints.vendorgetbooking(context);
 		response.then().log().all();
 		// print status line
 		Assert.assertEquals(response.statusCode(), 200);
 		response.then().statusCode(200).log().all();
-		logger.info("customer_service subcategory is shown successfully");
+		logger.info("vendor_get_booking is shown successfully.");
 
 	}
 
