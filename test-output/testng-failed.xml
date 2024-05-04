@@ -3,12 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="HomeLyf.test.User">
+      <class name="HomeLyf.test.Customer">
         <methods>
-          <include name="userSignUp" invocation-numbers="0"/>
-          <include name="userLogin" invocation-numbers="0"/>
+          <include name="customer_service"/>
         </methods>
-      </class> <!-- HomeLyf.test.User -->
+      </class> <!-- HomeLyf.test.Customer -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
