@@ -25,6 +25,7 @@ public class Routes {
 	
 	
 	public static String customer_service = base_url+"/CustomerAPI/api/Service/{subCategoryId}";
+	public static String customer_Address = base_url +"/CustomerAPI/api/User/address";
 	
 	
 	

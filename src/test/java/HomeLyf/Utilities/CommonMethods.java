@@ -127,4 +127,16 @@ public class CommonMethods {
 		forgotPassword.setEmailAddress(emailAddres);
 		return forgotPassword;
 	}
+	public static Address address_details( String name, String type, String lineOne, String lineTwo, String lineThree, String location, String postCodeID, String cityID ) {
+		Address address = new Address();
+		address.setName(name);
+		address.setType(type);
+		address.setLine1(lineOne);
+		address.setLine2(lineTwo);
+		address.setLine3(lineThree);
+		address.setLocation(location);
+		address.setPostcodeId(Integer.parseInt(postCodeID));
+		address.setCityID(Integer.parseInt(cityID));
+		return address;
+	}
 }
