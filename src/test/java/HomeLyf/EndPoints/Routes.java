@@ -33,5 +33,8 @@ public class Routes {
 	
 	
 	public static String vendor_getbooking = base_url+"/VendorAPI/api/Booking";
+	public static String vendor_GET_TimeSlot=base_url+"/VendorAPI/api/Timeslot";
+	public static String vendor_POST_TimeSlot_Disable=base_url+"/VendorAPI/api/Timeslot/Disable";
+	public static String vendor_POST_TimeSlot_Enable=base_url+"/VendorAPI/api/Timeslot/Enable/{id}";
 }
 

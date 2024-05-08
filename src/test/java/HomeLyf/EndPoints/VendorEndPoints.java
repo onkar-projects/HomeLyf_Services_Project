@@ -5,6 +5,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.ITestContext;
 
 import HomeLyf.Payload.UserLogin_Payload;
+import HomeLyf.Payload.Vendor_Timeslotdisable;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -24,4 +25,31 @@ public class VendorEndPoints {
 
 		return response;
 	}
+	public static Response vendor_Timeslot(String token)
+
+	{
+		Response response = given().header("Authorization", "Bearer " + token)
+				.contentType(ContentType.JSON).log().all()
+				.when()
+				.get(Routes.vendor_GET_TimeSlot);
+		return response;
+
+	}
+
+	public static Response vendor_TimeslotDisable(String token, Vendor_Timeslotdisable payload) {
+		Response response = given().header("Authorization", "Bearer " + token)
+				.contentType(ContentType.JSON).body(payload).log().all()
+				.when()
+				.post(Routes.vendor_POST_TimeSlot_Disable);
+		return response;
+	}
+
+	public static Response vendor_Timeslotenable(String token, int id) {
+		Response response = given().header("Authorization", "Bearer " + token)
+				.contentType(ContentType.JSON).log().all()
+				.when()
+				.post(Routes.vendor_POST_TimeSlot_Enable, id);
+		return response;
+	}
+
 }
