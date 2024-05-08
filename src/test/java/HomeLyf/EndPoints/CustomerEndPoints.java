@@ -26,6 +26,19 @@ public class CustomerEndPoints {
 		return response;
 	}
 	
+	public static Response lookupCategory() {
+		Response response = given().contentType(ContentType.JSON).log().all().when()
+				.get(Routes.getLookupCategory);
+		return response;
+	}
+
+	public static Response getsubCategoryId(String token, int categoryId) {
+
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).log().all()
+				.when().get(Routes.getsubCategoryId,categoryId);
+		return response;
+	}
+	
 	public static Response customer_Address(ITestContext context,Address payload){
 		String token = (String) context.getAttribute("Token");
 

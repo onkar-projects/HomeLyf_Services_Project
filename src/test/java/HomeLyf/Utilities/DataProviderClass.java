@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 public class DataProviderClass {
 	static String path = System.getProperty("user.dir") + "\\testData\\Homelyf_userDetails.xlsx";
 	static UserUtility lu = new UserUtility(path);
+	
 
 	@org.testng.annotations.DataProvider(name = "Data")
 	public static String[][] getAllData() throws IOException {
@@ -26,8 +27,7 @@ public class DataProviderClass {
 		}
 		return apiData;
 	}
-
-	@DataProvider(name = "Vendordata")
+        @DataProvider (name= "Vendordata")
 	public static String[][] getcustomerData() throws IOException {
 
 		int rownum = lu.getRowCount("user");
@@ -35,13 +35,15 @@ public class DataProviderClass {
 
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 0; j < 18; j++) {
-				apiData[i - 1][j] = lu.getCellData("user", i, j);
-
-				System.out.println("Given data: " + apiData[i - 1][j]);
+				apiData[i-1][j] = lu.getCellData("user", i,j );
+				
+				System.out.println("Given data: "+ apiData[i-1][j]);
 			}
 		}
 		return apiData;
-	}
+    	}
+        
+		
 
 	@org.testng.annotations.DataProvider(name = "useremailAndPassword")
 	public static Object[][] getPassword() throws IOException {
@@ -51,8 +53,8 @@ public class DataProviderClass {
 		for (int i = 1; i < rownum; i++) {
 			emailAndPassword[i - 1][0] = lu.getCellData("user", i, 1);
 			emailAndPassword[i - 1][1] = lu.getCellData("user", i, 3);
-
-			System.out.println(emailAndPassword[i - 1][0] + "/n" + emailAndPassword[i - 1][1]);
+			
+			System.out.println(emailAndPassword[i-1][0]+"/n"+ emailAndPassword[i-1][1]);
 		}
 		return emailAndPassword;
 	}
@@ -72,6 +74,7 @@ public class DataProviderClass {
 		return emailAndNewpass;
 	}
 
+	
 //	------------------------------------------HomeLyf-----------------------------------------------//
 	@DataProvider(name = "userlogin")
 	public static String[][] getEmpId() throws IOException {
@@ -83,14 +86,14 @@ public class DataProviderClass {
 
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 1; j <= 5; j++) {
-				apiData[i - 1][j - 1] = lu.getCellData("user", i, j);
-
-				System.out.println("Given data: " + apiData[i - 1][j - 1]);
+				apiData[i-1][j-1] = lu.getCellData("user", i,j );
+				
+				System.out.println("Given data: "+ apiData[i-1][j-1]);
 			}
 		}
 		return apiData;
 	}
-
+	
 	@DataProvider(name = "invalidvendordata")
 	public static String[][] getcustomerinvalidData() throws IOException {
 
@@ -99,14 +102,14 @@ public class DataProviderClass {
 
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 0; j < 18; j++) {
-				apiData[i - 1][j] = lu.getCellData("InvalidData", i, j);
-
-				System.out.println("Given data: " + apiData[i - 1][j]);
+				apiData[i-1][j] = lu.getCellData("InvalidData", i,j );
+				
+				System.out.println("Given data: "+ apiData[i-1][j]);
 			}
 		}
 		return apiData;
-	}
-
+    	}
+	
 	@DataProvider(name = "emailOTP")
 	public static String[][] getEmailOTPId() throws IOException {
 
@@ -116,13 +119,13 @@ public class DataProviderClass {
 		String apiData[][] = new String[rownum][1];
 
 		for (int i = 1; i <= rownum; i++) {
-			apiData[i - 1][0] = lu.getCellData("user", i, 3);
-
-			System.out.println("Given data: " + apiData[i - 1][0]);
+				apiData[i-1][0] = lu.getCellData("user", i,3 );
+				
+				System.out.println("Given data: "+ apiData[i-1][0]);
 		}
 		return apiData;
 	}
-
+	
 	@DataProvider(name = "invalidemail")
 	public static String[][] getInvalidUserEmail() throws IOException {
 
@@ -132,91 +135,74 @@ public class DataProviderClass {
 		String apiData[][] = new String[rownum][1];
 
 		for (int i = 1; i <= rownum; i++) {
-			apiData[i - 1][0] = lu.getCellData("InvalidData", i, 3);
-
-			System.out.println("Given data: " + apiData[i - 1][0]);
+				apiData[i-1][0] = lu.getCellData("InvalidData", i,3 );
+				
+				System.out.println("Given data: "+ apiData[i-1][0]);
 		}
 		return apiData;
 	}
-
+	
 	@DataProvider(name = "useremailAndMobile")
 	public static String[][] getEmailandMobile() throws IOException {
 		int rownum = lu.getRowCount("user");
-		String[][] emailAndPassword = new String[rownum][2];
+		String[][] emailAndPassword = new String[rownum][2] ;
 
 		for (int i = 1; i <= rownum; i++) {
 			emailAndPassword[i - 1][0] = lu.getCellData("user", i, 1);
 			emailAndPassword[i - 1][1] = lu.getCellData("user", i, 3);
-
-			System.out.println(emailAndPassword[i - 1][0] + "/n" + emailAndPassword[i - 1][1]);
+			
+			System.out.println(emailAndPassword[i-1][0]+"/n"+ emailAndPassword[i-1][1]);
 		}
 		return emailAndPassword;
 	}
-
+	
 	@DataProvider(name = "InvaliduseremailAndMobile")
 	public static String[][] getInvalidEmailandMobile() throws IOException {
 		int rownum = lu.getRowCount("InvalidData");
-		String[][] emailAndPassword = new String[rownum][2];
+		String[][] emailAndPassword = new String[rownum][2] ;
 
 		for (int i = 1; i <= rownum; i++) {
 			emailAndPassword[i - 1][0] = lu.getCellData("InvalidData", i, 1);
 			emailAndPassword[i - 1][1] = lu.getCellData("InvalidData", i, 3);
-
-			System.out.println(emailAndPassword[i - 1][0] + "/n" + emailAndPassword[i - 1][1]);
+			
+			System.out.println(emailAndPassword[i-1][0]+"/n"+ emailAndPassword[i-1][1]);
 		}
 		return emailAndPassword;
 	}
 
-	@DataProvider(name = "invalid_userlogin")
-	public static String[][] getInvalidUser() throws IOException {
 
-		int rownum = lu.getRowCount("InvalidData");
+@DataProvider(name = "invalid_userlogin")
+public static String[][] getInvalidUser() throws IOException {
+
+	int rownum = lu.getRowCount("InvalidData");
 //	int colCount = lu.getCellCount("InvalidData", 1);
 
-		String apiData[][] = new String[rownum][5];
+	String apiData[][] = new String[rownum][5];
 
-		for (int i = 1; i <= rownum; i++) {
-			for (int j = 1; j <= 5; j++) {
-				apiData[i - 1][j - 1] = lu.getCellData("InvalidData", i, j);
-
-				System.out.println("Given data: " + apiData[i - 1][j - 1]);
-			}
-
+	for (int i = 1; i <= rownum; i++) {
+		for (int j = 1; j <=  5; j++) {
+			apiData[i-1][j-1] = lu.getCellData("InvalidData", i,j );
+			
+			System.out.println("Given data: "+ apiData[i-1][j-1]);
 		}
-		return apiData;
+		
 	}
+	return apiData;
+}
+@DataProvider(name = "Customerlogin")
+public static String[][] getCustomerEmp() throws IOException {
 
-	@DataProvider(name = "Customerlogin")
-	public static String[][] getCustomerEmp() throws IOException {
-
-		int rownum = lu.getRowCount("Customer");
+	int rownum = lu.getRowCount("Customer");
 //	int colCount = lu.getCellCount("user", 1);
 
-		String apiData[][] = new String[rownum][5];
+	String apiData[][] = new String[rownum][5];
 
-		for (int i = 1; i <= rownum; i++) {
-			for (int j = 1; j <= 5; j++) {
-				apiData[i - 1][j - 1] = lu.getCellData("Customer", i, j);
-
-				System.out.println("Given data: " + apiData[i - 1][j - 1]);
-			}
+	for (int i = 1; i <= rownum; i++) {
+		for (int j = 1; j <= 5; j++) {
+			apiData[i-1][j-1] = lu.getCellData("Customer", i,j );
+			
+			System.out.println("Given data: "+ apiData[i-1][j-1]);
 		}
-		return apiData;
 	}
-	@DataProvider(name = "CustomerAddressData")
-	public static String[][] customerAddressData() throws IOException {
-
-		int rownum = lu.getRowCount("user");
-		int colcount = lu.getCellCount("user", rownum);
-		String apiData[][] = new String[rownum][8];
-
-		for (int i = 1; i <= rownum; i++) {
-			for (int j =10 ; j <=17; j++) {
-				apiData[i-1][j-10] = lu.getCellData("user", i,j );
-				
-				System.out.println("Given data: "+ apiData[i-1][j-10]);
-			}
-		}
-		return apiData;
-	}
-}
+	return apiData;
+}}

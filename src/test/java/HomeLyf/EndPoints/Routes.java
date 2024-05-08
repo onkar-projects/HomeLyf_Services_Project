@@ -1,5 +1,3 @@
-
-
 package HomeLyf.EndPoints;
 
 public class Routes {
@@ -18,7 +16,8 @@ public class Routes {
 	public static String account_googleSignIn= base_url + "/UserAPI/api/Account/GoogleSignIn";
 	public static String account_appleSignIn= base_url + "/UserAPI/api/Account/AppleSignIn";
 
-	
+	//Lookup
+		public static String getLookupCategory = base_url + "/UserAPI/api/Lookup/Category";
 	
 	//-------------------------------------------Customer Routes----------------------------------------------
 
@@ -26,7 +25,8 @@ public class Routes {
 	
 	public static String customer_service = base_url+"/CustomerAPI/api/Service/{subCategoryId}";
 	public static String customer_Address = base_url +"/CustomerAPI/api/User/address";
-	
+	//SubCategory
+		public static String getsubCategoryId = base_url + "/CustomerAPI/api/SubCategory/{categoryId}";
 	
 	
 	//-------------------------------------------Vendor Routes----------------------------------------------
@@ -34,5 +34,6 @@ public class Routes {
 	
 	
 	public static String vendor_getbooking = base_url+"/VendorAPI/api/Booking";
+	public static String cancelPartnerBooking = base_url + "/VendorAPI/api/Booking/Cancel/{bookingId}";
 }
 
