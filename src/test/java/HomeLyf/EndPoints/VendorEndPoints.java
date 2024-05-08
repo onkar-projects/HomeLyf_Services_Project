@@ -10,6 +10,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class VendorEndPoints {
+	
 	public static Response userLogin(UserLogin_Payload Payload, ITestContext context) {
 		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
 				.post(Routes.account_login);
@@ -52,4 +53,13 @@ public class VendorEndPoints {
 		return response;
 	}
 
+	
+	public static Response vendorCancelBooking(ITestContext context,int bookingId) {
+		String token = (String) context.getAttribute("Token");
+
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
+				.log().all().when().post(Routes.cancelPartnerBooking,bookingId);
+
+		return response;
+	}
 }

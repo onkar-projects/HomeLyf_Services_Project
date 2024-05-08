@@ -17,7 +17,9 @@ import io.restassured.response.Response;
 public class Customer {
 	private static Logger logger = LogManager.getLogger(User.class);
 	String token;
-
+	int addressId;
+	int categoryId;
+	
 	@Test(priority = 1, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
 	public void userLogin(ITestContext context, String mobileNumber, String type, String emailAddress, String password,
 			String location) {
@@ -47,6 +49,41 @@ public class Customer {
 		Assert.assertEquals(response.statusCode(), 200);
 		response.then().statusCode(200).log().all();
 		logger.info("customer_service subcategory is shown successfully");
+
+	}
+
+	@Test(priority=12)
+	public void getUserLookupCategory() {
+		Response response = CustomerEndPoints.lookupCategory();
+		response.then().log().all();
+		JsonPath js = CommonMethods.jsonToString(response);
+		  categoryId = js.getInt("[1].id");
+		 System.out.println("CategoryId:  "+categoryId);
+		
+	
+	}
+
+	@Test(priority=13)
+	public void getSubCateogryId() {
+		Response response = CustomerEndPoints.getsubCategoryId(token, categoryId);
+		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
+
+	}
+	
+	@Test(priority = 15, description = "Creating customer new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
+			String lineThree, String location, String postCodeID, String cityID) {
+
+		logger.info("Adding Customer Address");
+		Response response = CustomerEndPoints.customer_Address(context,
+				CommonMethods.address_details(name, type, lineOne, lineTwo, lineThree, location, postCodeID, cityID));
+		response.then().log().all();
+		JsonPath js= CommonMethods.jsonToString(response);
+		addressId = js.getInt("id");
+		
+		Assert.assertEquals(response.statusCode(),200);
+		logger.info("Added Customer new Address successfully");
 
 	}
 

@@ -6,6 +6,7 @@ public class UpdatePaymentStatus_Payload
 	private String paymentStatus;
 	private String paymentMode;
 	
+
 	public int getBookingID() {
 		return bookingID;
 	}
@@ -24,5 +25,4 @@ public class UpdatePaymentStatus_Payload
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
-	
 }

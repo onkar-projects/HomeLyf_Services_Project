@@ -127,4 +127,5 @@ public class CommonMethods {
 		forgotPassword.setEmailAddress(emailAddres);
 		return forgotPassword;
 	}
+	
 }
