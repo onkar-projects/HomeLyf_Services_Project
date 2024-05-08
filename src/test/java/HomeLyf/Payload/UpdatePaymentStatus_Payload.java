@@ -1,29 +1,23 @@
 package HomeLyf.Payload;
 
-public class UpdatePaymentStatus_Payload {
-
-	int id;
-	int bookingID;
-	String paymentStaus;
-	String paymentMode;
+public class UpdatePaymentStatus_Payload
+{
+	private int bookingID;
+	private String paymentStatus;
+	private String paymentMode;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public int getBookingID() {
 		return bookingID;
 	}
 	public void setBookingID(int bookingID) {
 		this.bookingID = bookingID;
 	}
-	public String getPaymentStaus() {
-		return paymentStaus;
+	public String getPaymentStatus() {
+		return paymentStatus;
 	}
-	public void setPaymentStaus(String paymentStaus) {
-		this.paymentStaus = paymentStaus;
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
 	}
 	public String getPaymentMode() {
 		return paymentMode;

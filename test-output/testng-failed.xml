@@ -5,7 +5,7 @@
     <classes>
       <class name="HomeLyf.test.Customer">
         <methods>
-          <include name="customer_service"/>
+          <include name="customer_Addresstest"/>
         </methods>
       </class> <!-- HomeLyf.test.Customer -->
     </classes>

@@ -1,7 +1,6 @@
 package HomeLyf.EndPoints;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.ITestContext;
 
 import HomeLyf.Payload.Address;
@@ -50,3 +49,4 @@ public class CustomerEndPoints {
 	
 	
 }
+

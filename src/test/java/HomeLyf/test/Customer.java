@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import HomeLyf.EndPoints.CustomerEndPoints;
 import HomeLyf.EndPoints.UserEndPoints;
+
 import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
 import io.restassured.path.json.JsonPath;
@@ -50,6 +51,7 @@ public class Customer {
 		logger.info("customer_service subcategory is shown successfully");
 
 	}
+
 	@Test(priority=12)
 	public void getUserLookupCategory() {
 		Response response = CustomerEndPoints.lookupCategory();
