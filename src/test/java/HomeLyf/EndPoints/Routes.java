@@ -1,4 +1,3 @@
-
 package HomeLyf.EndPoints;
 
 public class Routes {
@@ -59,3 +58,4 @@ public class Routes {
 	//User
 	public static String vendor_profile = base_url + "/VendorAPI/api/User/myprofile";
 }
+
