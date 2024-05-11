@@ -25,10 +25,9 @@ import org.testng.annotations.BeforeTest;
 		esr = new ExtentSparkReporter("Extent_Report.html");
 		er = new ExtentReports ();
 		er.attachReporter(esr);
-		er.setSystemInfo("Machine","TPC1");
+		er.setSystemInfo("System","Dell");
 		er.setSystemInfo("OS","window11");
-		er.setSystemInfo("Host","monika");
-		er.setSystemInfo("browser","chrome");
+		er.setSystemInfo("Host","HomeLyf");
 
 	// confi. to change look & feel
 	esr.config().setDocumentTitle("Extent report file");
