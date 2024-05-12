@@ -32,18 +32,10 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>3.2.5</version>
-					<!--					<configuration>-->
-					<!--						<suiteXmlFiles>-->
-					<!--							<suiteXmlFile>testng.xml</suiteXmlFile>-->
-					<!--						</suiteXmlFiles>-->
-					<!--					</configuration>-->
 					<configuration>
-						<includes>
-							<include>**/Vendor.java</include> <!-- Specify
-							your Vendor test class name -->
-							<include>**/Customer.java</include> <!-- Specify
-							your Customer test class name -->
-						</includes>
+						<suiteXmlFiles>
+							<suiteXmlFile>testng.xml</suiteXmlFile>
+						</suiteXmlFiles>
 					</configuration>
 				</plugin>
 			</plugins>
