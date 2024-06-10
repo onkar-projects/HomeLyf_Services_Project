@@ -5,7 +5,10 @@
     <classes>
       <class name="HomeLyf.test.Customer">
         <methods>
-          <include name="customer_Addresstest"/>
+          <include name="getUserLookupCategory"/>
+          <include name="userLogin" invocation-numbers="0"/>
+          <include name="getSubCateogryId"/>
+          <include name="customer_service" invocation-numbers="0"/>
         </methods>
       </class> <!-- HomeLyf.test.Customer -->
     </classes>

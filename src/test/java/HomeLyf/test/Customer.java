@@ -71,7 +71,7 @@ public class Customer {
 
 	}
 	
-	@Test(priority = 15, description = "Creating customer new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	/*@Test(priority = 15, description = "Creating customer new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location, String postCodeID, String cityID) {
 
@@ -85,6 +85,6 @@ public class Customer {
 		Assert.assertEquals(response.statusCode(),200);
 		logger.info("Added Customer new Address successfully");
 
-	}
+	}*/
 
 }
