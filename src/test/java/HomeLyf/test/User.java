@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
-
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
@@ -146,7 +145,6 @@ public class User {
 		logger.warn("Password reset request attempted with invalid data");
 	}
 
-
 	@Test(priority = 9, description = "Customer should get Category")
 	public void customer_GetLookupCategoryTest(ITestContext context) {
 		logger.info("Getting category");
@@ -159,10 +157,10 @@ public class User {
 		System.out.println("------------------------------");
 		int categotyId = js.getInt("[0].id");
 		context.setAttribute("categoryID", categotyId);
-		Assert.assertEquals(js.getString("[0].id"),"1");
+		Assert.assertEquals(js.getString("[0].id"), "1");
 		logger.info("Category fetched successfully");
 	}
-	
+
 	@Test(priority = 10, description = "Customer should get Country")
 	public void customer_GetLookupCountryTest() {
 		logger.info("Getting Country");
@@ -173,24 +171,24 @@ public class User {
 		System.out.println("------------------------------");
 		System.out.println(js.getString("[0].name"));
 		System.out.println("------------------------------");
-		Assert.assertEquals(js.getString("[0].name"),"India");
+		Assert.assertEquals(js.getString("[0].name"), "India");
 		logger.info("Country fetched successfully");
 	}
-	
+
 	@Test(priority = 11, description = "Customer should get State")
 	public void customer_GetLookupStateTest() {
 		logger.info("Getting State");
 		Response response = UserEndPoints.user_getLookupStateEP();
 		response.then().log().all();
 		Assert.assertEquals(response.getStatusCode(), 200);
-	JsonPath js = CommonMethods.jsonToString(response);
-	System.out.println("------------------------------");
-	System.out.println(js.getString("[0].name"));
-	System.out.println("------------------------------");
-	Assert.assertEquals(js.getString("[0].name"),"Maharashtra");
+		JsonPath js = CommonMethods.jsonToString(response);
+		System.out.println("------------------------------");
+		System.out.println(js.getString("[0].name"));
+		System.out.println("------------------------------");
+		Assert.assertEquals(js.getString("[0].name"), "Maharashtra");
 		logger.info("State fetched successfully");
 	}
-	
+
 	@Test(priority = 12, description = "Customer should get City")
 	public void customer_GetLookupCityTest() {
 		logger.info("Getting City");
@@ -201,10 +199,10 @@ public class User {
 		System.out.println("------------------------------");
 		System.out.println(js.getString("[0].name"));
 		System.out.println("------------------------------");
-		Assert.assertEquals(js.getString("[0].name"),"Pune");
+		Assert.assertEquals(js.getString("[0].name"), "Pune");
 		logger.info("City fetched successfully");
 	}
-	
+
 	@Test(priority = 13, description = "Customer should get PostCode")
 	public void customer_GetLookupPostCodeTest() {
 		logger.info("Getting PostCode");
@@ -215,8 +213,8 @@ public class User {
 		System.out.println("------------------------------");
 		System.out.println(js.getString("[0].name"));
 		System.out.println("------------------------------");
-		Assert.assertEquals(js.getString("[0].name"),"411002");
+		Assert.assertEquals(js.getString("[0].name"), "411002");
 		logger.info("PostCode fetched successfully");
 	}
-	
+
 }

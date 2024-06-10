@@ -1,9 +1,7 @@
 package HomeLyf.EndPoints;
 
 import static io.restassured.RestAssured.given;
-
 import org.testng.ITestContext;
-
 import HomeLyf.Payload.DisableTimeslot_Payload;
 import HomeLyf.Payload.StartAndComplete_Booking_Payload;
 import HomeLyf.Payload.UserLogin_Payload;

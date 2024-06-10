@@ -16,15 +16,15 @@ import io.restassured.response.Response;
 public class Customer {
 
 	private static Logger logger = LogManager.getLogger(User.class);
-	static String Ctoken;
-	static String sTime;
-	static String[] paymentMode = { "cash", "upi", "card", "other" };
-	static String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundinprogress",
+	String Ctoken;
+	String sTime;
+	String[] paymentMode = { "cash", "upi", "card", "other" };
+	String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundinprogress",
 			"refunded" };
 	Address address;
 
 	@Test(priority = 1, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
-	public static void userLogin(ITestContext context, String mobileNumber, String type, String emailAddress, String password,
+	public void userLogin(ITestContext context, String mobileNumber, String type, String emailAddress, String password,
 			String location) {
 		logger.info("Starting userLogin test...");
 		Response response = UserEndPoints
@@ -42,8 +42,8 @@ public class Customer {
 		logger.info("User logged in successfully");
 	}
 
-	@Test(priority = 2, enabled = false, description = "Customer profile should show")
-	public static void customer_GetMyProfileTest(ITestContext context) {
+	@Test(priority = 2, enabled = true, description = "Customer profile should show")
+	public void customer_GetMyProfileTest(ITestContext context) {
 		logger.info("Getting Customer profile");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
 		response.then().log().all();
@@ -54,8 +54,8 @@ public class Customer {
 		logger.info("Customer profile shown successfully");
 	}
 
-	@Test(priority = 3, enabled = false, description = "Customer should get category")
-	public static void customer_GetCategoryTest(ITestContext context) {
+	@Test(priority = 3, enabled = true, description = "Customer should get category")
+	public void customer_GetCategoryTest(ITestContext context) {
 		logger.info("Getting category");
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
@@ -70,8 +70,8 @@ public class Customer {
 		logger.info("Category fetched successfully");
 	}
 
-	@Test(priority = 4, enabled = false, description = "Customer should Show the SubCategory")
-	public static void customer_subCategoryIdTest(ITestContext context) {
+	@Test(priority = 4, enabled = true, description = "Customer should Show the SubCategory")
+	public void customer_subCategoryIdTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_SubCategoryEP(context, (int) context.getAttribute("categoryId"));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
@@ -81,7 +81,7 @@ public class Customer {
 		logger.info("SubCategory Fetched Successfully");
 	}
 
-	@Test(priority = 5, enabled = false, description = " customer should get services")
+	@Test(priority = 5, enabled = true, description = " customer should get services")
 	public static void customer_GetService(ITestContext context) {
 
 		logger.info("Starting customer_service...");
@@ -95,8 +95,8 @@ public class Customer {
 		logger.info("customer_service subcategory is shown successfully");
 	}
 
-	@Test(priority = 6, enabled = false)
-	public static void customer_GetTimeSlot(ITestContext context) {
+	@Test(priority = 6, enabled = true)
+	public void customer_GetTimeSlot(ITestContext context) {
 
 		logger.info("Starting customer_service...");
 		Response response = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
@@ -112,8 +112,8 @@ public class Customer {
 
 	}
 
-	@Test(priority = 7, enabled = false, description = "Customer should create new Booking")
-	public static void customer_CreateBooking(ITestContext context) {
+	@Test(priority = 7, enabled = true, description = "Customer should create new Booking")
+	public void customer_CreateBooking(ITestContext context) {
 
 		logger.info("Creating new Booking");
 		Response response = CustomerEndPoints.customer_CreateBookingEndPoint(context,
@@ -128,8 +128,8 @@ public class Customer {
 		logger.info("New booking created successfully");
 	}
 
-	@Test(priority = 8, enabled = false, description = "customer booking should show")
-	public static void customer_GetBookingTest(ITestContext context) {
+	@Test(priority = 8, enabled = true, description = "customer booking should show")
+	public void customer_GetBookingTest(ITestContext context) {
 		String[] status = { "New", "expertassigned", "inprogress", "cancelled", "completed" };
 		logger.info("Fetching Customer booking");
 		Response response = CustomerEndPoints.customer_GetBookingEndPoint(context, status[1]);
@@ -141,8 +141,8 @@ public class Customer {
 		logger.info("Customer booking shown successfully of Status" + status[0]);
 	}
 
-	@Test(priority = 9, enabled = false, description = "customer should update payment status ")
-	public static void customer_UpdatePaymnetStatus(ITestContext context) {
+	@Test(priority = 9, enabled = true, description = "customer should update payment status ")
+	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updateing Payment Status");
 
 		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context,
@@ -159,22 +159,22 @@ public class Customer {
 		logger.info("Customer update payment status successfully ");
 	}
 
-	@Test(priority = 10, enabled = false, description = "Customer should calculate as per quntity ")
-	public static void customer_Calculate(ITestContext context) {
+	@Test(priority = 10, enabled = true, description = "Customer should calculate as per quntity ")
+	public void customer_Calculate(ITestContext context) {
 
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 
-	@Test(priority = 11, enabled = false, description = "Customer should Cancel booking ")
-	public static void customer_CancelTest(ITestContext context) {
+	@Test(priority = 11, enabled = true, description = "Customer should Cancel booking ")
+	public void customer_CancelTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
 		response.then().log().all();
 	}
 
-	@Test(priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
-	public static void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
+	@Test(priority = 12, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
 		Response response = CustomerEndPoints.customer_Address(context,
@@ -187,6 +187,5 @@ public class Customer {
 		logger.info("Added Customer new Address successfully");
 
 	}
-	
 
 }

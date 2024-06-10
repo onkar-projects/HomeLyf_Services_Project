@@ -90,52 +90,48 @@ public class LookUp {
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Payment Mode fetched successfully");
 	}
-	
-public static void customer_GetBookingStatusTest(ITestContext context) {
+
+	public static void customer_GetBookingStatusTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_BookingStatusEP(context);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Booking Status are fetched successfully");
 	}
 //-----------------------------------------------------------------------------------------------------------
 
-public static void vendorgetMybooking(ITestContext context) {
-	logger.info("Starting vendor_get_booking...");
-	int vendorBookingId=0;
-	Response response = VendorEndPoints.vendor_MybookingEP(context);
-	JsonPath js = CommonMethods.jsonToString(response);
-	for(int i = 0; i<= 10 ; i++) {
-		String status = js.getString("["+i+"].status");
-		if(status.equalsIgnoreCase("ExpertAssigned")) {
-			vendorBookingId = js.getInt("["+i+"].id");
-			break;
+	public static void vendorgetMybooking(ITestContext context) {
+		logger.info("Starting vendor_get_booking...");
+		int vendorBookingId = 0;
+		Response response = VendorEndPoints.vendor_MybookingEP(context);
+		JsonPath js = CommonMethods.jsonToString(response);
+		for (int i = 0; i <= 10; i++) {
+			String status = js.getString("[" + i + "].status");
+			if (status.equalsIgnoreCase("ExpertAssigned")) {
+				vendorBookingId = js.getInt("[" + i + "].id");
+				break;
+			}
 		}
-	}
-	context.setAttribute("vendorAcceptBookingId", vendorBookingId);
-	Assert.assertEquals(response.statusCode(), 200);
-	logger.info("vendor_get_booking is shown successfully.");
-}
-
-/*public static  void customerGetBooking(ITestContext context) {
- * logger.info("");
-	//String[] status = {"New", "expertassigned", "inprogress", "cancelled", "completed"};
-	logger.info("Fetching Customer booking");
-	int vendorBookingId;
-	String startOtp;
-	String endOtp;
-	Response response = CustomerEndPoints.customer_GetBookingEndPoint(context, "expertassigned");
-	response.then().log().all();
-	JsonPath js = CommonMethods.jsonToString(response);
-			vendorBookingId = js.getInt("[0].id");  
-			startOtp = js.getString("[0].startOTP");
-			endOtp = js.getString("[0].endOTP");
-		System.out.println("################### "+vendorBookingId+" ###################");
 		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
-		context.setAttribute("startOtp", startOtp);
-		context.setAttribute("endOtp", endOtp);
-	
-	String stat = js.getString("[0].status");
-	Assert.assertEquals(stat, "ExpertAssigned");
-	Assert.assertEquals(response.statusCode(), 200);
-	logger.info("Customer booking shown successfully of Status" + stat);
-}*/
+		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("vendor_get_booking is shown successfully.");
+	}
+
+	/*
+	 * public static void customerGetBooking(ITestContext context) {
+	 * logger.info(""); //String[] status = {"New", "expertassigned", "inprogress",
+	 * "cancelled", "completed"}; logger.info("Fetching Customer booking"); int
+	 * vendorBookingId; String startOtp; String endOtp; Response response =
+	 * CustomerEndPoints.customer_GetBookingEndPoint(context, "expertassigned");
+	 * response.then().log().all(); JsonPath js =
+	 * CommonMethods.jsonToString(response); vendorBookingId = js.getInt("[0].id");
+	 * startOtp = js.getString("[0].startOTP"); endOtp = js.getString("[0].endOTP");
+	 * System.out.println("################### "
+	 * +vendorBookingId+" ###################");
+	 * context.setAttribute("vendorAcceptBookingId", vendorBookingId);
+	 * context.setAttribute("startOtp", startOtp); context.setAttribute("endOtp",
+	 * endOtp);
+	 * 
+	 * String stat = js.getString("[0].status"); Assert.assertEquals(stat,
+	 * "ExpertAssigned"); Assert.assertEquals(response.statusCode(), 200);
+	 * logger.info("Customer booking shown successfully of Status" + stat); }
+	 */
 }

@@ -45,7 +45,7 @@ public class Routes {
 
 	// -------------------------------------------Vendor Routes----------------------------------------------
 	//booking
-	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking?page=1&size=1000";
+	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
 	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";
 	public static String vendor_acceptBooking = base_url + "/VendorAPI/api/Booking/Accept/{bookingId}";
 
