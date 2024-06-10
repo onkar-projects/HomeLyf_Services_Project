@@ -5,6 +5,7 @@ public class StartAndComplete_Booking_Payload {
 	
 	int bookingId;
 	int otp;
+	
 	public int getBookingId() {
 		return bookingId;
 	}

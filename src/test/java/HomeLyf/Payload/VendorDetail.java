@@ -33,7 +33,7 @@ public class VendorDetail {
 		return servicePostCodes;
 	}
 
-	public void setServicePostCodes( List<Integer> spostcode) {
+	public void setServicePostCodes(List<Integer> spostcode) {
 		this.servicePostCodes = spostcode;
 	}
 

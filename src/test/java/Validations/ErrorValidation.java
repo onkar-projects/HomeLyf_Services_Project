@@ -6,5 +6,7 @@ public class ErrorValidation {
 	public static String emailAddress="Invalid email format.";
 	public static String password="Invalid password.";
 	public static String name="Invalid name.";
+	
+	
 
 }
