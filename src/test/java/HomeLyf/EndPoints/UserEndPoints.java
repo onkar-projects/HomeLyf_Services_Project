@@ -1,5 +1,3 @@
-
-
 package HomeLyf.EndPoints;
 
 import HomeLyf.Payload.ForgotPassword_Payload;
@@ -10,8 +8,6 @@ import HomeLyf.Payload.UserLogin_Payload;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
-
-import org.testng.ITestContext;
 
 public class UserEndPoints {
 	

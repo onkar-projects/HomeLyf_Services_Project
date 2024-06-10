@@ -1,14 +1,10 @@
 package HomeLyf.Utilities;
 
-import java.lang.invoke.MethodHandles.Lookup;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.testng.ITestContext;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.BookingServices;
@@ -23,7 +19,6 @@ import HomeLyf.Payload.StartAndComplete_Booking_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Payload.VendorDetail;
 import HomeLyf.test.LookUp;
-import io.opentelemetry.context.Context;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -175,8 +170,8 @@ public class CommonMethods {
 		
 		bookingServices.setServiceID((int)context.getAttribute("serviceid"));
 		custBooking.setBookingServices(Collections.singletonList(bookingServices));
-		custBooking.setScheduledOn((String) context.getAttribute("StartTime"));
-		custBooking.setAddressID((int) context.getAttribute("addressId"));
+		custBooking.setScheduledOn((String)context.getAttribute("StartTime"));
+		custBooking.setAddressID((int)context.getAttribute("addressId"));
 		return custBooking;
 	}
 
@@ -211,5 +206,26 @@ public class CommonMethods {
 		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
 		return disabletimeslot;
 	}
+	public static UserLogin_Payload VendorLoginforAcceptBookingAfterEnablingTimeslot() {
+		userlogin = new UserLogin_Payload();
+
+		userlogin.setEmailAddress("5nfu51refe@elatter.com");
+		userlogin.setMobileNumber(Long.parseLong("2004005005"));
+		userlogin.setPassword("Tuka@123");
+		userlogin.setType("V");
+		userlogin.setLocation("pune");
+		return userlogin;
+	}
+	public static UserLogin_Payload CustomerLoginforAcceptBookingAfterEnablingTimeslot() {
+		userlogin = new UserLogin_Payload();
+
+		userlogin.setEmailAddress("f9iupld30y@elatter.com");
+		userlogin.setMobileNumber(Long.parseLong("6029860554"));
+		userlogin.setPassword("HomeLyf@123");
+		userlogin.setType("C");
+		userlogin.setLocation("pune");
+		return userlogin;
+	}
 }
+
 

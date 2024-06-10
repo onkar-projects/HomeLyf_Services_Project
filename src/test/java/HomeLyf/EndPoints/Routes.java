@@ -3,7 +3,7 @@ package HomeLyf.EndPoints;
 public class Routes {
 
 //	USER_API
-	public static String base_url = "https://homelyf.co.in";
+	public static String base_url = "https://homelyfservices.com";
 
 	public static String account_login = base_url + "/UserAPI/api/Account/Login";
 	public static String account_signUp = base_url + "/UserAPI/api/Account/SignUp";
@@ -45,9 +45,10 @@ public class Routes {
 
 	// -------------------------------------------Vendor Routes----------------------------------------------
 	//booking
-	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
+	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking?page=1&size=1000";
 	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";
 	public static String vendor_acceptBooking = base_url + "/VendorAPI/api/Booking/Accept/{bookingId}";
+
 	public static String vendor_startBooking = base_url + "/VendorAPI/api/Booking/Start";
 	public static String vendor_completeBooking = base_url + "/VendorAPI/api/Booking/Complete";
 	public static String vendor_cancelBooking = base_url + "/VendorAPI/api/Booking/Cancel/{bookingId}";
@@ -58,4 +59,6 @@ public class Routes {
 	//User
 	public static String vendor_profile = base_url + "/VendorAPI/api/User/myprofile";
 }
+
+
 
