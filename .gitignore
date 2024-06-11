@@ -1,11 +1,7 @@
 target/
 .metadata
 .settings
-.vscode
 logs/
 test-output/
 .classpath
 .project
-TestData/
-
-/testng.xml
