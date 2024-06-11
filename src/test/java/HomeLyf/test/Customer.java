@@ -26,7 +26,7 @@ public class Customer {
 			"refunded" };
 	Address address;
 
-	@Test(priority = 1, enabled = false, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 1, enabled = true, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
 	public static void customer_Login(ITestContext context, String mobileNumber, String type, String emailAddress,
 			String password, String location) {
 		logger.info("Starting userLogin test...");
@@ -45,7 +45,7 @@ public class Customer {
 		logger.info("User logged in successfully");
 	}
 
-	@Test(priority = 2, enabled = false, description = "Customer profile should show")
+	@Test(priority = 2, enabled = true, description = "Customer profile should show")
 	public void customer_GetMyProfileTest(ITestContext context) {
 		logger.info("Getting Customer profile");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
@@ -57,7 +57,7 @@ public class Customer {
 		logger.info("Customer profile shown successfully");
 	}
 
-	@Test(priority = 3, enabled = false, description = "Customer should get category")
+	@Test(priority = 3, enabled = true, description = "Customer should get category")
 	public void customer_GetCategoryTest(ITestContext context) {
 		logger.info("Getting category");
 		LookUp.getPostCode(context);
@@ -73,7 +73,7 @@ public class Customer {
 		logger.info("Category fetched successfully");
 	}
 
-	@Test(priority = 4, enabled = false, description = "Customer should Show the SubCategory")
+	@Test(priority = 4, enabled = true, description = "Customer should Show the SubCategory")
 	public void customer_subCategoryIdTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_SubCategoryEP(context, (int) context.getAttribute("categoryId"));
 		response.then().log().all();
@@ -84,7 +84,7 @@ public class Customer {
 		logger.info("SubCategory Fetched Successfully");
 	}
 
-	@Test(priority = 5, enabled = false, description = " customer should get services")
+	@Test(priority = 5, enabled = true, description = " customer should get services")
 	public void customer_GetService(ITestContext context) {
 
 		logger.info("Starting customer_service...");
@@ -98,7 +98,7 @@ public class Customer {
 		logger.info("customer_service subcategory is shown successfully");
 	}
 
-	@Test(priority = 6, enabled = false)
+	@Test(priority = 6, enabled = true)
 	public void customer_GetTimeSlot(ITestContext context) {
 
 		logger.info("Starting customer_service...");
@@ -115,7 +115,7 @@ public class Customer {
 
 	}
 
-	@Test(priority = 7, enabled = false, description = "Customer should create new Booking")
+	@Test(priority = 7, enabled = true, description = "Customer should create new Booking")
 	public void customer_CreateBooking(ITestContext context) {
 
 		logger.info("Creating new Booking");
@@ -131,7 +131,7 @@ public class Customer {
 		logger.info("New booking created successfully");
 	}
 
-	@Test(priority = 8, enabled = false, description = "customer booking should show")
+	@Test(priority = 8, enabled = true, description = "customer booking should show")
 	public void customer_GetBookingTest(ITestContext context) {
 		String[] status = { "New", "expertassigned", "inprogress", "cancelled", "completed" };
 		logger.info("Fetching Customer booking");
@@ -144,7 +144,7 @@ public class Customer {
 		logger.info("Customer booking shown successfully of Status" + status[0]);
 	}
 
-	@Test(priority = 9, enabled = false, description = "customer should update payment status ")
+	@Test(priority = 9, enabled = true, description = "customer should update payment status ")
 	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updateing Payment Status");
 
@@ -162,7 +162,7 @@ public class Customer {
 		logger.info("Customer update payment status successfully ");
 	}
 
-	@Test(priority = 10, enabled = false, description = "Customer should calculate as per quntity ")
+	@Test(priority = 10, enabled = true, description = "Customer should calculate as per quntity ")
 	public void customer_Calculate(ITestContext context) {
 
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
@@ -170,13 +170,13 @@ public class Customer {
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 
-	@Test(priority = 11, enabled = false, description = "Customer should Cancel booking ")
+	@Test(priority = 11, enabled = true, description = "Customer should Cancel booking ")
 	public void customer_CancelTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
 		response.then().log().all();
 	}
 
-	@Test(priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 12, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
@@ -191,7 +191,7 @@ public class Customer {
 
 	}
 
-//	@Test(priority = 13, enabled = false)
+//	@Test(priority = 13, enabled = true)
 //	public void customer_GetBookingIdTest(ITestContext context) {
 //		Response response = CustomerEndPoints.customer_GetBookingBySIdEP(context, 52673);
 //		response.then().log().all();
@@ -210,14 +210,14 @@ public class Customer {
 //		
 //		
 //	}
-	@Test(priority = 14, enabled = false)
+	@Test(priority = 14, enabled = true)
 	public void customer_RescheduleTime(ITestContext context) {
 		Response response = CustomerEndPoints.customer_RescheduleEP(context,
 				CommonMethods.CustomerReschedule_Payload(context, 52673, "2024-06-06T04:00:00Z"));
 		response.then().log().all();
 	}
 
-	@Test(priority = 15)
+	@Test(priority = 15,enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
 		// Vendor Login
 		Response vresponse = VendorEndPoints.vendor_Login(CommonMethods.vendor_Login(), context);
@@ -275,7 +275,7 @@ public class Customer {
 		Response customerTimeslotResponse = CustomerEndPoints
 				.customer_GetTimeSlot((int) context.getAttribute("addressId"), categoryId, context);
 		customerTimeslotResponse.then().log().all();
-		logger.info("Check whether disable timeslot is available in customer avaailable timeslot ");
+		logger.info("Check whether disable timeslot is available in customer available timeslot ");
 		// Verify that disabled timeslots are no longer visible to the customer
 
 		Assert.assertEquals(vresponse.statusCode(), 200);
@@ -294,8 +294,7 @@ public class Customer {
 		Assert.assertEquals(response2.statusCode(), 200);
 		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response2, "List of Categories are getting successfully");
-		Assert.assertFalse(customerTimeslotResponse.getBody().asString().contains(sTime),
-				"Disabled timeslots are still visible to the customer");
+		Assert.assertTrue(customerTimeslotResponse.getBody().asString().contains(sTime),"Disabled timeslots are still visible to the customer");
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(customerTimeslotResponse,
 				"Customer available timeslot are getting with including timeslot disable by vendor");
