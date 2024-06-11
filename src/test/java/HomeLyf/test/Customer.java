@@ -37,7 +37,7 @@ public class Customer {
 		JsonPath js = new JsonPath(res);
 		Ctoken = js.getString("token");
 		System.out.println("Generated Token Id: " + Ctoken);
-		context.setAttribute("Token", Ctoken);
+		context.setAttribute("CToken", Ctoken);
 		logger.debug("Generated Token Id: {}", Ctoken);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("User logged in successfully");
@@ -183,7 +183,7 @@ public class Customer {
 		logger.info("Added Customer new Address successfully");
 	}
 
-//	@Test(priority = 13, enabled = true)
+//	@Test(priority = 13, enabled = false)
 //	public void customer_GetBookingIdTest(ITestContext context) {
 //		Response response = CustomerEndPoints.customer_GetBookingBySIdEP(context, 52673);
 //		response.then().log().all();
@@ -212,10 +212,10 @@ public class Customer {
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
-		token = vloginjs.getString("token");
+		String Vtoken = vloginjs.getString("token");
 		System.out.println("Generated Token Id: " + token);
-		context.setAttribute("Vtoken", token);
-		logger.debug("Generated Token Id: {}", token);
+		context.setAttribute("VToken", Vtoken);
+		logger.debug("Generated Token Id: {}", Vtoken);
 		logger.info("Vendor logged in successfully");
 		Assert.assertEquals(vresponse.statusCode(), 200);
 		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
@@ -250,10 +250,10 @@ public class Customer {
 		// Customer Login
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
-		token = loginjs.getString("token");
+		String Ctoken = loginjs.getString("token");
 		System.out.println("Generated Token Id: " + token);
-		context.setAttribute("Ctoken", token);
-		logger.debug("Generated Token Id: {}", token);
+		context.setAttribute("CToken", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
 		logger.info("Customer logged in successfully");
 		Assert.assertEquals(cresponse.statusCode(), 200);
 		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
