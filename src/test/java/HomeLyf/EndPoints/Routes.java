@@ -1,3 +1,4 @@
+
 package HomeLyf.EndPoints;
 
 public class Routes {
@@ -23,8 +24,7 @@ public class Routes {
 
 	
 	
-	public static String customer_service = base_url+"/CustomerAPI/api/Service/{subCategoryId}";
-	public static String customer_Address = base_url +"/CustomerAPI/api/User/address";
+	
 	//SubCategory
 		public static String getsubCategoryId = base_url + "/CustomerAPI/api/SubCategory/{categoryId}";
 	
@@ -33,10 +33,58 @@ public class Routes {
 	
 	
 	
-	public static String vendor_getbooking = base_url+"/VendorAPI/api/Booking";
+	
 	public static String vendor_GET_TimeSlot=base_url+"/VendorAPI/api/Timeslot";
 	public static String vendor_POST_TimeSlot_Disable=base_url+"/VendorAPI/api/Timeslot/Disable";
 	public static String vendor_POST_TimeSlot_Enable=base_url+"/VendorAPI/api/Timeslot/Enable/{id}";
 	public static String cancelPartnerBooking = base_url + "/VendorAPI/api/Booking/Cancel/{bookingId}";
+
+
+
+
+
+
+	
+	//Lookup
+		public static String getLookupCategoryURL = base_url + "/UserAPI/api/Lookup/Category";
+		public static String getLookupCountryURL = base_url + "/UserAPI/api/Lookup/Country";
+		public static String getLookupStateURL = base_url + "/UserAPI/api/Lookup/State";
+		public static String getLookupCityURL = base_url + "/UserAPI/api/Lookup/City";
+		public static String getLookupPostCodeURL = base_url + "/UserAPI/api/Lookup/PostCode";
+
+	// -------------------------------------------Customer Routes----------------------------------------------
+
+	public static String customer_service = base_url + "/CustomerAPI/api/Service/{subCategoryId}";
+	public static String customer_Address = base_url + "/CustomerAPI/api/User/address";
+	public static String customer_GetTimeShot = base_url + "/CustomerAPI/api/Booking/Timeslots";
+	public static String customer_GetBookingURL = base_url + "/CustomerAPI/api/Booking";
+	public static String customer_CreateBookingURL = base_url + "/CustomerAPI/api/Booking";
+	public static String customer_UpdatePaymentURL = base_url + "/CustomerAPI/api/Booking/UpdatePaymentStatus";
+	public static String customer_Calculate = base_url + "/CustomerAPI/api/Booking/Calculate";
+	public static String customer_CancelURL = base_url + "/CustomerAPI/api/Booking/Cancel/{BookingId}";
+
+	// --------------------------------------lookups------------------------------------------------------//
+
+	public static String customer_GetSubCategoryURL = base_url + "/CustomerAPI/api/SubCategory/{categoryId}";
+	public static String getPaymentMode = base_url + "/CustomerAPI/api/Lookup/PaymentMode";
+	public static String getPaymentStatus = base_url + "/CustomerAPI/api/Lookup/PaymentStatus";
+	public static String getBookingStatus = base_url + "/CustomerAPI/api/Lookup/BookingStatus";
+	public static String getMyProfileURL = base_url + "/CustomerAPI/api/User/myprofile";
+	public static String getCategoryURL = base_url + "/CustomerAPI/api/Category";
+
+	// -------------------------------------------Vendor Routes----------------------------------------------
+	//booking
+	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
+	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";
+	public static String vendor_acceptBooking = base_url + "/VendorAPI/api/Booking/Accept/{bookingId}";
+	public static String vendor_startBooking = base_url + "/VendorAPI/api/Booking/Start";
+	public static String vendor_completeBooking = base_url + "/VendorAPI/api/Booking/Complete";
+	public static String vendor_cancelBooking = base_url + "/VendorAPI/api/Booking/Cancel/{bookingId}";
+	//Timeslot
+	public static String vendor_timeslotURL = base_url +"/VendorAPI/api/Timeslot";
+	public static String vendor_disableTimeslot = base_url + "/VendorAPI/api/Timeslot/Disable";
+	public static String vendor_enableTimeslot = base_url + "/VendorAPI/api/Timeslot/Enable/{id}";
+	//User
+	public static String vendor_profile = base_url + "/VendorAPI/api/User/myprofile";
 }
 

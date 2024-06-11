@@ -1,12 +1,13 @@
+
 package HomeLyf.Payload;
 
-public class UpdatePaymentStatus_Payload
-{
-	private int bookingID;
-	private String paymentStatus;
-	private String paymentMode;
+public class CustomerPaymentStatus_payload {
 	
-
+	
+	int bookingID;
+	String paymentStatus;
+	String paymentMode;
+	
 	public int getBookingID() {
 		return bookingID;
 	}
