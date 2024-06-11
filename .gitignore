@@ -1,1 +1,5 @@
+/.settings/
+/logs/
+/src/
 /target/
+/test-output/
