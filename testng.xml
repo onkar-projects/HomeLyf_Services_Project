@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite" >
+<suite name="Suite">
 	<listeners>
 		<listener class-name="HomeLyf.Utilities.ExtentReport"/>
 	</listeners>
-	<test thread-count="15" name="Test">
-		<classes>
-<!--			<class name="HomeLyf.test.User"/>-->
-			<class name="HomeLyf.test.Customer"/>
-			<class name="HomeLyf.test.Vendor"/>
-		</classes>
-	</test> <!--
-	Test -->
-</suite> <!--Suite -->
+  <test thread-count="15" name="Test">
+    <classes>
+      <!-- <class name="HomeLyf.test.User"/> -->
+      <class name="HomeLyf.test.Vendor"/>
+      <class name="HomeLyf.test.Customer"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

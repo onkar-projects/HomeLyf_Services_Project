@@ -1,5 +1,6 @@
 package HomeLyf.Payload;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VendorDetail {
@@ -32,7 +33,7 @@ public class VendorDetail {
 		return servicePostCodes;
 	}
 
-	public void setServicePostCodes( List<Integer> spostcode) {
+	public void setServicePostCodes(List<Integer> spostcode) {
 		this.servicePostCodes = spostcode;
 	}
 
