@@ -1,5 +1,3 @@
-
-
 package HomeLyf.EndPoints;
 
 import HomeLyf.Payload.ForgotPassword_Payload;
@@ -11,20 +9,17 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import static io.restassured.RestAssured.*;
 
-import org.testng.ITestContext;
-
 public class UserEndPoints {
-	
+
 	public static Response signUP(SignUP_Payload Payload) {
-		
-		Response response =  given().contentType(ContentType.JSON).body(Payload).log().all().when()
+
+		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
 				.post(Routes.account_signUp);
 		return response;
 	}
 
 	public static Response userLogin(UserLogin_Payload Payload) {
-		Response response = given().contentType(ContentType.JSON).body(Payload).when()
-				.post(Routes.account_login);
+		Response response = given().contentType(ContentType.JSON).body(Payload).when().post(Routes.account_login);
 		return response;
 	}
 
@@ -46,37 +41,31 @@ public class UserEndPoints {
 				.post(Routes.account_resetPass);
 		return response;
 	}
-	
-	public static Response user_getLookupCategoryEP() {
-		
-		Response response = given().contentType(ContentType.JSON).when().log().all()
-				.get(Routes.getLookupCategoryURL);
-		return response;
-	}
-	
-	public static Response user_getLookupCountryEP() {
-		Response response = given().contentType(ContentType.JSON).when().log().all()
-				.get(Routes.getLookupCountryURL);
-		return response;
-	}
-	
-	public static Response user_getLookupStateEP() {
-		Response response = given().contentType(ContentType.JSON).when().log().all()
-				.get(Routes.getLookupStateURL);
-		return response;
-	}
-	
-	public static Response user_getLookupCityEP() {
-		Response response = given().contentType(ContentType.JSON).when().log().all()
-				.get(Routes.getLookupCityURL);
-		return response;
-	}
-	
-	public static Response user_getLookupPostCodeEP() {
-		Response response = given().contentType(ContentType.JSON).when().log().all()
-				.get(Routes.getLookupPostCodeURL);
-		return response;
-	}
-	
-}
 
+	public static Response user_getLookupCategoryEP() {
+
+		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupCategoryURL);
+		return response;
+	}
+
+	public static Response user_getLookupCountryEP() {
+		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupCountryURL);
+		return response;
+	}
+
+	public static Response user_getLookupStateEP() {
+		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupStateURL);
+		return response;
+	}
+
+	public static Response user_getLookupCityEP() {
+		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupCityURL);
+		return response;
+	}
+
+	public static Response user_getLookupPostCodeEP() {
+		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupPostCodeURL);
+		return response;
+	}
+
+}

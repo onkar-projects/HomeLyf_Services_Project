@@ -12,13 +12,13 @@ import HomeLyf.Payload.Address;
 import HomeLyf.Payload.DisableTimeslot_Payload;
 import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
-import groovyjarjarantlr4.v4.runtime.ParserInterpreter;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class Customer {
 
 	private static Logger logger = LogManager.getLogger(User.class);
+	static String Ctoken;
 	static String token;
 	String sTime;
 	String[] paymentMode = { "cash", "upi", "card", "other" };
@@ -35,12 +35,10 @@ public class Customer {
 		response.then().log().all();
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
-
-		token = js.getString("token");
-		System.out.println("Generated Token Id: " + token);
-		context.setAttribute("Ctoken", token);
-		logger.debug("Generated Token Id: {}", token);
-
+		Ctoken = js.getString("token");
+		System.out.println("Generated Token Id: " + Ctoken);
+		context.setAttribute("Token", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("User logged in successfully");
 	}
@@ -86,7 +84,6 @@ public class Customer {
 
 	@Test(priority = 5, enabled = true, description = " customer should get services")
 	public void customer_GetService(ITestContext context) {
-
 		logger.info("Starting customer_service...");
 		Response response = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
 		response.then().log().all();
@@ -112,7 +109,6 @@ public class Customer {
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("customer_service subcategory is shown successfully");
-
 	}
 
 	@Test(priority = 7, enabled = true, description = "Customer should create new Booking")
@@ -147,11 +143,9 @@ public class Customer {
 	@Test(priority = 9, enabled = true, description = "customer should update payment status ")
 	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updateing Payment Status");
-
 		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context,
 				CommonMethods.updatePaymentStatusData(context));
 		response.then().log().all();
-
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("paymentStatus");
 		String payMode = js.getString("paymentMode");
@@ -164,7 +158,6 @@ public class Customer {
 
 	@Test(priority = 10, enabled = true, description = "Customer should calculate as per quntity ")
 	public void customer_Calculate(ITestContext context) {
-
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
@@ -188,7 +181,6 @@ public class Customer {
 //		context.setAttribute("NewAddressId", NewAddressId);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Added Customer new Address successfully");
-
 	}
 
 //	@Test(priority = 13, enabled = true)
@@ -205,10 +197,7 @@ public class Customer {
 //		//System.out.println(sOtp);
 //		int endOTP = js.get("endOTP");
 //		context.setAttribute("endOTP", endOTP);
-//		
 //		//System.out.println(eOtp);
-//		
-//		
 //	}
 	@Test(priority = 14, enabled = true)
 	public void customer_RescheduleTime(ITestContext context) {
@@ -217,10 +206,10 @@ public class Customer {
 		response.then().log().all();
 	}
 
-	@Test(priority = 15,enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
+	@Test(priority = 15, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
 		// Vendor Login
-		Response vresponse = VendorEndPoints.vendor_Login(CommonMethods.vendor_Login(), context);
+		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
 		token = vloginjs.getString("token");
@@ -262,7 +251,6 @@ public class Customer {
 		logger.info("Getting categoryId");
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
-
 		Response response2 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode"), "");
 		JsonPath js = CommonMethods.jsonToString(response2);
@@ -294,11 +282,11 @@ public class Customer {
 		Assert.assertEquals(response2.statusCode(), 200);
 		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response2, "List of Categories are getting successfully");
-		Assert.assertTrue(customerTimeslotResponse.getBody().asString().contains(sTime),"Disabled timeslots are still visible to the customer");
+		Assert.assertTrue(customerTimeslotResponse.getBody().asString().contains(sTime),
+				"Disabled timeslots are still visible to the customer");
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(customerTimeslotResponse,
 				"Customer available timeslot are getting with including timeslot disable by vendor");
-
 	}
 
 }

@@ -49,10 +49,11 @@ public class Routes {
 
 	// -------------------------------------------Vendor
 	// Routes----------------------------------------------
-	
+
 	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
 	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";
 	public static String vendor_acceptBooking = base_url + "/VendorAPI/api/Booking/Accept/{bookingId}";
+
 	public static String vendor_startBooking = base_url + "/VendorAPI/api/Booking/Start";
 	public static String vendor_completeBooking = base_url + "/VendorAPI/api/Booking/Complete";
 	public static String vendor_cancelBooking = base_url + "/VendorAPI/api/Booking/Cancel/{bookingId}";
