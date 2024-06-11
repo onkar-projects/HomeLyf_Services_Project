@@ -11,6 +11,7 @@ import HomeLyf.Payload.CreateCustomerBookingPayload;
 import HomeLyf.Payload.CustomerPaymentStatus_payload;
 import HomeLyf.Payload.DisableTimeslot_Payload;
 import HomeLyf.Payload.ForgotPassword_Payload;
+import HomeLyf.Payload.Reschedule_Payload;
 import HomeLyf.Payload.SendEmailOTP_Payload;
 import HomeLyf.Payload.SignUP_Payload;
 import HomeLyf.Payload.StartAndComplete_Booking_Payload;
@@ -36,11 +37,10 @@ public class CommonMethods {
 	public static CreateCustomerBookingPayload custBooking;
 	public static DisableTimeslot_Payload disabletimeslot;
 	public static StartAndComplete_Booking_Payload startCompleteBooking;
-
+	public static Reschedule_Payload reschedule;
 	public static CustomerPaymentStatus_payload paymentstat;
 
 	public static JsonPath jsonToString(Response response) {
-
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
 		return js;
@@ -177,7 +177,7 @@ public class CommonMethods {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
 		cal.setServiceID((int) context.getAttribute("serviceid"));
-		java.util.List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
+		List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
 		list.add(cal);
 		return list;
 	}
@@ -185,7 +185,7 @@ public class CommonMethods {
 	public static CustomerPaymentStatus_payload updatePaymentStatusData(ITestContext context) {
 		paymentstat = new CustomerPaymentStatus_payload();
 		String[] paymentMode = { "cash", "upi", "card", "other" };
-		String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundinprogress",
+		String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundingprogress",
 				"refunded" };
 
 		paymentstat.setBookingID((int) context.getAttribute("bookingId"));
@@ -194,10 +194,10 @@ public class CommonMethods {
 		return paymentstat;
 	}
 
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context, int otp) {
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId((int) context.getAttribute("vendorBookingId"));
-		startCompleteBooking.setOtp(otp);
+		startCompleteBooking.setBookingId((int) context.getAttribute("customerBookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
 
@@ -226,6 +226,36 @@ public class CommonMethods {
 		userlogin.setPassword("HomeLyf@123");
 		userlogin.setType("C");
 		userlogin.setLocation("pune");
+		return userlogin;
+	}
+
+	public static Reschedule_Payload CustomerReschedule_Payload(ITestContext context, int bookingId,
+			String scheduleTime) {
+		reschedule = new Reschedule_Payload();
+		reschedule.setBookingId(bookingId);
+		reschedule.setScheduledOn(scheduleTime);
+		return reschedule;
+	}
+
+	public static UserLogin_Payload customer_Login() {
+		userlogin = new UserLogin_Payload();
+
+		userlogin.setEmailAddress("f9iupld30y@elatter.com");
+		userlogin.setMobileNumber(Long.parseLong("8956472500"));
+		userlogin.setPassword("HomeLyf@123");
+		userlogin.setType("c");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
+
+	public static UserLogin_Payload vendor_Login() {
+		userlogin = new UserLogin_Payload();
+
+		userlogin.setEmailAddress("dason.sava@floodouts.com");
+		userlogin.setMobileNumber(Long.parseLong("9657400368"));
+		userlogin.setPassword("Electv@233");
+		userlogin.setType("v");
+		userlogin.setLocation("Pune");
 		return userlogin;
 	}
 }

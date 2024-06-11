@@ -13,43 +13,53 @@ import io.restassured.response.Response;
 
 public class LookUp {
 
-	private static Logger logger = LogManager.getLogger(LookUp.class);
+	private static Logger log = LogManager.getLogger(LookUp.class);
+
+	public static void getMyProfile(ITestContext context) {
+		log.info("Getting MyProfile");
+		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
+		JsonPath js = CommonMethods.jsonToString(response);
+		int addressId = js.getInt("addresses[0].id");
+		int addressId2 = js.getInt("addresses[1].id");
+		context.setAttribute("addressId", addressId2);
+	}
 
 	public static void getCategory(ITestContext context) {
-		logger.info("Getting category");
+		log.info("Getting category");
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
+
 		int CategoryId = js.getInt("[0].id");
 		context.setAttribute("name", name);
 		context.setAttribute("categoryId1", CategoryId);
 		Assert.assertEquals(response.getStatusCode(), 200);
-		logger.info("Category fetched successfully");
+		log.info("Category fetched successfully");
 	}
 
 	public static void getCountry(ITestContext context) {
-		logger.info("Getting Country");
+		log.info("Getting Country");
 		Response response = UserEndPoints.user_getLookupCountryEP();
 		Assert.assertEquals(response.getStatusCode(), 200);
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
 		context.setAttribute("name", name);
-		logger.info("Country fetched successfully");
+		log.info("Country fetched successfully");
 	}
 
 	public static void getState(ITestContext context) {
-		logger.info("Getting State");
+		log.info("Getting State");
 		Response response = UserEndPoints.user_getLookupStateEP();
 		Assert.assertEquals(response.getStatusCode(), 200);
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
 		context.setAttribute("name", name);
 		Assert.assertEquals(js.getString("[0].name"), "Maharashtra");
-		logger.info("State fetched successfully");
+		log.info("State fetched successfully");
 	}
 
 	public static void getCity(ITestContext context) {
-		logger.info("Getting City");
+		log.info("Getting City");
 		Response response = UserEndPoints.user_getLookupCityEP();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
@@ -57,11 +67,11 @@ public class LookUp {
 		int cityId = js.getInt("[0].id");
 		context.setAttribute("cityId", cityId);
 		Assert.assertEquals(response.getStatusCode(), 200);
-		logger.info("City fetched successfully");
+		log.info("City fetched successfully");
 	}
 
 	public static void getPostCode(ITestContext context) {
-		logger.info("Getting PostCode from LookUp");
+		log.info("Getting PostCode from LookUp");
 		Response response = UserEndPoints.user_getLookupPostCodeEP();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String postCode = js.getString("[0].name");
@@ -69,7 +79,7 @@ public class LookUp {
 		context.setAttribute("postCode", postCode);
 		context.setAttribute("postCodeId", postCodeId);
 		Assert.assertEquals(response.getStatusCode(), 200);
-		logger.info("PostCode fetched successfully");
+		log.info("PostCode fetched successfully");
 	}
 
 	public static void getPaymentStatus(ITestContext context) {
@@ -79,8 +89,7 @@ public class LookUp {
 		String paymentStatus = js.getString("[0].name");
 		context.setAttribute("paymentStatus", paymentStatus);
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("Payment Status are fetched successfully");
-
+		log.info("Payment Status are fetched successfully");
 	}
 
 	public static void customer_GetPaymentModeTest(ITestContext context) {
@@ -88,20 +97,34 @@ public class LookUp {
 		Response response = CustomerEndPoints.customer_PaymentModeEP(context);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("Payment Mode fetched successfully");
+		log.info("Payment Mode fetched successfully");
 	}
 
 	public static void customer_GetBookingStatusTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_BookingStatusEP(context);
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("Booking Status are fetched successfully");
+		log.info("Booking Status are fetched successfully");
 	}
+
+	public static void customer_GetBookingByIdTest(ITestContext context) {
+		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,
+				(int) context.getAttribute("bookingId"));
+		JsonPath js = CommonMethods.jsonToString(response);
+		int startOTP = js.get("startOTP");
+		context.setAttribute("startOTP", startOTP);
+		int endOTP = js.getInt("endOTP");
+		context.setAttribute("endOTP", endOTP);
+		Assert.assertEquals(response.statusCode(), 200);
+		log.info("Booking details fetched succesfully");
+	}
+
 //-----------------------------------------------------------------------------------------------------------
 
 	public static void vendorgetMybooking(ITestContext context) {
-		logger.info("Starting vendor_get_booking...");
+		log.info("Starting vendor_get_booking...");
 		int vendorBookingId = 0;
-		Response response = VendorEndPoints.vendor_MybookingEP(context);
+		Response response = VendorEndPoints.vendor_MybookingEP(context, 1, 10);
+		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		for (int i = 0; i <= 10; i++) {
 			String status = js.getString("[" + i + "].status");
@@ -112,14 +135,14 @@ public class LookUp {
 		}
 		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
 		Assert.assertEquals(response.statusCode(), 200);
-		logger.info("vendor_get_booking is shown successfully.");
+		log.info("vendor_get_booking is shown successfully");
 	}
 
 	/*
-	 * public static void customerGetBooking(ITestContext context) {
-	 * logger.info(""); //String[] status = {"New", "expertassigned", "inprogress",
-	 * "cancelled", "completed"}; logger.info("Fetching Customer booking"); int
-	 * vendorBookingId; String startOtp; String endOtp; Response response =
+	 * public static void customerGetBooking(ITestContext context) { log.info("");
+	 * //String[] status = {"New", "expertassigned", "inprogress", "cancelled",
+	 * "completed"}; log.info("Fetching Customer booking"); int vendorBookingId;
+	 * String startOtp; String endOtp; Response response =
 	 * CustomerEndPoints.customer_GetBookingEndPoint(context, "expertassigned");
 	 * response.then().log().all(); JsonPath js =
 	 * CommonMethods.jsonToString(response); vendorBookingId = js.getInt("[0].id");
@@ -128,10 +151,8 @@ public class LookUp {
 	 * +vendorBookingId+" ###################");
 	 * context.setAttribute("vendorAcceptBookingId", vendorBookingId);
 	 * context.setAttribute("startOtp", startOtp); context.setAttribute("endOtp",
-	 * endOtp);
-	 * 
-	 * String stat = js.getString("[0].status"); Assert.assertEquals(stat,
+	 * endOtp); String stat = js.getString("[0].status"); Assert.assertEquals(stat,
 	 * "ExpertAssigned"); Assert.assertEquals(response.statusCode(), 200);
-	 * logger.info("Customer booking shown successfully of Status" + stat); }
+	 * log.info("Customer booking shown successfully of Status" + stat); }
 	 */
 }
