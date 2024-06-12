@@ -14,19 +14,22 @@ import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 public class Customer {
 
 	private static Logger logger = LogManager.getLogger(User.class);
 	static String Ctoken;
+	static String Vtoken;
 	static String token;
 	String sTime;
 	String[] paymentMode = { "cash", "upi", "card", "other" };
 	String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundinprogress",
 			"refunded" };
 	Address address;
+	static int customerBookingId;
 
-	@Test(priority = 1, enabled = true, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 1, enabled = false, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class)
 	public static void customer_Login(ITestContext context, String mobileNumber, String type, String emailAddress,
 			String password, String location) {
 		logger.info("Starting userLogin test...");
@@ -43,7 +46,7 @@ public class Customer {
 		logger.info("User logged in successfully");
 	}
 
-	@Test(priority = 2, enabled = true, description = "Customer profile should show")
+	@Test(priority = 2, enabled = false, description = "Customer profile should show")
 	public void customer_GetMyProfileTest(ITestContext context) {
 		logger.info("Getting Customer profile");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
@@ -55,7 +58,7 @@ public class Customer {
 		logger.info("Customer profile shown successfully");
 	}
 
-	@Test(priority = 3, enabled = true, description = "Customer should get category")
+	@Test(priority = 3, enabled = false, description = "Customer should get category")
 	public void customer_GetCategoryTest(ITestContext context) {
 		logger.info("Getting category");
 		LookUp.getPostCode(context);
@@ -71,7 +74,7 @@ public class Customer {
 		logger.info("Category fetched successfully");
 	}
 
-	@Test(priority = 4, enabled = true, description = "Customer should Show the SubCategory")
+	@Test(priority = 4, enabled = false, description = "Customer should Show the SubCategory")
 	public void customer_subCategoryIdTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_SubCategoryEP(context, (int) context.getAttribute("categoryId"));
 		response.then().log().all();
@@ -82,7 +85,7 @@ public class Customer {
 		logger.info("SubCategory Fetched Successfully");
 	}
 
-	@Test(priority = 5, enabled = true, description = " customer should get services")
+	@Test(priority = 5, enabled = false, description = " customer should get services")
 	public void customer_GetService(ITestContext context) {
 		logger.info("Starting customer_service...");
 		Response response = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
@@ -95,7 +98,7 @@ public class Customer {
 		logger.info("customer_service subcategory is shown successfully");
 	}
 
-	@Test(priority = 6, enabled = true)
+	@Test(priority = 6, enabled = false)
 	public void customer_GetTimeSlot(ITestContext context) {
 
 		logger.info("Starting customer_service...");
@@ -111,7 +114,7 @@ public class Customer {
 		logger.info("customer_service subcategory is shown successfully");
 	}
 
-	@Test(priority = 7, enabled = true, description = "Customer should create new Booking")
+	@Test(priority = 7, enabled = false, description = "Customer should create new Booking")
 	public void customer_CreateBooking(ITestContext context) {
 
 		logger.info("Creating new Booking");
@@ -127,9 +130,9 @@ public class Customer {
 		logger.info("New booking created successfully");
 	}
 
-	@Test(priority = 8, enabled = true, description = "customer booking should show")
+	@Test(priority = 8, enabled = false, description = "customer booking should show")
 	public void customer_GetBookingTest(ITestContext context) {
-		String[] status = { "New", "expertassigned", "inprogress", "cancelled", "completed" };
+		String[] status = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
 		logger.info("Fetching Customer booking");
 		Response response = CustomerEndPoints.customer_GetBookingEndPoint(context, status[0], 1, 10);
 		response.then().log().all();
@@ -140,7 +143,7 @@ public class Customer {
 		logger.info("Customer booking shown successfully of Status" + status[0]);
 	}
 
-	@Test(priority = 9, enabled = true, description = "customer should update payment status ")
+	@Test(priority = 9, enabled = false, description = "customer should update payment status ")
 	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updateing Payment Status");
 		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context,
@@ -156,20 +159,20 @@ public class Customer {
 		logger.info("Customer update payment status successfully ");
 	}
 
-	@Test(priority = 10, enabled = true, description = "Customer should calculate as per quntity ")
+	@Test(priority = 10, enabled = false, description = "Customer should calculate as per quntity ")
 	public void customer_Calculate(ITestContext context) {
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 	}
 
-	@Test(priority = 11, enabled = true, description = "Customer should Cancel booking ")
+	@Test(priority = 11, enabled = false, description = "Customer should Cancel booking ")
 	public void customer_CancelTest(ITestContext context) {
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
 		response.then().log().all();
 	}
 
-	@Test(priority = 12, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
@@ -183,7 +186,7 @@ public class Customer {
 		logger.info("Added Customer new Address successfully");
 	}
 
-//	@Test(priority = 13, enabled = true)
+//	@Test(priority = 13, enabled = false)
 //	public void customer_GetBookingIdTest(ITestContext context) {
 //		Response response = CustomerEndPoints.customer_GetBookingBySIdEP(context, 52673);
 //		response.then().log().all();
@@ -199,14 +202,14 @@ public class Customer {
 //		context.setAttribute("endOTP", endOTP);
 //		//System.out.println(eOtp);
 //	}
-	@Test(priority = 14, enabled = true)
+	@Test(priority = 14, enabled = false)
 	public void customer_RescheduleTime(ITestContext context) {
 		Response response = CustomerEndPoints.customer_RescheduleEP(context,
 				CommonMethods.CustomerReschedule_Payload(context, 52673, "2024-06-06T04:00:00Z"));
 		response.then().log().all();
 	}
 
-	@Test(priority = 15, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
+	@Test(priority = 15, enabled = false, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
 		// Vendor Login
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
@@ -289,4 +292,171 @@ public class Customer {
 				"Customer available timeslot are getting with including timeslot disable by vendor");
 	}
 
+	@Test(priority = 16, enabled = true, description = "Verify that customer cannot cancel booking once service Started by vendor")
+	public void customerCannotCancelBookingServiceStartedByVendor(ITestContext context) {
+		logger.info("Started verify that customer cannot cancel booking service Started by vendor");
+		logger.info("Started Customer Login test.");
+		Response response_CustomerLogin = UserEndPoints
+				.userLogin(CommonMethods.CustomerLoginforAcceptBookingAfterEnablingTimeslot());
+		response_CustomerLogin.then().log().all();
+		String res_CustomerLogin = response_CustomerLogin.asPrettyString();
+		JsonPath js_CustomerLogin = new JsonPath(res_CustomerLogin);
+		Ctoken = js_CustomerLogin.getString("token");
+		System.out.println("Generated Token Id: " + Ctoken);
+		context.setAttribute("CToken", Ctoken);
+		String statusline_CustomerLogin = response_CustomerLogin.getStatusLine();
+		Assert.assertEquals(statusline_CustomerLogin, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_CustomerLogin);
+		logger.debug("Generated Token Id: {}", Ctoken);
+		logger.info("Customer logged in successfully.");
+		// -----------------------------------------------------------------
+
+		logger.info("Getting Customer profile.");
+		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
+		response_customer_GetMyProfileEP.then().log().all();
+		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
+		int addressId = js_customer_GetMyProfileEP.get("addresses[0].id");
+		context.setAttribute("addressId", addressId);
+		String statusline_customer_GetMyProfileEP = response_customer_GetMyProfileEP.getStatusLine();
+		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_GetMyProfileEP);
+		logger.info("Customer profile shown successfully.");
+		// -------------------------------------------------------
+
+		logger.info("Getting category.");
+		LookUp.getPostCode(context);
+		LookUp.getCategory(context);
+		Response response_customerGetCategoryEP = CustomerEndPoints.customer_GetCategoryEP(context,
+				(String) context.getAttribute("postCode"), (String) context.getAttribute("name"));
+		response_customerGetCategoryEP.then().log().all();
+		JsonPath js_customerGetCategoryEP = CommonMethods.jsonToString(response_customerGetCategoryEP);
+		int categoryId = js_customerGetCategoryEP.get("[0].id");
+		context.setAttribute("categoryId", categoryId);
+		Assert.assertEquals(js_customerGetCategoryEP.getString("[0].name"), "Painting");
+		String statusline_customerGetCategoryEP = response_customerGetCategoryEP.getStatusLine();
+		Assert.assertEquals(statusline_customerGetCategoryEP, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customerGetCategoryEP);
+		logger.info(js_customerGetCategoryEP.getString("[0].name") + " Category selected successfully.");
+		// -----------------------------------------------------------------
+
+		logger.info("Getting subcategory.");
+		Response response_customer_SubCategoryEP = CustomerEndPoints.customer_SubCategoryEP(context,
+				(int) context.getAttribute("categoryId"));
+		response_customer_SubCategoryEP.then().log().all();
+		JsonPath js_customer_SubCategoryEP = CommonMethods.jsonToString(response_customer_SubCategoryEP);
+		int subCategoryId = js_customer_SubCategoryEP.getInt("[0].id");
+		context.setAttribute("subCategoryId", subCategoryId);
+		String statusline_customer_SubCategoryEP = response_customer_SubCategoryEP.getStatusLine();
+		Assert.assertEquals(statusline_customer_SubCategoryEP, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_SubCategoryEP);
+		logger.info("SubCategory is shown Successfully.");
+		// ---------------------------------------------------------------
+
+		logger.info("Getting services.");
+		Response response_customer_service = CustomerEndPoints.customer_service(context,
+				(int) context.getAttribute("subCategoryId"));
+		response_customer_service.then().log().all();
+		JsonPath js_customer_service = CommonMethods.jsonToString(response_customer_service);
+		int serviceId = js_customer_service.getInt("[0].id");
+		String servicename = js_customer_service.getString("[0].name");
+		context.setAttribute("serviceid", serviceId);
+		String statusline_customer_service = response_customer_service.getStatusLine();
+		Assert.assertEquals(statusline_customer_service, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_service);
+		logger.info(servicename + " Service selected successfully.");
+		// ----------------------------------------------------------------------------
+
+		logger.info("Getting timeslot for category = " + js_customerGetCategoryEP.getString("[0].name")
+				+ " and Service name is = " + servicename);
+		Response response_customer_GetTimeSlot = CustomerEndPoints.customer_GetTimeSlot(
+				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId"), context);
+		response_customer_GetTimeSlot.then().log().all();
+		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
+		sTime = js_customer_GetTimeSlot.getString("[1].startTime");
+		context.setAttribute("StartTime", sTime);
+		String eTime = js_customer_GetTimeSlot.getString("[1].endTime");
+		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
+		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
+		Assert.assertEquals(statusline_customer_GetTimeSlot, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_GetTimeSlot);
+		logger.info("Category timeslot " + "Start Time: " + sTime + "\t End Time: " + eTime + " successfully.");
+		// --------------------------------------------------------------------
+
+		logger.info("Started creating new Booking.");
+		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
+				CommonMethods.createBooking(context));
+		response_customer_CreateBooking.then().log().all();
+		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
+		String status = js_customer_CreateBooking.getString("status");
+		customerBookingId = js_customer_CreateBooking.getInt("id");
+		context.setAttribute("BookingId", customerBookingId);
+		// int bookingId = js5.getInt("id");
+		// context.setAttribute("bookingId", bookingId);
+		Assert.assertEquals(status, "New");
+		String statusline_customer_CreateBooking = response_customer_CreateBooking.getStatusLine();
+		Assert.assertEquals(statusline_customer_CreateBooking, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_CreateBooking);
+		logger.info("New booking created successfully and Booking id is " + customerBookingId);
+		// -------------------------------------------------------------------------
+
+		logger.info("Started Vendor Login test.");
+		Response response_VendorLogin = UserEndPoints
+				.userLogin(CommonMethods.VendorLoginforAcceptBookingAfterEnablingTimeslot());
+		String res_VendorLogin = response_VendorLogin.asPrettyString();
+		JsonPath js_VendorLogin = new JsonPath(res_VendorLogin);
+		Vtoken = js_VendorLogin.getString("token");
+		System.out.println("Generated Token Id: " + Vtoken);
+		context.setAttribute("VToken", Vtoken);
+		logger.debug("Generated Token Id: {}", Vtoken);
+		Assert.assertEquals(response_VendorLogin.statusCode(), 200);
+		logger.info("Vendor logged in successfully.");
+		// --------------------------------------------------------------------
+
+		logger.info("Started vendor accepting booking of Booking id = " + customerBookingId);
+		Response response_vendor_AcceptBookingEP = VendorEndPoints.vendor_AcceptBookingEP(context, customerBookingId);
+//		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
+//		String status1  = js_vendor_AcceptBookingEP.getString("status");
+		// Assert.assertEquals(status1, "ExpertAssigned");
+		String statusline_vendor_AcceptBookingEP = response_vendor_AcceptBookingEP.getStatusLine();
+		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
+		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 500 Internal Server Error");
+		// Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
+		logger.info("Vendor accepted booking id of " + customerBookingId
+				+ " after enabled that disabled timeslot successfully");
+		// ---------------------------------------------------------------------
+
+		logger.info("Started customer get booking by id =" + customerBookingId);
+		Response response_customer_GetBookingBySId = CustomerEndPoints.customer_GetBookingByIdEP(context,
+				customerBookingId);
+		response_customer_GetBookingBySId.then().log().all();
+		JsonPath js_customer_GetBookingBySId = CommonMethods.jsonToString(response_customer_GetBookingBySId);
+		int startOTP = js_customer_GetBookingBySId.get("startOTP");
+		context.setAttribute("StartOTP", startOTP);
+		String statusline_customer_GetBookingBySId = response_customer_GetBookingBySId.getStatusLine();
+		Assert.assertEquals(statusline_customer_GetBookingBySId, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_GetBookingBySId);
+		logger.info("Customer get OTP " + startOTP + " of booking id = " + customerBookingId);
+		// ---------------------------------------------------------------------
+
+		logger.info("Started customer start booking");
+		Response response_vendor_startservice = VendorEndPoints.vendor_startBookingEP(context,
+				CommonMethods.sendBookingIdAndOtpforStartandEndService(context));
+		String statusline_vendor_startservice = response_vendor_startservice.getStatusLine();
+		Assert.assertEquals(statusline_vendor_startservice, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_vendor_startservice);
+		logger.info("Customer service is started by entering Booking id = "+customerBookingId+" and Start OTP = "+startOTP);
+		//-----------------------------------------------------------------------
+		
+		logger.info("Started customer cancel the booking of id = "+ customerBookingId);
+		Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
+	    response_customer_CancelEP.then().log().all();
+//		JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
+//		String cancelmessage = js_customer_CancelEP.getString();
+	    String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
+		Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 400 Bad Request");
+		Assert.assertNotNull(response_customer_CancelEP);
+		logger.info("Customer can not cancel the service.");
+		logger.info("Customer cannot cancel booking on started service successfully.");
+
+	}
 }

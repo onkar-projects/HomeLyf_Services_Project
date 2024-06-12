@@ -258,4 +258,10 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndService(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("BookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("StartOTP"));
+		return startCompleteBooking;
+	}
 }
