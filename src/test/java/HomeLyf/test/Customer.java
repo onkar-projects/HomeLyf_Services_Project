@@ -40,7 +40,7 @@ public class Customer {
 		JsonPath js = new JsonPath(res);
 		Ctoken = js.getString("token");
 		System.out.println("Generated Token Id: " + Ctoken);
-		context.setAttribute("Token", Ctoken);
+		context.setAttribute("CToken", Ctoken);
 		logger.debug("Generated Token Id: {}", Ctoken);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("User logged in successfully");
@@ -215,11 +215,14 @@ public class Customer {
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
-		token = vloginjs.getString("token");
+		String Vtoken = vloginjs.getString("token");
 		System.out.println("Generated Token Id: " + token);
-		context.setAttribute("Vtoken", token);
-		logger.debug("Generated Token Id: {}", token);
+		context.setAttribute("VToken", Vtoken);
+		logger.debug("Generated Token Id: {}", Vtoken);
 		logger.info("Vendor logged in successfully");
+		Assert.assertEquals(vresponse.statusCode(), 200);
+		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
 
 		// Vendor GetTimeSlot
 		Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
@@ -229,6 +232,9 @@ public class Customer {
 		context.setAttribute("stime", stime);
 		context.setAttribute("etime", etime);
 		logger.info("list of vendor TimeSlot");
+		Assert.assertEquals(vTimeslotResponse.getStatusCode(), 200);
+		Assert.assertEquals(vTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(vTimeslotResponse, "Vendor's Available Timeslot are getting successfully");
 
 		// Disable TimeSlot
 		DisableTimeslot_Payload disabletimeslot = new DisableTimeslot_Payload();
@@ -240,15 +246,21 @@ public class Customer {
 		JsonPath disabletimeslotjs = CommonMethods.jsonToString(disableResponse);
 		String sTime = disabletimeslotjs.getString("startTime");
 		logger.info("DisableTimeSlot: Timeslot disable successfully");
+		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
+		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(disableResponse, "Timeslot disable by Vendor successfully");
 
 		// Customer Login
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
-		token = loginjs.getString("token");
+		String Ctoken = loginjs.getString("token");
 		System.out.println("Generated Token Id: " + token);
-		context.setAttribute("Ctoken", token);
-		logger.debug("Generated Token Id: {}", token);
+		context.setAttribute("CToken", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
 		logger.info("Customer logged in successfully");
+		Assert.assertEquals(cresponse.statusCode(), 200);
+		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
 
 		// GetCategory
 		logger.info("Getting categoryId");
@@ -260,6 +272,10 @@ public class Customer {
 		int categoryId = js.get("[5].id");
 		context.setAttribute("categoryId", categoryId);
 		logger.info("CategoryId fetched successfully");
+		Assert.assertEquals(js.getString("[5].name"), "Electricals");
+		Assert.assertEquals(response2.statusCode(), 200);
+		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response2, "List of Categories are getting successfully");
 
 		// Customer TimeSlot
 		LookUp.getMyProfile(context);
@@ -268,23 +284,6 @@ public class Customer {
 		customerTimeslotResponse.then().log().all();
 		logger.info("Check whether disable timeslot is available in customer available timeslot ");
 		// Verify that disabled timeslots are no longer visible to the customer
-
-		Assert.assertEquals(vresponse.statusCode(), 200);
-		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
-		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
-		Assert.assertEquals(vTimeslotResponse.getStatusCode(), 200);
-		Assert.assertEquals(vTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
-		Assert.assertNotNull(vTimeslotResponse, "Vendor's Available Timeslot are getting successfully");
-		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
-		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
-		Assert.assertNotNull(disableResponse, "Timeslot disable by Vendor successfully");
-		Assert.assertEquals(cresponse.statusCode(), 200);
-		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
-		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
-		Assert.assertEquals(js.getString("[5].name"), "Electricals");
-		Assert.assertEquals(response2.statusCode(), 200);
-		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
-		Assert.assertNotNull(response2, "List of Categories are getting successfully");
 		Assert.assertTrue(customerTimeslotResponse.getBody().asString().contains(sTime),
 				"Disabled timeslots are still visible to the customer");
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
