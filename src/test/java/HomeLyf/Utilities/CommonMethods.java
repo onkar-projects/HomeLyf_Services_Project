@@ -3,9 +3,7 @@ package HomeLyf.Utilities;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.testng.ITestContext;
-
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.BookingServices;
 import HomeLyf.Payload.Calculator_Payload;
@@ -40,11 +38,9 @@ public class CommonMethods {
 	public static DisableTimeslot_Payload disabletimeslot;
 	public static StartAndComplete_Booking_Payload startCompleteBooking;
 	public static Reschedule_Payload reschedule;
-	
 	public static CustomerPaymentStatus_payload paymentstat;
 
 	public static JsonPath jsonToString(Response response) {
-
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
 		return js;
@@ -108,7 +104,7 @@ public class CommonMethods {
 		userlogin.setLocation(location);
 		return userlogin;
 	}
-	
+
 	public UserLogin_Payload userLogin_With_Invalid_Data(String mobileNumber, String type, String emailAddress,
 			String password, String location) {
 		userlogin = new UserLogin_Payload();
@@ -148,20 +144,20 @@ public class CommonMethods {
 	}
 
 	public static Address address_details(String name, String type, String lineOne, String lineTwo, String lineThree,
-			String location,ITestContext context) {
+			String location, ITestContext context) {
 		Address address = new Address();
-		
+
 		LookUp.getPostCode(context);
 		LookUp.getCity(context);
-		
+
 		address.setName(name);
 		address.setType(type);
 		address.setLine1(lineOne);
 		address.setLine2(lineTwo);
 		address.setLine3(lineThree);
 		address.setLocation(location);
-		address.setPostcodeId((int)context.getAttribute("postCodeId"));
-		address.setCityID((int)context.getAttribute("cityId"));
+		address.setPostcodeId((int) context.getAttribute("postCodeId"));
+		address.setCityID((int) context.getAttribute("cityId"));
 		return address;
 	}
 
@@ -169,8 +165,8 @@ public class CommonMethods {
 		custBooking = new CreateCustomerBookingPayload();
 		bookingServices = new BookingServices();
 		bookingServices.setQuantity(1);
-		
-		bookingServices.setServiceID((int)context.getAttribute("serviceid"));
+
+		bookingServices.setServiceID((int) context.getAttribute("serviceid"));
 		custBooking.setBookingServices(Collections.singletonList(bookingServices));
 		custBooking.setScheduledOn((String) context.getAttribute("StartTime"));
 		custBooking.setAddressID((int) context.getAttribute("addressId"));
@@ -180,27 +176,31 @@ public class CommonMethods {
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
-		cal.setServiceID((int)context.getAttribute("serviceid"));
+		cal.setServiceID((int) context.getAttribute("serviceid"));
 		List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
 		list.add(cal);
 		return list;
 	}
+
 	public static CustomerPaymentStatus_payload updatePaymentStatusData(ITestContext context) {
 		paymentstat = new CustomerPaymentStatus_payload();
-		String[] paymentMode = { "cash", "upi", "card", "other"};
-		String[] paymentStatus = {"pending", "inprogress", "delayed", "cancelled","completed","refundingprogress","refunded"};
-		
-		paymentstat.setBookingID((int)context.getAttribute("bookingId"));
+		String[] paymentMode = { "cash", "upi", "card", "other" };
+		String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundingprogress",
+				"refunded" };
+
+		paymentstat.setBookingID((int) context.getAttribute("bookingId"));
 		paymentstat.setPaymentStatus(paymentStatus[1]);
 		paymentstat.setPaymentMode(paymentMode[3]);
 		return paymentstat;
 	}
+
 	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId((int)context.getAttribute("customerBookingId"));
+		startCompleteBooking.setBookingId((int) context.getAttribute("customerBookingId"));
 		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
+
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
 		disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
@@ -208,15 +208,35 @@ public class CommonMethods {
 		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
 		return disabletimeslot;
 	}
-	
-	public static Reschedule_Payload CustomerReschedule_Payload(ITestContext context, int bookingId, String scheduleTime){
+
+	public static UserLogin_Payload VendorLoginforAcceptBookingAfterEnablingTimeslot() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("5nfu51refe@elatter.com");
+		userlogin.setMobileNumber(Long.parseLong("2004005005"));
+		userlogin.setPassword("Tuka@123");
+		userlogin.setType("V");
+		userlogin.setLocation("pune");
+		return userlogin;
+	}
+
+	public static UserLogin_Payload CustomerLoginforAcceptBookingAfterEnablingTimeslot() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("f9iupld30y@elatter.com");
+		userlogin.setMobileNumber(Long.parseLong("6029860554"));
+		userlogin.setPassword("HomeLyf@123");
+		userlogin.setType("C");
+		userlogin.setLocation("pune");
+		return userlogin;
+	}
+
+	public static Reschedule_Payload CustomerReschedule_Payload(ITestContext context, int bookingId,
+			String scheduleTime) {
 		reschedule = new Reschedule_Payload();
 		reschedule.setBookingId(bookingId);
 		reschedule.setScheduledOn(scheduleTime);
 		return reschedule;
-		
 	}
-	
+
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
 
@@ -227,7 +247,7 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
-	
+
 	public static UserLogin_Payload vendor_Login() {
 		userlogin = new UserLogin_Payload();
 
@@ -238,8 +258,4 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
-	
-	
-	
 }
-

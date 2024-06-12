@@ -1,8 +1,6 @@
 package HomeLyf.Utilities;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.testng.annotations.DataProvider;
 
@@ -203,6 +201,7 @@ public class DataProviderClass {
 		}
 		return apiData;
 	}
+
 	@DataProvider(name = "CustomerAddressData")
 	public static String[][] customerAddressData() throws IOException {
 
@@ -211,10 +210,10 @@ public class DataProviderClass {
 		String apiData[][] = new String[rownum][6];
 
 		for (int i = 1; i <= rownum; i++) {
-			for (int j =10 ; j <=15; j++) {
-				apiData[i-1][j-10] = lu.getCellData("user", i,j );
-				
-				System.out.println("Given data: "+ apiData[i-1][j-10]);
+			for (int j = 10; j <= 15; j++) {
+				apiData[i - 1][j - 10] = lu.getCellData("user", i, j);
+
+				System.out.println("Given data: " + apiData[i - 1][j - 10]);
 			}
 		}
 		return apiData;
@@ -228,14 +227,14 @@ public class DataProviderClass {
 
 		for (int i = 1; i <= rownum; i++) {
 //				apiData[i-1][0] = lu.getCellData("Customer", i,18);
-				apiData[i-1][0] = lu.getCellData("Customer", i,19 );
-				
-				System.out.println("Given data: "+ apiData[i-1][0]);
+			apiData[i - 1][0] = lu.getCellData("Customer", i, 19);
+
+			System.out.println("Given data: " + apiData[i - 1][0]);
 //				//System.out.println("Given data: "+ apiData[i-1][1]);
-			}
+		}
 		return apiData;
 	}
-	
+
 	@DataProvider(name = "bookingDetails")
 	public static String[][] custBookingDetails() throws IOException {
 
@@ -243,14 +242,13 @@ public class DataProviderClass {
 		String apiData[][] = new String[rownum][2];
 
 		for (int i = 1; i <= rownum; i++) {
-				apiData[i-1][0] = lu.getCellData("Customer", i,20);
-				apiData[i-1][1] = lu.getCellData("Customer", i,21 );
-				
-				System.out.println("Given data: "+ apiData[i-1][0]);
-				System.out.println("Given data: "+ apiData[i-1][1]);
-			}
+			apiData[i - 1][0] = lu.getCellData("Customer", i, 20);
+			apiData[i - 1][1] = lu.getCellData("Customer", i, 21);
+
+			System.out.println("Given data: " + apiData[i - 1][0]);
+			System.out.println("Given data: " + apiData[i - 1][1]);
+		}
 		return apiData;
 	}
-	
-}
 
+}

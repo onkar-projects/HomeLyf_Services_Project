@@ -52,6 +52,4 @@ public class BankAccountDetails_Payload {
 	public void setBranchName(String branchName) {
 		this.branchName = branchName;
 	}
-	
-	
 }
