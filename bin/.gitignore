@@ -6,4 +6,4 @@ test-output/
 .classpath
 .project
 
-/bin/
+/pom.xml
