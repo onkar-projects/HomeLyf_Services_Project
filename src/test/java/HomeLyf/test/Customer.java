@@ -20,6 +20,7 @@ public class Customer {
 	private static Logger logger = LogManager.getLogger(User.class);
 	static String Ctoken;
 	static String token;
+	static String statusine_CustomerLogin;
 	String sTime;
 	String[] paymentMode = { "cash", "upi", "card", "other" };
 	String[] paymentStatus = { "pending", "inprogress", "delayed", "cancelled", "completed", "refundinprogress",
@@ -288,5 +289,27 @@ public class Customer {
 		Assert.assertNotNull(customerTimeslotResponse,
 				"Customer available timeslot are getting with including timeslot disable by vendor");
 	}
-
+	
+	@Test(priority = 16, enabled = true, description = "Verify that customer cannot cancel booking  service Started by vendor")
+	
+		public void VerifyCustomerCannotCancelBookingServiceStartedByVendor(ITestContext context)
+		{
+		logger.info("Started Verify that Customer can not cancel booking service started by vendor");
+		logger.info("Started Customer login test");
+		Response response_CustomerLogin=UserEndPoints.userLogin(CommonMethods.CustomerLoginforAcceptBookingAfterEnablingTimeslot());
+		response_CustomerLogin.then().log().all();  
+		String res_CustomerLogin=response_CustomerLogin.asPrettyString();
+		JsonPath js_CustomerLogin=new JsonPath(res_CustomerLogin);
+		Ctoken=js_CustomerLogin.getString(token)
+;
+		System.out.println("Generate token Id " + Ctoken );
+		context.setAttribute("Ctoken", Ctoken);
+		String statusline_CustomerLogin=response_CustomerLogin.getStatusLine();
+		Assert.assertEquals(statusine_CustomerLogin,"HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_CustomerLogin);
+		logger.debug("Generate Token Id :  ()",Ctoken);
+		logger.info("Customer logger in sucessfully");
+		
+		
+		}
 }

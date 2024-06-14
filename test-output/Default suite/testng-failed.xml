@@ -3,18 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="HomeLyf.test.User">
+      <class name="HomeLyf.test.Vendor">
         <methods>
-<<<<<<< HEAD
-          <include name="getUserLookupCategory"/>
-          <include name="userLogin" invocation-numbers="0"/>
-          <include name="getSubCateogryId"/>
-          <include name="customer_service" invocation-numbers="0"/>
-=======
-          <include name="userSignUp" invocation-numbers="0"/>
->>>>>>> 6215b3706c9312e1158790fba64f7828d6ce97ce
+          <include name="vendor_AcceptBookingAfterEnablingTimeslot" invocation-numbers="0"/>
         </methods>
-      </class> <!-- HomeLyf.test.User -->
+      </class> <!-- HomeLyf.test.Vendor -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -258,4 +258,8 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
+	
+	
+	
+	
 }
