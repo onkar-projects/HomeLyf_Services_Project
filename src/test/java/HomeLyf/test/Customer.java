@@ -210,7 +210,7 @@ public class Customer {
 		response.then().log().all();
 	}
 
-	@Test(priority = 11, description = "Customer Login to Booking a Service method")
+	@Test(priority = 15, description = "Customer Login to Booking a Service method")
 	public static void customerLogintoBookingService(ITestContext context) {
 		logger.info("Started Customer Login test.");
 		Response response_CustomerLogin = UserEndPoints.userLogin(CommonMethods.CustomerLoginformultiplescenario());
@@ -322,7 +322,7 @@ public class Customer {
 		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
 		String Vtoken = vloginjs.getString("token");
-		System.out.println("Generated Token Id: " + token);
+		System.out.println("Generated Token Id: " + Vtoken);
 		context.setAttribute("VToken", Vtoken);
 		logger.debug("Generated Token Id: {}", Vtoken);
 		logger.info("Vendor logged in successfully");
@@ -333,8 +333,8 @@ public class Customer {
 		// Vendor GetTimeSlot
 		Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
 		JsonPath timeslotjs = CommonMethods.jsonToString(vTimeslotResponse);
-		String stime = timeslotjs.getString("availableTimeSlots[5].startTime");
-		String etime = timeslotjs.getString("availableTimeSlots[5].endTime");
+		String stime = timeslotjs.getString("availableTimeSlots[12].startTime");
+		String etime = timeslotjs.getString("availableTimeSlots[12].endTime");
 		context.setAttribute("stime", stime);
 		context.setAttribute("etime", etime);
 		logger.info("list of vendor TimeSlot");
@@ -351,6 +351,7 @@ public class Customer {
 		disableResponse.then().log().all();
 		JsonPath disabletimeslotjs = CommonMethods.jsonToString(disableResponse);
 		String sTime = disabletimeslotjs.getString("startTime");
+		System.out.println();
 		logger.info("DisableTimeSlot: Timeslot disable successfully");
 		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
 		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
@@ -360,7 +361,7 @@ public class Customer {
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
 		String Ctoken = loginjs.getString("token");
-		System.out.println("Generated Token Id: " + token);
+		System.out.println("Generated Token Id: " + Ctoken);
 		context.setAttribute("CToken", Ctoken);
 		logger.debug("Generated Token Id: {}", Ctoken);
 		logger.info("Customer logged in successfully");
@@ -388,10 +389,13 @@ public class Customer {
 		Response customerTimeslotResponse = CustomerEndPoints
 				.customer_GetTimeSlot((int) context.getAttribute("addressId"), categoryId, context);
 		customerTimeslotResponse.then().log().all();
-		logger.info("Check whether disable timeslot is available in customer available timeslot ");
+//		JsonPath customerTimeslotjs = CommonMethods.jsonToString(customerTimeslotResponse);
+//		customerTimeslotjs.get("[].sTime");
+		logger.info("Check whether disable timeslot is available in customer available timeslot:"+sTime);
 		// Verify that disabled timeslots are no longer visible to the customer
-		Assert.assertTrue(customerTimeslotResponse.getBody().asString().contains(sTime),
-				"Disabled timeslots are still visible to the customer");
+		Assert.assertEquals(customerTimeslotResponse.getBody().asString().contains(sTime), true,sTime);
+		//Assert.assertFalse(customerTimeslotResponse.getBody().asString().contains(sTime),"Disabled timeslots are still visible to the customer");
+		//System.out.println(customerTimeslotResponse.getBody().asString().contains(sTime));
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(customerTimeslotResponse,
 				"Customer available timeslot are getting with including timeslot disable by vendor");
