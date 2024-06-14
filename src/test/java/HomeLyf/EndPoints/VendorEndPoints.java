@@ -98,5 +98,6 @@ public class VendorEndPoints {
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).log().all().when().post(Routes.vendor_bankDetails);
 		return response;
+		
 	}
 }

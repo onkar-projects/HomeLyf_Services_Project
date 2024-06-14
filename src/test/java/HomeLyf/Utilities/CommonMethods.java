@@ -239,7 +239,6 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
-
 		userlogin.setEmailAddress("f9iupld30y@elatter.com");
 		userlogin.setMobileNumber(Long.parseLong("8956472500"));
 		userlogin.setPassword("HomeLyf@123");
@@ -250,7 +249,6 @@ public class CommonMethods {
 
 	public static UserLogin_Payload vendor_Login() {
 		userlogin = new UserLogin_Payload();
-
 		userlogin.setEmailAddress("dason.sava@floodouts.com");
 		userlogin.setMobileNumber(Long.parseLong("9657400368"));
 		userlogin.setPassword("Electv@233");
@@ -258,13 +256,16 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
+
 	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndService(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
 		startCompleteBooking.setBookingId((int) context.getAttribute("BookingId"));
 		startCompleteBooking.setOtp((int) context.getAttribute("StartOTP"));
 		return startCompleteBooking;
 	}
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndServic(ITestContext context, int bookingId, int startOTP) {
+
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndServic(ITestContext context,
+			int bookingId, int startOTP) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
 		startCompleteBooking.setBookingId(bookingId);
 		startCompleteBooking.setOtp(startOTP);
