@@ -209,17 +209,17 @@ public class CommonMethods {
 		return disabletimeslot;
 	}
 
-	public static UserLogin_Payload VendorLoginforAcceptBookingAfterEnablingTimeslot() {
+	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("5nfu51refe@elatter.com");
-		userlogin.setMobileNumber(Long.parseLong("2004005005"));
-		userlogin.setPassword("Tuka@123");
+		userlogin.setEmailAddress("nevixo9520@ociun.com");
+		userlogin.setMobileNumber(Long.parseLong("4312345433"));
+		userlogin.setPassword("String@123");
 		userlogin.setType("V");
 		userlogin.setLocation("pune");
 		return userlogin;
 	}
 
-	public static UserLogin_Payload CustomerLoginforAcceptBookingAfterEnablingTimeslot() {
+	public static UserLogin_Payload CustomerLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("f9iupld30y@elatter.com");
 		userlogin.setMobileNumber(Long.parseLong("6029860554"));
@@ -258,8 +258,16 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
-	
-	
-	
-	
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndService(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("BookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("StartOTP"));
+		return startCompleteBooking;
+	}
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndServic(ITestContext context, int bookingId, int startOTP) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId(bookingId);
+		startCompleteBooking.setOtp(startOTP);
+		return startCompleteBooking;
+	}
 }
