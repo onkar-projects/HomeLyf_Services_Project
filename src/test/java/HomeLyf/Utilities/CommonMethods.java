@@ -259,9 +259,9 @@ public class CommonMethods {
 	public static UserLogin_Payload vendor_Login() {
 		userlogin = new UserLogin_Payload();
 
-		userlogin.setEmailAddress("homelyf123@everymail.shop");
-		userlogin.setMobileNumber(Long.parseLong("8854962356"));
-		userlogin.setPassword("HomeLyf@123");
+		userlogin.setEmailAddress("dason.sava@floodouts.com");
+		userlogin.setMobileNumber(Long.parseLong("9657400368"));
+		userlogin.setPassword("Electv@233");
 		userlogin.setType("v");
 		userlogin.setLocation("Pune");
 		return userlogin;

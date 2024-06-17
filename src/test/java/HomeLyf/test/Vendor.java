@@ -318,7 +318,7 @@ public class Vendor {
 				+ " after enabled that disabled timeslot successfully");
 	}
 
-	@Test
+	@Test(enabled=true, priority = 12, description = "Verify that vendor disabled Timeslot after Started service")
 	public void vendorDisabledTimeslotAfterStartService(ITestContext context) {
 		// Customer login
 		logger.info("Customer Login start");
@@ -363,7 +363,7 @@ public class Vendor {
 //		
 //		JsonPath js = CommonMethods.jsonToString(getbooking_response);
 //		for(int i=0;i<100;i++) {
-//			int vendorBookingId = js.getInt("["+ i +"].");
+//			int vendorBookingId = js.getInt("["+ i +"]");
 //		}
 //		int vendorBookingId = js.getInt("[0].id");
 //		// String scheduleOnTime = js.getString("[0].scheduledOn");

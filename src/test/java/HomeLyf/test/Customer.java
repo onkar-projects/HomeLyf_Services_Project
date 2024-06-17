@@ -87,7 +87,7 @@ public class Customer {
 	@Test(priority = 5, enabled = true, description = " customer should get services")
 	public void customer_GetService(ITestContext context) {
 		logger.info("Starting customer_service...");
-		Response response = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
+		Response response = CustomerEndPoints.customer_service(context,  (int) context.getAttribute("subCategoryId"));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		context.setAttribute("serviceid", js.getInt("[0].id"));
@@ -211,6 +211,7 @@ public class Customer {
 	@Test(priority = 15, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
 		// Vendor Login
+		logger.info("Vendor start login");
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
@@ -224,18 +225,20 @@ public class Customer {
 		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
 
 		// Vendor GetTimeSlot
+		logger.info("Getting Vendor Available Timeslot");	
 		Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
 		JsonPath timeslotjs = CommonMethods.jsonToString(vTimeslotResponse);
-		String stime = timeslotjs.getString("availableTimeSlots[12].startTime");
-		String etime = timeslotjs.getString("availableTimeSlots[12].endTime");
+		String stime = timeslotjs.getString("availableTimeSlots[1].startTime");
+		String etime = timeslotjs.getString("availableTimeSlots[1].endTime");
 		context.setAttribute("stime", stime);
 		context.setAttribute("etime", etime);
-		logger.info("list of vendor TimeSlot");
+		logger.info("list of vendor TimeSlot displayed with startTime "+stime+" endTime "+etime);
 		Assert.assertEquals(vTimeslotResponse.getStatusCode(), 200);
 		Assert.assertEquals(vTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(vTimeslotResponse, "Vendor's Available Timeslot are getting successfully");
 
 		// Disable TimeSlot
+		logger.info("Vendor disabling Timeslot");
 		DisableTimeslot_Payload disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
 		disabletimeslot.setStartTime(stime);
@@ -244,13 +247,16 @@ public class Customer {
 		disableResponse.then().log().all();
 		JsonPath disabletimeslotjs = CommonMethods.jsonToString(disableResponse);
 		String sTime = disabletimeslotjs.getString("startTime");
+		String eTime = disabletimeslotjs.getString("endTime");
+		int id = disabletimeslotjs.getInt("id");
 		System.out.println();
-		logger.info("DisableTimeSlot: Timeslot disable successfully");
+		logger.info("DisableTimeSlot:startTime "+sTime+ " endTime  "+eTime+" id "+id);
 		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
 		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(disableResponse, "Timeslot disable by Vendor successfully");
 
 		// Customer Login
+		logger.info("Customer start login");
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
 		String Ctoken = loginjs.getString("token");
@@ -263,7 +269,7 @@ public class Customer {
 		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
 
 		// GetCategory
-		logger.info("Getting categoryId");
+		logger.info("Get categoryId");
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
 		Response response2 = CustomerEndPoints.customer_GetCategoryEP(context,
@@ -271,13 +277,14 @@ public class Customer {
 		JsonPath js = CommonMethods.jsonToString(response2);
 		int categoryId = js.get("[5].id");
 		context.setAttribute("categoryId", categoryId);
-		logger.info("CategoryId fetched successfully");
+		logger.info("CategoryId fetched successfully "+categoryId);
 		Assert.assertEquals(js.getString("[5].name"), "Electricals");
 		Assert.assertEquals(response2.statusCode(), 200);
 		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response2, "List of Categories are getting successfully");
 
 		// Customer TimeSlot
+		logger.info("Customer available Timeslot");
 		LookUp.getMyProfile(context);
 		Response customerTimeslotResponse = CustomerEndPoints
 				.customer_GetTimeSlot((int) context.getAttribute("addressId"), categoryId, context);
