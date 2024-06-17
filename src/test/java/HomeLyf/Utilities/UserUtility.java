@@ -51,9 +51,7 @@ public class UserUtility {
 		cell = row.getCell(colnum);
 
 		DataFormatter formatter = new DataFormatter();
-
 		String data;
-
 		try {
 			data = formatter.formatCellValue(cell);
 		} catch (Exception e) {
@@ -62,7 +60,5 @@ public class UserUtility {
 		workbook.close();
 		fi.close();
 		return data;
-
 	}
-
 }

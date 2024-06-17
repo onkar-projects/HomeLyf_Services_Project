@@ -29,7 +29,6 @@ public class LookUp {
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
-
 		int CategoryId = js.getInt("[0].id");
 		context.setAttribute("name", name);
 		context.setAttribute("categoryId1", CategoryId);
@@ -83,7 +82,6 @@ public class LookUp {
 	}
 
 	public static void getPaymentStatus(ITestContext context) {
-
 		Response response = CustomerEndPoints.customer_PaymentStatusEP(context);
 		JsonPath js = CommonMethods.jsonToString(response);
 		String paymentStatus = js.getString("[0].name");
@@ -93,7 +91,6 @@ public class LookUp {
 	}
 
 	public static void customer_GetPaymentModeTest(ITestContext context) {
-
 		Response response = CustomerEndPoints.customer_PaymentModeEP(context);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
@@ -211,7 +208,5 @@ public class LookUp {
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response5.statusCode(), 200);
 		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
-
 	}
-
 }

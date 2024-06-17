@@ -1,9 +1,7 @@
 package HomeLyf.Payload;
 
 public class Reschedule_Payload {
-
 	int bookingId;
-
 	String scheduledOn;
 
 	public int getBookingId() {

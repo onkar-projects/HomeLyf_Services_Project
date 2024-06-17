@@ -18,7 +18,6 @@ public class User {
 	private static Logger logger = LogManager.getLogger(User.class);
 
 	@Test(priority = 1, dataProvider = "Vendordata", dataProviderClass = DataProviderClass.class)
-
 	public void userSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
 			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
 			String addresstype, String line1, String line2, String line3, String location, String postid,
@@ -33,7 +32,6 @@ public class User {
 	}
 
 	@Test(priority = 2, dataProvider = "invalidvendordata", dataProviderClass = DataProviderClass.class)
-
 	public void invaliduserSignUp(String name, String mobileNumber, String type, String emailAddress, String password,
 			String Id, String scategories, String spostcodes, String addharnum, String exp, String addressname,
 			String addresstype, String line1, String line2, String line3, String location, String postid,
@@ -64,7 +62,6 @@ public class User {
 		response.then().log().all();
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
-
 		token = js.getString("token");
 //		System.out.println("Generated Token Id: " + token);
 		logger.debug("Generated Token Id: {}", token);
@@ -85,7 +82,6 @@ public class User {
 		String Mnum = js.getString("errors.MobileNumber[0]");
 		String email = js.getString("errors.EmailAddress[0]");
 		String pass = js.getString("errors.Password[0]");
-
 		Assert.assertEquals(Mnum, ErrorValidation.mobileNumber);
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
 		Assert.assertEquals(pass, ErrorValidation.password);
@@ -109,7 +105,6 @@ public class User {
 		logger.info("Starting sendInvalidEmail test...");
 		Response response = UserEndPoints.sendEmailOTP(CommonMethods.sendInvalidEmail(emailAddress));
 		response.then().log().all();
-
 		String res = response.asPrettyString();
 		JsonPath js = new JsonPath(res);
 		String email = js.getString("errors.EmailAddress[0]");
@@ -137,10 +132,8 @@ public class User {
 		JsonPath js = new JsonPath(res);
 		String Mnum = js.getString("errors.MobileNumber[0]");
 		String email = js.getString("errors.EmailAddress[0]");
-
 		Assert.assertEquals(Mnum, ErrorValidation.mobileNumber);
 		Assert.assertEquals(email, ErrorValidation.emailAddress);
-
 		Assert.assertEquals(response.statusCode(), 400);
 		logger.warn("Password reset request attempted with invalid data");
 	}
@@ -216,5 +209,4 @@ public class User {
 		Assert.assertEquals(js.getString("[0].name"), "411002");
 		logger.info("PostCode fetched successfully");
 	}
-
 }
