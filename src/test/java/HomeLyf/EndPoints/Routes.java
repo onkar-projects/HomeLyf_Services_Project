@@ -3,7 +3,7 @@ package HomeLyf.EndPoints;
 public class Routes {
 
 //	USER_API
-	public static String base_url = "https://meet.google.com/xwn-cwvo-psh";
+	public static String base_url = "https://97b9-49-36-49-144.ngrok-free.app";
 
 	public static String account_login = base_url + "/UserAPI/api/Account/Login";
 	public static String account_signUp = base_url + "/UserAPI/api/Account/SignUp";
