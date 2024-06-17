@@ -29,8 +29,9 @@ public class LookUp {
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String name = js.getString("[0].name");
-
 		int CategoryId = js.getInt("[0].id");
+		String Ename = js.getString("[5].name");
+		context.setAttribute("Ename", Ename);
 		context.setAttribute("name", name);
 		context.setAttribute("categoryId1", CategoryId);
 		Assert.assertEquals(response.getStatusCode(), 200);

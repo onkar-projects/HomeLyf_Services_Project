@@ -824,3 +824,239 @@
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer can not cancel the service.
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer cannot cancel booking on started service successfully.
 >>>>>>> 58f57f3f853b6799c58f7543b02678548a729fd0
+[INFO ] 2024-06-15 15:56:32.092 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 15:56:43.122 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 15:56:43.123 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 15:56:44.002 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 15:56:44.003 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 15:56:44.010 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 15:56:44.744 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 15:56:44.744 [main] LookUp - Getting category
+[INFO ] 2024-06-15 15:56:45.136 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 15:56:45.853 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 15:56:45.854 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 15:56:46.394 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 15:56:46.394 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 15:56:46.842 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 15:56:46.892 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 15:56:47.970 [main] Vendor - Category timeslot Start Time: 2024-06-16T03:30:00Z	 End Time: 2024-06-16T04:00:00Z successfully.
+[INFO ] 2024-06-15 17:41:57.472 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 17:42:08.464 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 17:42:08.465 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 17:42:12.726 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 17:42:12.729 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 17:42:12.733 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 17:42:13.162 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 17:42:13.162 [main] LookUp - Getting category
+[INFO ] 2024-06-15 17:42:13.489 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 17:42:14.180 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 17:42:14.181 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 17:42:14.438 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 17:42:14.439 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 17:42:14.715 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 17:42:14.740 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 17:42:15.963 [main] Vendor - Category timeslot Start Time: 2024-06-16T05:00:00Z	 End Time: 2024-06-16T05:30:00Z successfully.
+[INFO ] 2024-06-15 17:42:15.963 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-15 17:42:17.368 [main] Vendor - New booking created successfully with bookinId53048
+[INFO ] 2024-06-15 17:43:16.450 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 17:43:23.196 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 17:43:23.196 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 17:43:23.742 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 17:43:23.743 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 17:43:23.745 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 17:43:23.979 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 17:43:23.979 [main] LookUp - Getting category
+[INFO ] 2024-06-15 17:43:24.178 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 17:43:24.594 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 17:43:24.594 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 17:43:24.823 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 17:43:24.823 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 17:43:25.034 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 17:43:25.058 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 17:43:25.680 [main] Vendor - Category timeslot Start Time: 2024-06-16T05:00:00Z	 End Time: 2024-06-16T05:30:00Z successfully.
+[INFO ] 2024-06-15 17:43:25.681 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-15 17:43:25.979 [main] Vendor - New booking created successfully with bookinId53049
+[INFO ] 2024-06-15 17:59:54.601 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 18:00:02.189 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 18:00:02.190 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 18:00:02.730 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 18:00:02.731 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 18:00:02.735 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 18:00:02.962 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 18:00:02.962 [main] LookUp - Getting category
+[INFO ] 2024-06-15 18:00:03.179 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 18:00:03.565 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 18:00:03.565 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 18:00:03.799 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 18:00:03.799 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 18:00:04.078 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 18:00:04.112 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 18:00:04.882 [main] Vendor - Category timeslot Start Time: 2024-06-16T05:00:00Z	 End Time: 2024-06-16T05:30:00Z successfully.
+[INFO ] 2024-06-15 18:00:04.882 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-15 18:00:05.201 [main] Vendor - New booking created successfully with bookinId53050
+[INFO ] 2024-06-15 18:00:05.202 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-06-15 18:02:54.024 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 18:03:01.427 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 18:03:01.427 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 18:03:02.143 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 18:03:02.144 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 18:03:02.148 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 18:03:02.385 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 18:03:02.385 [main] LookUp - Getting category
+[INFO ] 2024-06-15 18:03:02.769 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 18:03:03.323 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 18:03:03.324 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 18:03:03.763 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 18:03:03.764 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 18:03:04.325 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 18:03:04.365 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 18:03:05.308 [main] Vendor - Category timeslot Start Time: 2024-06-16T05:00:00Z	 End Time: 2024-06-16T05:30:00Z successfully.
+[INFO ] 2024-06-15 18:03:05.308 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-15 18:03:05.728 [main] Vendor - New booking created successfully with bookinId53051
+[INFO ] 2024-06-15 18:03:05.729 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-06-15 18:03:05.940 [main] Vendor - Customer Login start
+[INFO ] 2024-06-15 18:03:06.250 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMzE5IiwibmFtZWlkIjoiQXBhY2hlLUh0dHBDbGllbnQvNC41LjEzIChKYXZhLzIxLjAuMikiLCJuYmYiOjE3MTg0NTQ3ODUsImV4cCI6MTcxODQ2OTE4NSwiaWF0IjoxNzE4NDU0Nzg1LCJpc3MiOiJodHRwczovL3FkdGFzLmNvbS8iLCJhdWQiOiJodHRwczovL3FkdGFzLmNvbS9DdXN0b21lckFQSS8ifQ.1mEzmbzl7WNPnMkBGpKf7daiHBOLLsLbgT8umMx8JmI
+[INFO ] 2024-06-15 18:03:06.280 [main] LookUp - Getting categoryId
+[INFO ] 2024-06-15 18:03:06.280 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 18:03:06.756 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 18:03:06.756 [main] LookUp - Getting category
+[INFO ] 2024-06-15 18:03:07.045 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 18:03:07.472 [main] LookUp - CategoryId fetched successfully 1 of category [Painting, Plumbing, Electronics, Carpentry, Cleaning, Electricals, Waterproofing, Vehicle, Water Purifier, Pest Control]
+[INFO ] 2024-06-15 18:03:07.472 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-06-15 18:03:07.662 [main] LookUp - SubCategoryId Fetched Successfully 2 of subCategory Commercial Building
+[INFO ] 2024-06-15 18:03:07.663 [main] LookUp - Starting customer_service...
+[INFO ] 2024-06-15 18:03:08.050 [main] LookUp - customer_service subcategory is shown successfully 3 of service Apartments up to 11 floors
+[INFO ] 2024-06-15 18:03:08.050 [main] LookUp - Getting Customer profile
+[INFO ] 2024-06-15 18:03:08.596 [main] LookUp - Customer profile shown successfully 20267
+[INFO ] 2024-06-15 18:03:08.596 [main] LookUp - Getting Customer Timeslot for book service...
+[INFO ] 2024-06-15 18:03:09.648 [main] LookUp - Available booking Timeslot with startTime 2024-06-16T05:00:00Z endTime 2024-06-16T05:30:00Z
+[INFO ] 2024-06-15 18:03:09.649 [main] Vendor - Creating new Booking
+[INFO ] 2024-06-15 18:03:09.903 [main] Vendor - New booking created successfully with bookinId53052
+[INFO ] 2024-06-15 18:03:09.903 [main] Vendor - Vendor Login start
+[INFO ] 2024-06-15 18:03:10.147 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-06-15 18:03:10.147 [main] Vendor - Vendor accept booking with BookingId 53052
+[INFO ] 2024-06-15 18:03:14.460 [main] Vendor - Vendor accept Booking successfully
+[INFO ] 2024-06-15 18:03:14.460 [main] Vendor - Getting StartOTP through Customer Get Booking By Id
+[INFO ] 2024-06-15 18:03:17.571 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-06-15 18:03:18.008 [main] Vendor - Starting vendor_get_booking...
+[INFO ] 2024-06-15 18:03:19.116 [main] Vendor - vendor_get_booking is shown successfully.
+[INFO ] 2024-06-15 18:03:19.124 [main] Vendor - Vendor accept booking
+[INFO ] 2024-06-15 18:03:19.134 [main] Vendor - Start vendor booking using startOtp
+[INFO ] 2024-06-15 18:03:19.142 [main] Vendor - Complete vendor booking using endOtp
+[INFO ] 2024-06-15 18:03:19.812 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-06-15 18:03:19.812 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-06-15 18:03:20.759 [main] LookUp - vendor_get_booking is shown successfully
+[INFO ] 2024-06-15 18:03:20.969 [main] Vendor - Getting vendor available time slots
+[INFO ] 2024-06-15 18:03:21.391 [main] Vendor - Disabling Vendor time slot
+[INFO ] 2024-06-15 18:03:22.081 [main] Vendor - Enable vendor time slot after disabled
+[INFO ] 2024-06-15 18:03:22.454 [main] Vendor - get vendor profile
+[INFO ] 2024-06-15 18:03:22.860 [main] Vendor - Started vendor accept booking after enabled that disabled timeslot
+[INFO ] 2024-06-15 18:03:22.860 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 18:03:23.094 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 18:03:23.094 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 18:03:23.564 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 18:03:23.565 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 18:03:23.565 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 18:03:23.748 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 18:03:23.749 [main] LookUp - Getting category
+[INFO ] 2024-06-15 18:03:24.130 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 18:03:24.689 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 18:03:24.689 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 18:03:24.872 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 18:03:24.872 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 18:03:26.097 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 18:03:26.124 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 18:03:28.149 [main] Vendor - Category timeslot Start Time: 2024-06-16T05:00:00Z	 End Time: 2024-06-16T05:30:00Z successfully.
+[INFO ] 2024-06-15 18:03:28.149 [main] Vendor - Started creating new Booking.
+[INFO ] 2024-06-15 18:03:28.489 [main] Vendor - New booking created successfully and Booking id is 53053
+[INFO ] 2024-06-15 18:03:28.489 [main] Vendor - Started Vendor Login test.
+[INFO ] 2024-06-15 18:03:29.051 [main] Vendor - Vendor logged in successfully.
+[INFO ] 2024-06-15 18:03:29.052 [main] Vendor - Getting vendor timeslots.
+[INFO ] 2024-06-15 18:03:29.300 [main] Vendor - Vendor timeslots are shown successfully.
+[INFO ] 2024-06-15 18:03:29.301 [main] Vendor - Started vendor disabling timeslot.
+[INFO ] 2024-06-15 18:03:29.729 [main] Vendor - Vendor disabled 2024-06-16T05:00:00Z	2024-06-16T05:30:00Z timeslot successfully with id 20320
+[INFO ] 2024-06-15 18:03:29.730 [main] Vendor - Started vendor enabling timeslot of id 20320
+[INFO ] 2024-06-15 18:03:29.967 [main] Vendor - Vendor enabled timeslot after disabled successfully.
+[INFO ] 2024-06-15 18:03:29.968 [main] Vendor - Started vendor accepting booking of Booking id = 53053
+[INFO ] 2024-06-15 18:03:31.148 [main] Vendor - Vendor accepted booking id of 53053 after enabled that disabled timeslot successfully
+[INFO ] 2024-06-15 18:15:34.272 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 18:15:43.899 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 18:15:43.899 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 18:15:44.647 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 18:15:44.648 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 18:15:44.655 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 18:15:44.893 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 18:15:44.893 [main] LookUp - Getting category
+[INFO ] 2024-06-15 18:15:45.208 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 18:15:45.903 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 18:15:45.903 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 18:15:46.340 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 18:15:46.341 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 18:15:46.703 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 18:15:46.729 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 18:15:47.959 [main] Vendor - Category timeslot Start Time: 2024-06-16T06:00:00Z	 End Time: 2024-06-16T06:30:00Z successfully.
+[INFO ] 2024-06-15 18:15:47.960 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-15 18:15:48.553 [main] Vendor - New booking created successfully with bookinId53054
+[INFO ] 2024-06-15 18:15:48.553 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-06-15 18:15:49.023 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-06-15 18:15:49.024 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-06-17 05:03:59.525 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-17 05:04:33.969 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-17 05:04:33.970 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-17 05:04:37.481 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-17 05:04:37.481 [main] Vendor - Getting category.
+[INFO ] 2024-06-17 05:04:37.487 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-17 05:04:38.045 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-17 05:04:38.045 [main] LookUp - Getting category
+[INFO ] 2024-06-17 05:04:38.664 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-17 05:04:42.934 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-17 05:04:42.934 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-17 05:04:43.638 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-17 05:04:43.638 [main] Vendor - Getting services.
+[INFO ] 2024-06-17 05:04:44.268 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-17 05:04:44.326 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-17 05:04:54.378 [main] Vendor - Category timeslot Start Time: 2024-06-17T12:30:00Z	 End Time: 2024-06-17T13:00:00Z successfully.
+[INFO ] 2024-06-17 05:04:54.378 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-17 05:05:00.984 [main] Vendor - New booking created successfully with bookinId53073
+[INFO ] 2024-06-17 05:05:00.985 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-06-17 05:05:06.908 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-06-17 05:05:06.908 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-06-17 05:14:10.313 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-17 05:14:27.607 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-17 05:14:27.608 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-17 05:14:29.459 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-17 05:14:29.459 [main] Vendor - Getting category.
+[INFO ] 2024-06-17 05:14:29.464 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-17 05:14:34.183 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-17 05:14:34.183 [main] LookUp - Getting category
+[INFO ] 2024-06-17 05:14:36.242 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-17 05:28:47.469 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-17 05:29:03.355 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-17 05:29:03.355 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-17 05:29:04.671 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-17 05:29:04.672 [main] Vendor - Getting category.
+[INFO ] 2024-06-17 05:29:04.682 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-17 05:29:04.996 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-17 05:29:04.997 [main] LookUp - Getting category
+[INFO ] 2024-06-17 05:29:05.307 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-17 05:30:51.552 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-17 05:31:06.536 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-17 05:31:06.537 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-17 05:31:07.646 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-17 05:31:07.646 [main] Vendor - Getting category.
+[INFO ] 2024-06-17 05:31:07.652 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-17 05:31:07.960 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-17 05:31:07.960 [main] LookUp - Getting category
+[INFO ] 2024-06-17 05:31:08.243 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-17 05:31:08.818 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-06-17 05:31:08.819 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-17 05:31:09.157 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-17 05:31:09.158 [main] Vendor - Getting services.
+[INFO ] 2024-06-17 05:31:09.462 [main] Vendor - Ceiling Lamps installation Service selected successfully.
+[INFO ] 2024-06-17 05:31:09.583 [main] Vendor - Getting timeslot for category = null and Service name is = Ceiling Lamps installation
+[INFO ] 2024-06-17 05:31:10.411 [main] Vendor - Category timeslot Start Time: 2024-06-17T13:00:00Z	 End Time: 2024-06-17T13:30:00Z successfully.
+[INFO ] 2024-06-17 05:31:10.411 [main] Vendor - Started Customer booking
+[INFO ] 2024-06-17 05:31:10.862 [main] Vendor - New booking created successfully with bookinId53074
+[INFO ] 2024-06-17 05:31:10.863 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-06-17 05:31:11.116 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-06-17 05:31:11.116 [main] Vendor -  vendor GetBooking
