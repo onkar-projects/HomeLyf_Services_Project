@@ -19,7 +19,8 @@ public class UserEndPoints {
 	}
 
 	public static Response userLogin(UserLogin_Payload Payload) {
-		Response response = given().contentType(ContentType.JSON).body(Payload).when().post(Routes.account_login);
+
+		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when().post(Routes.account_login);
 		return response;
 	}
 

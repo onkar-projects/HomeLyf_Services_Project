@@ -22,6 +22,7 @@ public class LookUp {
 		int addressId = js.getInt("addresses[0].id");
 		int addressId2 = js.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId2);
+		//context.setAttribute("addressId", addressId);
 	}
 
 	public static void getCategory(ITestContext context) {
@@ -76,6 +77,8 @@ public class LookUp {
 		JsonPath js = CommonMethods.jsonToString(response);
 		String postCode = js.getString("[0].name");
 		int postCodeId = js.getInt("[0].id");
+		String postCode1 = js.getString("[1].name");
+		context.setAttribute("postCode1", postCode1);
 		context.setAttribute("postCode", postCode);
 		context.setAttribute("postCodeId", postCodeId);
 		Assert.assertEquals(response.getStatusCode(), 200);
@@ -138,21 +141,78 @@ public class LookUp {
 		log.info("vendor_get_booking is shown successfully");
 	}
 
-	/*
-	 * public static void customerGetBooking(ITestContext context) { log.info("");
-	 * //String[] status = {"New", "expertassigned", "inprogress", "cancelled",
-	 * "completed"}; log.info("Fetching Customer booking"); int vendorBookingId;
-	 * String startOtp; String endOtp; Response response =
-	 * CustomerEndPoints.customer_GetBookingEndPoint(context, "expertassigned");
-	 * response.then().log().all(); JsonPath js =
-	 * CommonMethods.jsonToString(response); vendorBookingId = js.getInt("[0].id");
-	 * startOtp = js.getString("[0].startOTP"); endOtp = js.getString("[0].endOTP");
-	 * System.out.println("################### "
-	 * +vendorBookingId+" ###################");
-	 * context.setAttribute("vendorAcceptBookingId", vendorBookingId);
-	 * context.setAttribute("startOtp", startOtp); context.setAttribute("endOtp",
-	 * endOtp); String stat = js.getString("[0].status"); Assert.assertEquals(stat,
-	 * "ExpertAssigned"); Assert.assertEquals(response.statusCode(), 200);
-	 * log.info("Customer booking shown successfully of Status" + stat); }
-	 */
+//	  public static void customerGetBooking(ITestContext context) { 
+//		  log.info("");
+//	  //String[] status = {"New", "expertassigned", "inprogress", "cancelled","completed"}; 
+//		  log.info("Fetching Customer booking"); int vendorBookingId;
+//	  String startOtp; String endOtp; Response response =
+//	  CustomerEndPoints.customer_GetBookingEndPoint(context, "expertassigned");
+//	  response.then().log().all(); JsonPath js =
+//	  CommonMethods.jsonToString(response); vendorBookingId = js.getInt("[0].id");
+//	  startOtp = js.getString("[0].startOTP"); endOtp = js.getString("[0].endOTP");
+//	  System.out.println("################### "
+//	  +vendorBookingId+" ###################");
+//	  context.setAttribute("vendorAcceptBookingId", vendorBookingId);
+//	  context.setAttribute("startOtp", startOtp); context.setAttribute("endOtp",
+//	  endOtp); String stat = js.getString("[0].status"); Assert.assertEquals(stat,
+//	  "ExpertAssigned"); Assert.assertEquals(response.statusCode(), 200);
+//	  log.info("Customer booking shown successfully of Status" + stat); }
+
+	public static void createBooking(ITestContext context) {
+		log.info("Getting categoryId");
+		LookUp.getPostCode(context);
+		LookUp.getCategory(context);
+		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
+				(String) context.getAttribute("postCode1"), "");
+		response1.then().log().all();
+		JsonPath js1 = CommonMethods.jsonToString(response1);
+		int categoryId = js1.getInt("[5].id");
+		String categoryName = js1.getString("[5].name");
+		context.setAttribute("categoryId", categoryId);
+		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
+		Assert.assertEquals(response1.statusCode(), 200);
+		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
+
+		log.info("Getting subCategoryId");
+		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
+				(int) context.getAttribute("categoryId"));
+		response2.then().log().all();
+		JsonPath js2 = CommonMethods.jsonToString(response2);
+		int subCategoryId = js2.getInt("[1].id");
+		String subCategoryName = js2.getString("[1].name");
+		context.setAttribute("subCategoryId", subCategoryId);
+		Assert.assertEquals(response2.getStatusCode(), 200);
+		log.info("SubCategoryId Fetched Successfully " + subCategoryId + " of subCategory " + subCategoryName);
+
+		log.info("Starting customer_service...");
+		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
+		response3.then().log().all();
+		JsonPath js3 = CommonMethods.jsonToString(response3);
+		int serviceId = js3.getInt("[0].id");
+		String serviceName = js3.getString("[0].name");
+		context.setAttribute("serviceId", serviceId);
+		Assert.assertEquals(response3.statusCode(), 200);
+		log.info("customer_service subcategory is shown successfully " + serviceId + " of service " + serviceName);
+
+		log.info("Getting Customer profile");
+		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
+		response4.then().log().all();
+		JsonPath js4 = CommonMethods.jsonToString(response4);
+		int addressId = js4.get("addresses[0].id");
+		context.setAttribute("addressId", addressId);
+		Assert.assertEquals(response4.statusCode(), 200);
+		log.info("Customer profile shown successfully " + addressId);
+
+		log.info("Getting Customer Timeslot for book service...");
+		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
+				(int) context.getAttribute("categoryId"), context);
+		response5.then().log().all();
+		JsonPath js5 = CommonMethods.jsonToString(response5);
+		String sTime = js5.getString("[3].startTime");
+		context.setAttribute("StartTime", sTime);
+		String eTime = js5.getString("[3].endTime");
+		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
+		Assert.assertEquals(response5.statusCode(), 200);
+		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+	}
 }
