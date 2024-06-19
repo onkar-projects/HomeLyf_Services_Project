@@ -8,7 +8,7 @@
     <classes>
       <!-- <class name="HomeLyf.test.User"/> -->
       <class name="HomeLyf.test.Vendor"/>
-      <!--class name="HomeLyf.test.Customer"/>-->
+      <class name="HomeLyf.test.Customer"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

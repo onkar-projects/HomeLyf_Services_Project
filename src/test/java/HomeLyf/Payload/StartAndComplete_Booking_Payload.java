@@ -1,6 +1,7 @@
 package HomeLyf.Payload;
 
 public class StartAndComplete_Booking_Payload {
+
 	int bookingId;
 	int otp;
 

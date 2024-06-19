@@ -29,6 +29,7 @@ public class CustomerEndPoints {
 
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.customer_MyProfileURL);
+
 		return response;
 	}
 
@@ -36,6 +37,7 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.customer_service, subCategoryId);
+
 		return response;
 	}
 
@@ -43,6 +45,7 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).when().post(Routes.customer_Address);
+
 		return response;
 	}
 
@@ -52,6 +55,7 @@ public class CustomerEndPoints {
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.queryParam("addressID", addressID).queryParam("categoryId", categoryId).log().all().when()
 				.get(Routes.customer_GetTimeShot);
+
 		return response;
 	}
 
@@ -61,6 +65,7 @@ public class CustomerEndPoints {
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.queryParam("status", status).queryParam("page", page).queryParam("size", size).when()
 				.get(Routes.customer_GetBookingURL);
+
 		return response;
 	}
 
@@ -68,6 +73,7 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).when().post(Routes.customer_CreateBookingURL);
+
 		return response;
 	}
 
@@ -75,6 +81,7 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).when().put(Routes.customer_UpdatePaymentURL);
+
 		return response;
 	}
 
@@ -90,6 +97,7 @@ public class CustomerEndPoints {
 
 		Response response = given().header("Authorization", "Bearer " + CToken).contentType(ContentType.JSON).when()
 				.log().all().post(Routes.customer_CancelURL, bookingId);
+
 		return response;
 	}
 
@@ -149,5 +157,7 @@ public class CustomerEndPoints {
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.pathParam("bookingId", bookingId).when().get(Routes.customer_GetBookingIdURL);
 		return response;
+
 	}
+
 }

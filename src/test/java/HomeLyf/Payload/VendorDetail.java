@@ -1,8 +1,11 @@
 package HomeLyf.Payload;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VendorDetail {
+
+	
 	private int id;
 	private List<Integer> serviceCategories;
 	private List<Integer> servicePostCodes;
@@ -18,7 +21,7 @@ public class VendorDetail {
 		this.id = id;
 	}
 
-	public List<Integer> getServiceCategories() {
+	public  List<Integer> getServiceCategories() {
 		return serviceCategories;
 	}
 
@@ -26,7 +29,7 @@ public class VendorDetail {
 		this.serviceCategories = scategorie;
 	}
 
-	public List<Integer> getServicePostCodes() {
+	public  List<Integer> getServicePostCodes() {
 		return servicePostCodes;
 	}
 
@@ -57,4 +60,5 @@ public class VendorDetail {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
 }

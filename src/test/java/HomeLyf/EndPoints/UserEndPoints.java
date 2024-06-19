@@ -12,14 +12,14 @@ import static io.restassured.RestAssured.*;
 public class UserEndPoints {
 
 	public static Response signUP(SignUP_Payload Payload) {
+
 		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
 				.post(Routes.account_signUp);
 		return response;
 	}
 
 	public static Response userLogin(UserLogin_Payload Payload) {
-		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
-				.post(Routes.account_login);
+		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when().post(Routes.account_login);
 		return response;
 	}
 
@@ -32,6 +32,7 @@ public class UserEndPoints {
 	public static Response forgotPass(ForgotPassword_Payload Payload) {
 		Response response = given().contentType(ContentType.JSON).body(Payload).log().all().when()
 				.post(Routes.account_forgotPass);
+
 		return response;
 	}
 
@@ -42,6 +43,7 @@ public class UserEndPoints {
 	}
 
 	public static Response user_getLookupCategoryEP() {
+
 		Response response = given().contentType(ContentType.JSON).when().log().all().get(Routes.getLookupCategoryURL);
 		return response;
 	}

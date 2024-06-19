@@ -22,6 +22,7 @@ public class LookUp {
 		int addressId = js.getInt("addresses[0].id");
 		int addressId2 = js.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId2);
+		//context.setAttribute("addressId", addressId);
 	}
 
 	public static void getCategory(ITestContext context) {
@@ -75,6 +76,8 @@ public class LookUp {
 		JsonPath js = CommonMethods.jsonToString(response);
 		String postCode = js.getString("[0].name");
 		int postCodeId = js.getInt("[0].id");
+		String postCode1 = js.getString("[1].name");
+		context.setAttribute("postCode1", postCode1);
 		context.setAttribute("postCode", postCode);
 		context.setAttribute("postCodeId", postCodeId);
 		Assert.assertEquals(response.getStatusCode(), 200);
@@ -157,13 +160,13 @@ public class LookUp {
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
-				(String) context.getAttribute("postCode"), "");
+				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
-		int categoryId = js1.get("[0].id");
-		String categoryName = js1.getString("name");
+		int categoryId = js1.getInt("[5].id");
+		String categoryName = js1.getString("[5].name");
 		context.setAttribute("categoryId", categoryId);
-		Assert.assertEquals(js1.getString("[0].name"), "Painting");
+		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
 		Assert.assertEquals(response1.statusCode(), 200);
 		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
 
@@ -192,7 +195,7 @@ public class LookUp {
 		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
 		response4.then().log().all();
 		JsonPath js4 = CommonMethods.jsonToString(response4);
-		int addressId = js4.get("addresses[1].id");
+		int addressId = js4.get("addresses[0].id");
 		context.setAttribute("addressId", addressId);
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
