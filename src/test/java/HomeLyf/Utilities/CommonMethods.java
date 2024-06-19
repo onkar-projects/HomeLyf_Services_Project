@@ -200,14 +200,6 @@ public class CommonMethods {
 		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
-
-	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
-		disabletimeslot = new DisableTimeslot_Payload();
-		disabletimeslot.setId(0);
-		disabletimeslot.setStartTime((String) context.getAttribute("STime"));
-		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
-		return disabletimeslot;
-	}
 	
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context,String sTime, String eTime) {
 		disabletimeslot = new DisableTimeslot_Payload();
@@ -217,6 +209,14 @@ public class CommonMethods {
 		return disabletimeslot;
 	}
 
+	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
+		disabletimeslot = new DisableTimeslot_Payload();
+		disabletimeslot.setId(0);
+		disabletimeslot.setStartTime((String) context.getAttribute("STime"));
+		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
+		return disabletimeslot;
+	}
+	
 	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("nevixo9520@ociun.com");
