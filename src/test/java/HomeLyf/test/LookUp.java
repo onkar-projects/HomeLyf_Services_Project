@@ -22,6 +22,7 @@ public class LookUp {
 		int addressId = js.getInt("addresses[0].id");
 		int addressId2 = js.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId2);
+		//context.setAttribute("addressId", addressId);
 	}
 
 	public static void getCategory(ITestContext context) {

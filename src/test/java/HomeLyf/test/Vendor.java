@@ -324,7 +324,6 @@ public class Vendor {
 				+ " after enabled that disabled timeslot successfully");
 	}
 
-      
 	@Test(priority = 13, enabled = true, description = "Verify that vendor cannot accept booking of timeslot YYYY-MM-DDT12:30:00Z for other customer as vendor already have accepted booking of timeslot YYYY-MM-DDT12:00:00Z due to +15 minute buffer time.")
 	public void vendor_cantAcceptBookingduetoBufferTimeslot(ITestContext context) {
 		logger.info(
@@ -456,6 +455,7 @@ public class Vendor {
 	
 	//$******
 	@Test(priority = 14, description = "Verify that vendor disabled timeslot after started service")
+
 	public void vendorDisabledTimeslotAfterStartService(ITestContext context) {
 		//--------------------------------Customer login----------------------------------
 		logger.info("Customer Login start");
@@ -583,5 +583,6 @@ public class Vendor {
 		JsonPath disableTimeslotjs = CommonMethods.jsonToString(disableTimeslot_res);
 		Assert.assertEquals(disableTimeslot_res.getStatusCode(), 400);
 		Assert.assertEquals(disableTimeslotjs.getString("[0]"), "Cannot diable already booked timeslot");
+
 	}
 }

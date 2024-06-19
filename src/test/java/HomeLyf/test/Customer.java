@@ -53,7 +53,7 @@ public class Customer {
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		int addressId = js.get("addresses[0].id");
+		int addressId = js.getInt("addresses[0].id");
 		context.setAttribute("addressId", addressId);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Customer profile shown successfully");
@@ -231,7 +231,7 @@ public class Customer {
 		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
 		response_customer_GetMyProfileEP.then().log().all();
 		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
-		int addressId = js_customer_GetMyProfileEP.get("addresses[0].id");
+		int addressId = js_customer_GetMyProfileEP.getInt("addresses[0].id");
 		context.setAttribute("addressId", addressId);
 		String statusline_customer_GetMyProfileEP = response_customer_GetMyProfileEP.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
@@ -379,11 +379,11 @@ public class Customer {
 		// GetCategory
 		logger.info("Get categoryId");
 		LookUp.getPostCode(context);
-		LookUp.getCategory(context);
+		//LookUp.getCategory(context);
 		Response response2 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode"), "");
 		JsonPath js = CommonMethods.jsonToString(response2);
-		int categoryId = js.get("[5].id");
+		int categoryId = js.getInt("[5].id");
 		context.setAttribute("categoryId", categoryId);
 		logger.info("CategoryId fetched successfully "+categoryId);
 		Assert.assertEquals(js.getString("[5].name"), "Electricals");
@@ -395,13 +395,13 @@ public class Customer {
 		logger.info("Customer available Timeslot");
 		LookUp.getMyProfile(context);
 		Response customerTimeslotResponse = CustomerEndPoints
-				.customer_GetTimeSlot((int) context.getAttribute("addressId"), categoryId, context);
+				.customer_GetTimeSlot((int)context.getAttribute("addressId"), categoryId, context);
 		customerTimeslotResponse.then().log().all();
 //		JsonPath customerTimeslotjs = CommonMethods.jsonToString(customerTimeslotResponse);
 //		customerTimeslotjs.get("[].sTime");
 		logger.info("Check whether disable timeslot is available in customer available timeslot:"+sTime);
 		// Verify that disabled timeslots are no longer visible to the customer
-		Assert.assertEquals(customerTimeslotResponse.getBody().asString().contains(sTime), true,sTime);
+		Assert.assertEquals(customerTimeslotResponse.getBody().asString().contains(sTime),true,sTime);
 		//Assert.assertFalse(customerTimeslotResponse.getBody().asString().contains(sTime),"Disabled timeslots are still visible to the customer");
 		//System.out.println(customerTimeslotResponse.getBody().asString().contains(sTime));
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
