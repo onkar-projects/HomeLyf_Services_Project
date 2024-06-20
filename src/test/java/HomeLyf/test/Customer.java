@@ -400,10 +400,7 @@ public class Customer {
 //		JsonPath customerTimeslotjs = CommonMethods.jsonToString(customerTimeslotResponse);
 //		customerTimeslotjs.get("[].sTime");
 		logger.info("Check whether disable timeslot is available in customer available timeslot:"+sTime);
-		// Verify that disabled timeslots are no longer visible to the customer
 		Assert.assertEquals(customerTimeslotResponse.getBody().asString().contains(sTime),true,sTime);
-		//Assert.assertFalse(customerTimeslotResponse.getBody().asString().contains(sTime),"Disabled timeslots are still visible to the customer");
-		//System.out.println(customerTimeslotResponse.getBody().asString().contains(sTime));
 		Assert.assertEquals(customerTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(customerTimeslotResponse,
 				"Customer available timeslot are getting with including timeslot disable by vendor");
