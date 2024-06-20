@@ -452,12 +452,11 @@ public class Vendor {
 				+ " for other customer as vendor already have accepted booking of timeslot " + sTime
 				+ " due to +15 minute buffer time.");
 	}
-	
-	//$******
-	@Test(priority = 14, description = "Verify that vendor disabled timeslot after started service")
 
+	// $******
+	@Test(priority = 14, description = "Verify that vendor disabled timeslot after started service")
 	public void vendorDisabledTimeslotAfterStartService(ITestContext context) {
-		//--------------------------------Customer login----------------------------------
+		// --------------------------------Customerlogin----------------------------------
 		logger.info("Customer Login start");
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath cloginjs = CommonMethods.jsonToString(cresponse);
@@ -468,23 +467,20 @@ public class Vendor {
 		Assert.assertEquals(cresponse.statusCode(), 200);
 		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(cresponse, "Customer Login response is getting succesfully");
-		//-------------------------------Create New booking------------------------------
+		// -------------------------------CreateNewbooking------------------------------
 		LookUp.createBooking(context);
 		logger.info("Creating new Booking");
 		Response response6 = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
 		response6.then().log().all();
 		JsonPath js6 = CommonMethods.jsonToString(response6);
-//		String status = js6.getString("status");
-//		int bookingId = js6.getInt("id");
-//		context.setAttribute("bookingId", bookingId);
-//		//Assert.assertEquals(response6.statusCode(), 500);
-//		//Assert.assertEquals(status, "New");
-//		//logger.info("New booking created successfully with bookinId" + bookingId);
-		//----------------------------------Customer getbooking-------------------------------
-		
-		
-		//----------------------------------VendorLogin---------------------------------------
+		String status = js6.getString("status");
+		int bookingId = js6.getInt("id");
+		context.setAttribute("bookingId", bookingId);
+		Assert.assertEquals(response6.statusCode(), 200);
+		Assert.assertEquals(status, "New");
+		logger.info("New booking created successfully with bookingId :" + bookingId);
+		// ----------------------------------VendorLogin---------------------------------------
 		logger.info("Vendor Login start");
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
@@ -495,51 +491,22 @@ public class Vendor {
 		Assert.assertEquals(vresponse.statusCode(), 200);
 		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
-
-		//-----------------------------Vendor GetBooking-------------------------------------
-		logger.info(" vendor GetBooking");
-		Response getbooking_response = VendorEndPoints.vendorgetbooking(context, 1, 100);
-		getbooking_response.then().log().all();
-		
-		JsonPath VgetBookingjs = CommonMethods.jsonToString(getbooking_response);
-		 int vendorBookingId  = VgetBookingjs.getInt("[0].id");
-//		for(int i=0;i<100;i++) {
-//			int vendorBookingId = js.getInt("["+ i +"]");
-//		}
-//		int vendorBookingId = js.getInt("[0].id");
-//		// String scheduleOnTime = js.getString("[0].scheduledOn");
-		context.setAttribute("vendorBookingId", vendorBookingId);
-		Assert.assertEquals(getbooking_response.statusCode(), 200);
-		logger.info("Vendor get booking with BookingId " + vendorBookingId);
-
-		//-------------------------Vendor AcceptBooking-----------------------------------
-		logger.info("Vendor accept booking with BookingId " + vendorBookingId);
+		// -------------------------VendorAcceptBooking-----------------------------------
+		logger.info("Vendor accept booking with BookingId " + bookingId);
 		Response acceptbooking_response = VendorEndPoints.vendor_AcceptBookingEP(context,
-				(int) context.getAttribute("vendorBookingId"));
+				(int) context.getAttribute("bookingId"));
 		acceptbooking_response.then().log().all();
-		// Assert.assertEquals(acceptbooking_response.getStatusCode(), 500);
-		logger.info("Vendor accept Booking successfully");
-
-		// GetMyBooking
-		// LookUp.vendorgetMybooking(context);
-//		Response vendorMyBooking_response = VendorEndPoints.vendor_MybookingEP(context, 1, 10);
-//		vendorMyBooking_response.then().log().all();
-//		JsonPath myBookingjs = CommonMethods.jsonToString(vendorMyBooking_response);
-//		for (int i = 0; i <= 5; i++) {
-//			String status = myBookingjs.getString("[" + i + "].status");
-//			if (status.equalsIgnoreCase("ExpertAssigned")) {
-//				vendorBookingId = myBookingjs.getInt("[" + i + "].id");
-//				break;
-//			}
-//		}
-//		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
-//		System.out.println(vendorBookingId);
-//		Assert.assertEquals(vendorMyBooking_response.statusCode(), 200);
-//		logger.info("vendor_get_booking is shown successfully");
-
-		//----------------------------customer getBookingById----------------------------------------
+		JsonPath acceptbookingjs = CommonMethods.jsonToString(acceptbooking_response);
+		int vbookingId = acceptbookingjs.getInt("id");
+		context.setAttribute("bookingId", vbookingId);
+		Assert.assertEquals(acceptbookingjs.getString("status"), "ExpertAssigned");
+		Assert.assertEquals(acceptbooking_response.getStatusCode(), 200);
+		Assert.assertNotNull(acceptbooking_response, "Accept booking successfully");
+		logger.info("Vendor accept Booking successfully with bookingId: " + bookingId + " & status :"
+				+ acceptbookingjs.getString("status"));
+		// ----------------------------customergetBookingById----------------------------------------
 		logger.info("Getting StartOTP through Customer Get Booking By Id");
-		Response customerBookingById_res = CustomerEndPoints.customer_GetBookingByIdEP(context, vendorBookingId);
+		Response customerBookingById_res = CustomerEndPoints.customer_GetBookingByIdEP(context, bookingId);
 		customerBookingById_res.then().log().all();
 		JsonPath customerbookingIdjs = CommonMethods.jsonToString(customerBookingById_res);
 		int startOTP = customerbookingIdjs.get("startOTP");
@@ -551,7 +518,7 @@ public class Vendor {
 		Assert.assertEquals(customerBookingById_res.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(customerBookingById_res, "startOTP getting succesfully");
 		logger.info("Start OTP for BookingId " + customerBookingId + " is " + startOTP);
-		//------------------------------Vendor start service-----------------------------------------
+		// ------------------------------VendorStartService-----------------------------------------
 		logger.info("Starting Service for BookingId " + customerBookingId + " and startOTP " + startOTP);
 		Response startService_response = VendorEndPoints.vendor_startBookingEP(context,
 				CommonMethods.sendBookingIdAndOtp(context));
@@ -563,7 +530,7 @@ public class Vendor {
 		Assert.assertEquals(startService_response.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(startService_response, "Service started succesfully");
 		logger.info("Service started succesfully for BookingId " + customerBookingId);
-        //-------------------------------Vendor Get Timeslot---------------------------------------------
+		// -------------------------------VendorGetTimeslot---------------------------------------------
 		logger.info("Vendor getting available Timeslot");
 		Response vendorTimeslot_res = VendorEndPoints.vendor_TimeslotEP(context);
 		vendorTimeslot_res.then().log().all();
@@ -575,14 +542,125 @@ public class Vendor {
 			}
 		}
 		System.out.println("endTime " + endTime);
-
-		//-------------------------------Vendor Disable TimeSlot-------------------------------------------
+		Assert.assertEquals(vendorTimeslot_res.getStatusCode(), 200);
+		Assert.assertEquals(vendorTimeslot_res.getStatusLine(), "HTTP/1.1 200 OK");
+		logger.info("Available Timeslot : " + "startTime: " + scheduledOn + " endTime: " + endTime);
+		// -------------------------------VendorDisableTimeSlot-------------------------------------------
+		logger.info("Venodr Disable Timeslot");
 		Response disableTimeslot_res = VendorEndPoints.vendor_DisableTimeslotEP(context,
-				CommonMethods.sendTimeslot(context,scheduledOn, endTime ));
+				CommonMethods.sendTimeslot(context, scheduledOn, endTime));
 		disableTimeslot_res.then().log().all();
 		JsonPath disableTimeslotjs = CommonMethods.jsonToString(disableTimeslot_res);
 		Assert.assertEquals(disableTimeslot_res.getStatusCode(), 400);
 		Assert.assertEquals(disableTimeslotjs.getString("[0]"), "Cannot diable already booked timeslot");
+		Assert.assertNotNull(disableTimeslot_res, "getting disable timeslot response successfully");
+		logger.info("Disable Timeslot: " + disableTimeslotjs.getString("[0]"));
 
 	}
+
+	// $*****
+	@Test(priority = 15, description = "Verify that Vendor Accept Service From Differnt Category Service")
+	public void verifyVendorAcceptServiceFromDifferntCategoryService(ITestContext context) {
+
+		// --------------------------------Customerlogin----------------------------------
+		logger.info("Customer Login start");
+		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
+		JsonPath cloginjs = CommonMethods.jsonToString(cresponse);
+		String Ctoken = cloginjs.getString("token");
+		context.setAttribute("CToken", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
+		logger.info("Customer logged in successfully " + Ctoken);
+		Assert.assertEquals(cresponse.statusCode(), 200);
+		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(cresponse, "Customer Login response is getting succesfully");
+		// -------------------------------Get categoryId------------------------------
+		logger.info("Getting categoryId");
+		LookUp.getPostCode(context);
+		LookUp.getCategory(context);
+		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
+				(String) context.getAttribute("postCode1"), "");
+		response1.then().log().all();
+		JsonPath js1 = CommonMethods.jsonToString(response1);
+		int categoryId = js1.getInt("[4].id");
+		String categoryName = js1.getString("[4].name");
+		context.setAttribute("categoryId", categoryId);
+		Assert.assertEquals(js1.getString("[4].name"), "Cleaning");
+		Assert.assertEquals(response1.statusCode(), 200);
+		logger.info("CategoryId fetched successfully :" + categoryId + " of category " + categoryName);
+		// ----------------------------GetsubCategoryId--------------------------------------
+		logger.info("Getting subCategoryId");
+		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
+				(int) context.getAttribute("categoryId"));
+		response2.then().log().all();
+		JsonPath js2 = CommonMethods.jsonToString(response2);
+		int subCategoryId = js2.getInt("[1].id");
+		String subCategoryName = js2.getString("[1].name");
+		context.setAttribute("subCategoryId", subCategoryId);
+		Assert.assertEquals(response2.getStatusCode(), 200);
+		logger.info("SubCategoryId Fetched Successfully :" + subCategoryId + " of subCategory :" + subCategoryName);
+		// ---------------------------Get customerServiceId------------------------------------
+		logger.info("Starting customer_service");
+		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
+		response3.then().log().all();
+		JsonPath js3 = CommonMethods.jsonToString(response3);
+		int serviceId = js3.getInt("[0].id");
+		String serviceName = js3.getString("[0].name");
+		context.setAttribute("serviceId", serviceId);
+		Assert.assertEquals(response3.statusCode(), 200);
+		logger.info("customer_service subcategory is shown successfully " + serviceId + " of service " + serviceName);
+		// -----------------------------Customerprofile---------------------------------------
+		logger.info("Getting Customer profile");
+		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
+		response4.then().log().all();
+		JsonPath js4 = CommonMethods.jsonToString(response4);
+		int addressId = js4.get("addresses[0].id");
+		context.setAttribute("addressId", addressId);
+		Assert.assertEquals(response4.statusCode(), 200);
+		logger.info("Customer profile shown successfully " + addressId);
+		// ---------------------Get CustomerTimeslot-----------------------------------------
+		logger.info("Getting Customer Timeslot for book service");
+		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
+				(int) context.getAttribute("categoryId"), context);
+		response5.then().log().all();
+		JsonPath js5 = CommonMethods.jsonToString(response5);
+		String sTime = js5.getString("[3].startTime");
+		context.setAttribute("StartTime", sTime);
+		String eTime = js5.getString("[3].endTime");
+		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
+		Assert.assertEquals(response5.statusCode(), 200);
+		logger.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+		// -------------------Create new booking-----------------------------------------
+		logger.info("Creating new Booking");
+		Response response6 = CustomerEndPoints.customer_CreateBookingEndPoint(context,
+				CommonMethods.createBooking(context));
+		response6.then().log().all();
+		JsonPath js6 = CommonMethods.jsonToString(response6);
+		String categoryname = js6.getString("categoryName");
+		int bookingId = js6.getInt("id");
+		context.setAttribute("bookingId", bookingId);
+		Assert.assertEquals(response6.statusCode(), 200);
+		Assert.assertEquals(js6.getString("status"), "New");
+		logger.info("New booking created successfully with bookingId :" + bookingId);
+		// ----------------------------------VendorLogin---------------------------------------
+		logger.info("Vendor Login start");
+		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
+		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
+		String Vtoken = vloginjs.getString("token");
+		context.setAttribute("VToken", Vtoken);
+		logger.debug("Generated Token Id: {}", Vtoken);
+		logger.info("Vendor logged in successfully");
+		Assert.assertEquals(vresponse.statusCode(), 200);
+		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
+		// -------------------------VendorAcceptBooking-----------------------------------
+		logger.info("Vendor accept booking with BookingId " + bookingId);
+		Response acceptbooking_response = VendorEndPoints.vendor_AcceptBookingEP(context,(int) context.getAttribute("bookingId"));
+		acceptbooking_response.then().log().all();
+		Assert.assertEquals(acceptbooking_response.getStatusCode(), 400);
+		Assert.assertEquals(acceptbooking_response.contentType(), "application/json; charset=utf-8");
+		Assert.assertNotNull(acceptbooking_response, "Cannot accept booking");
+		logger.info("vendor not accepted booking for different category "+ categoryname +" with id "+bookingId);
+
+	}
+
 }
