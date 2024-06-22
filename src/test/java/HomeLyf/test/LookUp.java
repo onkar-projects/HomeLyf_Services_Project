@@ -12,7 +12,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class LookUp {
-
 	private static Logger log = LogManager.getLogger(LookUp.class);
 
 	public static void getMyProfile(ITestContext context) {
@@ -130,7 +129,7 @@ public class LookUp {
 				break;
 			}
 		}
-		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
+		context.setAttribute("vendorBookingId", vendorBookingId);
 		Assert.assertEquals(response.statusCode(), 200);
 		log.info("vendor_get_booking is shown successfully");
 	}
