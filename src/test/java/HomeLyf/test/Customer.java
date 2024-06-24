@@ -147,30 +147,26 @@ public class Customer {
 	@Test(priority = 9, enabled = false, description = "customer should update payment status ")
 	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updating Payment Status");
-		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context,
-				CommonMethods.updatePaymentStatusData(context));
-		response.then().log().all();
-//		JsonPath js = CommonMethods.jsonToString(response);
-//		String status = js.getString("paymentStatus");
-//		String payMode = js.getString("paymentMode");
-//		Assert.assertEquals(response.statusCode(), 200);
-//		Assert.assertEquals(status, paymentStatus[1]);
-//		Assert.assertEquals(payMode, paymentMode[3]);
-
-		logger.info("Customer update payment status successfully ");
+		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context,334);
+		logger.info("Customer can not update payment status ");
 	}
 
 	@Test(priority = 10, enabled = true, description = "Customer should calculate as per quntity ")
 	public void customer_Calculate(ITestContext context) {
+		logger.info(" Customer calculate service based on quantity");
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
+		logger.info("Calculate service price based on quantity successfully");
 	}
 
 	@Test(priority = 11, enabled = false, description = "Customer should Cancel booking ")
 	public void customer_CancelTest(ITestContext context) {
+		logger.info("Customer cancel booking before accept by vendor");
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
 		response.then().log().all();
+		logger.info("Customer cancel booking with bookingId : "+(int) context.getAttribute("bookingId"));
+		
 	}
 
 	@Test(priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
@@ -189,9 +185,11 @@ public class Customer {
 
 	@Test(priority = 14, enabled = false)
 	public void customer_RescheduleTime(ITestContext context) {
+		logger.info("Customer reschedule time after creating booking");
 		Response response = CustomerEndPoints.customer_RescheduleEP(context,
 				CommonMethods.CustomerReschedule_Payload(context, (int) context.getAttribute("bookingId"), "2024-06-06T04:00:00Z"));
 		response.then().log().all();
+		logger.info("Reschedule timeslot successfully");
 	}
 
 	@Test(priority = 15,enabled= true, description = "Customer Login to Booking a Service method")
@@ -302,7 +300,7 @@ public class Customer {
 	//$*****
 	@Test(priority = 16, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
-		// Vendor Login
+		//---------------------------VendorLogin----------------------------------------
 		logger.info("Vendor start login");
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
 		// System.out.println("---------------"+vresponse.getStatusLine());
@@ -315,8 +313,7 @@ public class Customer {
 		Assert.assertEquals(vresponse.statusCode(), 200);
 		Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
-
-		// Vendor GetTimeSlot
+		//------------------------------VendorGetTimeSlot--------------------------------------
 		logger.info("Getting Vendor Available Timeslot");	
 		Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
 		JsonPath timeslotjs = CommonMethods.jsonToString(vTimeslotResponse);
@@ -328,8 +325,7 @@ public class Customer {
 		Assert.assertEquals(vTimeslotResponse.getStatusCode(), 200);
 		Assert.assertEquals(vTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(vTimeslotResponse, "Vendor's Available Timeslot are getting successfully");
-
-		// Disable TimeSlot
+		//------------------------------DisableTimeSlot--------------------------------------------
 		logger.info("Vendor disabling Timeslot");
 		DisableTimeslot_Payload disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
@@ -346,8 +342,7 @@ public class Customer {
 		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
 		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(disableResponse, "Timeslot disable by Vendor successfully");
-
-		// Customer Login
+		//----------------------------CustomerLogin----------------------------------------------
 		logger.info("Customer start login");
 		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
 		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
@@ -359,8 +354,7 @@ public class Customer {
 		Assert.assertEquals(cresponse.statusCode(), 200);
 		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
-
-		// GetCategory
+		//-----------------------------GetCategory---------------------------------------------
 		logger.info("Get categoryId");
 		LookUp.getPostCode(context);
 		//LookUp.getCategory(context);
@@ -374,8 +368,7 @@ public class Customer {
 		Assert.assertEquals(response2.statusCode(), 200);
 		Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response2, "List of Categories are getting successfully");
-
-		// Customer TimeSlot
+		//-----------------------------------Customer TimeSlot------------------------------
 		logger.info("Customer available Timeslot");
 		LookUp.getMyProfile(context);
 		Response customerTimeslotResponse = CustomerEndPoints
@@ -408,14 +401,12 @@ public class Customer {
 		// --------------------------------------------------------------------
 		logger.info("Started vendor accepting booking of Booking id = " + customerBookingId);
 		Response response_vendor_AcceptBookingEP = VendorEndPoints.vendor_AcceptBookingEP(context, customerBookingId);
-//		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
-//		String status1  = js_vendor_AcceptBookingEP.getString("status");
-//		Assert.assertEquals(status1, "ExpertAssigned");
+		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
+		String status1  = js_vendor_AcceptBookingEP.getString("status");
+		Assert.assertEquals(status1, "ExpertAssigned");
 		String statusline_vendor_AcceptBookingEP = response_vendor_AcceptBookingEP.getStatusLine();
-		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
-		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 500 Internal
-		// Server Error");
-		// Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
+		 Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
+		 Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
 		logger.info("Vendor accepted booking id of " + customerBookingId + " successfully");
 		// ---------------------------------------------------------------------
 		logger.info("Started customer get booking by id =" + customerBookingId);
@@ -442,8 +433,6 @@ public class Customer {
 		logger.info("Started customer cancel the booking of id = " + customerBookingId);
 		Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
 		response_customer_CancelEP.then().log().all();
-//		JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
-//		String cancelmessage = js_customer_CancelEP.getString();
 		String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
 		Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 400 Bad Request");
 		Assert.assertNotNull(response_customer_CancelEP);
