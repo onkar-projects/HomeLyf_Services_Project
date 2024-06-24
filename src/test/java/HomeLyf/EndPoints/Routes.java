@@ -23,7 +23,8 @@ public class Routes {
 	public static String getLookupCityURL = base_url + "/UserAPI/api/Lookup/City";
 	public static String getLookupPostCodeURL = base_url + "/UserAPI/api/Lookup/PostCode";
 
-	// -------------------------------------------Customer Routes----------------------------------------------
+	// -------------------------------------------Customer
+	// Routes----------------------------------------------
 
 	public static String customer_service = base_url + "/CustomerAPI/api/Service/{subCategoryId}";
 	public static String customer_Address = base_url + "/CustomerAPI/api/User/address";
@@ -46,7 +47,8 @@ public class Routes {
 	public static String getMyProfileURL = base_url + "/CustomerAPI/api/User/myprofile";
 	public static String getCategoryURL = base_url + "/CustomerAPI/api/Category";
 
-	// -------------------------------------------Vendor Routes----------------------------------------------
+	// -------------------------------------------Vendor
+	// Routes----------------------------------------------
 
 	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
 	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";

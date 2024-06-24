@@ -172,7 +172,7 @@ public class CommonMethods {
 		custBooking.setAddressID((int) context.getAttribute("addressId"));
 		return custBooking;
 	}
-
+	
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
@@ -200,6 +200,14 @@ public class CommonMethods {
 		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
+	
+	public static DisableTimeslot_Payload sendTimeslot(ITestContext context,String sTime, String eTime) {
+		disabletimeslot = new DisableTimeslot_Payload();
+		disabletimeslot.setId(0);
+		disabletimeslot.setStartTime(sTime);
+		disabletimeslot.setEndTime(eTime);
+		return disabletimeslot;
+	}
 
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
 		disabletimeslot = new DisableTimeslot_Payload();
@@ -208,7 +216,7 @@ public class CommonMethods {
 		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
 		return disabletimeslot;
 	}
-
+	
 	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("nevixo9520@ociun.com");
@@ -239,8 +247,8 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("f9iupld30y@elatter.com");
-		userlogin.setMobileNumber(Long.parseLong("8956472500"));
+		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
+		userlogin.setMobileNumber(Long.parseLong("9848592613"));
 		userlogin.setPassword("HomeLyf@123");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
