@@ -74,18 +74,18 @@ public class LookUp {
 		log.info("Getting PostCode from LookUp");
 		Response response = UserEndPoints.user_getLookupPostCodeEP();
 		JsonPath js = CommonMethods.jsonToString(response);
-		String postCode = js.getString("[0].name");
+		String postCodeName = js.getString("[0].name");
 		int postCodeId = js.getInt("[0].id");
 		String postCode1 = js.getString("[1].name");
 		context.setAttribute("postCode1", postCode1);
-		context.setAttribute("postCode", postCode);
+		context.setAttribute("postCodeName", postCodeName);
 		context.setAttribute("postCodeId", postCodeId);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("PostCode fetched successfully");
 	}
 
 	public static void getPaymentStatus(ITestContext context) {
-		Response response = CustomerEndPoints.customer_PaymentStatusEP(context);
+		Response response = CustomerEndPoints.customer_PaymentStatusEP(context,(int) context.getAttribute("bookingId"));//replace bookingId by paymentid
 		JsonPath js = CommonMethods.jsonToString(response);
 		String paymentStatus = js.getString("[0].name");
 		context.setAttribute("paymentStatus", paymentStatus);
@@ -106,18 +106,21 @@ public class LookUp {
 		log.info("Booking Status are fetched successfully");
 	}
 
-	public static void customer_GetBookingByIdTest(ITestContext context) {
-		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,
-				(int) context.getAttribute("bookingId"));
-		JsonPath js = CommonMethods.jsonToString(response);
-		int startOTP = js.get("startOTP");
-		context.setAttribute("startOTP", startOTP);
+	public static void customer_GetBookingIdTest(ITestContext context) {
+		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context, (int) context.getAttribute("bookingId"));
+		//response.then().log().all();
+		JsonPath js =  CommonMethods.jsonToString(response);
+		int bookingId = js.get("id");
+		context.setAttribute("bookingId", bookingId);
+		String status = js.getString("status");
+		int startOTP = js.getInt("startOTP");
+		context.setAttribute("startOTP", startOTP);		
 		int endOTP = js.getInt("endOTP");
 		context.setAttribute("endOTP", endOTP);
 		Assert.assertEquals(response.statusCode(), 200);
-		log.info("Booking details fetched succesfully");
-	}
+		log.info("Booking details fetched succesfully with BookingID : "+bookingId+ " ,StartOTP : "+startOTP+ " & EndOTP : "+endOTP);
 
+	}
 //-----------------------------------------------------------------------------------------------------------
 
 	public static void vendorgetMybooking(ITestContext context) {
@@ -168,7 +171,7 @@ public class LookUp {
 		context.setAttribute("categoryId", categoryId);
 		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
 		Assert.assertEquals(response1.statusCode(), 200);
-		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
+		log.info("CategoryId fetched successfully :" + categoryId + " of category " + categoryName);
 
 		log.info("Getting subCategoryId");
 		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
@@ -179,9 +182,9 @@ public class LookUp {
 		String subCategoryName = js2.getString("[1].name");
 		context.setAttribute("subCategoryId", subCategoryId);
 		Assert.assertEquals(response2.getStatusCode(), 200);
-		log.info("SubCategoryId Fetched Successfully " + subCategoryId + " of subCategory " + subCategoryName);
+		log.info("SubCategoryId Fetched Successfully :" + subCategoryId + " of subCategory :" + subCategoryName);
 
-		log.info("Starting customer_service...");
+		log.info("Starting customer_service");
 		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
 		response3.then().log().all();
 		JsonPath js3 = CommonMethods.jsonToString(response3);
@@ -200,7 +203,7 @@ public class LookUp {
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
 
-		log.info("Getting Customer Timeslot for book service...");
+		log.info("Getting Customer Timeslot for book service");
 		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
 		response5.then().log().all();
