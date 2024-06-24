@@ -166,7 +166,7 @@ public class CommonMethods {
 		bookingServices = new BookingServices();
 		bookingServices.setQuantity(1);
 
-		bookingServices.setServiceID((int) context.getAttribute("serviceId"));
+		bookingServices.setServiceID((int) context.getAttribute("serviceid"));
 		custBooking.setBookingServices(Collections.singletonList(bookingServices));
 		custBooking.setScheduledOn((String) context.getAttribute("StartTime"));
 		custBooking.setAddressID((int) context.getAttribute("addressId"));

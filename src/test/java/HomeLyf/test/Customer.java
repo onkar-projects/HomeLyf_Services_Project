@@ -1,5 +1,9 @@
 package HomeLyf.test;
 
+import java.text.ParseException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -16,7 +20,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class Customer {
-
 	private static Logger logger = LogManager.getLogger(User.class);
 	static String Ctoken;
 	static String Vtoken;
@@ -210,7 +213,7 @@ public class Customer {
 		response.then().log().all();
 	}
 
-	@Test(priority = 15, description = "Customer Login to Booking a Service method")
+	@Test(priority = 15, enabled = true, description = "Customer Login to Booking a Service method")
 	public static void customerLogintoBookingService(ITestContext context) {
 		logger.info("Started Customer Login test.");
 		Response response_CustomerLogin = UserEndPoints.userLogin(CommonMethods.CustomerLoginformultiplescenario());
@@ -288,9 +291,9 @@ public class Customer {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[3].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[1].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[3].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[1].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetTimeSlot, "HTTP/1.1 200 OK");
@@ -306,8 +309,6 @@ public class Customer {
 		String status = js_customer_CreateBooking.getString("status");
 		customerBookingId = js_customer_CreateBooking.getInt("id");
 		context.setAttribute("BookingId", customerBookingId);
-		// int bookingId = js5.getInt("id");
-		// context.setAttribute("bookingId", bookingId);
 		Assert.assertEquals(status, "New");
 		String statusline_customer_CreateBooking = response_customer_CreateBooking.getStatusLine();
 		Assert.assertEquals(statusline_customer_CreateBooking, "HTTP/1.1 200 OK");
@@ -426,14 +427,12 @@ public class Customer {
 
 		logger.info("Started vendor accepting booking of Booking id = " + customerBookingId);
 		Response response_vendor_AcceptBookingEP = VendorEndPoints.vendor_AcceptBookingEP(context, customerBookingId);
-//		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
-//		String status1  = js_vendor_AcceptBookingEP.getString("status");
-//		Assert.assertEquals(status1, "ExpertAssigned");
+		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
+		String status1 = js_vendor_AcceptBookingEP.getString("status");
+		Assert.assertEquals(status1, "ExpertAssigned");
 		String statusline_vendor_AcceptBookingEP = response_vendor_AcceptBookingEP.getStatusLine();
-		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
-		// Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 500 Internal
-		// Server Error");
-		// Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
+		Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
 		logger.info("Vendor accepted booking id of " + customerBookingId + " successfully");
 		// ---------------------------------------------------------------------
 
@@ -463,12 +462,68 @@ public class Customer {
 		logger.info("Started customer cancel the booking of id = " + customerBookingId);
 		Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
 		response_customer_CancelEP.then().log().all();
-//		JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
-//		String cancelmessage = js_customer_CancelEP.getString();
+		JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
+		String cancelmessage = js_customer_CancelEP.toString();
 		String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
 		Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 400 Bad Request");
 		Assert.assertNotNull(response_customer_CancelEP);
 		logger.info("Customer can not cancel the service.");
-		logger.info("Customer cannot cancel booking of id " + customerBookingId + " on started service.");
+		logger.info("Customer cannot cancel booking of id " + customerBookingId
+				+ " on started service and response message is " + cancelmessage);
+	}
+
+	@Test(priority = 18, enabled = true, description = "Validate that the customer cancels the booking one hour before the time slot")
+	public void customerCancelBookingServiceOneHourBeforeTimeslot(ITestContext context)
+			throws ParseException, InterruptedException {
+		logger.info("Started validate that the customer cancels the booking one hour before the scheduled time slot");
+		Customer.customerLogintoBookingService(context);
+		// -------------------------------------------------------------------------
+
+		logger.info("Started Vendor Login test.");
+		Response response_VendorLogin = UserEndPoints.userLogin(CommonMethods.VendorLoginformultiplescenario());
+		String res_VendorLogin = response_VendorLogin.asPrettyString();
+		JsonPath js_VendorLogin = new JsonPath(res_VendorLogin);
+		Vtoken = js_VendorLogin.getString("token");
+		System.out.println("Generated Token Id: " + Vtoken);
+		context.setAttribute("VToken", Vtoken);
+		logger.debug("Generated Token Id: {}", Vtoken);
+		Assert.assertEquals(response_VendorLogin.statusCode(), 200);
+		logger.info("Vendor logged in successfully.");
+		// --------------------------------------------------------------------
+
+		logger.info("Started vendor accepting booking of Booking id = " + customerBookingId);
+		Response response_vendor_AcceptBookingEP = VendorEndPoints.vendor_AcceptBookingEP(context, customerBookingId);
+		JsonPath js_vendor_AcceptBookingEP = CommonMethods.jsonToString(response_vendor_AcceptBookingEP);
+		String status1 = js_vendor_AcceptBookingEP.getString("status");
+		Assert.assertEquals(status1, "ExpertAssigned");
+		String TIME = js_vendor_AcceptBookingEP.getString("scheduledOn");
+		context.setAttribute("ScheduledOn", TIME);
+		String statusline_vendor_AcceptBookingEP = response_vendor_AcceptBookingEP.getStatusLine();
+		Assert.assertEquals(statusline_vendor_AcceptBookingEP, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
+		DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+		ZonedDateTime indianTime = ZonedDateTime.parse(sTime, formatter);
+		System.out.println("Schedule time is : " + indianTime);
+		ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("UTC"));
+		System.out.println("Current Time in UTC/GMT : " + currentTime);
+		ZonedDateTime oneHourBeforeSchduleTime = indianTime.minusHours(1);
+		System.out.println("One hour before: " + oneHourBeforeSchduleTime.toString());
+		if (currentTime.isBefore(oneHourBeforeSchduleTime)) {
+			logger.info("Started customer cancel the booking of id = " + customerBookingId);
+			Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
+			response_customer_CancelEP.then().log().all();
+			JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
+			String cancelmessage = js_customer_CancelEP.toString();
+			String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
+			Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 200 OK");
+			Assert.assertNotNull(response_customer_CancelEP);
+			logger.info("Customer can cancel the service.");
+			logger.info(
+					"Customer cancel booking of id " + customerBookingId + " one hour before of scheduled timeslot.");
+		} else {
+			System.out.println("Customer cannot cancel the booking");
+			logger.info(
+					"Customer cannot cancel the booking as the scheduled timeslot is less than one hour or it is a past timeslot.");
+		}
 	}
 }
