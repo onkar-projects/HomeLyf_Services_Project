@@ -176,7 +176,7 @@ public class CommonMethods {
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
-		cal.setServiceID((int) context.getAttribute("serviceid"));
+		cal.setServiceID((int) context.getAttribute("serviceId"));
 		List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
 		list.add(cal);
 		return list;
@@ -194,10 +194,17 @@ public class CommonMethods {
 		return paymentstat;
 	}
 
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
+	public static StartAndComplete_Booking_Payload sendBookingIdAndStartOTP(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId((int) context.getAttribute("customerBookingId"));
-		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
+		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("startOTP"));
+		return startCompleteBooking;
+	}
+	
+	public static StartAndComplete_Booking_Payload sendBookingIdAndEndOTP(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("endOTP"));
 		return startCompleteBooking;
 	}
 	
