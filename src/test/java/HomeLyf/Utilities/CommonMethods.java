@@ -212,18 +212,18 @@ public class CommonMethods {
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
 		disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
-		disabletimeslot.setStartTime((String) context.getAttribute("STime"));
-		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
+		disabletimeslot.setStartTime((String) context.getAttribute("StartTime"));
+		disabletimeslot.setEndTime((String) context.getAttribute("EndTime"));
 		return disabletimeslot;
 	}
 	
 	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("nevixo9520@ociun.com");
-		userlogin.setMobileNumber(Long.parseLong("4312345433"));
+		userlogin.setEmailAddress("pegakax934@joeroc.com");
+		userlogin.setMobileNumber(Long.parseLong("3645789232"));
 		userlogin.setPassword("String@123");
 		userlogin.setType("V");
-		userlogin.setLocation("pune");
+		userlogin.setLocation("string");
 		return userlogin;
 	}
 
