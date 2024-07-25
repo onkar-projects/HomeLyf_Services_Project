@@ -210,7 +210,7 @@ public class Customer {
 		response.then().log().all();
 	}
 
-	@Test(priority = 15, description = "Customer Login to Booking a Service method")
+	@Test(priority = 15, enabled = true, description = "Customer Login to Booking a Service method")
 	public static void customerLogintoBookingService(ITestContext context) {
 		logger.info("Started Customer Login test.");
 		Response response_CustomerLogin = UserEndPoints.userLogin(CommonMethods.CustomerLoginformultiplescenario());
@@ -470,5 +470,47 @@ public class Customer {
 		Assert.assertNotNull(response_customer_CancelEP);
 		logger.info("Customer can not cancel the service.");
 		logger.info("Customer cannot cancel booking of id " + customerBookingId + " on started service.");
+	}
+	
+	//Mayuri..................
+	
+	@Test(priority = 18, enabled = true, description = "Verify that customer cancel booking before vendor accepts that booking")
+	public void customerCancelBookingBeforeVendorAccept(ITestContext context)
+	{
+		//Customer Login
+		logger.info("Customer starts to login..........");
+		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
+		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
+		String Ctoken = loginjs.getString("token");
+		System.out.println("Generated Token Id: " + Ctoken);
+		context.setAttribute("CToken", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
+		logger.info("Customer logged in successfully");
+		Assert.assertEquals(cresponse.statusCode(), 200);
+		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
+		
+		LookUp.createBooking(context);
+		
+		logger.info("Customer is creating a booking........");
+		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
+				CommonMethods.createBooking(context));
+		response_customer_CreateBooking.then().log().all();
+		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
+		String status = js_customer_CreateBooking.getString("status");
+		customerBookingId = js_customer_CreateBooking.getInt("id");
+		context.setAttribute("BookingId", customerBookingId);
+		Assert.assertEquals(status, "New");
+		String statusline_customer_CreateBooking = response_customer_CreateBooking.getStatusLine();
+		Assert.assertEquals(statusline_customer_CreateBooking, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_CreateBooking);
+		logger.info("New booking created successfully and Booking id is " + customerBookingId);
+		
+        logger.info("Customer cancel booking.......");
+        Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("BookingId"));
+		response.then().log().all();
+		logger.info("Customer cancel booking successfully");
+		
+		
 	}
 }

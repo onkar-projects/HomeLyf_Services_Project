@@ -247,9 +247,9 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
-		userlogin.setMobileNumber(Long.parseLong("9848592613"));
-		userlogin.setPassword("HomeLyf@123");
+		userlogin.setEmailAddress("mayuripatil@gmail.com");
+		userlogin.setMobileNumber(Long.parseLong("9658741238"));
+		userlogin.setPassword("Mayuri@123");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;

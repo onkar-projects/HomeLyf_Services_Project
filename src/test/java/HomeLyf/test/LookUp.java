@@ -16,12 +16,12 @@ public class LookUp {
 	private static Logger log = LogManager.getLogger(LookUp.class);
 
 	public static void getMyProfile(ITestContext context) {
-		log.info("Getting MyProfile");
+		log.info("Getting MyProfile and Address Id");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
 		JsonPath js = CommonMethods.jsonToString(response);
 		int addressId = js.getInt("addresses[0].id");
-		int addressId2 = js.getInt("addresses[1].id");
-		context.setAttribute("addressId", addressId2);
+		//int addressId2 = js.getInt("addresses[1].id");
+		context.setAttribute("addressId", addressId);
 		//context.setAttribute("addressId", addressId);
 	}
 
@@ -29,8 +29,8 @@ public class LookUp {
 		log.info("Getting category");
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
-		String name = js.getString("[0].name");
-		int CategoryId = js.getInt("[0].id");
+		String name = js.getString("[10].name");
+		int CategoryId = js.getInt("[10].id");
 		context.setAttribute("name", name);
 		context.setAttribute("categoryId1", CategoryId);
 		Assert.assertEquals(response.getStatusCode(), 200);
@@ -163,10 +163,10 @@ public class LookUp {
 				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
-		int categoryId = js1.getInt("[5].id");
-		String categoryName = js1.getString("[5].name");
+		int categoryId = js1.getInt("[10].id");
+		String categoryName = js1.getString("[10].name");
 		context.setAttribute("categoryId", categoryId);
-		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
+		Assert.assertEquals(js1.getString("[10].name"), "Salon Women");
 		Assert.assertEquals(response1.statusCode(), 200);
 		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
 
@@ -175,8 +175,8 @@ public class LookUp {
 				(int) context.getAttribute("categoryId"));
 		response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
-		int subCategoryId = js2.getInt("[1].id");
-		String subCategoryName = js2.getString("[1].name");
+		int subCategoryId = js2.getInt("[3].id");
+		String subCategoryName = js2.getString("[3].name");
 		context.setAttribute("subCategoryId", subCategoryId);
 		Assert.assertEquals(response2.getStatusCode(), 200);
 		log.info("SubCategoryId Fetched Successfully " + subCategoryId + " of subCategory " + subCategoryName);
