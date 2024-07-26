@@ -100,4 +100,10 @@ public class VendorEndPoints {
 				.body(payload).log().all().when().post(Routes.vendor_bankDetails);
 		return response;
 	}
+	public static Response vendor_GetBookingByIdEP(ITestContext context, int bookingId) {
+		String token = (String) context.getAttribute("VToken");
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).log().all()
+				.when().get(Routes.vendor_getBookingId, bookingId);
+		return response;
+	}
 }

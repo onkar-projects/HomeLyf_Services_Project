@@ -236,4 +236,20 @@ public class DataProviderClass {
 		}
 		return apiData;
 	}
+
+	@DataProvider(name = "UnverifiedVendor")
+	public static String[][] unverifiedVendor() throws IOException {
+		int rownum = lu.getRowCount("UnverifiedVendor");
+		String apiData[][] = new String[rownum][5];
+		for (int i = 1; i <= rownum; i++) {
+			for (int j = 0; j < 5; j++) {
+				apiData[i - 1][j] = lu.getCellData("UnverifiedVendor", i, j);
+				System.out.println("Given data: " + apiData[i - 1][j]);
+
+			}
+
+		}
+		return apiData;
+
+	}
 }

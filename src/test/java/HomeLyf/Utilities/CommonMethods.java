@@ -193,6 +193,18 @@ public class CommonMethods {
 		paymentstat.setPaymentMode(paymentMode[3]);
 		return paymentstat;
 	}
+	public static StartAndComplete_Booking_Payload sendBookingIdAndStartOTP(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("startOTP"));
+		return startCompleteBooking;
+	}
+	public static StartAndComplete_Booking_Payload sendBookingIdAndEndOTP(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("endOTP"));
+		return startCompleteBooking;
+	}
 
 	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
@@ -250,6 +262,15 @@ public class CommonMethods {
 		userlogin.setEmailAddress("mayuripatil@gmail.com");
 		userlogin.setMobileNumber(Long.parseLong("9658741238"));
 		userlogin.setPassword("Mayuri@123");
+		userlogin.setType("c");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
+	public static UserLogin_Payload customer_Login_01() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
+		userlogin.setMobileNumber(Long.parseLong("9848592613"));
+		userlogin.setPassword("HomeLyf@321");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;

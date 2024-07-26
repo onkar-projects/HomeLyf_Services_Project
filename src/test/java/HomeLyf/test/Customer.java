@@ -1,4 +1,3 @@
-
 package HomeLyf.test;
 
 import java.text.ParseException;
@@ -171,7 +170,7 @@ public class Customer {
 		response.then().log().all();
 	}
 
-	@Test(priority = 11, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	@Test(priority = 11, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
@@ -677,7 +676,7 @@ public class Customer {
 		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
 		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
 		
-		LookUp.createBooking(context);
+		LookUp.TC_createBooking(context);
 		
 		logger.info("Customer is creating a booking........");
 		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
