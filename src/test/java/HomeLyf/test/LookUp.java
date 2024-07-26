@@ -12,7 +12,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class LookUp {
-
 	private static Logger log = LogManager.getLogger(LookUp.class);
 
 	public static void getMyProfile(ITestContext context) {
@@ -33,7 +32,15 @@ public class LookUp {
 		String name = js.getString("[0].name");
 		int CategoryId = js.getInt("[0].id");
 		context.setAttribute("name", name);
+		String name3 = js.getString("[3].name");
+		int CategoryId3 = js.getInt("[3].id");
+		context.setAttribute("name4", name3);
+		int CategoryId4 = js.getInt("[4].id");
+		context.setAttribute("categoryId4", CategoryId4);
+		context.setAttribute("categoryId3", CategoryId3);
 		context.setAttribute("categoryId1", CategoryId);
+		String name5  = js.getString("[5].name");
+		context.setAttribute("name5", name5);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("Category fetched successfully");
 	}
@@ -78,6 +85,10 @@ public class LookUp {
 		String postCodeName = js.getString("[0].name");
 		int postCodeId = js.getInt("[0].id");
 		String postCode1 = js.getString("[1].name");
+		String postCode2 = js.getString("[2].name");
+		int postCodeId2 = js.getInt("[2].id");
+		context.setAttribute("postCode2", postCode2);
+		context.setAttribute("postCodeId2", postCodeId2);
 		context.setAttribute("postCode1", postCode1);
 		context.setAttribute("postCodeName", postCodeName);
 		context.setAttribute("postCodeId", postCodeId);
@@ -138,16 +149,16 @@ public class LookUp {
 				break;
 			}
 		}
-		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
+		context.setAttribute("BookingId", vendorBookingId);
 		Assert.assertEquals(response.statusCode(), 200);
 		log.info("vendor_get_booking is shown successfully: "+vendorBookingId);
 	}
 
-   //--------------------------CreateBookingByCustomer
-	public static void createBooking(ITestContext context) {
+   //--------------------------CreateBookingByCustomer--------------------------
+	public static void TC_createBooking(ITestContext context) {
 		log.info("Getting categoryId");
 		LookUp.getPostCode(context);
-		LookUp.getCategory(context);
+		//LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
