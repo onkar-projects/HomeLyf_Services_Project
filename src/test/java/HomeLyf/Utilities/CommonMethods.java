@@ -176,7 +176,7 @@ public class CommonMethods {
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
-		cal.setServiceID((int) context.getAttribute("serviceId"));
+		cal.setServiceID((int) context.getAttribute("serviceid"));
 		List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
 		list.add(cal);
 		return list;
@@ -193,18 +193,23 @@ public class CommonMethods {
 		paymentstat.setPaymentMode(paymentMode[3]);
 		return paymentstat;
 	}
-
 	public static StartAndComplete_Booking_Payload sendBookingIdAndStartOTP(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
 		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
 		startCompleteBooking.setOtp((int) context.getAttribute("startOTP"));
 		return startCompleteBooking;
 	}
-	
 	public static StartAndComplete_Booking_Payload sendBookingIdAndEndOTP(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
 		startCompleteBooking.setBookingId((int) context.getAttribute("bookingId"));
 		startCompleteBooking.setOtp((int) context.getAttribute("endOTP"));
+		return startCompleteBooking;
+	}
+
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
+		startCompleteBooking = new StartAndComplete_Booking_Payload();
+		startCompleteBooking.setBookingId((int) context.getAttribute("customerBookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
 	
@@ -254,9 +259,18 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("mayuripatil@gmail.com");
+		userlogin.setMobileNumber(Long.parseLong("9658741238"));
+		userlogin.setPassword("Mayuri@123");
+		userlogin.setType("c");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
+	public static UserLogin_Payload customer_Login_01() {
+		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
 		userlogin.setMobileNumber(Long.parseLong("9848592613"));
-		userlogin.setPassword("HomeLyf@123");
+		userlogin.setPassword("HomeLyf@321");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;

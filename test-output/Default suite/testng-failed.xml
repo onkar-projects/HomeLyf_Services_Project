@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="HomeLyf.test.Customer">
+        <methods>
+          <include name="customer_GetBookingIdTest" invocation-numbers="0"/>
+          <include name="customer_Calculate" invocation-numbers="0"/>
+          <include name="customer_GetService" invocation-numbers="0"/>
+          <include name="customer_GetCategoryTest" invocation-numbers="0"/>
+          <include name="customer_CancelTest" invocation-numbers="0"/>
+          <include name="customer_CreateBooking" invocation-numbers="0"/>
+          <include name="verifyDisabledTimeslotsAreNotVisibleToCustomer" invocation-numbers="0"/>
+          <include name="customerCannotCancelBookingServiceStartedByVendor" invocation-numbers="0"/>
+          <include name="customerCancelBookingServiceOneHourBeforeTimeslot" invocation-numbers="0"/>
+          <include name="customer_subCategoryIdTest" invocation-numbers="0"/>
+          <include name="customer_GetTimeSlot" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- HomeLyf.test.Customer -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
