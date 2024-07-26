@@ -1,92 +1,120 @@
-[INFO ] 2024-07-24 12:44:13.455 [main] User - Starting userLogin test...
-[INFO ] 2024-07-24 12:44:16.362 [main] User - User logged in successfully
-[INFO ] 2024-07-24 12:44:16.368 [main] User - Getting Customer profile
-[INFO ] 2024-07-24 12:44:17.381 [main] User - Customer profile shown successfully
-[INFO ] 2024-07-24 12:44:17.384 [main] User - Getting category
-[INFO ] 2024-07-24 12:44:17.385 [main] LookUp - Getting PostCode from LookUp
-[INFO ] 2024-07-24 12:44:18.437 [main] LookUp - PostCode fetched successfully
-[INFO ] 2024-07-24 12:44:18.437 [main] LookUp - Getting category
-[INFO ] 2024-07-24 12:44:19.418 [main] LookUp - Category fetched successfully
-[INFO ] 2024-07-24 12:44:20.082 [main] User - Category fetched successfully
-[INFO ] 2024-07-24 12:44:20.708 [main] User - SubCategory Fetched Successfully
-[INFO ] 2024-07-24 12:44:20.711 [main] User - Starting customer_service...
-[INFO ] 2024-07-24 12:44:21.691 [main] User - customer_service subcategory is shown successfully
-[INFO ] 2024-07-24 12:44:21.693 [main] User - Starting customer_service...
-[INFO ] 2024-07-24 12:44:22.686 [main] User - customer_service subcategory is shown successfully
-[INFO ] 2024-07-24 12:44:22.688 [main] User - Creating new Booking
-[INFO ] 2024-07-24 12:44:23.413 [main] User - New booking created successfully
-[INFO ] 2024-07-24 12:44:23.414 [main] User - Fetching Customer booking
-[INFO ] 2024-07-24 12:44:24.067 [main] User - Customer booking shown successfully of StatusNew
-[INFO ] 2024-07-24 12:44:26.323 [main] User - Booking is got by id 10981
-[INFO ] 2024-07-24 12:44:26.941 [main] User - Vendor start login
-[INFO ] 2024-07-24 12:44:27.949 [main] User - Vendor logged in successfully
-[INFO ] 2024-07-24 12:44:27.949 [main] User - Getting Vendor Available Timeslot
-[INFO ] 2024-07-24 12:44:28.611 [main] User - list of vendor TimeSlot displayed with startTime 2024-07-24T14:30:00Z endTime 2024-07-24T15:00:00Z
-[INFO ] 2024-07-24 12:44:28.611 [main] User - Vendor disabling Timeslot
-[INFO ] 2024-07-24 12:44:29.276 [main] User - DisableTimeSlot:startTime 2024-07-24T14:30:00Z endTime  2024-07-24T15:00:00Z id 687
-[INFO ] 2024-07-24 12:44:29.276 [main] User - Customer start login
-[INFO ] 2024-07-24 12:44:29.903 [main] User - Customer logged in successfully
-[INFO ] 2024-07-24 12:44:29.903 [main] User - Get categoryId
-[INFO ] 2024-07-24 12:44:29.903 [main] LookUp - Getting PostCode from LookUp
-[INFO ] 2024-07-24 12:44:30.878 [main] LookUp - PostCode fetched successfully
-[INFO ] 2024-07-24 12:44:31.846 [main] User - CategoryId fetched successfully 6
-[INFO ] 2024-07-24 12:44:32.502 [main] User - Customer profile shown successfully.
-[INFO ] 2024-07-24 12:44:32.502 [main] User - Customer available Timeslot
-[INFO ] 2024-07-24 12:44:33.138 [main] User - Check whether disable timeslot is available in customer available timeslot:2024-07-24T14:30:00Z
-[INFO ] 2024-07-24 12:44:33.142 [main] User - Started verify that customer cannot cancel booking service Started by vendor
-[INFO ] 2024-07-24 12:44:33.142 [main] User - Started Customer Login test.
-[INFO ] 2024-07-24 12:44:33.774 [main] User - Customer logged in successfully.
-[INFO ] 2024-07-24 12:44:33.775 [main] User - Getting Customer profile.
-[INFO ] 2024-07-24 12:44:34.364 [main] User - Customer profile shown successfully.
-[INFO ] 2024-07-24 12:44:34.365 [main] User - Getting category.
-[INFO ] 2024-07-24 12:44:34.365 [main] LookUp - Getting PostCode from LookUp
-[INFO ] 2024-07-24 12:44:35.002 [main] LookUp - PostCode fetched successfully
-[INFO ] 2024-07-24 12:44:35.002 [main] LookUp - Getting category
-[INFO ] 2024-07-24 12:44:35.645 [main] LookUp - Category fetched successfully
-[INFO ] 2024-07-24 12:44:36.291 [main] User - Carpentry Category selected successfully.
-[INFO ] 2024-07-24 12:44:36.297 [main] User - Getting subcategory.
-[INFO ] 2024-07-24 12:44:37.246 [main] User - SubCategory is shown Successfully.
-[INFO ] 2024-07-24 12:44:37.246 [main] User - Getting services.
-[INFO ] 2024-07-24 12:44:38.189 [main] User - On-site Consultation for New Furniture Service selected successfully.
-[INFO ] 2024-07-24 12:44:38.196 [main] User - Getting timeslot for category = Carpentry and Service name is = On-site Consultation for New Furniture
-[INFO ] 2024-07-24 12:44:39.182 [main] User - Category timeslot Start Time: 2024-07-24T15:30:00Z	End Time: 2024-07-24T16:00:00Z successfully.
-[INFO ] 2024-07-24 12:44:39.183 [main] User - Started creating new Booking.
-[INFO ] 2024-07-24 12:44:39.879 [main] User - New booking created successfully and Booking id is 10982
-[INFO ] 2024-07-24 12:44:39.880 [main] User - Started Vendor Login test.
-[INFO ] 2024-07-24 12:44:40.505 [main] User - Vendor logged in successfully.
-[INFO ] 2024-07-24 12:44:40.505 [main] User - Getting vendor timeslots.
-[INFO ] 2024-07-24 12:44:41.128 [main] User - Vendor timeslots are shown successfully.
-[INFO ] 2024-07-24 12:44:41.129 [main] User - Started vendor accepting booking of Booking id = 10982
-[INFO ] 2024-07-24 12:44:42.152 [main] User - Vendor accepted booking id of 10982 successfully
-[INFO ] 2024-07-24 12:44:42.152 [main] User - Started customer get booking by id =10982
-[INFO ] 2024-07-24 12:44:42.795 [main] User - Customer get OTP 1784 of booking id = 10982
-[INFO ] 2024-07-24 12:44:42.795 [main] User - Started customer start booking
-[INFO ] 2024-07-24 12:44:43.747 [main] User - Customer service is started by entering Booking id = 10982 and Start OTP = 1784
-[INFO ] 2024-07-24 12:44:43.747 [main] User - Started customer cancel the booking of id = 10982
-[INFO ] 2024-07-24 12:44:44.350 [main] User - Customer can not cancel the service.
-[INFO ] 2024-07-24 12:44:44.352 [main] User - Customer cannot cancel booking of id 10982 on started service and response message is io.restassured.path.json.JsonPath@67b20b4c
-[INFO ] 2024-07-24 12:44:44.353 [main] User - Started validate that the customer cancels the booking one hour before the scheduled time slot
-[INFO ] 2024-07-24 12:44:44.353 [main] User - Started Customer Login test.
-[INFO ] 2024-07-24 12:44:44.987 [main] User - Customer logged in successfully.
-[INFO ] 2024-07-24 12:44:44.987 [main] User - Getting Customer profile.
-[INFO ] 2024-07-24 12:44:45.598 [main] User - Customer profile shown successfully.
-[INFO ] 2024-07-24 12:44:45.599 [main] User - Getting category.
-[INFO ] 2024-07-24 12:44:45.599 [main] LookUp - Getting PostCode from LookUp
-[INFO ] 2024-07-24 12:44:46.243 [main] LookUp - PostCode fetched successfully
-[INFO ] 2024-07-24 12:44:46.243 [main] LookUp - Getting category
-[INFO ] 2024-07-24 12:44:46.915 [main] LookUp - Category fetched successfully
-[INFO ] 2024-07-24 12:44:47.531 [main] User - Carpentry Category selected successfully.
-[INFO ] 2024-07-24 12:44:47.538 [main] User - Getting subcategory.
-[INFO ] 2024-07-24 12:44:48.127 [main] User - SubCategory is shown Successfully.
-[INFO ] 2024-07-24 12:44:48.127 [main] User - Getting services.
-[INFO ] 2024-07-24 12:44:48.736 [main] User - On-site Consultation for New Furniture Service selected successfully.
-[INFO ] 2024-07-24 12:44:48.743 [main] User - Getting timeslot for category = Carpentry and Service name is = On-site Consultation for New Furniture
-[INFO ] 2024-07-24 12:44:49.413 [main] User - Category timeslot Start Time: 2024-07-25T13:30:00Z	End Time: 2024-07-25T14:00:00Z successfully.
-[INFO ] 2024-07-24 12:44:49.414 [main] User - Started creating new Booking.
-[INFO ] 2024-07-24 12:44:50.476 [main] User - New booking created successfully and Booking id is 10983
-[INFO ] 2024-07-24 12:44:50.476 [main] User - Started Vendor Login test.
-[INFO ] 2024-07-24 12:44:51.106 [main] User - Vendor logged in successfully.
-[INFO ] 2024-07-24 12:44:51.107 [main] User - Started vendor accepting booking of Booking id = 10983
-[INFO ] 2024-07-24 12:44:51.836 [main] User - Started customer cancel the booking of id = 10983
-[INFO ] 2024-07-24 12:44:52.502 [main] User - Customer can cancel the service.
-[INFO ] 2024-07-24 12:44:52.502 [main] User - Customer cancel booking of id 10983 one hour before of scheduled timeslot.
+[INFO ] 2024-07-26 18:33:29.563 [main] User - Starting userLogin test...
+[INFO ] 2024-07-26 18:33:33.938 [main] User - User logged in successfully
+[INFO ] 2024-07-26 18:33:33.950 [main] User - Getting Customer profile
+[INFO ] 2024-07-26 18:33:35.151 [main] User - Customer profile shown successfully
+[INFO ] 2024-07-26 18:33:35.154 [main] User - Getting category
+[INFO ] 2024-07-26 18:33:35.156 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 18:33:37.109 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 18:33:37.110 [main] LookUp - Getting category
+[INFO ] 2024-07-26 18:33:38.308 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 18:33:39.509 [main] User - Category fetched successfully
+[INFO ] 2024-07-26 18:33:40.632 [main] User - SubCategory Fetched Successfully
+[INFO ] 2024-07-26 18:33:40.638 [main] User - Starting customer_service...
+[INFO ] 2024-07-26 18:33:41.852 [main] User - customer_service subcategory is shown successfully
+[INFO ] 2024-07-26 18:33:41.855 [main] User - Starting customer_service...
+[INFO ] 2024-07-26 18:33:44.388 [main] User - customer_service subcategory is shown successfully
+[INFO ] 2024-07-26 18:33:44.396 [main] User - Creating new Booking
+[INFO ] 2024-07-26 18:33:45.272 [main] User - New booking created successfully
+[INFO ] 2024-07-26 18:33:45.280 [main] User - Fetching Customer booking
+[INFO ] 2024-07-26 18:33:46.685 [main] User - Customer booking shown successfully of StatusNew
+[INFO ] 2024-07-26 18:33:49.662 [main] User - Booking is got by id 11148
+[INFO ] 2024-07-26 18:33:50.776 [main] User - Vendor start login
+[INFO ] 2024-07-26 18:33:51.471 [main] User - Vendor logged in successfully
+[INFO ] 2024-07-26 18:33:51.471 [main] User - Getting Vendor Available Timeslot
+[INFO ] 2024-07-26 18:33:52.257 [main] User - list of vendor TimeSlot displayed with startTime 2024-07-26T15:00:00Z endTime 2024-07-26T15:30:00Z
+[INFO ] 2024-07-26 18:33:52.257 [main] User - Vendor disabling Timeslot
+[INFO ] 2024-07-26 18:33:53.431 [main] User - DisableTimeSlot:startTime 2024-07-26T15:00:00Z endTime  2024-07-26T15:30:00Z id 715
+[INFO ] 2024-07-26 18:33:53.431 [main] User - Customer start login
+[INFO ] 2024-07-26 18:33:54.531 [main] User - Customer logged in successfully
+[INFO ] 2024-07-26 18:33:54.532 [main] User - Get categoryId
+[INFO ] 2024-07-26 18:33:54.532 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 18:33:55.803 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 18:33:56.880 [main] User - CategoryId fetched successfully 6
+[INFO ] 2024-07-26 18:33:57.707 [main] User - Customer profile shown successfully.
+[INFO ] 2024-07-26 18:33:57.708 [main] User - Customer available Timeslot
+[INFO ] 2024-07-26 18:33:59.313 [main] User - Check whether disable timeslot is available in customer available timeslot:2024-07-26T15:00:00Z
+[INFO ] 2024-07-26 18:33:59.317 [main] User - Started verify that customer cannot cancel booking service Started by vendor
+[INFO ] 2024-07-26 18:33:59.317 [main] User - Started Customer Login test.
+[INFO ] 2024-07-26 18:34:00.062 [main] User - Customer logged in successfully.
+[INFO ] 2024-07-26 18:34:00.062 [main] User - Getting Customer profile.
+[INFO ] 2024-07-26 18:34:00.882 [main] User - Customer profile shown successfully.
+[INFO ] 2024-07-26 18:34:00.882 [main] User - Getting category.
+[INFO ] 2024-07-26 18:34:00.882 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 18:34:02.057 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 18:34:02.057 [main] LookUp - Getting category
+[INFO ] 2024-07-26 18:34:03.287 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 18:34:04.076 [main] User - Carpentry Category selected successfully.
+[INFO ] 2024-07-26 18:34:04.088 [main] User - Getting subcategory.
+[INFO ] 2024-07-26 18:34:05.179 [main] User - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 18:34:05.179 [main] User - Getting services.
+[INFO ] 2024-07-26 18:34:05.973 [main] User - On-site Consultation for New Furniture Service selected successfully.
+[INFO ] 2024-07-26 18:34:05.983 [main] User - Getting timeslot for category = Carpentry and Service name is = On-site Consultation for New Furniture
+[INFO ] 2024-07-26 18:34:06.913 [main] User - Category timeslot Start Time: 2024-07-27T08:00:00Z	End Time: 2024-07-27T08:30:00Z successfully.
+[INFO ] 2024-07-26 18:34:06.913 [main] User - Started creating new Booking.
+[INFO ] 2024-07-26 18:34:07.765 [main] User - New booking created successfully and Booking id is 11149
+[INFO ] 2024-07-26 18:34:07.765 [main] User - Started Vendor Login test.
+[INFO ] 2024-07-26 18:34:08.557 [main] User - Vendor logged in successfully.
+[INFO ] 2024-07-26 18:34:08.557 [main] User - Getting vendor timeslots.
+[INFO ] 2024-07-26 18:34:10.598 [main] User - Vendor timeslots are shown successfully.
+[INFO ] 2024-07-26 18:34:10.599 [main] User - Started vendor accepting booking of Booking id = 11149
+[INFO ] 2024-07-26 18:34:11.425 [main] User - Vendor accepted booking id of 11149 successfully
+[INFO ] 2024-07-26 18:34:11.426 [main] User - Started customer get booking by id =11149
+[INFO ] 2024-07-26 18:34:12.213 [main] User - Customer get OTP 6172 of booking id = 11149
+[INFO ] 2024-07-26 18:34:12.213 [main] User - Started customer start booking
+[INFO ] 2024-07-26 18:34:13.708 [main] User - Customer service is started by entering Booking id = 11149 and Start OTP = 6172
+[INFO ] 2024-07-26 18:34:13.710 [main] User - Started customer cancel the booking of id = 11149
+[INFO ] 2024-07-26 18:34:14.497 [main] User - Customer can not cancel the service.
+[INFO ] 2024-07-26 18:34:14.499 [main] User - Customer cannot cancel booking of id 11149 on started service and response message is io.restassured.path.json.JsonPath@5b9df3b3
+[INFO ] 2024-07-26 18:34:14.504 [main] User - Started validate that the customer cancels the booking one hour before the scheduled time slot
+[INFO ] 2024-07-26 18:34:14.504 [main] User - Started Customer Login test.
+[INFO ] 2024-07-26 18:34:16.065 [main] User - Customer logged in successfully.
+[INFO ] 2024-07-26 18:34:16.065 [main] User - Getting Customer profile.
+[INFO ] 2024-07-26 18:34:16.968 [main] User - Customer profile shown successfully.
+[INFO ] 2024-07-26 18:34:16.968 [main] User - Getting category.
+[INFO ] 2024-07-26 18:34:16.969 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 18:34:18.961 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 18:34:18.961 [main] LookUp - Getting category
+[INFO ] 2024-07-26 18:34:19.723 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 18:34:20.874 [main] User - Carpentry Category selected successfully.
+[INFO ] 2024-07-26 18:34:20.883 [main] User - Getting subcategory.
+[INFO ] 2024-07-26 18:34:22.015 [main] User - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 18:34:22.015 [main] User - Getting services.
+[INFO ] 2024-07-26 18:34:22.717 [main] User - On-site Consultation for New Furniture Service selected successfully.
+[INFO ] 2024-07-26 18:34:22.725 [main] User - Getting timeslot for category = Carpentry and Service name is = On-site Consultation for New Furniture
+[INFO ] 2024-07-26 18:34:23.992 [main] User - Category timeslot Start Time: 2024-07-28T06:00:00Z	End Time: 2024-07-28T06:30:00Z successfully.
+[INFO ] 2024-07-26 18:34:23.993 [main] User - Started creating new Booking.
+[INFO ] 2024-07-26 18:34:26.435 [main] User - New booking created successfully and Booking id is 11150
+[INFO ] 2024-07-26 18:34:26.435 [main] User - Started Vendor Login test.
+[INFO ] 2024-07-26 18:34:27.133 [main] User - Vendor logged in successfully.
+[INFO ] 2024-07-26 18:34:27.133 [main] User - Started vendor accepting booking of Booking id = 11150
+[INFO ] 2024-07-26 18:34:27.944 [main] User - Started customer cancel the booking of id = 11150
+[INFO ] 2024-07-26 18:34:29.923 [main] User - Customer can cancel the service.
+[INFO ] 2024-07-26 18:34:29.923 [main] User - Customer cancel booking of id 11150 one hour before of scheduled timeslot.
+[INFO ] 2024-07-26 18:34:29.927 [main] User - Started validate that the customer trying to cancel the booking 15 minute before the scheduled time slot
+[INFO ] 2024-07-26 18:34:29.927 [main] User - Started Customer Login test.
+[INFO ] 2024-07-26 18:34:30.905 [main] User - Customer logged in successfully.
+[INFO ] 2024-07-26 18:34:30.907 [main] User - Fetching Customer booking
+[INFO ] 2024-07-26 18:34:31.683 [main] User - Customer booking shown successfully of StatusExpertAssigned
+[INFO ] 2024-07-26 18:34:32.000 [main] User - Booking is not present customer should create booking then validate that the customer cannot cancels the booking 15 min before the scheduled time slot
+[INFO ] 2024-07-26 18:34:32.000 [main] User - Getting Customer profile.
+[INFO ] 2024-07-26 18:34:32.838 [main] User - Customer profile shown successfully.
+[INFO ] 2024-07-26 18:34:32.839 [main] User - Getting category.
+[INFO ] 2024-07-26 18:34:32.839 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 18:34:33.669 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 18:34:33.669 [main] LookUp - Getting category
+[INFO ] 2024-07-26 18:34:35.240 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 18:34:36.171 [main] User - Carpentry Category selected successfully.
+[INFO ] 2024-07-26 18:34:36.181 [main] User - Getting subcategory.
+[INFO ] 2024-07-26 18:34:36.816 [main] User - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 18:34:36.817 [main] User - Getting services.
+[INFO ] 2024-07-26 18:34:37.564 [main] User - On-site Consultation for New Furniture Service selected successfully.
+[INFO ] 2024-07-26 18:34:37.572 [main] User - Getting timeslot for category = Carpentry and Service name is = On-site Consultation for New Furniture
+[INFO ] 2024-07-26 18:34:38.372 [main] User - Category timeslot Start Time: 2024-07-27T13:00:00Z	End Time: 2024-07-27T13:30:00Z successfully.
+[INFO ] 2024-07-26 18:34:38.372 [main] User - Started creating new Booking.
+[INFO ] 2024-07-26 18:34:39.136 [main] User - New booking created successfully and Booking id is 11151
+[INFO ] 2024-07-26 18:34:39.137 [main] User - Started Vendor Login test.
+[INFO ] 2024-07-26 18:34:41.362 [main] User - Vendor logged in successfully.
+[INFO ] 2024-07-26 18:34:41.362 [main] User - Started vendor accepting booking of Booking id = 11151
+[INFO ] 2024-07-26 18:34:42.994 [main] User - Vendor accepted booking of Booking id = 11151
+[INFO ] 2024-07-26 18:34:42.995 [main] User - Starting vendor_get_booking...
+[INFO ] 2024-07-26 18:34:43.893 [main] User - Cancellation is not occur as CurrentTime is 2024-07-26T13:04Z not equal to 15 minute before scheduled timeslot of any accepted booking.
