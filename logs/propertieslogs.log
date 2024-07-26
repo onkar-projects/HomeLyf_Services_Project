@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [INFO ] 2024-06-10 15:26:06.367 [main] User - Starting userLogin test...
 [INFO ] 2024-06-10 15:26:22.109 [main] User - Starting customer_service...
 [INFO ] 2024-06-11 19:53:20.566 [main] User - Starting userLogin test...
@@ -1060,3 +1061,47 @@
 [INFO ] 2024-06-17 05:31:10.863 [main] Vendor - Started Vendor Login test
 [INFO ] 2024-06-17 05:31:11.116 [main] Vendor - Vendor logged in successfully
 [INFO ] 2024-06-17 05:31:11.116 [main] Vendor -  vendor GetBooking
+=======
+[INFO ] 2024-06-15 00:03:07.144 [main] Vendor - Verify that vendor cannot accept booking of timeslot YYYY-MM-DDT12:30:00Z for other customer as vendor already have accepted booking of timeslot YYYY-MM-DDT12:00:00Z due to +15 minute buffer time.
+[INFO ] 2024-06-15 00:03:07.147 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-06-15 00:03:11.389 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-06-15 00:03:11.390 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 00:03:13.592 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 00:03:13.592 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 00:03:13.605 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 00:03:14.972 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 00:03:14.972 [main] LookUp - Getting category
+[INFO ] 2024-06-15 00:03:17.113 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 00:03:18.580 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 00:03:18.580 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 00:03:19.965 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 00:03:19.965 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 00:03:21.343 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 00:03:21.353 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 00:03:23.166 [main] Vendor - Category timeslot Start Time: 2024-06-16T04:00:00Z	 End Time: 2024-06-16T04:30:00Z successfully.
+[INFO ] 2024-06-15 00:03:23.166 [main] Vendor - Started creating new Booking.
+[INFO ] 2024-06-15 00:03:25.426 [main] Vendor - New booking created successfully and Booking id is 53040
+[INFO ] 2024-06-15 00:03:25.426 [main] Vendor - Started Vendor Login test.
+[INFO ] 2024-06-15 00:03:26.728 [main] Vendor - Vendor logged in successfully.
+[INFO ] 2024-06-15 00:03:26.729 [main] Vendor - Started vendor accepting booking of Booking id = 53040
+[INFO ] 2024-06-15 00:03:28.291 [main] Vendor - Vendor accepted booking id of 53040 successfully
+[INFO ] 2024-06-15 00:03:28.291 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-06-15 00:03:29.658 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-06-15 00:03:29.658 [main] Vendor - Getting category.
+[INFO ] 2024-06-15 00:03:29.658 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-06-15 00:03:30.473 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-06-15 00:03:30.474 [main] LookUp - Getting category
+[INFO ] 2024-06-15 00:03:31.252 [main] LookUp - Category fetched successfully
+[INFO ] 2024-06-15 00:03:33.198 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-06-15 00:03:33.198 [main] Vendor - Getting subcategory.
+[INFO ] 2024-06-15 00:03:34.517 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-06-15 00:03:34.517 [main] Vendor - Getting services.
+[INFO ] 2024-06-15 00:03:35.752 [main] Vendor - 1BHK to 4BHK Service selected successfully.
+[INFO ] 2024-06-15 00:03:35.760 [main] Vendor - Getting timeslot for category = Painting and Service name is = 1BHK to 4BHK
+[INFO ] 2024-06-15 00:03:37.323 [main] Vendor - Category timeslot Start Time: 2024-06-16T03:30:00Z	 End Time: 2024-06-16T04:00:00Z successfully.
+[INFO ] 2024-06-15 00:03:37.323 [main] Vendor - Started creating new Booking.
+[INFO ] 2024-06-15 00:03:39.353 [main] Vendor - New booking created successfully and Booking id is 53041
+[INFO ] 2024-06-15 00:03:39.353 [main] Vendor - Started vendor accepting booking of Booking id = 53041
+[INFO ] 2024-06-15 00:03:40.961 [main] Vendor - Vendor is not able to accept booking of id = 53041
+[INFO ] 2024-06-15 00:03:40.961 [main] Vendor - Vendor cannot accept booking of timeslot 2024-06-16T03:30:00Z for other customer as vendor already have accepted booking of timeslot 2024-06-16T04:00:00Z due to +15 minute buffer time.
+>>>>>>> 8a8abebfb6460f27a18559b3b853695a5b77ea80
