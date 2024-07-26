@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 [INFO ] 2024-06-10 15:26:06.367 [main] User - Starting userLogin test...
 [INFO ] 2024-06-10 15:26:22.109 [main] User - Starting customer_service...
 [INFO ] 2024-06-11 19:53:20.566 [main] User - Starting userLogin test...
@@ -652,6 +653,8 @@
 [INFO ] 2024-06-14 17:48:36.834 [main] Vendor - New booking created successfully and Booking id is 53031
 [INFO ] 2024-06-14 17:48:36.835 [main] Vendor - Started Vendor Login test.
 =======
+=======
+>>>>>>> 780c8657770cfe40ffba4692ec0eac6db24a36ff
 [INFO ] 2024-06-13 14:03:26.111 [main] Vendor - Starting userLogin test...
 [INFO ] 2024-06-13 14:03:30.240 [main] Vendor - User logged in successfully
 [INFO ] 2024-06-13 14:03:30.259 [main] Vendor - Starting vendor_get_booking...
@@ -824,6 +827,7 @@
 [INFO ] 2024-06-13 14:15:43.868 [main] User - Started customer cancel the booking of id = 52946
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer can not cancel the service.
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer cannot cancel booking on started service successfully.
+<<<<<<< HEAD
 >>>>>>> 58f57f3f853b6799c58f7543b02678548a729fd0
 [INFO ] 2024-06-15 15:56:32.092 [main] Vendor - Started Customer Login test.
 [INFO ] 2024-06-15 15:56:43.122 [main] Vendor - Customer logged in successfully.
@@ -1105,3 +1109,326 @@
 [INFO ] 2024-06-15 00:03:40.961 [main] Vendor - Vendor is not able to accept booking of id = 53041
 [INFO ] 2024-06-15 00:03:40.961 [main] Vendor - Vendor cannot accept booking of timeslot 2024-06-16T03:30:00Z for other customer as vendor already have accepted booking of timeslot 2024-06-16T04:00:00Z due to +15 minute buffer time.
 >>>>>>> 8a8abebfb6460f27a18559b3b853695a5b77ea80
+=======
+>>>>>>> 780c8657770cfe40ffba4692ec0eac6db24a36ff
+[INFO ] 2024-07-26 15:33:31.872 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 15:33:48.854 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 15:33:48.855 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 15:45:04.533 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 15:45:18.581 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 15:45:18.582 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 15:45:21.039 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 15:45:21.040 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 15:45:21.043 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 15:45:22.253 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 15:45:22.254 [main] LookUp - Getting category
+[INFO ] 2024-07-26 15:45:23.293 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 15:53:43.094 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 15:53:54.852 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 15:53:54.853 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 15:53:57.026 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 15:53:57.026 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 15:53:57.035 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 15:53:59.252 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 15:53:59.252 [main] LookUp - Getting category
+[INFO ] 2024-07-26 15:54:01.316 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 15:54:03.361 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 15:54:03.361 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 15:54:05.295 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 15:54:05.296 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 15:54:07.201 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 15:54:07.239 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 15:54:09.302 [main] Vendor - Category timeslot Start Time: 2024-07-26T12:30:00Z	 End Time: 2024-07-26T13:00:00Z successfully.
+[INFO ] 2024-07-26 15:54:09.302 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 15:57:36.661 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 15:57:49.786 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 15:57:49.787 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 15:57:51.034 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 15:57:51.035 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 15:57:51.041 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 15:57:52.165 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 15:57:52.165 [main] LookUp - Getting category
+[INFO ] 2024-07-26 15:57:53.851 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 15:57:55.842 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 15:57:55.842 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 15:57:56.738 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 15:57:56.738 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 15:57:57.747 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 15:57:57.815 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 15:57:58.718 [main] Vendor - Category timeslot Start Time: 2024-07-26T12:30:00Z	 End Time: 2024-07-26T13:00:00Z successfully.
+[INFO ] 2024-07-26 15:57:58.718 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 15:57:59.915 [main] Vendor - New booking created successfully with bookinId11089
+[INFO ] 2024-07-26 15:57:59.917 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 15:58:00.840 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 15:58:00.841 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-07-26 16:00:18.382 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-26 16:00:31.152 [main] Vendor - Starting vendor_get_booking...
+[INFO ] 2024-07-26 16:00:32.142 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-26 16:00:32.182 [main] Vendor - Start vendor booking using startOtp
+[INFO ] 2024-07-26 16:00:32.197 [main] Vendor - Complete vendor booking using endOtp
+[INFO ] 2024-07-26 16:00:33.087 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-26 16:00:33.091 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-26 16:00:33.847 [main] Vendor - Getting vendor available time slots
+[INFO ] 2024-07-26 16:00:35.617 [main] Vendor - Disabling Vendor time slot
+[INFO ] 2024-07-26 16:00:36.504 [main] Vendor - Enable vendor time slot after disabled
+[INFO ] 2024-07-26 16:00:36.514 [main] Vendor - get vendor profile
+[INFO ] 2024-07-26 16:00:37.294 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:00:38.128 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:00:38.128 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:00:39.093 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:00:39.094 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:00:39.094 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:00:40.156 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:00:40.156 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:00:41.262 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:00:42.187 [main] Vendor - Started vendor accept booking after enabled that disabled timeslot
+[INFO ] 2024-07-26 16:00:42.188 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:00:42.909 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:00:42.909 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:00:43.711 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:00:43.711 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:00:43.711 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:00:44.620 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:00:44.620 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:00:45.429 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:00:46.116 [main] Vendor - Verify that vendor cannot accept booking of timeslot YYYY-MM-DDT12:30:00Z for other customer as vendor already have accepted booking of timeslot YYYY-MM-DDT12:00:00Z due to +15 minute buffer time.
+[INFO ] 2024-07-26 16:00:46.117 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:00:46.960 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:00:46.960 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:00:47.685 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:00:47.685 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:00:47.686 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:00:48.371 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:00:48.371 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:00:49.254 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:00:50.021 [main] Vendor - Customer Login start
+[INFO ] 2024-07-26 16:00:50.796 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjM2IiwibmFtZWlkIjoiQXBhY2hlLUh0dHBDbGllbnQvNC41LjEzIChKYXZhLzIxLjAuMikiLCJuYmYiOjE3MjE5ODk4NTAsImV4cCI6MTcyMjAwNDI1MCwiaWF0IjoxNzIxOTg5ODUwLCJpc3MiOiJodHRwczovL3FkdGFzLmNvbS8iLCJhdWQiOiJodHRwczovL3FkdGFzLmNvbS9DdXN0b21lckFQSS8ifQ.Iq1gu1an2K5qalyEN1Uc0gnjU-bb5F6QYUj05ZgZJzo
+[INFO ] 2024-07-26 16:00:50.797 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-26 16:00:50.797 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:00:51.725 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:00:51.725 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:00:52.636 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:00:53.535 [main] LookUp - CategoryId fetched successfully 11 of category Salon Women
+[INFO ] 2024-07-26 16:00:53.536 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-26 16:00:54.184 [main] LookUp - SubCategoryId Fetched Successfully 73 of subCategory Pedicure
+[INFO ] 2024-07-26 16:00:54.185 [main] LookUp - Starting customer_service...
+[INFO ] 2024-07-26 16:00:54.695 [main] LookUp - customer_service subcategory is shown successfully 576 of service Cut, File & Polish (Classic)
+[INFO ] 2024-07-26 16:00:54.695 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-26 16:00:55.436 [main] LookUp - Customer profile shown successfully 51
+[INFO ] 2024-07-26 16:00:55.437 [main] LookUp - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-26 16:00:56.399 [main] LookUp - Available booking Timeslot with startTime 2024-07-26T13:00:00Z endTime 2024-07-26T13:30:00Z
+[INFO ] 2024-07-26 16:00:56.400 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-26 16:00:57.346 [main] Vendor - New booking created successfully with bookingId :11091
+[INFO ] 2024-07-26 16:00:57.347 [main] Vendor - Vendor Login start
+[INFO ] 2024-07-26 16:00:57.918 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:00:57.918 [main] Vendor - Vendor accept booking with BookingId 11091
+[INFO ] 2024-07-26 16:00:58.488 [main] Vendor - Customer Login start
+[INFO ] 2024-07-26 16:00:59.269 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjM2IiwibmFtZWlkIjoiQXBhY2hlLUh0dHBDbGllbnQvNC41LjEzIChKYXZhLzIxLjAuMikiLCJuYmYiOjE3MjE5ODk4NTgsImV4cCI6MTcyMjAwNDI1OCwiaWF0IjoxNzIxOTg5ODU4LCJpc3MiOiJodHRwczovL3FkdGFzLmNvbS8iLCJhdWQiOiJodHRwczovL3FkdGFzLmNvbS9DdXN0b21lckFQSS8ifQ.ow5jQRU3ePLFlGEcotXpuWxAtN3MpvPG8y5s2Sqic1Y
+[INFO ] 2024-07-26 16:00:59.269 [main] Vendor - Getting categoryId
+[INFO ] 2024-07-26 16:00:59.270 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:00:59.927 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:00:59.927 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:01:00.740 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:01:01.548 [main] Vendor - CategoryId fetched successfully :5 of category Cleaning
+[INFO ] 2024-07-26 16:01:01.549 [main] Vendor - Getting subCategoryId
+[INFO ] 2024-07-26 16:01:02.082 [main] Vendor - SubCategoryId Fetched Successfully :36 of subCategory :Apartment Cleaning (Essential)
+[INFO ] 2024-07-26 16:01:02.082 [main] Vendor - Starting customer_service
+[INFO ] 2024-07-26 16:01:02.878 [main] Vendor - customer_service subcategory is shown successfully 225 of service Furnished Apartment (1 BHK)
+[INFO ] 2024-07-26 16:01:02.878 [main] Vendor - Getting Customer profile
+[INFO ] 2024-07-26 16:01:03.402 [main] Vendor - Customer profile shown successfully 51
+[INFO ] 2024-07-26 16:01:03.402 [main] Vendor - Getting Customer Timeslot for book service
+[INFO ] 2024-07-26 16:01:04.235 [main] Vendor - Available booking Timeslot with startTime 2024-07-26T13:00:00Z endTime 2024-07-26T13:30:00Z
+[INFO ] 2024-07-26 16:01:04.236 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-26 16:01:05.091 [main] Vendor - New booking created successfully with bookingId :11092
+[INFO ] 2024-07-26 16:01:05.091 [main] Vendor - Vendor Login start
+[INFO ] 2024-07-26 16:01:05.610 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:01:05.611 [main] Vendor - Vendor accept booking with BookingId 11092
+[INFO ] 2024-07-26 16:01:06.132 [main] Vendor - vendor not accepted booking for different category Cleaning with id 11092
+[INFO ] 2024-07-26 16:01:06.141 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:01:06.874 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:01:06.875 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:01:07.415 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:01:07.416 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:01:07.416 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:01:08.139 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:01:08.139 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:01:08.857 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:01:09.668 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 16:01:09.669 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 16:01:10.369 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 16:01:10.370 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 16:01:10.992 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 16:01:11.024 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 16:01:11.986 [main] Vendor - Category timeslot Start Time: 2024-07-26T13:00:00Z	 End Time: 2024-07-26T13:30:00Z successfully.
+[INFO ] 2024-07-26 16:01:11.986 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 16:01:12.791 [main] Vendor - New booking created successfully with bookinId11093
+[INFO ] 2024-07-26 16:01:12.791 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 16:01:13.617 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:01:13.617 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-07-26 16:07:40.674 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:07:52.858 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:07:52.859 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:07:54.005 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:07:54.006 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:07:54.015 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:07:55.188 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:07:55.189 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:07:56.130 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:07:57.071 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 16:07:57.072 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 16:07:57.935 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 16:07:57.935 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 16:07:58.774 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 16:07:58.868 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 16:07:59.940 [main] Vendor - Category timeslot Start Time: 2024-07-26T13:00:00Z	 End Time: 2024-07-26T13:30:00Z successfully.
+[INFO ] 2024-07-26 16:07:59.941 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 16:08:01.239 [main] Vendor - New booking created successfully with bookinId11094
+[INFO ] 2024-07-26 16:08:01.242 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 16:08:01.856 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:08:01.857 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-07-26 16:15:37.478 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:15:57.051 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:15:57.058 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:15:59.443 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:15:59.444 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:15:59.452 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:16:01.594 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:16:01.595 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:16:03.693 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:16:05.893 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 16:16:05.893 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 16:16:07.203 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 16:16:07.203 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 16:16:09.476 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 16:16:09.554 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 16:16:11.586 [main] Vendor - Category timeslot Start Time: 2024-07-26T13:00:00Z	 End Time: 2024-07-26T13:30:00Z successfully.
+[INFO ] 2024-07-26 16:16:11.586 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 16:16:13.628 [main] Vendor - New booking created successfully with bookinId11097
+[INFO ] 2024-07-26 16:16:13.635 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 16:16:15.520 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:16:15.520 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-07-26 16:40:45.847 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:41:02.829 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:41:02.830 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:41:05.239 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:41:05.240 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:41:05.266 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:41:07.550 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:41:07.551 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:41:09.791 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:41:11.892 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 16:41:11.893 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 16:41:13.917 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 16:41:13.917 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 16:41:15.948 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 16:41:15.994 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 16:41:17.974 [main] Vendor - Category timeslot Start Time: 2024-07-26T13:30:00Z	 End Time: 2024-07-26T14:00:00Z successfully.
+[INFO ] 2024-07-26 16:41:17.974 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 16:41:20.104 [main] Vendor - New booking created successfully with bookinId11102
+[INFO ] 2024-07-26 16:41:20.106 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 16:41:22.040 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:41:22.040 [main] Vendor -  vendor GetBooking
+[INFO ] 2024-07-26 16:43:38.056 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-26 16:43:51.891 [main] Vendor - Starting vendor_get_booking...
+[INFO ] 2024-07-26 16:43:54.075 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-26 16:43:54.094 [main] Vendor - Start vendor booking using startOtp
+[INFO ] 2024-07-26 16:43:54.120 [main] Vendor - Complete vendor booking using endOtp
+[INFO ] 2024-07-26 16:43:56.142 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-26 16:43:56.178 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-26 16:43:58.258 [main] Vendor - Getting vendor available time slots
+[INFO ] 2024-07-26 16:44:00.254 [main] Vendor - Disabling Vendor time slot
+[INFO ] 2024-07-26 16:44:03.204 [main] Vendor - Enable vendor time slot after disabled
+[INFO ] 2024-07-26 16:44:03.217 [main] Vendor - get vendor profile
+[INFO ] 2024-07-26 16:44:05.142 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:44:07.147 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:44:07.148 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:44:09.198 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:44:09.199 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:44:09.199 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:44:12.822 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:44:12.824 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:44:14.864 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:44:16.785 [main] Vendor - Started vendor accept booking after enabled that disabled timeslot
+[INFO ] 2024-07-26 16:44:16.785 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:44:18.727 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:44:18.728 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:44:20.575 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:44:20.575 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:44:20.575 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:44:22.655 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:44:22.655 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:44:24.865 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:44:26.849 [main] Vendor - Verify that vendor cannot accept booking of timeslot YYYY-MM-DDT12:30:00Z for other customer as vendor already have accepted booking of timeslot YYYY-MM-DDT12:00:00Z due to +15 minute buffer time.
+[INFO ] 2024-07-26 16:44:26.850 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:44:28.892 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:44:28.893 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:44:30.789 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:44:30.790 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:44:30.790 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:44:32.738 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:44:32.739 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:44:34.731 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:44:36.602 [main] Vendor - Customer Login start
+[INFO ] 2024-07-26 16:44:38.509 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjM2IiwibmFtZWlkIjoiQXBhY2hlLUh0dHBDbGllbnQvNC41LjEzIChKYXZhLzIxLjAuMikiLCJuYmYiOjE3MjE5OTI0NzcsImV4cCI6MTcyMjAwNjg3NywiaWF0IjoxNzIxOTkyNDc3LCJpc3MiOiJodHRwczovL3FkdGFzLmNvbS8iLCJhdWQiOiJodHRwczovL3FkdGFzLmNvbS9DdXN0b21lckFQSS8ifQ.PEobFsAy-Jsl78K-YNpxTtm78miaLy04_aYuJ1M9qk0
+[INFO ] 2024-07-26 16:44:38.510 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-26 16:44:38.510 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:44:40.467 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:44:40.467 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:44:42.347 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:44:44.260 [main] LookUp - CategoryId fetched successfully 11 of category Salon Women
+[INFO ] 2024-07-26 16:44:44.260 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-26 16:44:46.243 [main] LookUp - SubCategoryId Fetched Successfully 73 of subCategory Pedicure
+[INFO ] 2024-07-26 16:44:46.244 [main] LookUp - Starting customer_service...
+[INFO ] 2024-07-26 16:44:48.100 [main] LookUp - customer_service subcategory is shown successfully 576 of service Cut, File & Polish (Classic)
+[INFO ] 2024-07-26 16:44:48.100 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-26 16:44:49.907 [main] LookUp - Customer profile shown successfully 51
+[INFO ] 2024-07-26 16:44:49.908 [main] LookUp - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-26 16:44:52.012 [main] LookUp - Available booking Timeslot with startTime 2024-07-26T13:30:00Z endTime 2024-07-26T14:00:00Z
+[INFO ] 2024-07-26 16:44:52.013 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-26 16:44:53.912 [main] Vendor - New booking created successfully with bookingId :11105
+[INFO ] 2024-07-26 16:44:53.913 [main] Vendor - Vendor Login start
+[INFO ] 2024-07-26 16:44:55.816 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:44:55.817 [main] Vendor - Vendor accept booking with BookingId 11105
+[INFO ] 2024-07-26 16:44:57.081 [main] Vendor - Customer Login start
+[INFO ] 2024-07-26 16:44:59.089 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjM2IiwibmFtZWlkIjoiQXBhY2hlLUh0dHBDbGllbnQvNC41LjEzIChKYXZhLzIxLjAuMikiLCJuYmYiOjE3MjE5OTI0OTgsImV4cCI6MTcyMjAwNjg5OCwiaWF0IjoxNzIxOTkyNDk4LCJpc3MiOiJodHRwczovL3FkdGFzLmNvbS8iLCJhdWQiOiJodHRwczovL3FkdGFzLmNvbS9DdXN0b21lckFQSS8ifQ.dkZyxsQlCkn49WNHPBu0qKdDGSc1BuHkNZ8mnHJA4Js
+[INFO ] 2024-07-26 16:44:59.090 [main] Vendor - Getting categoryId
+[INFO ] 2024-07-26 16:44:59.090 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:45:00.425 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:45:00.425 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:45:01.745 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:45:03.716 [main] Vendor - CategoryId fetched successfully :5 of category Cleaning
+[INFO ] 2024-07-26 16:45:03.717 [main] Vendor - Getting subCategoryId
+[INFO ] 2024-07-26 16:45:04.967 [main] Vendor - SubCategoryId Fetched Successfully :36 of subCategory :Apartment Cleaning (Essential)
+[INFO ] 2024-07-26 16:45:04.968 [main] Vendor - Starting customer_service
+[INFO ] 2024-07-26 16:45:06.359 [main] Vendor - customer_service subcategory is shown successfully 225 of service Furnished Apartment (1 BHK)
+[INFO ] 2024-07-26 16:45:06.359 [main] Vendor - Getting Customer profile
+[INFO ] 2024-07-26 16:45:08.269 [main] Vendor - Customer profile shown successfully 51
+[INFO ] 2024-07-26 16:45:08.269 [main] Vendor - Getting Customer Timeslot for book service
+[INFO ] 2024-07-26 16:45:10.349 [main] Vendor - Available booking Timeslot with startTime 2024-07-26T13:30:00Z endTime 2024-07-26T14:00:00Z
+[INFO ] 2024-07-26 16:45:10.350 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-26 16:45:12.274 [main] Vendor - New booking created successfully with bookingId :11106
+[INFO ] 2024-07-26 16:45:12.275 [main] Vendor - Vendor Login start
+[INFO ] 2024-07-26 16:45:14.178 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:45:14.180 [main] Vendor - Vendor accept booking with BookingId 11106
+[INFO ] 2024-07-26 16:45:16.049 [main] Vendor - vendor not accepted booking for different category Cleaning with id 11106
+[INFO ] 2024-07-26 16:45:16.057 [main] Vendor - Started Customer Login test.
+[INFO ] 2024-07-26 16:45:17.205 [main] Vendor - Customer logged in successfully.
+[INFO ] 2024-07-26 16:45:17.206 [main] Vendor - Getting Customer profile.
+[INFO ] 2024-07-26 16:45:19.108 [main] Vendor - Customer profile shown successfully.
+[INFO ] 2024-07-26 16:45:19.109 [main] Vendor - Getting category.
+[INFO ] 2024-07-26 16:45:19.109 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-26 16:45:21.126 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-07-26 16:45:21.126 [main] LookUp - Getting category
+[INFO ] 2024-07-26 16:45:23.136 [main] LookUp - Category fetched successfully
+[INFO ] 2024-07-26 16:45:25.058 [main] Vendor - Electricals :Category selected successfully.
+[INFO ] 2024-07-26 16:45:25.058 [main] Vendor - Getting subcategory.
+[INFO ] 2024-07-26 16:45:26.940 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-07-26 16:45:26.940 [main] Vendor - Getting services.
+[INFO ] 2024-07-26 16:45:28.778 [main] Vendor - Bed Lamp Service selected successfully.
+[INFO ] 2024-07-26 16:45:28.829 [main] Vendor - Getting timeslot for category = Electricals and Service name is = Bed Lamp
+[INFO ] 2024-07-26 16:45:30.719 [main] Vendor - Category timeslot Start Time: 2024-07-26T13:30:00Z	 End Time: 2024-07-26T14:00:00Z successfully.
+[INFO ] 2024-07-26 16:45:30.719 [main] Vendor - Started Customer booking
+[INFO ] 2024-07-26 16:45:32.679 [main] Vendor - New booking created successfully with bookinId11107
+[INFO ] 2024-07-26 16:45:32.679 [main] Vendor - Started Vendor Login test
+[INFO ] 2024-07-26 16:45:34.529 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-26 16:45:34.529 [main] Vendor -  vendor GetBooking

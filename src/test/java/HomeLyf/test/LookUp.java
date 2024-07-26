@@ -1,3 +1,4 @@
+
 package HomeLyf.test;
 
 import org.apache.logging.log4j.LogManager;
@@ -12,27 +13,33 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class LookUp {
-
 	private static Logger log = LogManager.getLogger(LookUp.class);
 
 	public static void getMyProfile(ITestContext context) {
-		log.info("Getting MyProfile");
+		log.info("Getting MyProfile and Address Id");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
 		JsonPath js = CommonMethods.jsonToString(response);
-		int addressId = js.getInt("addresses[0].id");
-		int addressId2 = js.getInt("addresses[1].id");
-		context.setAttribute("addressId", addressId2);
+		int addressId = js.getInt("addresses[].id");
+		int addressId1 = js.getInt("addresses[1].id");
+		int addressId7 = js.getInt("addresses[7].id");
+		context.setAttribute("addressId1", addressId1);
+		context.setAttribute("addressId", addressId);
+		context.setAttribute("addressId7", addressId7);
 	}
 
 	public static void getCategory(ITestContext context) {
 		log.info("Getting category");
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
-		String name = js.getString("[0].name");
-		int CategoryId = js.getInt("[0].id");
-		String Ename = js.getString("[5].name");
-		context.setAttribute("Ename", Ename);
+		String name = js.getString("[10].name");
+		int CategoryId = js.getInt("[10].id");
 		context.setAttribute("name", name);
+		String name3 = js.getString("[3].name");
+		int CategoryId3 = js.getInt("[3].id");
+		context.setAttribute("name4", name3);
+		int CategoryId4 = js.getInt("[4].id");
+		context.setAttribute("categoryId4", CategoryId4);
+		context.setAttribute("categoryId3", CategoryId3);
 		context.setAttribute("categoryId1", CategoryId);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("Category fetched successfully");
@@ -77,6 +84,12 @@ public class LookUp {
 		JsonPath js = CommonMethods.jsonToString(response);
 		String postCode = js.getString("[0].name");
 		int postCodeId = js.getInt("[0].id");
+		String postCode1 = js.getString("[1].name");
+		String postCode2 = js.getString("[2].name");
+		int postCodeId2 = js.getInt("[2].id");
+		context.setAttribute("postCode2", postCode2);
+		context.setAttribute("postCodeId2", postCodeId2);
+		context.setAttribute("postCode1", postCode1);
 		context.setAttribute("postCode", postCode);
 		context.setAttribute("postCodeId", postCodeId);
 		Assert.assertEquals(response.getStatusCode(), 200);
@@ -84,7 +97,6 @@ public class LookUp {
 	}
 
 	public static void getPaymentStatus(ITestContext context) {
-
 		Response response = CustomerEndPoints.customer_PaymentStatusEP(context);
 		JsonPath js = CommonMethods.jsonToString(response);
 		String paymentStatus = js.getString("[0].name");
@@ -94,7 +106,6 @@ public class LookUp {
 	}
 
 	public static void customer_GetPaymentModeTest(ITestContext context) {
-
 		Response response = CustomerEndPoints.customer_PaymentModeEP(context);
 		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
@@ -134,7 +145,7 @@ public class LookUp {
 				break;
 			}
 		}
-		context.setAttribute("vendorAcceptBookingId", vendorBookingId);
+		context.setAttribute("BookingId", vendorBookingId);
 		Assert.assertEquals(response.statusCode(), 200);
 		log.info("vendor_get_booking is shown successfully");
 	}
@@ -161,13 +172,13 @@ public class LookUp {
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
-				(String) context.getAttribute("postCode"), "");
+				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
-		int categoryId = js1.get("[0].id");
-		String categoryName = js1.getString("name");
+		int categoryId = js1.getInt("[10].id");
+		String categoryName = js1.getString("[10].name");
 		context.setAttribute("categoryId", categoryId);
-		Assert.assertEquals(js1.getString("[0].name"), "Painting");
+		Assert.assertEquals(js1.getString("[10].name"), "Salon Women");
 		Assert.assertEquals(response1.statusCode(), 200);
 		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
 
@@ -176,8 +187,8 @@ public class LookUp {
 				(int) context.getAttribute("categoryId"));
 		response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
-		int subCategoryId = js2.getInt("[1].id");
-		String subCategoryName = js2.getString("[1].name");
+		int subCategoryId = js2.getInt("[3].id");
+		String subCategoryName = js2.getString("[3].name");
 		context.setAttribute("subCategoryId", subCategoryId);
 		Assert.assertEquals(response2.getStatusCode(), 200);
 		log.info("SubCategoryId Fetched Successfully " + subCategoryId + " of subCategory " + subCategoryName);
@@ -196,7 +207,7 @@ public class LookUp {
 		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
 		response4.then().log().all();
 		JsonPath js4 = CommonMethods.jsonToString(response4);
-		int addressId = js4.get("addresses[1].id");
+		int addressId = js4.get("addresses[0].id");
 		context.setAttribute("addressId", addressId);
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
@@ -212,7 +223,5 @@ public class LookUp {
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response5.statusCode(), 200);
 		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
-
 	}
-
 }
