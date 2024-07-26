@@ -166,7 +166,7 @@ public class CommonMethods {
 		bookingServices = new BookingServices();
 		bookingServices.setQuantity(1);
 
-		bookingServices.setServiceID((int) context.getAttribute("serviceid"));
+		bookingServices.setServiceID((int) context.getAttribute("serviceId"));
 		custBooking.setBookingServices(Collections.singletonList(bookingServices));
 		custBooking.setScheduledOn((String) context.getAttribute("StartTime"));
 		custBooking.setAddressID((int) context.getAttribute("addressId"));
@@ -212,18 +212,18 @@ public class CommonMethods {
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context) {
 		disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
-		disabletimeslot.setStartTime((String) context.getAttribute("StartTime"));
-		disabletimeslot.setEndTime((String) context.getAttribute("EndTime"));
+		disabletimeslot.setStartTime((String) context.getAttribute("STime"));
+		disabletimeslot.setEndTime((String) context.getAttribute("ETime"));
 		return disabletimeslot;
 	}
 	
 	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("pegakax934@joeroc.com");
-		userlogin.setMobileNumber(Long.parseLong("3645789232"));
+		userlogin.setEmailAddress("nevixo9520@ociun.com");
+		userlogin.setMobileNumber(Long.parseLong("4312345433"));
 		userlogin.setPassword("String@123");
 		userlogin.setType("V");
-		userlogin.setLocation("string");
+		userlogin.setLocation("pune");
 		return userlogin;
 	}
 
@@ -247,9 +247,9 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
-		userlogin.setMobileNumber(Long.parseLong("9848592613"));
-		userlogin.setPassword("HomeLyf@123");
+		userlogin.setEmailAddress("mayuripatil@gmail.com");
+		userlogin.setMobileNumber(Long.parseLong("9658741238"));
+		userlogin.setPassword("Mayuri@123");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;

@@ -47,7 +47,8 @@ public class Routes {
 	public static String getMyProfileURL = base_url + "/CustomerAPI/api/User/myprofile";
 	public static String getCategoryURL = base_url + "/CustomerAPI/api/Category";
 
-	// -------------------------------------------Vendor  Routes----------------------------------------------
+	// -------------------------------------------Vendor
+	// Routes----------------------------------------------
 
 	public static String vendor_getbooking = base_url + "/VendorAPI/api/Booking";
 	public static String vendor_MyBookingURL = base_url + "/VendorAPI/api/Booking/my";
