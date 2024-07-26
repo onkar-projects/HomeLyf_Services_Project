@@ -1,9 +1,17 @@
 package HomeLyf.Utilities;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import org.testng.Assert;
 import org.testng.ITestContext;
+
+import HomeLyf.EndPoints.UserEndPoints;
+import HomeLyf.EndPoints.VendorEndPoints;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.BookingServices;
 import HomeLyf.Payload.Calculator_Payload;
@@ -39,6 +47,7 @@ public class CommonMethods {
 	public static StartAndComplete_Booking_Payload startCompleteBooking;
 	public static Reschedule_Payload reschedule;
 	public static CustomerPaymentStatus_payload paymentstat;
+	public static int ithbookingid;
 
 	public static JsonPath jsonToString(Response response) {
 		String res = response.asPrettyString();
@@ -172,7 +181,7 @@ public class CommonMethods {
 		custBooking.setAddressID((int) context.getAttribute("addressId"));
 		return custBooking;
 	}
-	
+
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
@@ -200,8 +209,8 @@ public class CommonMethods {
 		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
 		return startCompleteBooking;
 	}
-	
-	public static DisableTimeslot_Payload sendTimeslot(ITestContext context,String sTime, String eTime) {
+
+	public static DisableTimeslot_Payload sendTimeslot(ITestContext context, String sTime, String eTime) {
 		disabletimeslot = new DisableTimeslot_Payload();
 		disabletimeslot.setId(0);
 		disabletimeslot.setStartTime(sTime);
@@ -216,7 +225,7 @@ public class CommonMethods {
 		disabletimeslot.setEndTime((String) context.getAttribute("EndTime"));
 		return disabletimeslot;
 	}
-	
+
 	public static UserLogin_Payload VendorLoginformultiplescenario() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("pegakax934@joeroc.com");
@@ -249,7 +258,7 @@ public class CommonMethods {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
 		userlogin.setMobileNumber(Long.parseLong("9848592613"));
-		userlogin.setPassword("HomeLyf@123");
+		userlogin.setPassword("HomeLyf@321");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;
@@ -278,5 +287,38 @@ public class CommonMethods {
 		startCompleteBooking.setBookingId(bookingId);
 		startCompleteBooking.setOtp(startOTP);
 		return startCompleteBooking;
+	}
+
+	public static int VendorMyBooking(ITestContext context) {
+		Response response_VendorLogin = UserEndPoints.userLogin(CommonMethods.VendorLoginformultiplescenario());
+		String res_VendorLogin = response_VendorLogin.asPrettyString();
+		JsonPath js_VendorLogin = new JsonPath(res_VendorLogin);
+		String Vtoken = js_VendorLogin.getString("token");
+		System.out.println("Generated Token Id: " + Vtoken);
+		context.setAttribute("VToken", Vtoken);
+		Assert.assertEquals(response_VendorLogin.statusCode(), 200);
+		ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("GMT"));
+		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+		String formattedTime = currentTime.format(formatter1);
+		String currentTimeinGMT = formattedTime + "Z";
+		System.out.println("Formatted Current Time: " + formattedTime);
+		String[] status2 = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
+		Response response1 = VendorEndPoints.vendor_MybookingEP(context, status2[1], 1, 1000);
+		response1.then().log().all();
+		JsonPath jsonpath = response1.jsonPath();
+		// Extract array and check size
+		List<Object> dataArray = jsonpath.getList("data");
+		int arraySize = dataArray.size();
+		JsonPath js1 = CommonMethods.jsonToString(response1);
+		for (int i = 0; i < arraySize; i++) {
+			String scTime = js1.getString("[" + i + "].scheduledOn");
+			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+			ZonedDateTime scheduledTime = ZonedDateTime.parse(scTime + "Z", formatter);
+			System.out.println("Schedule time is : " + scheduledTime);
+			if (currentTime.isBefore(scheduledTime)) {
+				ithbookingid = js1.getInt("[" + i + "].id");
+			}
+		}
+		return ithbookingid;
 	}
 }

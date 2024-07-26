@@ -22,11 +22,11 @@ public class VendorEndPoints {
 				.queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_getbooking);
 		return response;
 	}
-
-	public static Response vendor_MybookingEP(ITestContext context, int page, int size) {
+///my?status=expertassigned&page=1&size=10
+	public static Response vendor_MybookingEP(ITestContext context, String status, int page, int size) {
 		String token = (String) context.getAttribute("VToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_MyBookingURL);
+				.queryParam("status", status).queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_MyBookingURL);
 		return response;
 	}
 

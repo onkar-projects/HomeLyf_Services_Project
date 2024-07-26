@@ -134,7 +134,7 @@ public class LookUp {
 	public static void vendorgetMybooking(ITestContext context) {
 		log.info("Starting vendor get booking...");
 		int vendorBookingId = 0;
-		Response response = VendorEndPoints.vendor_MybookingEP(context, 1, 100);
+		Response response = VendorEndPoints.vendor_MybookingEP(context, "ExpertAssigned", 1, 100);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		for (int i = 0; i <= 10; i++) {
