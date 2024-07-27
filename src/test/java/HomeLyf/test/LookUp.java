@@ -37,9 +37,13 @@ public class LookUp {
 		int CategoryId3 = js.getInt("[3].id");
 		context.setAttribute("name4", name3);
 		int CategoryId4 = js.getInt("[4].id");
+		String name5 = js.getString("[5].name");
+		int CategoryId5 = js.getInt("[5].id");
+		context.setAttribute("name5", name);
 		context.setAttribute("categoryId4", CategoryId4);
 		context.setAttribute("categoryId3", CategoryId3);
 		context.setAttribute("categoryId1", CategoryId);
+		context.setAttribute("CategoryId5", CategoryId5);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("Category fetched successfully");
 	}
