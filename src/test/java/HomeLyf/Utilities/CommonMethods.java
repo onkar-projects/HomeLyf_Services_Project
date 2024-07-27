@@ -175,7 +175,7 @@ public class CommonMethods {
 		bookingServices = new BookingServices();
 		bookingServices.setQuantity(1);
 
-		bookingServices.setServiceID((int) context.getAttribute("serviceid"));
+		bookingServices.setServiceID((int) context.getAttribute("serviceId"));
 		custBooking.setBookingServices(Collections.singletonList(bookingServices));
 		custBooking.setScheduledOn((String) context.getAttribute("StartTime"));
 		custBooking.setAddressID((int) context.getAttribute("addressId"));
@@ -185,7 +185,7 @@ public class CommonMethods {
 	public static List<Calculator_Payload> calculateData(ITestContext context) {
 		cal = new Calculator_Payload();
 		cal.setQuantity(1);
-		cal.setServiceID((int) context.getAttribute("serviceid"));
+		cal.setServiceID((int) context.getAttribute("serviceId"));
 		List<Calculator_Payload> list = new ArrayList<Calculator_Payload>();
 		list.add(cal);
 		return list;

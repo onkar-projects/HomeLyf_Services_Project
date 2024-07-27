@@ -90,9 +90,9 @@ public class Vendor {
 	@Test(groups = "Vendor", priority = 6, enabled = false, description = "Vendor should start booking using startOtp")
 	public void vendor_StartBookingTest(ITestContext context) {
 		logger.info("Start vendor booking using startOtp");
-		LookUp.customer_GetBookingIdTest(context);
+		LookUp.customer_GetBookingByIdTest(context);
 		Response response = VendorEndPoints.vendor_startBookingEP(context,
-				CommonMethods.sendBookingIdAndStartOTP(context));
+				CommonMethods.sendBookingIdAndOtp(context));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("InProgress");
@@ -103,9 +103,9 @@ public class Vendor {
 	@Test(groups = "Vendor", priority = 7, enabled = false, description = "Vendor should complete booking using endOtp")
 	public void vendor_CompleteBookingTest(ITestContext context) {
 		logger.info("Complete vendor booking using endOtp");
-		LookUp.customer_GetBookingIdTest(context);
+		LookUp.customer_GetBookingByIdTest(context);
 		Response response = VendorEndPoints.vendor_completeBookingEP(context,
-				CommonMethods.sendBookingIdAndEndOTP(context));
+				CommonMethods.sendBookingIdAndOtp(context));
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("Completed");
 		Assert.assertEquals(response.getStatusCode(), 200);
@@ -115,7 +115,7 @@ public class Vendor {
 	@Test(groups = "Vendor", priority = 8, enabled = false, description = "Vendor should cancel booking after accept by vendor")
 	public void vendor_cancelBooking(ITestContext context) {
 		logger.info("Cancel booking after booking completed by vendor");
-		LookUp.customer_GetBookingIdTest(context);
+		LookUp.customer_GetBookingByIdTest(context);
 		int bookingId = (int) context.getAttribute("bookingId");
 		Response response = VendorEndPoints.vendorCancelBooking(context, bookingId);
 		JsonPath js = CommonMethods.jsonToString(response);
@@ -482,7 +482,7 @@ public class Vendor {
 		// ------------------------------VendorStartService-----------------------------------------
 		logger.info("Starting Service for BookingId " + customerBookingId + " and startOTP " + startOTP);
 		Response startService_response = VendorEndPoints.vendor_startBookingEP(context,
-				CommonMethods.sendBookingIdAndStartOTP(context));
+				CommonMethods.sendBookingIdAndOtp(context));
 		startService_response.then().log().all();
 		JsonPath startservicejs = CommonMethods.jsonToString(startService_response);
 		String statusafterstartservice = startservicejs.getString("status");

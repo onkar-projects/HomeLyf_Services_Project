@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.Test;
@@ -21,7 +20,6 @@ import HomeLyf.Utilities.CommonMethods;
 import HomeLyf.Utilities.DataProviderClass;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 
 public class Customer {
 	private static Logger logger = LogManager.getLogger(User.class);
@@ -79,7 +77,7 @@ public class Customer {
 		LookUp.getPostCode(context);
 		LookUp.getCategory(context);
 		Response response = CustomerEndPoints.customer_GetCategoryEP(context,
-				(String) context.getAttribute("postCodeName"), "");
+				(String) context.getAttribute("postCodeName"), (String) context.getAttribute("name"));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int categoryId = js.get("[0].id");
@@ -706,16 +704,21 @@ public class Customer {
 		List<Object> dataArray = jsonpath.getList("data");
 		int arraySize = dataArray.size();
 		JsonPath js1 = CommonMethods.jsonToString(response);
+		// for loop for checking scheduled timeslot with before 15 minute of currenttime in GMT
 		for (int i = 0; i < arraySize; i++) {
 			String scTime = js.getString("[" + i + "].scheduledOn");
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
+			// IndianTime =  scheduled time 
 			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
+			//fifteenminuteBeforeScheduleTime = sceduled time -  15 minute
 			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT.equals(fifteenminuteBeforeScheduleTime);
 			System.out.println(ab);
 			if (currentTime.isBefore(indianTime)
+					// current = current time in GMT it is checking current time with 15 minute before of scheduled time
+
 					&& currentTimeinGMT.equals(fifteenminuteBeforeScheduleTime.toString())) {
 				int ithbookingid = js.getInt("[" + i + "].id");
 				logger.info("Started customer cancel the booking of id = " + ithbookingid);
@@ -875,16 +878,20 @@ public class Customer {
 		List<Object> dataArray1 = jsonpath2.getList("data");
 		int arraySize1 = dataArray1.size();
 		JsonPath js2 = CommonMethods.jsonToString(response1);
+		// for loop for checking scheduled timeslot with before 15 minute of currenttime in GMT
 		for (int i = 0; i < arraySize1; i++) {
 			String scTime = js.getString("[" + i + "].scheduledOn");
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
+			// IndianTime =  scheduled time 
 			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
+			//fifteenminuteBeforeScheduleTime = sceduled time -  15 minute
 			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime);
 			System.out.println(ab);
 			if (currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime.toString())) {
+				// current = current time in GMT it is checking current time with 15 minute before of scheduled time
 				int ithbookingid = js.getInt("[" + i + "].id");
 				logger.info("Started customer cancel the booking of id = " + ithbookingid);
 				Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, ithbookingid);

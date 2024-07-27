@@ -77,11 +77,10 @@ public class CustomerEndPoints {
 		return response;
 	}
 
-	public static Response customer_UpdatePaymentStatusEP(ITestContext context, CustomerPaymentStatus_payload payload) {
+	public static Response customer_UpdatePaymentStatusEP(ITestContext context, int paymentId) {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.body(payload).when().put(Routes.customer_UpdatePaymentURL);
-
+				.when().put(Routes.customer_UpdatePaymentURL,paymentId);
 		return response;
 	}
 
