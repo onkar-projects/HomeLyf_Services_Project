@@ -158,7 +158,7 @@ public class LookUp {
 	public static void createBooking(ITestContext context) {
 		log.info("Getting categoryId");
 		LookUp.getPostCode(context);
-		LookUp.getCategory(context);
+	//	LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
@@ -200,16 +200,17 @@ public class LookUp {
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
 
-		log.info("Getting Customer Timeslot for book service...");
-		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
-				(int) context.getAttribute("categoryId"), context);
-		response5.then().log().all();
-		JsonPath js5 = CommonMethods.jsonToString(response5);
-		String sTime = js5.getString("[3].startTime");
-		context.setAttribute("StartTime", sTime);
-		String eTime = js5.getString("[3].endTime");
-		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
-		Assert.assertEquals(response5.statusCode(), 200);
-		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+//		log.info("Getting Customer Timeslot for book service...");
+//		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
+//				(int) context.getAttribute("categoryId"), context);
+//		response5.then().log().all();
+//		JsonPath js5 = CommonMethods.jsonToString(response5);
+//		String sTime = js5.getString("[3].startTime");
+//		context.setAttribute("StartTime", sTime);
+//		String eTime = js5.getString("[3].endTime");
+//		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
+//		Assert.assertEquals(response5.statusCode(), 200);
+//		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+		
 	}
 }
