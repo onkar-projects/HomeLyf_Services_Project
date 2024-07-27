@@ -31,7 +31,7 @@ public class Routes {
 	public static String customer_GetTimeShot = base_url + "/CustomerAPI/api/Booking/Timeslots";
 	public static String customer_GetBookingURL = base_url + "/CustomerAPI/api/Booking";
 	public static String customer_CreateBookingURL = base_url + "/CustomerAPI/api/Booking";
-	public static String customer_UpdatePaymentURL = base_url + "/CustomerAPI/api/Booking/UpdatePaymentStatus";
+	public static String customer_UpdatePaymentURL = base_url + "/CustomerAPI/api/Booking/PaymentStatus/{paymentId}";
 	public static String customer_Calculate = base_url + "/CustomerAPI/api/Booking/Calculate";
 	public static String customer_CancelURL = base_url + "/CustomerAPI/api/Booking/Cancel/{bookingId}";
 	public static String customer_Reschedule = base_url + "/CustomerAPI/api/Booking/Reschedule";
