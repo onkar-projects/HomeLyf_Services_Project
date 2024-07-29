@@ -215,6 +215,7 @@ public class LookUp {
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
 
+
 		log.info("Getting Customer Timeslot for book service...");
 		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
@@ -226,5 +227,6 @@ public class LookUp {
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response5.statusCode(), 200);
 		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+
 	}
 }

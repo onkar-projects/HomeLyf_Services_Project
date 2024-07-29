@@ -102,7 +102,7 @@ public class CommonMethods {
 		return signup;
 	}
 
-	public static UserLogin_Payload userLogin(String mobileNumber, String type, String emailAddress, String password,
+	public static UserLogin_Payload userLogin(String emailAddress,String mobileNumber, String password,String type,
 			String location) {
 		userlogin = new UserLogin_Payload();
 
@@ -254,7 +254,7 @@ public class CommonMethods {
 		return reschedule;
 	}
 
-	public static UserLogin_Payload customer_Login() {
+	public static UserLogin_Payload customer_Login_01() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
 		userlogin.setMobileNumber(Long.parseLong("9848592613"));

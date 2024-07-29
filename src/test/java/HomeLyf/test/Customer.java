@@ -231,6 +231,92 @@ public class Customer {
 	}
 
 	// $*****
+<<<<<<< HEAD
+		@Test(priority = 14, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
+		public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
+			//---------------------------VendorLogin----------------------------------------
+			logger.info("Vendor start login");
+			Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
+			// System.out.println("---------------"+vresponse.getStatusLine());
+			JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
+			String Vtoken = vloginjs.getString("token");
+			System.out.println("Generated Token Id: " + Vtoken);
+			context.setAttribute("VToken", Vtoken);
+			logger.debug("Generated Token Id: {}", Vtoken);
+			logger.info("Vendor logged in successfully");
+			Assert.assertEquals(vresponse.statusCode(), 200);
+			Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
+			//------------------------------VendorGetTimeSlot--------------------------------------
+			logger.info("Getting Vendor Available Timeslot");	
+			Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
+			JsonPath timeslotjs = CommonMethods.jsonToString(vTimeslotResponse);
+			String stime = timeslotjs.getString("availableTimeSlots[1].startTime");
+			String etime = timeslotjs.getString("availableTimeSlots[1].endTime");
+			context.setAttribute("stime", stime);
+			context.setAttribute("etime", etime);
+			logger.info("list of vendor TimeSlot displayed with startTime " + stime + " endTime " + etime);
+			Assert.assertEquals(vTimeslotResponse.getStatusCode(), 200);
+			Assert.assertEquals(vTimeslotResponse.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(vTimeslotResponse, "Vendor's Available Timeslot are getting successfully");
+			//------------------------------DisableTimeSlot--------------------------------------------
+			logger.info("Vendor disabling Timeslot");
+			DisableTimeslot_Payload disabletimeslot = new DisableTimeslot_Payload();
+			disabletimeslot.setId(0);
+			disabletimeslot.setStartTime(stime);
+			disabletimeslot.setEndTime(etime);
+			Response disableResponse = VendorEndPoints.vendor_DisableTimeslotEP(context, disabletimeslot);
+			disableResponse.then().log().all();
+			JsonPath disabletimeslotjs = CommonMethods.jsonToString(disableResponse);
+			String sTime = disabletimeslotjs.getString("startTime");
+			String eTime = disabletimeslotjs.getString("endTime");
+			int id = disabletimeslotjs.getInt("id");
+			System.out.println();
+			logger.info("DisableTimeSlot:startTime " + sTime + " endTime  " + eTime + " id " + id);
+			Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
+			Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(disableResponse, "Timeslot disable by Vendor successfully");
+			//----------------------------CustomerLogin----------------------------------------------
+			logger.info("Customer start login");
+			Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login_01(), context);
+			JsonPath loginjs = CommonMethods.jsonToString(cresponse);
+			Ctoken = loginjs.getString("token");
+			System.out.println("Generated Token Id: " + Ctoken);
+			context.setAttribute("CToken", Ctoken);
+			logger.debug("Generated Token Id: {}", Ctoken);
+			logger.info("Customer logged in successfully");
+			Assert.assertEquals(cresponse.statusCode(), 200);
+			Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
+			//-----------------------------GetCategory---------------------------------------------
+			logger.info("Get categoryId");
+			LookUp.getPostCode(context);
+			LookUp.getCategory(context);
+			Response response2 = CustomerEndPoints.customer_GetCategoryEP(context,
+					(String) context.getAttribute("postCodeName"), (String) context.getAttribute("Name5"));
+			response2.then().log().all();
+			JsonPath js = CommonMethods.jsonToString(response2);
+			int categoryId = js.getInt("[5].id");
+			context.setAttribute("categoryId", categoryId);
+			logger.info("CategoryId fetched successfully "+categoryId);
+			Assert.assertEquals(js.getString("[5].name"), "Electricals");
+			Assert.assertEquals(response2.statusCode(), 200);
+			Assert.assertEquals(response2.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(response2, "List of Categories are getting successfully");
+			//-----------------------------------CustomerMyProfile------------------------------
+			// Customer Address
+			//LookUp.getMyProfile(context);
+			Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
+			response_customer_GetMyProfileEP.then().log().all();
+			JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
+			int addressId = js_customer_GetMyProfileEP.getInt("addresses[1].id");
+			context.setAttribute("addressId", addressId);
+			String statusline_customer_GetMyProfileEP = response_customer_GetMyProfileEP.getStatusLine();
+			Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
+			Assert.assertNotNull(response_customer_GetMyProfileEP);
+			logger.info("Customer profile shown successfully.");
+			System.out.println("address id is "+addressId);
+=======
 	@Test(priority = 15, enabled = true, description = "Verify Disabled Timeslots by vendor are not visible to customer for different service Postcode")
 	public void verifyDisabledTimeslotsAreNotVisibleToCustomer(ITestContext context) {
 		// ---------------------------VendorLogin----------------------------------------
@@ -315,6 +401,7 @@ public class Customer {
 		Assert.assertNotNull(response_customer_GetMyProfileEP);
 		logger.info("Customer profile shown successfully.");
 		System.out.println("address id is " + addressId);
+>>>>>>> 37e6ea35820a068ca63c83f7cc298465bfb91563
 
 		// ----------------------------------CustomerTimeSlot------------------------------------
 		logger.info("Customer available Timeslot");

@@ -29,6 +29,13 @@ public class VendorEndPoints {
 				.queryParam("status", status).queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_MyBookingURL);
 		return response;
 	}
+	
+	public static Response vendor_GetBookingByIdEP(ITestContext context, int bookingId) {
+		String token = (String) context.getAttribute("VToken");
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).log().all()
+				.when().get(Routes.vendor_getBookingId, bookingId);
+		return response;
+	}
 
 	public static Response vendor_AcceptBookingEP(ITestContext context, int bookingId) {
 		String token = (String) context.getAttribute("VToken");
