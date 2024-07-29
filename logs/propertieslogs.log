@@ -170,3 +170,236 @@
 [INFO ] 2024-06-13 14:15:43.868 [main] User - Started customer cancel the booking of id = 52946
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer can not cancel the service.
 [INFO ] 2024-06-13 14:15:45.136 [main] User - Customer cannot cancel booking on started service successfully.
+[INFO ] 2024-07-27 10:32:32.445 [main] Vendor - Customer Login start
+[INFO ] 2024-07-27 10:32:35.810 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjA3MjczNCwiZXhwIjoxNzIyMDg3MTM0LCJpYXQiOjE3MjIwNzI3MzQsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.gwLkCp-6ANJrL1_NA8T7Q8OcXL1iEw_Z4TiNXhLQans
+[INFO ] 2024-07-27 10:32:35.814 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-27 10:32:35.814 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-27 10:32:36.789 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-27 10:32:37.568 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-27 10:32:37.568 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-27 10:32:38.444 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-27 10:32:38.444 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-27 10:32:39.171 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-27 10:32:39.171 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-27 10:32:40.029 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-27 10:32:40.029 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-27 10:32:40.965 [main] Vendor - Available booking Timeslot with startTime 2024-07-28T04:00:00Z endTime 2024-07-28T04:30:00Z
+[INFO ] 2024-07-27 10:32:40.966 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-27 10:32:42.490 [main] Vendor - New booking created successfully with bookingId :11184
+[INFO ] 2024-07-27 10:32:42.490 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-27 10:32:42.877 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-27 10:32:42.877 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-27 10:32:48.404 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-27 10:32:48.404 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-27 10:32:48.404 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-27 10:32:48.984 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-27 10:32:49.479 [main] Vendor - BookingId 11184 is cancelled Successfully
+[INFO ] 2024-07-29 07:59:54.889 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 07:59:59.463 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjIzNjM3NSwiZXhwIjoxNzIyMjUwNzc1LCJpYXQiOjE3MjIyMzYzNzUsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.t_5WFrvvI8sTl7dds0q_PduXhSR9aoZamJ6T1CGamhI
+[INFO ] 2024-07-29 07:59:59.483 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 07:59:59.483 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 08:00:00.659 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 08:00:01.731 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 08:00:01.732 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 08:00:02.544 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 08:00:02.544 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 08:00:03.325 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 08:00:03.325 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 08:00:04.075 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 08:00:04.075 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 08:00:05.068 [main] Vendor - Available booking Timeslot with startTime 2024-07-29T15:30:00Z endTime 2024-07-29T16:00:00Z
+[INFO ] 2024-07-29 08:00:05.068 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 08:00:06.199 [main] Vendor - New booking created successfully with bookingId :11228
+[INFO ] 2024-07-29 08:00:06.199 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 08:00:07.101 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 08:00:07.102 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 08:00:07.941 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-29 08:00:07.941 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 08:00:07.941 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 08:00:09.153 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 08:00:09.557 [main] Vendor - BookingId 11228 is cancelled Successfully
+[INFO ] 2024-07-29 12:03:58.503 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 12:04:01.958 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI1MTAxOCwiZXhwIjoxNzIyMjY1NDE4LCJpYXQiOjE3MjIyNTEwMTgsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.kCfc74CueEp6XuPHECpkkj16Mtyi9K5qOpz5TPuoWbg
+[INFO ] 2024-07-29 12:04:01.962 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 12:04:01.962 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 12:04:03.016 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 12:04:03.939 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 12:04:03.939 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 12:04:04.723 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 12:04:04.723 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 12:04:05.059 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 12:04:05.059 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 12:04:05.897 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 12:04:05.897 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 12:04:06.626 [main] Vendor - Available booking Timeslot with startTime 2024-07-30T05:30:00Z endTime 2024-07-30T06:00:00Z
+[INFO ] 2024-07-29 12:04:06.626 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 12:04:07.440 [main] Vendor - New booking created successfully with bookingId :11257
+[INFO ] 2024-07-29 12:04:07.440 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 12:04:08.384 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 12:04:08.384 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 12:04:13.923 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-29 12:04:13.923 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 12:04:13.923 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 12:04:14.878 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 12:04:15.799 [main] Vendor - BookingId 11257 is cancelled Successfully
+[INFO ] 2024-07-29 12:04:15.799 [main] Vendor - Vendor accept cancelled booking with BookingId 11257
+[INFO ] 2024-07-29 12:04:16.793 [main] Vendor - Vendor accept Booking successfully with bookingId: 11257 & status :ExpertAssigned
+[INFO ] 2024-07-29 12:04:16.793 [main] Vendor - Getting StartOTP through Customer Get Booking By Id
+[INFO ] 2024-07-29 12:04:17.501 [main] Vendor - Start OTP for BookingId 11257 is 4127
+[INFO ] 2024-07-29 12:04:17.502 [main] Vendor - Starting Service for BookingId 11257 and startOTP 4127
+[INFO ] 2024-07-29 12:04:18.244 [main] Vendor - Service started succesfully for BookingId 11257
+[INFO ] 2024-07-29 12:04:18.244 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 12:04:18.244 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 12:04:19.092 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 14:19:13.158 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:19:17.553 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI1OTEzMywiZXhwIjoxNzIyMjczNTMzLCJpYXQiOjE3MjIyNTkxMzMsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.q_7_ZhSZrGNlhUBJuk7Skz2fI89hmqswTrCqZjJhJcE
+[INFO ] 2024-07-29 14:19:17.558 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:19:17.558 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:19:18.699 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:19:19.546 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:19:19.546 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:19:20.316 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:19:20.316 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:19:21.062 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:19:21.062 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:19:21.925 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:19:21.926 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:19:23.017 [main] Vendor - Available booking Timeslot with startTime 2024-07-30T07:30:00Z endTime 2024-07-30T08:00:00Z
+[INFO ] 2024-07-29 14:19:23.017 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:19:24.548 [main] Vendor - New booking created successfully with bookingId :11292
+[INFO ] 2024-07-29 14:19:24.548 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:19:25.309 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:19:25.309 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:19:26.855 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-29 14:19:26.856 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 14:19:26.856 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 14:19:27.891 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 14:19:28.732 [main] Vendor - BookingId 11292 is cancelled Successfullywith status: New
+[INFO ] 2024-07-29 14:19:28.732 [main] Vendor - Vendor accept cancelled booking with BookingId 11292
+[INFO ] 2024-07-29 14:19:29.195 [main] Vendor - Vendor accept Booking successfully with bookingId: 11292 & status :ExpertAssigned
+[INFO ] 2024-07-29 14:19:29.195 [main] Vendor - Getting StartOTP through Customer Get Booking By Id
+[INFO ] 2024-07-29 14:19:30.249 [main] Vendor - Start OTP for BookingId 11292 is 7953
+[INFO ] 2024-07-29 14:19:30.251 [main] Vendor - Starting Service for BookingId 11292 and startOTP 7953
+[INFO ] 2024-07-29 14:19:31.251 [main] Vendor - Service started succesfully for BookingId 11292with status: InProgress
+[INFO ] 2024-07-29 14:19:31.251 [main] Vendor - Vendor can not Cancel booking after start service 
+[INFO ] 2024-07-29 14:20:23.902 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:20:28.417 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI1OTIwNCwiZXhwIjoxNzIyMjczNjA0LCJpYXQiOjE3MjIyNTkyMDQsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.rgKyVLPPCdJM9jusav5CKVJkne_br9DdIsBQeZK3aYw
+[INFO ] 2024-07-29 14:20:28.422 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:20:28.422 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:20:29.566 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:20:30.055 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:20:30.055 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:20:30.427 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:20:30.428 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:20:31.259 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:20:31.259 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:20:32.044 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:20:32.044 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:20:32.525 [main] Vendor - Available booking Timeslot with startTime 2024-07-30T07:30:00Z endTime 2024-07-30T08:00:00Z
+[INFO ] 2024-07-29 14:20:32.525 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:20:33.474 [main] Vendor - New booking created successfully with bookingId :11293
+[INFO ] 2024-07-29 14:20:33.474 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:20:34.408 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:20:34.409 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:21:30.652 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:21:34.811 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI1OTI3MCwiZXhwIjoxNzIyMjczNjcwLCJpYXQiOjE3MjIyNTkyNzAsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.THpn0Z3QDNg2-5pU3JzXQRTxyXxeZaNpCvQ6xKa2L38
+[INFO ] 2024-07-29 14:21:34.821 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:21:34.821 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:21:35.713 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:21:36.753 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:21:36.753 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:21:37.608 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:21:37.609 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:21:38.417 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:21:38.417 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:21:39.309 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:21:39.309 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:21:40.347 [main] Vendor - Available booking Timeslot with startTime 2024-07-30T05:00:00Z endTime 2024-07-30T05:30:00Z
+[INFO ] 2024-07-29 14:21:40.348 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:21:41.302 [main] Vendor - New booking created successfully with bookingId :11294
+[INFO ] 2024-07-29 14:21:41.302 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:21:42.078 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:21:42.078 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:24:47.417 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:24:51.487 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI1OTQ2NywiZXhwIjoxNzIyMjczODY3LCJpYXQiOjE3MjIyNTk0NjcsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.Qc0NZk_7-Sdurzrm24-Mxs4FXXzvyXs6RIKSKbTzj6A
+[INFO ] 2024-07-29 14:24:51.493 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:24:51.493 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:24:52.596 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:24:53.485 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:24:53.486 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:24:54.273 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:24:54.273 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:24:55.045 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:24:55.046 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:24:55.803 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:24:55.803 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:24:56.654 [main] Vendor - Available booking Timeslot with startTime 2024-07-29T15:30:00Z endTime 2024-07-29T16:00:00Z
+[INFO ] 2024-07-29 14:24:56.654 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:24:57.656 [main] Vendor - New booking created successfully with bookingId :11297
+[INFO ] 2024-07-29 14:24:57.656 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:24:58.552 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:24:58.554 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:24:58.943 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-29 14:24:58.944 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 14:24:58.944 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 14:24:59.885 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 14:25:00.664 [main] Vendor - BookingId 11297 is cancelled Successfullywith status: New
+[INFO ] 2024-07-29 14:25:00.664 [main] Vendor - Vendor accept cancelled booking with BookingId 11297
+[INFO ] 2024-07-29 14:25:01.500 [main] Vendor - Vendor accept Booking successfully with bookingId: 11297 & status :ExpertAssigned
+[INFO ] 2024-07-29 14:25:01.500 [main] Vendor - Getting StartOTP through Customer Get Booking By Id
+[INFO ] 2024-07-29 14:25:02.409 [main] Vendor - Start OTP for BookingId 11297 is 1689
+[INFO ] 2024-07-29 14:25:02.409 [main] Vendor - Starting Service for BookingId 11297 and startOTP 1689
+[INFO ] 2024-07-29 14:25:02.772 [main] Vendor - Service started succesfully for BookingId 11297with status: InProgress
+[INFO ] 2024-07-29 14:25:02.773 [main] Vendor - Vendor can not Cancel booking after start service 
+[INFO ] 2024-07-29 14:25:03.071 [main] Vendor - Vendor can not cancel service with error message: Cannot cancel service
+[INFO ] 2024-07-29 14:34:12.944 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:34:17.074 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI2MDAzMywiZXhwIjoxNzIyMjc0NDMzLCJpYXQiOjE3MjIyNjAwMzMsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.QIw0jukUtFruitrjCMoNAfjfV5jP7oTMKIq3zjE2vRo
+[INFO ] 2024-07-29 14:34:17.078 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:34:17.078 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:34:18.012 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:34:18.845 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:34:18.845 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:34:19.676 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:34:19.677 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:34:20.617 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:34:20.617 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:34:21.364 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:34:21.364 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:34:22.359 [main] Vendor - Available booking Timeslot with startTime 2024-07-29T16:00:00Z endTime 2024-07-29T16:30:00Z
+[INFO ] 2024-07-29 14:34:22.359 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:34:23.354 [main] Vendor - New booking created successfully with bookingId :11298
+[INFO ] 2024-07-29 14:34:23.354 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:34:24.121 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:34:24.121 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:35:40.970 [main] Vendor - Customer Login start
+[INFO ] 2024-07-29 14:35:44.484 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIiLCJuYW1laWQiOiJBcGFjaGUtSHR0cENsaWVudC80LjUuMTMgKEphdmEvMjEuMC4zKSIsIm5iZiI6MTcyMjI2MDEyMCwiZXhwIjoxNzIyMjc0NTIwLCJpYXQiOjE3MjIyNjAxMjAsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.fc9Txecn07MuNvZQr5pnS6-1lu8iTX84aHNlmPQFE_I
+[INFO ] 2024-07-29 14:35:44.487 [main] LookUp - Getting categoryId
+[INFO ] 2024-07-29 14:35:44.487 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-07-29 14:35:45.580 [main] LookUp - PostCodeName and PostCodeId fetched succesfully
+[INFO ] 2024-07-29 14:35:46.088 [main] LookUp - CategoryId fetched successfully :6 of category Electricals
+[INFO ] 2024-07-29 14:35:46.088 [main] LookUp - Getting subCategoryId
+[INFO ] 2024-07-29 14:35:47.010 [main] LookUp - SubCategoryId Fetched Successfully :49 of subCategory :Light Fitting
+[INFO ] 2024-07-29 14:35:47.010 [main] LookUp - Starting customer_service
+[INFO ] 2024-07-29 14:35:47.804 [main] LookUp - customer_service subcategory is shown successfully 330 of service Chandelier Installation
+[INFO ] 2024-07-29 14:35:47.805 [main] LookUp - Getting Customer profile
+[INFO ] 2024-07-29 14:35:48.217 [main] LookUp - Customer profile shown successfully 1
+[INFO ] 2024-07-29 14:35:48.217 [main] Vendor - Getting Customer Timeslot for book service...
+[INFO ] 2024-07-29 14:35:49.517 [main] Vendor - Available booking Timeslot with startTime 2024-07-30T03:00:00Z endTime 2024-07-30T03:30:00Z
+[INFO ] 2024-07-29 14:35:49.517 [main] Vendor - Creating new Booking
+[INFO ] 2024-07-29 14:35:50.406 [main] Vendor - New booking created successfully with bookingId :11299
+[INFO ] 2024-07-29 14:35:50.407 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-07-29 14:35:51.351 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-07-29 14:35:51.351 [main] Vendor - Vendor accept booking
+[INFO ] 2024-07-29 14:35:51.741 [main] Vendor - Booking accepted successfully
+[INFO ] 2024-07-29 14:35:51.741 [main] Vendor - Cancel booking accept by vendor
+[INFO ] 2024-07-29 14:35:51.741 [main] LookUp - Starting vendor get booking...
+[INFO ] 2024-07-29 14:35:52.667 [main] LookUp - vendor_get_booking is shown successfully: 0
+[INFO ] 2024-07-29 14:35:53.046 [main] Vendor - BookingId 11299 is cancelled Successfullywith status: New
+[INFO ] 2024-07-29 14:35:53.047 [main] Vendor - Vendor accept cancelled booking with BookingId 11299
+[INFO ] 2024-07-29 14:35:53.493 [main] Vendor - Vendor accept Booking successfully with bookingId: 11299 & status :ExpertAssigned
+[INFO ] 2024-07-29 14:35:53.493 [main] Vendor - Getting StartOTP through Customer Get Booking By Id
+[INFO ] 2024-07-29 14:35:54.273 [main] Vendor - Start OTP for BookingId 11299 is 1688
+[INFO ] 2024-07-29 14:35:54.273 [main] Vendor - Starting Service for BookingId 11299 and startOTP 1688
+[INFO ] 2024-07-29 14:35:55.146 [main] Vendor - Service started succesfully for BookingId 11299with status: InProgress
+[INFO ] 2024-07-29 14:35:55.146 [main] Vendor - Vendor can not Cancel booking after start service 
+[INFO ] 2024-07-29 14:35:55.436 [main] Vendor - Vendor can not cancel service with error message: Cannot cancel service
