@@ -19,7 +19,6 @@ public class ExtentReport implements ITestListener {
 	ExtentTest test;
 
 	@BeforeTest
-
 	public void configurereports() {// add environment details
 		esr = new ExtentSparkReporter("Extent_Report.html");
 		er = new ExtentReports();
@@ -27,7 +26,6 @@ public class ExtentReport implements ITestListener {
 		er.setSystemInfo("System", "Dell");
 		er.setSystemInfo("OS", "window11");
 		er.setSystemInfo("Host", "HomeLyf");
-
 		// confi. to change look & feel
 		esr.config().setDocumentTitle("Extent report file");
 		esr.config().setReportName("Test report");
