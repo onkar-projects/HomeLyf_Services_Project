@@ -5,7 +5,6 @@ public class SendEmailOTP_Payload {
 
 	String emailAddress;
 	
-	
 	public String getEmailAddress() {
 		return emailAddress;
 	}
@@ -13,6 +12,4 @@ public class SendEmailOTP_Payload {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
-	
 }
-

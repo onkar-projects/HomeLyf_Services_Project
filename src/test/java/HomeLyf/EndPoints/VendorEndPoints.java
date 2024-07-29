@@ -23,10 +23,10 @@ public class VendorEndPoints {
 		return response;
 	}
 
-	public static Response vendor_MybookingEP(ITestContext context, int page, int size) {
+	public static Response vendor_MybookingEP(ITestContext context, String status, int page, int size) {
 		String token = (String) context.getAttribute("VToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_MyBookingURL);
+				.queryParam("status", status).queryParam("page", page).queryParam("size", size).log().all().when().get(Routes.vendor_MyBookingURL);
 		return response;
 	}
 	
@@ -104,6 +104,13 @@ public class VendorEndPoints {
 		String token = (String) context.getAttribute("VToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).log().all().when().post(Routes.vendor_bankDetails);
+		return response;
+	}
+
+	public static Response vendor_GetBookingByIdEP(ITestContext context, int bookingId) {
+		String token = (String) context.getAttribute("VToken");
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
+				.log().all().when().post(Routes.vendor_getBookingId);
 		return response;
 	}
 }
