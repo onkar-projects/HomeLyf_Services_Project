@@ -9,9 +9,6 @@
 			<!-- <class name="HomeLyf.test.User"/> -->
 			<class name="HomeLyf.test.Customer" />
 			<class name="HomeLyf.test.Vendor" />
-
 		</classes>
-	</test> <!--
-	Test -->
-</suite> <!--
-Suite -->
+	</test>
+</suite>

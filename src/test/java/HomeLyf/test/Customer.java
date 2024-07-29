@@ -119,9 +119,9 @@ public class Customer {
 				(int) context.getAttribute("categoryId"), context);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		sTime = js.getString("[22].startTime");
+		sTime = js.getString("[12].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js.getString("[22].endTime");
+		String eTime = js.getString("[12].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("customer_service subcategory is shown successfully");
@@ -171,16 +171,24 @@ public class Customer {
 		logger.info("Calculate service price based on quantity successfully");
 	}
 
-	@Test(groups = "Customer", priority = 11, enabled = false, description = "Customer should Cancel booking ")
-	public void customer_CancelTest(ITestContext context) {
-		logger.info("Customer cancel booking before accept by vendor");
-		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
+	@Test(groups = "Customer", priority = 11, enabled = true, description = "Customer should reschedule the booking by entering booking id.")
+	public void customer_RescheduleTime(ITestContext context) {
+		logger.info("Customer reschedule time after creating booking");
+		Response response = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
+				(int) context.getAttribute("categoryId"), context);
 		response.then().log().all();
-		logger.info("Customer cancel booking with bookingId : " + (int) context.getAttribute("bookingId"));
-
+		JsonPath js = CommonMethods.jsonToString(response);
+		sTime = js.getString("[16].startTime");
+		context.setAttribute("RescheduledSTime", sTime);
+		Response response_reschedule = CustomerEndPoints.customer_RescheduleEP(context,
+				CommonMethods.CustomerReschedule_Payload(context, (int) context.getAttribute("bookingId"),
+						(String) context.getAttribute("RescheduledSTime")));
+		response_reschedule.then().log().all();
+		logger.info("Reschedule timeslot successfully at " + (int) context.getAttribute("bookingId") + " of booking id "
+				+ (String) context.getAttribute("StartTime"));
 	}
 
-	@Test(groups = "Customer", priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	@Test(groups = "Customer", priority = 12, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
@@ -188,8 +196,6 @@ public class Customer {
 				CommonMethods.address_details(name, type, lineOne, lineTwo, lineThree, location, context));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-//		int NewAddressId = js.getInt("id");
-//		context.setAttribute("NewAddressId", NewAddressId);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Added Customer new Address successfully");
 	}
@@ -216,13 +222,12 @@ public class Customer {
 		logger.info("Booking is got by id " + bookingId);
 	}
 
-	@Test(priority = 14, enabled = false, description = "Customer should reschedule the booking by entering booking id.")
-	public void customer_RescheduleTime(ITestContext context) {
-		logger.info("Customer reschedule time after creating booking");
-		Response response = CustomerEndPoints.customer_RescheduleEP(context, CommonMethods
-				.CustomerReschedule_Payload(context, (int) context.getAttribute("bookingId"), "2024-06-06T04:00:00Z"));
+	@Test(priority = 14, enabled = true, description = "Customer should Cancel booking ")
+	public void customer_CancelTest(ITestContext context) {
+		logger.info("Customer cancel booking before accept by vendor");
+		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
 		response.then().log().all();
-		logger.info("Reschedule timeslot successfully");
+		logger.info("Customer cancelled booking of bookingId : " + (int) context.getAttribute("bookingId"));
 	}
 
 	// $*****
@@ -404,9 +409,9 @@ public class Customer {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[23].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[29].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[23].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[29].endTime");
 		context.setAttribute("EndTime", eTime);
 		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
@@ -584,9 +589,9 @@ public class Customer {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[46].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[50].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[46].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[50].endTime");
 		context.setAttribute("EndTime", eTime);
 		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
@@ -703,20 +708,22 @@ public class Customer {
 		List<Object> dataArray = jsonpath.getList("data");
 		int arraySize = dataArray.size();
 		JsonPath js1 = CommonMethods.jsonToString(response);
-		// for loop for checking scheduled timeslot with before 15 minute of currenttime in GMT
+		// for loop for checking scheduled timeslot with before 15 minute of currenttime
+		// in GMT
 		for (int i = 0; i < arraySize; i++) {
 			String scTime = js.getString("[" + i + "].scheduledOn");
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
-			// IndianTime =  scheduled time 
+			// IndianTime = scheduled time
 			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
-			//fifteenminuteBeforeScheduleTime = sceduled time -  15 minute
+			// fifteenminuteBeforeScheduleTime = sceduled time - 15 minute
 			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT.equals(fifteenminuteBeforeScheduleTime);
 			System.out.println(ab);
 			if (currentTime.isBefore(indianTime)
-					// current = current time in GMT it is checking current time with 15 minute before of scheduled time
+					// current = current time in GMT it is checking current time with 15 minute
+					// before of scheduled time
 
 					&& currentTimeinGMT.equals(fifteenminuteBeforeScheduleTime.toString())) {
 				int ithbookingid = js.getInt("[" + i + "].id");
@@ -806,9 +813,9 @@ public class Customer {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[33].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[41].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[33].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[41].endTime");
 		context.setAttribute("EndTime", eTime);
 		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
@@ -877,20 +884,22 @@ public class Customer {
 		List<Object> dataArray1 = jsonpath2.getList("data");
 		int arraySize1 = dataArray1.size();
 		JsonPath js2 = CommonMethods.jsonToString(response1);
-		// for loop for checking scheduled timeslot with before 15 minute of currenttime in GMT
+		// for loop for checking scheduled timeslot with before 15 minute of currenttime
+		// in GMT
 		for (int i = 0; i < arraySize1; i++) {
 			String scTime = js.getString("[" + i + "].scheduledOn");
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
-			// IndianTime =  scheduled time 
+			// IndianTime = scheduled time
 			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
-			//fifteenminuteBeforeScheduleTime = sceduled time -  15 minute
+			// fifteenminuteBeforeScheduleTime = sceduled time - 15 minute
 			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime);
 			System.out.println(ab);
 			if (currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime.toString())) {
-				// current = current time in GMT it is checking current time with 15 minute before of scheduled time
+				// current = current time in GMT it is checking current time with 15 minute
+				// before of scheduled time
 				int ithbookingid = js.getInt("[" + i + "].id");
 				logger.info("Started customer cancel the booking of id = " + ithbookingid);
 				Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, ithbookingid);
@@ -903,7 +912,6 @@ public class Customer {
 				System.out.println("Booking is cancelled of booking id is " + ithbookingid);
 				logger.info("Service is cancelled of booking id is " + ithbookingid + " before 15 minutes that is "
 						+ fifteenminuteBeforeScheduleTime + " of scheduled timeslot " + indianTime);
-
 			} else {
 				continue;
 			}

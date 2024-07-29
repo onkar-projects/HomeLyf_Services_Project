@@ -62,7 +62,6 @@ public class Vendor {
 		int CbookingId = js.getInt("id");
 		context.setAttribute("CbookingId", CbookingId);
 		logger.info("Get booking details: " + js.getString("services[0].name") + "with bookingId: " + CbookingId);
-
 	}
 
 	@Test(priority = 4, enabled = true, description = "Vendor should get my booking")
@@ -91,8 +90,7 @@ public class Vendor {
 	public void vendor_StartBookingTest(ITestContext context) {
 		logger.info("Start vendor booking using startOtp");
 		LookUp.customer_GetBookingByIdTest(context);
-		Response response = VendorEndPoints.vendor_startBookingEP(context,
-				CommonMethods.sendBookingIdAndOtp(context));
+		Response response = VendorEndPoints.vendor_startBookingEP(context, CommonMethods.sendBookingIdAndOtp(context));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("InProgress");
