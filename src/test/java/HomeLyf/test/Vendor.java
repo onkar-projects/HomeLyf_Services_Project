@@ -778,20 +778,22 @@ public class Vendor {
         // ----vendor accept booking 15 minutes before---------
         logger.info("Vendor accepting booking before the time slot");
         LocalDateTime currentTime = LocalDateTime.now();
-        LocalDateTime startTimeSlotDate = LocalDateTime.parse(sTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        LocalDateTime startTimeSlotDate = LocalDateTime.parse(sTime, DateTimeFormatter.ISO_ZONED_DATE_TIME);
         long timeDifferenceMillis = java.time.Duration.between(currentTime, startTimeSlotDate).toMillis();
+        System.out.println("current time is"+timeDifferenceMillis);
         long fifteenMinutesMillis = TimeUnit.MINUTES.toMillis(15);
+        System.out.println("current time is"+fifteenMinutesMillis);
 
-        if (timeDifferenceMillis > 0 && timeDifferenceMillis <= fifteenMinutesMillis) {
+        if (  timeDifferenceMillis < fifteenMinutesMillis) {
             Response response = VendorEndPoints.vendor_AcceptBookingEP(context, bookingId);
             response.then().log().all();
             JsonPath js = CommonMethods.jsonToString(response);
             String status = js.getString("status");
-            Assert.assertEquals(status, "ExpertAssigned", "Status mismatch");
+           Assert.assertEquals(status, "ExpertAssigned", "Status mismatch");
             Assert.assertEquals(response.getStatusCode(), 200, "HTTP status code mismatch");
         } else {
-            logger.info("Current time is not within 15 minutes before the start time slot, cannot accept booking");
+           logger.info("Current time is not within 15 minutes before the start time slot, cannot accept booking");
             Assert.fail("Cannot accept booking, current time is not within 15 minutes before the start time slot");
         }
-    }
+	}
 }
