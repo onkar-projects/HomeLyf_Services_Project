@@ -70,5 +70,4 @@ public class Routes {
 	// ------------------------------------------Admin--------------------------------------------------------
 
 	public static String admin_profile = base_url + "/AdminAPI/api/User/myprofile";
-
 }

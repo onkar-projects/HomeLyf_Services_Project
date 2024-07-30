@@ -2,7 +2,6 @@ package HomeLyf.Payload;
 
 public class SignUP_Payload {
 
-	
 	String name;
 	long mobileNumber;
 	String type;
@@ -57,6 +56,4 @@ public class SignUP_Payload {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 }

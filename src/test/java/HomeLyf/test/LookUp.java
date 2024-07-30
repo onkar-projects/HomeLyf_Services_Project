@@ -15,7 +15,7 @@ public class LookUp {
 	private static Logger log = LogManager.getLogger(LookUp.class);
 
 	public static void getMyProfile(ITestContext context) {
-		log.info("Getting MyProfile and Address Id");
+		log.info("Getting MyProfile");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
 		JsonPath js = CommonMethods.jsonToString(response);
 		int addressId = js.getInt("addresses[].id");
@@ -30,16 +30,20 @@ public class LookUp {
 		log.info("Getting category");
 		Response response = UserEndPoints.user_getLookupCategoryEP();
 		JsonPath js = CommonMethods.jsonToString(response);
-		String name = js.getString("[10].name");
-		int CategoryId = js.getInt("[10].id");
+		String name = js.getString("[0].name");
+		int CategoryId = js.getInt("[0].id");
 		context.setAttribute("name", name);
 		String name3 = js.getString("[3].name");
 		int CategoryId3 = js.getInt("[3].id");
 		context.setAttribute("name4", name3);
 		int CategoryId4 = js.getInt("[4].id");
+		String name5 = js.getString("[5].name");
+		int CategoryId5 = js.getInt("[5].id");
+		context.setAttribute("name5", name);
 		context.setAttribute("categoryId4", CategoryId4);
 		context.setAttribute("categoryId3", CategoryId3);
 		context.setAttribute("categoryId1", CategoryId);
+		context.setAttribute("CategoryId5", CategoryId5);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		log.info("Category fetched successfully");
 	}
@@ -134,7 +138,7 @@ public class LookUp {
 	public static void vendorgetMybooking(ITestContext context) {
 		log.info("Starting vendor get booking...");
 		int vendorBookingId = 0;
-		Response response = VendorEndPoints.vendor_MybookingEP(context, 1, 100);
+		Response response = VendorEndPoints.vendor_MybookingEP(context, "ExpertAssigned", 1, 100);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		for (int i = 0; i <= 10; i++) {
@@ -174,10 +178,10 @@ public class LookUp {
 				(String) context.getAttribute("postCode1"), "");
 		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
-		int categoryId = js1.getInt("[10].id");
-		String categoryName = js1.getString("[10].name");
+		int categoryId = js1.getInt("[5].id");
+		String categoryName = js1.getString("[5].name");
 		context.setAttribute("categoryId", categoryId);
-		Assert.assertEquals(js1.getString("[10].name"), "Salon Women");
+		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
 		Assert.assertEquals(response1.statusCode(), 200);
 		log.info("CategoryId fetched successfully " + categoryId + " of category " + categoryName);
 
@@ -186,8 +190,8 @@ public class LookUp {
 				(int) context.getAttribute("categoryId"));
 		response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
-		int subCategoryId = js2.getInt("[3].id");
-		String subCategoryName = js2.getString("[3].name");
+		int subCategoryId = js2.getInt("[1].id");
+		String subCategoryName = js2.getString("[1].name");
 		context.setAttribute("subCategoryId", subCategoryId);
 		Assert.assertEquals(response2.getStatusCode(), 200);
 		log.info("SubCategoryId Fetched Successfully " + subCategoryId + " of subCategory " + subCategoryName);

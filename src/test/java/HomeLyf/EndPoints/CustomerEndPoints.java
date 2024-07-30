@@ -6,7 +6,6 @@ import org.testng.ITestContext;
 import HomeLyf.Payload.Address;
 import HomeLyf.Payload.Calculator_Payload;
 import HomeLyf.Payload.CreateCustomerBookingPayload;
-import HomeLyf.Payload.CustomerPaymentStatus_payload;
 import HomeLyf.Payload.Reschedule_Payload;
 import HomeLyf.Payload.UserLogin_Payload;
 import io.restassured.http.ContentType;
@@ -26,10 +25,8 @@ public class CustomerEndPoints {
 
 	public static Response customer_MyProfile(ITestContext context) {
 		String token = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.customer_MyProfileURL);
-
 		return response;
 	}
 
@@ -37,7 +34,6 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.customer_service, subCategoryId);
-
 		return response;
 	}
 
@@ -45,27 +41,22 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).when().post(Routes.customer_Address);
-
 		return response;
 	}
 
 	public static Response customer_GetTimeSlot(int addressID, int categoryId, ITestContext context) {
 		String token = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.queryParam("addressID", addressID).queryParam("categoryId", categoryId).log().all().when()
 				.get(Routes.customer_GetTimeShot);
-
 		return response;
 	}
 
 	public static Response customer_GetBookingEndPoint(ITestContext context, String status, int page, int size) {
 		String token = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.queryParam("status", status).queryParam("page", page).queryParam("size", size).when()
 				.get(Routes.customer_GetBookingURL);
-
 		return response;
 	}
 
@@ -73,15 +64,13 @@ public class CustomerEndPoints {
 		String token = (String) context.getAttribute("CToken");
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.body(payload).when().post(Routes.customer_CreateBookingURL);
-
 		return response;
 	}
 
-	public static Response customer_UpdatePaymentStatusEP(ITestContext context, CustomerPaymentStatus_payload payload) {
+	public static Response customer_UpdatePaymentStatusEP(ITestContext context, int paymentId) {
 		String token = (String) context.getAttribute("CToken");
-		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
-				.body(payload).when().put(Routes.customer_UpdatePaymentURL);
-
+		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
+				.put(Routes.customer_UpdatePaymentURL, paymentId);
 		return response;
 	}
 
@@ -94,16 +83,13 @@ public class CustomerEndPoints {
 
 	public static Response customer_CancelEP(ITestContext context, int bookingId) {
 		String CToken = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + CToken).contentType(ContentType.JSON).when()
 				.log().all().post(Routes.customer_CancelURL, bookingId);
-
 		return response;
 	}
 
 	public static Response customer_SubCategoryEP(ITestContext context, int categoryId) {
 		String token = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.customer_GetSubCategoryURL, categoryId);
 		return response;
@@ -111,7 +97,6 @@ public class CustomerEndPoints {
 
 	public static Response customer_PaymentModeEP(ITestContext context) {
 		String token = (String) context.getAttribute("CToken");
-
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON).when()
 				.get(Routes.getPaymentMode);
 		return response;
@@ -157,7 +142,5 @@ public class CustomerEndPoints {
 		Response response = given().header("Authorization", "Bearer " + token).contentType(ContentType.JSON)
 				.pathParam("bookingId", bookingId).when().get(Routes.customer_GetBookingIdURL);
 		return response;
-
 	}
-
 }
