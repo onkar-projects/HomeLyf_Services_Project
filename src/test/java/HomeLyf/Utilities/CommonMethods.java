@@ -256,9 +256,9 @@ public class CommonMethods {
 
 	public static UserLogin_Payload customer_Login() {
 		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
-		userlogin.setMobileNumber(Long.parseLong("9848592613"));
-		userlogin.setPassword("HomeLyf@321");
+		userlogin.setEmailAddress("ritu@gmail.com");
+		userlogin.setMobileNumber(Long.parseLong("9999999990"));
+		userlogin.setPassword("Ritu@123");
 		userlogin.setType("c");
 		userlogin.setLocation("Pune");
 		return userlogin;
@@ -269,6 +269,15 @@ public class CommonMethods {
 		userlogin.setEmailAddress("dason.sava@floodouts.com");
 		userlogin.setMobileNumber(Long.parseLong("9657400368"));
 		userlogin.setPassword("Electv@233");
+		userlogin.setType("v");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
+	public static UserLogin_Payload vendor_LoginV() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("ritu@orkutt.com");
+		userlogin.setMobileNumber(Long.parseLong("9343434565"));
+		userlogin.setPassword("123@Qwerty");
 		userlogin.setType("v");
 		userlogin.setLocation("Pune");
 		return userlogin;
