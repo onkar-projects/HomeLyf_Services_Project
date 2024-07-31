@@ -121,7 +121,7 @@ public class LookUp {
 		log.info("Booking Status are fetched successfully");
 	}
 
-	public static void customer_GetBookingByIdTest(ITestContext context) {
+	public static void customer_GetBookingByIdTest(ITestContext context ) {
 		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,
 				(int) context.getAttribute("bookingId"));
 		JsonPath js = CommonMethods.jsonToString(response);
