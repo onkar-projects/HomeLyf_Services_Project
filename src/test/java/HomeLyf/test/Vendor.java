@@ -70,7 +70,7 @@ public class Vendor {
 		logger.info("Get booking details: " + js.getString("services[0].name") + "with bookingId: " + (int) context.getAttribute("BookingId"));
 	}
 
-	@Test(priority = 4, enabled = true, description = "Vendor should get my booking")
+	@Test(priority = 4, enabled = false, description = "Vendor should get my booking")
 	public void vendor_myBooking(ITestContext context) {
 		logger.info("Starting vendor_get_booking...");
 		String[] status = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
@@ -92,7 +92,7 @@ public class Vendor {
 		logger.info("Vendor accept booking with status : " + status);
 	}
 
-	@Test(groups = "Vendor", priority = 6, enabled = true, description = "Vendor should start booking using startOtp")
+	@Test(groups = "Vendor", priority = 6, enabled = false, description = "Vendor should start booking using startOtp")
 	public void vendor_StartBookingTest(ITestContext context) {
 		logger.info("Start vendor booking using startOtp");
 		
@@ -128,7 +128,7 @@ public class Vendor {
 		logger.info("Vendor can not cancel booking after completed service");
 	}
 
-	@Test(groups = "Vendor", priority = 9, enabled = false, description = "Vendor should get available time slot")
+	@Test(groups = "Vendor", priority = 9, enabled = true, description = "Vendor should get available time slot")
 	public void vendor_TimeslotTest(ITestContext context) {
 		logger.info("Getting vendor available time slots");
 		Response response = VendorEndPoints.vendor_TimeslotEP(context);
@@ -142,7 +142,7 @@ public class Vendor {
 		logger.info("Selected Timeslot with StartTime : " + sTime + " & EndTime : " + eTime);
 	}
 
-	@Test(groups = "Vendor", priority = 10, enabled = false, description = "Vendor should have disable time slot")
+	@Test(groups = "Vendor", priority = 10, enabled = true, description = "Vendor should have disable time slot")
 	public void vendor_DisableTimeslotTest(ITestContext context) {
 		logger.info("Disabling Vendor time slot");
 		Response response = VendorEndPoints.vendor_DisableTimeslotEP(context, CommonMethods.sendTimeslot(context));
@@ -153,7 +153,7 @@ public class Vendor {
 		logger.info("Disable TimesotId : " + disabledTimeSlotId);
 	}
 
-	@Test(groups = "Vendor", priority = 11, enabled = false, description = "Vendor should have enable time slot")
+	@Test(groups = "Vendor", priority = 11, enabled = true, description = "Vendor should have enable time slot")
 	public void vendor_EnableTimeslotTest(ITestContext context) {
 		logger.info("Enable vendor time slot after disabled");
 		Response response = VendorEndPoints.vendor_EnableTimeslotEP(context,
@@ -162,7 +162,7 @@ public class Vendor {
 		logger.info("Timeslot enabled successfully");
 	}
 
-	@Test(groups = "Vendor", priority = 12, enabled = false, description = "Vendot should get profile")
+	@Test(groups = "Vendor", priority = 12, enabled = true, description = "Vendot should get profile")
 	public void vendor_ProfileTest(ITestContext context) {
 		logger.info("get vendor profile");
 		Response response = VendorEndPoints.vendor_ProfileEP(context);

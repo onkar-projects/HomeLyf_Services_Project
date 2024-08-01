@@ -3473,3 +3473,37 @@
 [INFO ] 2024-07-26 10:02:17.588 [main] Vendor - Customer Login start
 [INFO ] 2024-07-26 10:02:39.665 [main] Vendor - Customer Login start
 >>>>>>> 94ba58fb840490a17f69846d5b08da2a891efbdf
+[INFO ] 2024-08-01 12:14:42.694 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-08-01 12:14:47.108 [main] Vendor - User logged in successfully
+[INFO ] 2024-08-01 12:14:47.121 [main] Vendor - Starting userLogin test...
+[INFO ] 2024-08-01 12:14:48.338 [main] Vendor - User logged in successfully
+[INFO ] 2024-08-01 12:14:48.353 [main] Vendor - Getting vendor available time slots
+[INFO ] 2024-08-01 12:14:54.768 [main] Vendor - Selected Timeslot with StartTime : 2024-08-01T08:30:00Z & EndTime : 2024-08-01T09:00:00Z
+[INFO ] 2024-08-01 12:14:54.772 [main] Vendor - Disabling Vendor time slot
+[INFO ] 2024-08-01 12:14:56.168 [main] Vendor - Disable TimesotId : 769
+[INFO ] 2024-08-01 12:14:56.172 [main] Vendor - Enable vendor time slot after disabled
+[INFO ] 2024-08-01 12:14:57.273 [main] Vendor - Timeslot enabled successfully
+[INFO ] 2024-08-01 12:14:57.276 [main] Vendor - get vendor profile
+[INFO ] 2024-08-01 12:14:58.810 [main] Vendor - Vendor profile details getting successfully
+[INFO ] 2024-08-01 12:14:58.813 [main] Vendor - Customer Login start
+[INFO ] 2024-08-01 12:15:00.134 [main] Vendor - Customer logged in successfully eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwNiIsIm5hbWVpZCI6IkFwYWNoZS1IdHRwQ2xpZW50LzQuNS4xMyAoSmF2YS8xNy4wLjEwKSIsIm5iZiI6MTcyMjQ5NDcwMCwiZXhwIjoxNzIyNTA5MTAwLCJpYXQiOjE3MjI0OTQ3MDAsImlzcyI6Imh0dHBzOi8vcWR0YXMuY29tLyIsImF1ZCI6Imh0dHBzOi8vcWR0YXMuY29tL0N1c3RvbWVyQVBJLyJ9.Pr6yQkrO1yXdLIyJcMlIayNJQHgDxZK55yNjaLDoMWI
+[INFO ] 2024-08-01 12:15:00.134 [main] Vendor - Getting Customer profile
+[INFO ] 2024-08-01 12:15:00.933 [main] Vendor - Customer profile shown successfully 290
+[INFO ] 2024-08-01 12:15:00.933 [main] Vendor - Getting category.
+[INFO ] 2024-08-01 12:15:00.935 [main] LookUp - Getting PostCode from LookUp
+[INFO ] 2024-08-01 12:15:02.098 [main] LookUp - PostCode fetched successfully
+[INFO ] 2024-08-01 12:15:02.098 [main] LookUp - Getting category
+[INFO ] 2024-08-01 12:15:03.350 [main] LookUp - Category fetched successfully
+[INFO ] 2024-08-01 12:15:05.076 [main] Vendor - Painting Category selected successfully.
+[INFO ] 2024-08-01 12:15:05.076 [main] Vendor - Getting subcategory.
+[INFO ] 2024-08-01 12:15:05.831 [main] Vendor - SubCategory is shown Successfully.
+[INFO ] 2024-08-01 12:15:05.831 [main] Vendor - Starting customer_service
+[INFO ] 2024-08-01 12:15:06.922 [main] Vendor - customer_service subcategory is shown successfully 1 of service Home visit consultation
+[INFO ] 2024-08-01 12:15:06.922 [main] Vendor - Getting Customer Timeslot for book service
+[INFO ] 2024-08-01 12:15:08.127 [main] Vendor - Start Time: 2024-08-01T09:00:00Z | End Time: 2024-08-01T09:30:00Z
+[INFO ] 2024-08-01 12:15:08.127 [main] Vendor - Available booking Timeslot with startTime 2024-08-01T09:00:00Z endTime 2024-08-01T09:30:00Z
+[INFO ] 2024-08-01 12:15:08.127 [main] Vendor - Creating new Booking
+[INFO ] 2024-08-01 12:15:10.176 [main] Vendor - New booking created successfully with bookingId: 11365
+[INFO ] 2024-08-01 12:15:10.177 [main] Vendor - Vendor Login start
+[INFO ] 2024-08-01 12:15:12.223 [main] Vendor - Vendor logged in successfully
+[INFO ] 2024-08-01 12:15:12.223 [main] Vendor - Vendor accepting booking before the time slot
