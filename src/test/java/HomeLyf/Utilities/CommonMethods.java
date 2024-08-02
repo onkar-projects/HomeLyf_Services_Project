@@ -45,6 +45,8 @@ public class CommonMethods {
 	public static CreateCustomerBookingPayload custBooking;
 	public static DisableTimeslot_Payload disabletimeslot;
 	public static StartAndComplete_Booking_Payload startCompleteBooking;
+	public static StartAndComplete_Booking_Payload startOTPBooking;
+	public static StartAndComplete_Booking_Payload CompleteOTPBooking;
 	public static Reschedule_Payload reschedule;
 	public static CustomerPaymentStatus_payload paymentstat;
 	public static int ithbookingid;
@@ -203,10 +205,10 @@ public class CommonMethods {
 		return paymentstat;
 	}
 
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtp(ITestContext context) {
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndService(ITestContext context) {
 		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId((int) context.getAttribute("customerBookingId"));
-		startCompleteBooking.setOtp((int) context.getAttribute("c_startOTP"));
+		startCompleteBooking.setBookingId((int) context.getAttribute("BookingId"));
+		startCompleteBooking.setOtp((int) context.getAttribute("startOTP"));
 		return startCompleteBooking;
 	}
 
@@ -283,19 +285,18 @@ public class CommonMethods {
 		return userlogin;
 	}
 
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndService(ITestContext context) {
-		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId((int) context.getAttribute("BookingId"));
-		startCompleteBooking.setOtp((int) context.getAttribute("StartOTP"));
-		return startCompleteBooking;
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartService(ITestContext context) {
+		startOTPBooking = new StartAndComplete_Booking_Payload();
+		startOTPBooking.setBookingId((int) context.getAttribute("BookingId"));
+		startOTPBooking.setOtp((int) context.getAttribute("startOTP"));
+		return startOTPBooking;
 	}
 
-	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartandEndServic(ITestContext context,
-			int bookingId, int startOTP) {
-		startCompleteBooking = new StartAndComplete_Booking_Payload();
-		startCompleteBooking.setBookingId(bookingId);
-		startCompleteBooking.setOtp(startOTP);
-		return startCompleteBooking;
+	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforEndService(ITestContext context) {
+		CompleteOTPBooking = new StartAndComplete_Booking_Payload();
+		CompleteOTPBooking.setBookingId((int) context.getAttribute("BookingId"));
+		CompleteOTPBooking.setOtp((int) context.getAttribute("endOTP"));
+		return CompleteOTPBooking;
 	}
 
 	public static int VendorMyBooking(ITestContext context) {
