@@ -119,9 +119,9 @@ public class Customer {
 				(int) context.getAttribute("categoryId"), context);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		sTime = js.getString("[12].startTime");
+		sTime = js.getString("[22].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js.getString("[12].endTime");
+		String eTime = js.getString("[22].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("customer_service subcategory is shown successfully");
@@ -136,7 +136,7 @@ public class Customer {
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("status");
 		int bookingId = js.getInt("id");
-		context.setAttribute("bookingId", bookingId);
+		context.setAttribute("BookingId", bookingId);
 		Assert.assertEquals(response.statusCode(), 200);
 		Assert.assertEquals(status, "New");
 		logger.info("New booking created successfully");
@@ -158,7 +158,7 @@ public class Customer {
 	@Test(groups = "Customer", priority = 9, enabled = false, description = "customer should update payment status ")
 	public void customer_UpdatePaymnetStatus(ITestContext context) {
 		logger.info("Updating Payment Status");
-		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context, 334);
+		Response response = CustomerEndPoints.customer_UpdatePaymentStatusEP(context, (int) context.getAttribute("BookingId"));
 		logger.info("Customer can not update payment status ");
 	}
 
@@ -178,13 +178,13 @@ public class Customer {
 				(int) context.getAttribute("categoryId"), context);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		sTime = js.getString("[16].startTime");
+		sTime = js.getString("[14].startTime");
 		context.setAttribute("RescheduledSTime", sTime);
 		Response response_reschedule = CustomerEndPoints.customer_RescheduleEP(context,
-				CommonMethods.CustomerReschedule_Payload(context, (int) context.getAttribute("bookingId"),
+				CommonMethods.CustomerReschedule_Payload(context, (int) context.getAttribute("BookingId"),
 						(String) context.getAttribute("RescheduledSTime")));
 		response_reschedule.then().log().all();
-		logger.info("Reschedule timeslot successfully at " + (int) context.getAttribute("bookingId") + " of booking id "
+		logger.info("Reschedule timeslot successfully at " + (int) context.getAttribute("BookingId") + " of booking id "
 				+ (String) context.getAttribute("StartTime"));
 	}
 
@@ -200,34 +200,35 @@ public class Customer {
 		logger.info("Added Customer new Address successfully");
 	}
 
-	@Test(priority = 13, enabled = true, description = "Customer should get Booking by id to get startOTP and endOTP")
-	public void customer_GetBookingIdTest(ITestContext context) {
+	@Test(groups = "Customer", priority = 13, enabled = true, description = "Customer should get startOTP and endOTP after entering BookiId")
+	public static void customer_GetBookingIdTest(ITestContext context) {
+		System.out.println("Booking id is "+(int) context.getAttribute("BookingId"));
 		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,
-				(int) context.getAttribute("bookingId"));
+				(int) context.getAttribute("BookingId"));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int bookingId = js.get("id");
-		context.setAttribute("bookingId", bookingId);
+		context.setAttribute("BookingId", bookingId);
 		String status = js.getString("status");
 		System.out.println(status);
-		if (status == "ExpertAssigned") {
-			int startOTP = js.get("startOTP");
-			context.setAttribute("startOTP", startOTP);
-			// System.out.println(sOtp);
-			int endOTP = js.get("endOTP");
-			context.setAttribute("endOTP", endOTP);
-			logger.info("Booking is accepted by vendor and StartOTP is " + startOTP + " and EndOTP is " + endOTP);
-		}
+		int startOTP = js.get("startOTP");
+		context.setAttribute("startOTP", startOTP);
+		System.out.println("startOTP is " + startOTP);
+		int endOTP = js.get("endOTP");
+		context.setAttribute("endOTP", endOTP);
+		System.out.println("endOTP is " + endOTP);
+		logger.info("Booking is accepted by vendor and StartOTP is " + startOTP + " and EndOTP is " + endOTP);
+
 		// System.out.println(eOtp);
 		logger.info("Booking is got by id " + bookingId);
 	}
 
-	@Test(priority = 14, enabled = true, description = "Customer should Cancel booking ")
+	@Test(groups = "Customer", priority = 14, enabled = false, description = "Customer should Cancel booking ")
 	public void customer_CancelTest(ITestContext context) {
 		logger.info("Customer cancel booking before accept by vendor");
-		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("bookingId"));
+		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("BookingId"));
 		response.then().log().all();
-		logger.info("Customer cancelled booking of bookingId : " + (int) context.getAttribute("bookingId"));
+		logger.info("Customer cancelled booking of bookingId : " + (int) context.getAttribute("BookingId"));
 	}
 
 	// $*****
@@ -409,9 +410,9 @@ public class Customer {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[29].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[31].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[29].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[31].endTime");
 		context.setAttribute("EndTime", eTime);
 		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
@@ -478,7 +479,7 @@ public class Customer {
 		response_customer_GetBookingBySId.then().log().all();
 		JsonPath js_customer_GetBookingBySId = CommonMethods.jsonToString(response_customer_GetBookingBySId);
 		int startOTP = js_customer_GetBookingBySId.getInt("startOTP");
-		context.setAttribute("StartOTP", startOTP);
+		context.setAttribute("startOTP", startOTP);
 		String statusline_customer_GetBookingBySId = response_customer_GetBookingBySId.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetBookingBySId, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetBookingBySId);
@@ -505,7 +506,8 @@ public class Customer {
 		logger.info("Customer cannot cancel booking of id " + customerBookingId
 				+ " on started service and response message is " + cancelmessage);
 	}
-
+	
+    //Monika
 	@Test(priority = 17, enabled = true, description = "Validate that the customer cancels the booking one hour before the time slot")
 	public void customerCancelBookingServiceOneHourBeforeTimeslot(ITestContext context)
 			throws ParseException, InterruptedException {
@@ -669,7 +671,48 @@ public class Customer {
 		}
 	}
 
-	@Test(priority = 18, enabled = true, description = "Validate that the customer cannot cancels the booking 15 min before the scheduled time slot")
+	// Mayuri..................
+	@Test(priority = 18, enabled = true, description = "Verify that customer cancel booking before vendor accepts that booking")
+	public void customerCancelBookingBeforeVendorAccept(ITestContext context) {
+		// Customer Login
+		logger.info("Customer starts to login..........");
+		Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login(), context);
+		JsonPath loginjs = CommonMethods.jsonToString(cresponse);
+		cresponse.then().log().all();
+		String Ctoken = loginjs.getString("token");
+		System.out.println("Generated Token Id: " + Ctoken);
+		context.setAttribute("CToken", Ctoken);
+		logger.debug("Generated Token Id: {}", Ctoken);
+		logger.info("Customer logged in successfully");
+		Assert.assertEquals(cresponse.statusCode(), 200);
+		Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+		Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
+
+		LookUp.createBooking(context);
+
+		logger.info("Customer is creating a booking........");
+		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
+				CommonMethods.createBooking(context));
+		response_customer_CreateBooking.then().log().all();
+		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
+		String status = js_customer_CreateBooking.getString("status");
+		customerBookingId = js_customer_CreateBooking.getInt("id");
+		context.setAttribute("BookingId", customerBookingId);
+		Assert.assertEquals(status, "New");
+		String statusline_customer_CreateBooking = response_customer_CreateBooking.getStatusLine();
+		Assert.assertEquals(statusline_customer_CreateBooking, "HTTP/1.1 200 OK");
+		Assert.assertNotNull(response_customer_CreateBooking);
+		logger.info("New booking created successfully and Booking id is " + customerBookingId);
+
+		logger.info("Customer cancel booking.......");
+		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("BookingId"));
+		response.then().log().all();
+		logger.info("Customer cancel booking successfully before vendor accept the booking of id "
+				+ (int) context.getAttribute("BookingId"));
+	}
+
+	// Monika
+	@Test(priority = 19, enabled = true, description = "Validate that the customer cannot cancels the booking 15 min before the scheduled time slot")
 	public void customerCancelBookingService15minuteBeforeTimeslot(ITestContext context) {
 		logger.info(
 				"Started validate that the customer trying to cancel the booking 15 minute before the scheduled time slot");
