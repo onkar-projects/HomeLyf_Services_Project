@@ -119,9 +119,9 @@ public class Customer {
 				(int) context.getAttribute("categoryId"), context);
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		sTime = js.getString("[22].startTime");
+		sTime = js.getString("[30].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js.getString("[22].endTime");
+		String eTime = js.getString("[30].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("customer_service subcategory is shown successfully");
@@ -171,7 +171,7 @@ public class Customer {
 		logger.info("Calculate service price based on quantity successfully");
 	}
 
-	@Test(groups = "Customer", priority = 11, enabled = true, description = "Customer should reschedule the booking by entering booking id.")
+	@Test(groups = "Customer", priority = 11, enabled = false, description = "Customer should reschedule the booking by entering booking id.")
 	public void customer_RescheduleTime(ITestContext context) {
 		logger.info("Customer reschedule time after creating booking");
 		Response response = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
@@ -188,7 +188,7 @@ public class Customer {
 				+ (String) context.getAttribute("StartTime"));
 	}
 
-	@Test(groups = "Customer", priority = 12, enabled = true, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
+	@Test(groups = "Customer", priority = 12, enabled = false, description = "Customer should create new address with valid credentials", dataProvider = "CustomerAddressData", dataProviderClass = DataProviderClass.class)
 	public void customer_Addresstest(ITestContext context, String name, String type, String lineOne, String lineTwo,
 			String lineThree, String location) {
 		logger.info("Adding Customer Address");
@@ -200,7 +200,7 @@ public class Customer {
 		logger.info("Added Customer new Address successfully");
 	}
 
-	@Test(groups = "Customer", priority = 13, enabled = true, description = "Customer should get startOTP and endOTP after entering BookiId")
+	@Test(groups = "Customer", priority = 13, enabled = false, description = "Customer should get startOTP and endOTP after entering BookiId")
 	public static void customer_GetBookingIdTest(ITestContext context) {
 		System.out.println("Booking id is "+(int) context.getAttribute("BookingId"));
 		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,

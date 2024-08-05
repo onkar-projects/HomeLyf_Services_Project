@@ -100,12 +100,19 @@ public class Vendor {
 		logger.info("Vendor accept booking with status : " + status);
 	}
 
-	@Test(groups = "Vendor", priority = 6, enabled = true, description = "Vendor should start booking using startOtp")
+	@Test(groups = "Vendor", priority = 6, enabled = true, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class, description = "Vendor should start booking using startOtp")
 	public void vendor_StartBookingTest(ITestContext context,String mobileNumber, String type, String emailAddress,
 			String password, String location) {
 		logger.info("Start vendor booking using startOtp");
-		//Customer.customer_Login(context, mobileNumber, type, emailAddress, password, location);
-		Customer.customer_GetBookingIdTest(context);
+		Customer.customer_Login(context, mobileNumber, type, emailAddress, password, location);
+		//Customer.customer_GetBookingIdTest(context);
+		Response response_customer_GetBookingBySId = CustomerEndPoints.customer_GetBookingByIdEP(context,
+				(int) context.getAttribute("BookingId"));
+		response_customer_GetBookingBySId.then().log().all();
+		JsonPath js_customer_GetBookingBySId = CommonMethods.jsonToString(response_customer_GetBookingBySId);
+		int startOTP = js_customer_GetBookingBySId.getInt("startOTP");
+		context.setAttribute("startOTP", startOTP);
+		
 		Response response = VendorEndPoints.vendor_startBookingEP(context, CommonMethods.sendBookingIdAndOtpforStartService(context));
 		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
@@ -114,10 +121,18 @@ public class Vendor {
 		logger.info("Vendor start service with status : " + status);
 	}
 
-	@Test(groups = "Vendor", priority = 7, enabled = true, description = "Vendor should complete booking using endOtp")
-	public void vendor_CompleteBookingTest(ITestContext context) {
+	@Test(groups = "Vendor", priority = 7, enabled = true, dataProvider = "Customerlogin", dataProviderClass = DataProviderClass.class, description = "Vendor should complete booking using endOtp")
+	public void vendor_CompleteBookingTest(ITestContext context, String mobileNumber, String type, String emailAddress,
+			String password, String location) {
 		logger.info("Complete vendor booking using endOtp");
 		//LookUp.customer_GetBookingByIdTest(context);
+		Customer.customer_Login(context, mobileNumber, type, emailAddress, password, location);
+		Response response_customer_GetBookingBySId = CustomerEndPoints.customer_GetBookingByIdEP(context,
+				(int) context.getAttribute("BookingId"));
+		response_customer_GetBookingBySId.then().log().all();
+		JsonPath js_customer_GetBookingBySId = CommonMethods.jsonToString(response_customer_GetBookingBySId);
+		int endOTP = js_customer_GetBookingBySId.getInt("endOTP");
+		context.setAttribute("endOTP", endOTP);
 		Response response = VendorEndPoints.vendor_completeBookingEP(context,
 				CommonMethods.sendBookingIdAndOtpforEndService(context));
 		JsonPath js = CommonMethods.jsonToString(response);
@@ -436,9 +451,9 @@ public class Vendor {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		StartTime = js_customer_GetTimeSlot.getString("[24].startTime");
+		StartTime = js_customer_GetTimeSlot.getString("[47].startTime");
 		context.setAttribute("StartTime", StartTime);
-		EndTime = js_customer_GetTimeSlot.getString("[24].endTime");
+		EndTime = js_customer_GetTimeSlot.getString("[47].endTime");
 		context.setAttribute("EndTime", EndTime);
 		System.out.println("Start Time: " + StartTime + "\n End Time: " + EndTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
@@ -551,9 +566,9 @@ public class Vendor {
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
 		response_customer_GetTimeSlot1.then().log().all();
 		JsonPath js_customer_GetTimeSlot1 = CommonMethods.jsonToString(response_customer_GetTimeSlot1);
-		String sTime1 = js_customer_GetTimeSlot1.getString("[23].startTime");
+		String sTime1 = js_customer_GetTimeSlot1.getString("[46].startTime");
 		context.setAttribute("StartTime", sTime1);
-		String eTime1 = js_customer_GetTimeSlot1.getString("[23].endTime");
+		String eTime1 = js_customer_GetTimeSlot1.getString("[46].endTime");
 		System.out.println("Start Time: " + sTime1 + "\n End Time: " + eTime1);
 		String statusline_customer_GetTimeSlot1 = response_customer_GetTimeSlot1.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetTimeSlot1, "HTTP/1.1 200 OK");
