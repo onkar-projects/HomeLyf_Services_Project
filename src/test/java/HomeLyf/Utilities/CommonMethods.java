@@ -211,6 +211,7 @@ public class CommonMethods {
 		startCompleteBooking.setOtp((int) context.getAttribute("startOTP"));
 		return startCompleteBooking;
 	}
+	
 
 	public static DisableTimeslot_Payload sendTimeslot(ITestContext context, String sTime, String eTime) {
 		disabletimeslot = new DisableTimeslot_Payload();
@@ -266,15 +267,7 @@ public class CommonMethods {
 		return userlogin;
 	}
 
-	public static UserLogin_Payload vendor_Login() {
-		userlogin = new UserLogin_Payload();
-		userlogin.setEmailAddress("dason.sava@floodouts.com");
-		userlogin.setMobileNumber(Long.parseLong("9657400368"));
-		userlogin.setPassword("Electv@233");
-		userlogin.setType("v");
-		userlogin.setLocation("Pune");
-		return userlogin;
-	}
+	
 	public static UserLogin_Payload vendor_LoginV() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("ritu@orkutt.com");
@@ -284,7 +277,24 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
-
+	public static UserLogin_Payload customer_Login_01() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("XGw7waDRKByh@tempsmtp.com");
+		userlogin.setMobileNumber(Long.parseLong("9848592613"));
+		userlogin.setPassword("HomeLyf@321");
+		userlogin.setType("c");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
+	public static UserLogin_Payload vendor_Login() {
+		userlogin = new UserLogin_Payload();
+		userlogin.setEmailAddress("dason.sava@floodouts.com");
+		userlogin.setMobileNumber(Long.parseLong("9657400368"));
+		userlogin.setPassword("Electv@233");
+		userlogin.setType("v");
+		userlogin.setLocation("Pune");
+		return userlogin;
+	}
 	public static StartAndComplete_Booking_Payload sendBookingIdAndOtpforStartService(ITestContext context) {
 		startOTPBooking = new StartAndComplete_Booking_Payload();
 		startOTPBooking.setBookingId((int) context.getAttribute("BookingId"));
