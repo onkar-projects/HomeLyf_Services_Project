@@ -61,10 +61,8 @@ public class Customer {
 	public void customer_GetMyProfileTest(ITestContext context) {
 		logger.info("Getting Customer profile");
 		Response response = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int addressId = js.getInt("addresses[0].id");
-//		System.out.println("addressId is ="+addressId);
 		context.setAttribute("addressId", addressId);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Customer profile shown successfully");
@@ -77,10 +75,8 @@ public class Customer {
 		LookUp.getCategory(context);
 		Response response = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode2"), "");
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int categoryId = js.get("[0].id");
-		System.out.println("Category is = " + categoryId);
 		context.setAttribute("categoryId", categoryId);
 		Assert.assertEquals(js.getString("[0].name"), "Painting");
 		Assert.assertEquals(response.statusCode(), 200);
@@ -91,10 +87,8 @@ public class Customer {
 	public void customer_subCategoryIdTest(ITestContext context) {
 		logger.info("customer getting subCategoryId");
 		Response response = CustomerEndPoints.customer_SubCategoryEP(context, (int) context.getAttribute("categoryId"));
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int subCategoryId = js.getInt("[0].id");
-		System.out.println("subCategoryId is = " + subCategoryId);
 		context.setAttribute("subCategoryId", subCategoryId);
 		Assert.assertEquals(response.getStatusCode(), 200);
 		logger.info("SubCategoryId is: " + subCategoryId);
@@ -104,7 +98,6 @@ public class Customer {
 	public void customer_GetService(ITestContext context) {
 		logger.info("Customer getting serviceId...");
 		Response response = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int serviceId = js.getInt("[0].id");
 		context.setAttribute("serviceId", js.getInt("[0].id"));
@@ -117,12 +110,10 @@ public class Customer {
 		logger.info("customer getting available Timeslot");
 		Response response = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
-		sTime = js.getString("[30].startTime");
+		sTime = js.getString("[14].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js.getString("[30].endTime");
-		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
+		String eTime = js.getString("[14].endTime");
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("customer_service subcategory is shown successfully");
 	}
@@ -132,7 +123,6 @@ public class Customer {
 		logger.info("Creating new Booking");
 		Response response = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String status = js.getString("status");
 		int bookingId = js.getInt("id");
@@ -147,7 +137,6 @@ public class Customer {
 		String[] status = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
 		logger.info("Fetching Customer booking");
 		Response response = CustomerEndPoints.customer_GetBookingEndPoint(context, status[0], 1, 1000);
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String stat = js.getString("[0].status");
 		Assert.assertEquals(response.statusCode(), 200);
@@ -166,7 +155,6 @@ public class Customer {
 	public void customer_Calculate(ITestContext context) {
 		logger.info(" Customer calculate service based on quantity");
 		Response response = CustomerEndPoints.customer_CalculateEP(context, CommonMethods.calculateData(context));
-		response.then().log().all();
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Calculate service price based on quantity successfully");
 	}
@@ -176,14 +164,12 @@ public class Customer {
 		logger.info("Customer reschedule time after creating booking");
 		Response response = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		sTime = js.getString("[14].startTime");
 		context.setAttribute("RescheduledSTime", sTime);
 		Response response_reschedule = CustomerEndPoints.customer_RescheduleEP(context,
 				CommonMethods.CustomerReschedule_Payload(context, (int) context.getAttribute("BookingId"),
 						(String) context.getAttribute("RescheduledSTime")));
-		response_reschedule.then().log().all();
 		logger.info("Reschedule timeslot successfully at " + (int) context.getAttribute("BookingId") + " of booking id "
 				+ (String) context.getAttribute("StartTime"));
 	}
@@ -194,7 +180,6 @@ public class Customer {
 		logger.info("Adding Customer Address");
 		Response response = CustomerEndPoints.customer_Address(context,
 				CommonMethods.address_details(name, type, lineOne, lineTwo, lineThree, location, context));
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Added Customer new Address successfully");
@@ -202,24 +187,17 @@ public class Customer {
 
 	@Test(groups = "Customer", priority = 13, enabled = false, description = "Customer should get startOTP and endOTP after entering BookiId")
 	public static void customer_GetBookingIdTest(ITestContext context) {
-		System.out.println("Booking id is "+(int) context.getAttribute("BookingId"));
 		Response response = CustomerEndPoints.customer_GetBookingByIdEP(context,
 				(int) context.getAttribute("BookingId"));
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		int bookingId = js.get("id");
 		context.setAttribute("BookingId", bookingId);
 		String status = js.getString("status");
-		System.out.println(status);
 		int startOTP = js.get("startOTP");
 		context.setAttribute("startOTP", startOTP);
-		System.out.println("startOTP is " + startOTP);
 		int endOTP = js.get("endOTP");
 		context.setAttribute("endOTP", endOTP);
-		System.out.println("endOTP is " + endOTP);
 		logger.info("Booking is accepted by vendor and StartOTP is " + startOTP + " and EndOTP is " + endOTP);
-
-		// System.out.println(eOtp);
 		logger.info("Booking is got by id " + bookingId);
 	}
 
@@ -227,7 +205,7 @@ public class Customer {
 	public void customer_CancelTest(ITestContext context) {
 		logger.info("Customer cancel booking before accept by vendor");
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("BookingId"));
-		response.then().log().all();
+		Assert.assertEquals(response.statusCode(), 200);
 		logger.info("Customer cancelled booking of bookingId : " + (int) context.getAttribute("BookingId"));
 	}
 
@@ -237,7 +215,6 @@ public class Customer {
 		// ---------------------------VendorLogin----------------------------------------
 		logger.info("Vendor start login");
 		Response vresponse = VendorEndPoints.vendor_Login(context, CommonMethods.vendor_Login());
-		// System.out.println("---------------"+vresponse.getStatusLine());
 		JsonPath vloginjs = CommonMethods.jsonToString(vresponse);
 		String Vtoken = vloginjs.getString("token");
 		System.out.println("Generated Token Id: " + Vtoken);
@@ -251,8 +228,8 @@ public class Customer {
 		logger.info("Getting Vendor Available Timeslot");
 		Response vTimeslotResponse = VendorEndPoints.vendor_TimeslotEP(context);
 		JsonPath timeslotjs = CommonMethods.jsonToString(vTimeslotResponse);
-		String stime = timeslotjs.getString("availableTimeSlots[1].startTime");
-		String etime = timeslotjs.getString("availableTimeSlots[1].endTime");
+		String stime = timeslotjs.getString("availableTimeSlots[3].startTime");
+		String etime = timeslotjs.getString("availableTimeSlots[3].endTime");
 		context.setAttribute("stime", stime);
 		context.setAttribute("etime", etime);
 		logger.info("list of vendor TimeSlot displayed with startTime " + stime + " endTime " + etime);
@@ -266,12 +243,10 @@ public class Customer {
 		disabletimeslot.setStartTime(stime);
 		disabletimeslot.setEndTime(etime);
 		Response disableResponse = VendorEndPoints.vendor_DisableTimeslotEP(context, disabletimeslot);
-		disableResponse.then().log().all();
 		JsonPath disabletimeslotjs = CommonMethods.jsonToString(disableResponse);
 		String sTime = disabletimeslotjs.getString("startTime");
 		String eTime = disabletimeslotjs.getString("endTime");
 		int id = disabletimeslotjs.getInt("id");
-		System.out.println();
 		logger.info("DisableTimeSlot:startTime " + sTime + " endTime  " + eTime + " id " + id);
 		Assert.assertEquals(disableResponse.getStatusCode(), 200, "Timeslots disable succcesfully");
 		Assert.assertEquals(disableResponse.statusLine(), "HTTP/1.1 200 OK");
@@ -294,7 +269,6 @@ public class Customer {
 		LookUp.getCategory(context);
 		Response response_customerGetCategoryEP = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode2"), "");
-		response_customerGetCategoryEP.then().log().all();
 		JsonPath js_customerGetCategoryEP = CommonMethods.jsonToString(response_customerGetCategoryEP);
 		int categoryId = js_customerGetCategoryEP.get("[5].id");
 		context.setAttribute("categoryId", categoryId);
@@ -307,7 +281,6 @@ public class Customer {
 		// Customer Address
 		// LookUp.getMyProfile(context);
 		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response_customer_GetMyProfileEP.then().log().all();
 		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
 		int addressId = js_customer_GetMyProfileEP.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId);
@@ -315,15 +288,11 @@ public class Customer {
 		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetMyProfileEP);
 		logger.info("Customer profile shown successfully.");
-		System.out.println("address id is " + addressId);
 
 		// ----------------------------------CustomerTimeSlot------------------------------------
 		logger.info("Customer available Timeslot");
 		Response response_customer_GetTimeSlot = CustomerEndPoints.customer_GetTimeSlot(
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId"), context);
-		response_customer_GetTimeSlot.then().log().all();
-//			JsonPath customerTimeslotjs = CommonMethods.jsonToString(customerTimeslotResponse);
-//			customerTimeslotjs.get("[].sTime");
 		logger.info("Check whether disable timeslot is available in customer available timeslot:" + sTime);
 		Assert.assertEquals(response_customer_GetTimeSlot.getBody().asString().contains(sTime), true, sTime);
 		Assert.assertEquals(response_customer_GetTimeSlot.statusLine(), "HTTP/1.1 200 OK");
@@ -351,7 +320,6 @@ public class Customer {
 		// -------------------------------CustomerMyProfile----------------------------------
 		logger.info("Getting Customer profile.");
 		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response_customer_GetMyProfileEP.then().log().all();
 		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
 		int addressId = js_customer_GetMyProfileEP.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId);
@@ -359,7 +327,6 @@ public class Customer {
 		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetMyProfileEP);
 		logger.info("Customer profile shown successfully.");
-		System.out.println("address id is " + addressId);
 		// -------------------------------------------------------
 
 		logger.info("Getting category.");
@@ -367,7 +334,6 @@ public class Customer {
 		LookUp.getCategory(context);
 		Response response_customerGetCategoryEP = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode2"), (String) context.getAttribute("name3"));
-		response_customerGetCategoryEP.then().log().all();
 		JsonPath js_customerGetCategoryEP = CommonMethods.jsonToString(response_customerGetCategoryEP);
 		int categoryId = js_customerGetCategoryEP.get("[4].id");
 		context.setAttribute("categoryId", categoryId);
@@ -376,12 +342,10 @@ public class Customer {
 		Assert.assertEquals(statusline_customerGetCategoryEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customerGetCategoryEP);
 		logger.info(js_customerGetCategoryEP.getString("[3].name") + " Category selected successfully.");
-		System.out.println(js_customerGetCategoryEP.getString("[3].name"));
 		// -------------------------------CustomerSubCategoryId-------------------------------------
 		logger.info("Getting subcategory.");
 		Response response_customer_SubCategoryEP = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId3"));
-		response_customer_SubCategoryEP.then().log().all();
 		JsonPath js_customer_SubCategoryEP = CommonMethods.jsonToString(response_customer_SubCategoryEP);
 		int subCategoryId = js_customer_SubCategoryEP.getInt("[0].id");
 		context.setAttribute("subCategoryId", subCategoryId);
@@ -393,7 +357,6 @@ public class Customer {
 		logger.info("Getting services.");
 		Response response_customer_service = CustomerEndPoints.customer_service(context,
 				(int) context.getAttribute("subCategoryId"));
-		response_customer_service.then().log().all();
 		JsonPath js_customer_service = CommonMethods.jsonToString(response_customer_service);
 		int serviceId = js_customer_service.getInt("[0].id");
 		int serviceDuration = js_customer_service.getInt("[0].duration");
@@ -408,29 +371,20 @@ public class Customer {
 				+ " and Service name is = " + servicename);
 		Response response_customer_GetTimeSlot = CustomerEndPoints.customer_GetTimeSlot(
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
-		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[31].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[22].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[31].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[22].endTime");
 		context.setAttribute("EndTime", eTime);
-		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetTimeSlot, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetTimeSlot);
 		logger.info("Category timeslot " + "Start Time: " + sTime + "\tEnd Time: " + eTime + " successfully.");
-		System.out.println("address is " + (int) context.getAttribute("addressId"));
-		System.out.println("category is " + (int) context.getAttribute("categoryId3"));
 		// --------------------------------------------------------------------
 
 		logger.info("Started creating new Booking.");
-		System.out.println((int) context.getAttribute("serviceId"));
-		// System.out.println(Collections.singletonList(bookingServices));
-		System.out.println((int) context.getAttribute("addressId"));
-		System.out.println((String) context.getAttribute("StartTime"));
 		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
-		response_customer_CreateBooking.then().log().all();
 		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
 		String status = js_customer_CreateBooking.getString("status");
 		customerBookingId = js_customer_CreateBooking.getInt("id");
@@ -456,7 +410,6 @@ public class Customer {
 		logger.info("Getting vendor timeslots.");
 		Response response_vendor_TimeslotEP = VendorEndPoints.vendor_TimeslotEP(context);
 		JsonPath js_vendor_TimeslotEP = CommonMethods.jsonToString(response_vendor_TimeslotEP);
-		response_vendor_TimeslotEP.then().log().all();
 		String statusline_vendor_TimeslotEP = response_vendor_TimeslotEP.getStatusLine();
 		Assert.assertEquals(statusline_vendor_TimeslotEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_vendor_TimeslotEP);
@@ -476,7 +429,6 @@ public class Customer {
 		logger.info("Get StartOTP through customerGetBooking by Id =" + customerBookingId);
 		Response response_customer_GetBookingBySId = CustomerEndPoints.customer_GetBookingByIdEP(context,
 				customerBookingId);
-		response_customer_GetBookingBySId.then().log().all();
 		JsonPath js_customer_GetBookingBySId = CommonMethods.jsonToString(response_customer_GetBookingBySId);
 		int startOTP = js_customer_GetBookingBySId.getInt("startOTP");
 		context.setAttribute("startOTP", startOTP);
@@ -496,7 +448,6 @@ public class Customer {
 		// --------------------------------CustomerCancelBooking------------------------------------------
 		logger.info("Started customer cancel the booking of id = " + customerBookingId);
 		Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
-		response_customer_CancelEP.then().log().all();
 		JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
 		String cancelmessage = js_customer_CancelEP.toString();
 		String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
@@ -529,7 +480,6 @@ public class Customer {
 
 		logger.info("Getting Customer profile.");
 		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response_customer_GetMyProfileEP.then().log().all();
 		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
 		int addressId = js_customer_GetMyProfileEP.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId);
@@ -537,7 +487,6 @@ public class Customer {
 		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetMyProfileEP);
 		logger.info("Customer profile shown successfully.");
-		System.out.println("address id is " + addressId);
 		// -------------------------------------------------------
 
 		logger.info("Getting category.");
@@ -545,7 +494,6 @@ public class Customer {
 		LookUp.getCategory(context);
 		Response response_customerGetCategoryEP = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode2"), (String) context.getAttribute("name3"));
-		response_customerGetCategoryEP.then().log().all();
 		JsonPath js_customerGetCategoryEP = CommonMethods.jsonToString(response_customerGetCategoryEP);
 		int categoryId = js_customerGetCategoryEP.get("[4].id");
 		context.setAttribute("categoryId", categoryId);
@@ -554,13 +502,11 @@ public class Customer {
 		Assert.assertEquals(statusline_customerGetCategoryEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customerGetCategoryEP);
 		logger.info(js_customerGetCategoryEP.getString("[3].name") + " Category selected successfully.");
-		System.out.println(js_customerGetCategoryEP.getString("[3].name"));
 		// -----------------------------------------------------------------
 
 		logger.info("Getting subcategory.");
 		Response response_customer_SubCategoryEP = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId3"));
-		response_customer_SubCategoryEP.then().log().all();
 		JsonPath js_customer_SubCategoryEP = CommonMethods.jsonToString(response_customer_SubCategoryEP);
 		int subCategoryId = js_customer_SubCategoryEP.getInt("[0].id");
 		context.setAttribute("subCategoryId", subCategoryId);
@@ -573,7 +519,6 @@ public class Customer {
 		logger.info("Getting services.");
 		Response response_customer_service = CustomerEndPoints.customer_service(context,
 				(int) context.getAttribute("subCategoryId"));
-		response_customer_service.then().log().all();
 		JsonPath js_customer_service = CommonMethods.jsonToString(response_customer_service);
 		int serviceId = js_customer_service.getInt("[0].id");
 		int serviceDuration = js_customer_service.getInt("[0].duration");
@@ -589,29 +534,20 @@ public class Customer {
 				+ " and Service name is = " + servicename);
 		Response response_customer_GetTimeSlot = CustomerEndPoints.customer_GetTimeSlot(
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
-		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[50].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[52].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[50].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[52].endTime");
 		context.setAttribute("EndTime", eTime);
-		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetTimeSlot, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetTimeSlot);
 		logger.info("Category timeslot " + "Start Time: " + sTime + "\tEnd Time: " + eTime + " successfully.");
-		System.out.println("address is " + (int) context.getAttribute("addressId"));
-		System.out.println("category is " + (int) context.getAttribute("categoryId3"));
 		// --------------------------------------------------------------------
 
 		logger.info("Started creating new Booking.");
-		System.out.println((int) context.getAttribute("serviceId"));
-		// System.out.println(Collections.singletonList(bookingServices));
-		System.out.println((int) context.getAttribute("addressId"));
-		System.out.println((String) context.getAttribute("StartTime"));
 		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
-		response_customer_CreateBooking.then().log().all();
 		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
 		String status = js_customer_CreateBooking.getString("status");
 		customerBookingId = js_customer_CreateBooking.getInt("id");
@@ -647,15 +583,11 @@ public class Customer {
 		Assert.assertNotNull(statusline_vendor_AcceptBookingEP);
 		DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 		ZonedDateTime indianTime = ZonedDateTime.parse(sTime, formatter);
-		System.out.println("Schedule time is : " + indianTime);
 		ZonedDateTime currentTime = ZonedDateTime.now(ZoneId.of("UTC"));
-		System.out.println("Current Time in UTC/GMT : " + currentTime);
 		ZonedDateTime oneHourBeforeSchduleTime = indianTime.minusHours(1);
-		System.out.println("One hour before: " + oneHourBeforeSchduleTime.toString());
 		if (currentTime.isBefore(oneHourBeforeSchduleTime)) {
 			logger.info("Started customer cancel the booking of id = " + customerBookingId);
 			Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, customerBookingId);
-			response_customer_CancelEP.then().log().all();
 			JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
 			String cancelmessage = js_customer_CancelEP.toString();
 			String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
@@ -665,7 +597,6 @@ public class Customer {
 			logger.info(
 					"Customer cancel booking of id " + customerBookingId + " one hour before of scheduled timeslot.");
 		} else {
-			System.out.println("Customer cannot cancel the booking");
 			logger.info(
 					"Customer cannot cancel the booking as the scheduled timeslot is less than one hour or it is a past timeslot.");
 		}
@@ -693,7 +624,6 @@ public class Customer {
 		logger.info("Customer is creating a booking........");
 		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
-		response_customer_CreateBooking.then().log().all();
 		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
 		String status = js_customer_CreateBooking.getString("status");
 		customerBookingId = js_customer_CreateBooking.getInt("id");
@@ -706,7 +636,6 @@ public class Customer {
 
 		logger.info("Customer cancel booking.......");
 		Response response = CustomerEndPoints.customer_CancelEP(context, (int) context.getAttribute("BookingId"));
-		response.then().log().all();
 		logger.info("Customer cancel booking successfully before vendor accept the booking of id "
 				+ (int) context.getAttribute("BookingId"));
 	}
@@ -735,11 +664,9 @@ public class Customer {
 		DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 		String formattedTime = currentTime.format(formatter1);
 		String currentTimeinGMT = formattedTime + "Z";
-		System.out.println("Formatted Current Time: " + formattedTime);
 		logger.info("Fetching Customer booking");
 		String[] status = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
 		Response response = CustomerEndPoints.customer_GetBookingEndPoint(context, status[1], 1, 1000);
-		response.then().log().all();
 		JsonPath js = CommonMethods.jsonToString(response);
 		String stat = js.getString("[1].status");
 		Assert.assertEquals(response.statusCode(), 200);
@@ -758,12 +685,9 @@ public class Customer {
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
 			// IndianTime = scheduled time
-			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
 			// fifteenminuteBeforeScheduleTime = sceduled time - 15 minute
-			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT.equals(fifteenminuteBeforeScheduleTime);
-			System.out.println(ab);
 			if (currentTime.isBefore(indianTime)
 					// current = current time in GMT it is checking current time with 15 minute
 					// before of scheduled time
@@ -772,13 +696,11 @@ public class Customer {
 				int ithbookingid = js.getInt("[" + i + "].id");
 				logger.info("Started customer cancel the booking of id = " + ithbookingid);
 				Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, ithbookingid);
-				response_customer_CancelEP.then().log().all();
 				JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
 				String cancelmessage = js_customer_CancelEP.toString();
 				String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
 				Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 400 Bad Request");
 				Assert.assertNotNull(response_customer_CancelEP);
-				System.out.println("Booking is cancelled of booking id is " + ithbookingid);
 				logger.info("Service is cancelled of booking id is " + ithbookingid + " before 15 minutes that is "
 						+ fifteenminuteBeforeScheduleTime + " of scheduled timeslot " + indianTime);
 				return;
@@ -788,13 +710,10 @@ public class Customer {
 		}
 		logger.info(
 				"Booking is not present customer should create booking then validate that the customer cannot cancels the booking 15 min before the scheduled time slot");
-		System.out.println(
-				"Booking is not present customer should create booking then validate that the customer cannot cancels the booking 15 min before the scheduled time slot");
 		// -----------------------------------------------------------------------------------
 
 		logger.info("Getting Customer profile.");
 		Response response_customer_GetMyProfileEP = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response_customer_GetMyProfileEP.then().log().all();
 		JsonPath js_customer_GetMyProfileEP = CommonMethods.jsonToString(response_customer_GetMyProfileEP);
 		int addressId = js_customer_GetMyProfileEP.getInt("addresses[1].id");
 		context.setAttribute("addressId", addressId);
@@ -802,7 +721,6 @@ public class Customer {
 		Assert.assertEquals(statusline_customer_GetMyProfileEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetMyProfileEP);
 		logger.info("Customer profile shown successfully.");
-		System.out.println("address id is " + addressId);
 		// -------------------------------------------------------
 
 		logger.info("Getting category.");
@@ -810,7 +728,6 @@ public class Customer {
 		LookUp.getCategory(context);
 		Response response_customerGetCategoryEP = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode2"), (String) context.getAttribute("name3"));
-		response_customerGetCategoryEP.then().log().all();
 		JsonPath js_customerGetCategoryEP = CommonMethods.jsonToString(response_customerGetCategoryEP);
 		int categoryId = js_customerGetCategoryEP.get("[4].id");
 		context.setAttribute("categoryId", categoryId);
@@ -819,13 +736,11 @@ public class Customer {
 		Assert.assertEquals(statusline_customerGetCategoryEP, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customerGetCategoryEP);
 		logger.info(js_customerGetCategoryEP.getString("[3].name") + " Category selected successfully.");
-		System.out.println(js_customerGetCategoryEP.getString("[3].name"));
 		// -----------------------------------------------------------------
 
 		logger.info("Getting subcategory.");
 		Response response_customer_SubCategoryEP = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId3"));
-		response_customer_SubCategoryEP.then().log().all();
 		JsonPath js_customer_SubCategoryEP = CommonMethods.jsonToString(response_customer_SubCategoryEP);
 		int subCategoryId = js_customer_SubCategoryEP.getInt("[0].id");
 		context.setAttribute("subCategoryId", subCategoryId);
@@ -838,7 +753,6 @@ public class Customer {
 		logger.info("Getting services.");
 		Response response_customer_service = CustomerEndPoints.customer_service(context,
 				(int) context.getAttribute("subCategoryId"));
-		response_customer_service.then().log().all();
 		JsonPath js_customer_service = CommonMethods.jsonToString(response_customer_service);
 		int serviceId = js_customer_service.getInt("[0].id");
 		int serviceDuration = js_customer_service.getInt("[0].duration");
@@ -854,28 +768,20 @@ public class Customer {
 				+ " and Service name is = " + servicename);
 		Response response_customer_GetTimeSlot = CustomerEndPoints.customer_GetTimeSlot(
 				(int) context.getAttribute("addressId"), (int) context.getAttribute("categoryId3"), context);
-		response_customer_GetTimeSlot.then().log().all();
 		JsonPath js_customer_GetTimeSlot = CommonMethods.jsonToString(response_customer_GetTimeSlot);
-		sTime = js_customer_GetTimeSlot.getString("[41].startTime");
+		sTime = js_customer_GetTimeSlot.getString("[15].startTime");
 		context.setAttribute("StartTime", sTime);
-		eTime = js_customer_GetTimeSlot.getString("[41].endTime");
+		eTime = js_customer_GetTimeSlot.getString("[15].endTime");
 		context.setAttribute("EndTime", eTime);
-		System.out.println("Start Time: " + sTime + "\nEnd Time: " + eTime);
 		String statusline_customer_GetTimeSlot = response_customer_GetTimeSlot.getStatusLine();
 		Assert.assertEquals(statusline_customer_GetTimeSlot, "HTTP/1.1 200 OK");
 		Assert.assertNotNull(response_customer_GetTimeSlot);
 		logger.info("Category timeslot " + "Start Time: " + sTime + "\tEnd Time: " + eTime + " successfully.");
-		System.out.println("address is " + (int) context.getAttribute("addressId"));
-		System.out.println("category is " + (int) context.getAttribute("categoryId3"));
 		// --------------------------------------------------------------------
 
 		logger.info("Started creating new Booking.");
-		System.out.println((int) context.getAttribute("serviceId"));
-		System.out.println((int) context.getAttribute("addressId"));
-		System.out.println((String) context.getAttribute("StartTime"));
 		Response response_customer_CreateBooking = CustomerEndPoints.customer_CreateBookingEndPoint(context,
 				CommonMethods.createBooking(context));
-		response_customer_CreateBooking.then().log().all();
 		JsonPath js_customer_CreateBooking = CommonMethods.jsonToString(response_customer_CreateBooking);
 		String bookingstatus = js_customer_CreateBooking.getString("status");
 		customerBookingId = js_customer_CreateBooking.getInt("id");
@@ -916,11 +822,9 @@ public class Customer {
 		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 		String formattedTime1 = currentTime1.format(formatter2);
 		String currentTimeinGMT1 = formattedTime1 + "Z";
-		System.out.println("Formatted Current Time: " + formattedTime1);
 		logger.info("Starting vendor_get_booking...");
 		String[] status2 = { "New", "ExpertAssigned", "Inprogress", "Cancelled", "Completed" };
 		Response response1 = VendorEndPoints.vendor_MybookingEP(context, status2[1], 1, 1000);
-		response1.then().log().all();
 		JsonPath jsonpath2 = response1.jsonPath();
 
 		// Extract array and check size
@@ -934,25 +838,20 @@ public class Customer {
 			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 			ZonedDateTime indianTime = ZonedDateTime.parse(scTime + "Z", formatter);
 			// IndianTime = scheduled time
-			System.out.println("Schedule time is : " + indianTime);
 			ZonedDateTime fifteenminuteBeforeScheduleTime = indianTime.minusMinutes(15);
 			// fifteenminuteBeforeScheduleTime = sceduled time - 15 minute
-			System.out.println("15 minute before time is : " + fifteenminuteBeforeScheduleTime.toString());
 			boolean ab = currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime);
-			System.out.println(ab);
 			if (currentTimeinGMT1.equals(fifteenminuteBeforeScheduleTime.toString())) {
 				// current = current time in GMT it is checking current time with 15 minute
 				// before of scheduled time
 				int ithbookingid = js.getInt("[" + i + "].id");
 				logger.info("Started customer cancel the booking of id = " + ithbookingid);
 				Response response_customer_CancelEP = CustomerEndPoints.customer_CancelEP(context, ithbookingid);
-				response_customer_CancelEP.then().log().all();
 				JsonPath js_customer_CancelEP = CommonMethods.jsonToString(response_customer_CancelEP);
 				String cancelmessage = js_customer_CancelEP.toString();
 				String statusline_customer_CancelEP = response_customer_CancelEP.getStatusLine();
 				Assert.assertEquals(statusline_customer_CancelEP, "HTTP/1.1 400 Bad Request");
 				Assert.assertNotNull(response_customer_CancelEP);
-				System.out.println("Booking is cancelled of booking id is " + ithbookingid);
 				logger.info("Service is cancelled of booking id is " + ithbookingid + " before 15 minutes that is "
 						+ fifteenminuteBeforeScheduleTime + " of scheduled timeslot " + indianTime);
 			} else {
