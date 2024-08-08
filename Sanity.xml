@@ -4,23 +4,15 @@
 	<listeners>
 		<listener class-name="HomeLyf.Utilities.ExtentReport"/>
 	</listeners>
-  <test thread-count="5" name="CustomerTest">
+  <test thread-count="5" name="Test1">
 	 <groups>
             <run>
-                <include name="Customer"/> <!-- Include all methods in the 'acceptBooking' group -->
+                <include name="Customer"/> 
+                <include name="Vendor"/><!-- Include all methods in the 'acceptBooking' group -->
             </run>
         </groups>
     <classes>
       <class name="HomeLyf.test.Customer"/>
-    </classes>
-  </test> <!-- Test -->
-   <test thread-count="5" name="VendorTest">
-	 <groups>
-            <run>
-                <include name="Vendor"/> <!-- Include all methods in the 'acceptBooking' group -->
-            </run>
-        </groups>
-    <classes>
       <class name="HomeLyf.test.Vendor"/>
     </classes>
   </test> <!-- Test -->
