@@ -183,7 +183,6 @@ public class LookUp {
 		LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode1"), "");
-		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
 		int categoryId = js1.getInt("[5].id");
 		String categoryName = js1.getString("[5].name");
@@ -195,7 +194,6 @@ public class LookUp {
 		log.info("Getting subCategoryId");
 		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId"));
-		response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
 		int subCategoryId = js2.getInt("[1].id");
 		String subCategoryName = js2.getString("[1].name");
@@ -205,7 +203,6 @@ public class LookUp {
 
 		log.info("Starting customer_service...");
 		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
-		response3.then().log().all();
 		JsonPath js3 = CommonMethods.jsonToString(response3);
 		int serviceId = js3.getInt("[0].id");
 		String serviceName = js3.getString("[0].name");
@@ -215,7 +212,6 @@ public class LookUp {
 
 		log.info("Getting Customer profile");
 		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response4.then().log().all();
 		JsonPath js4 = CommonMethods.jsonToString(response4);
 		int addressId = js4.get("addresses[0].id");
 		context.setAttribute("addressId", addressId);
@@ -299,7 +295,6 @@ public class LookUp {
 		LookUp.getPostCode(context);
 		//LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context, (String) context.getAttribute("postCode1"), "");
-		//response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
 		int categoryId = js1.getInt("[5].id");
 		String categoryName = js1.getString("[5].name");
@@ -311,7 +306,6 @@ public class LookUp {
 		log.info("Getting subCategoryId");
 		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId"));
-		//response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
 		int subCategoryId = js2.getInt("[3].id");
 		String subCategoryName = js2.getString("[3].name");
@@ -321,17 +315,15 @@ public class LookUp {
 
 		log.info("Starting customer_service");
 		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
-		//response3.then().log().all();
 		JsonPath js3 = CommonMethods.jsonToString(response3);
-		int serviceId = js3.getInt("[0].id");
-		String serviceName = js3.getString("[0].name");
+		int serviceId = js3.getInt("[3].id");
+		String serviceName = js3.getString("[3].name");
 		context.setAttribute("serviceId", serviceId);
 		Assert.assertEquals(response3.statusCode(), 200);
 		log.info("customer_service subcategory is shown successfully " + serviceId + " of service " + serviceName);
 
 		log.info("Getting Customer profile");
 		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
-		//response4.then().log().all();
 		JsonPath js4 = CommonMethods.jsonToString(response4);
 		int addressId = js4.getInt("addresses[0].id");
 		context.setAttribute("addressId", addressId);
@@ -341,18 +333,16 @@ public class LookUp {
 		log.info("Getting Customer Timeslot for book service");
 		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
-		//response5.then().log().all();
 		JsonPath js5 = CommonMethods.jsonToString(response5);
 		
-		String sTime = js5.getString("[4].startTime");
+		String sTime = js5.getString("[10].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js5.getString("[4].endTime");
+		String eTime = js5.getString("[10].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response5.statusCode(), 200);
 		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
 		
 		Response response6 = CustomerEndPoints.customer_CreateBookingEndPoint(context, CommonMethods.createBooking(context));
-		response6.then().log().all();
 		JsonPath js6 = CommonMethods.jsonToString(response6);
 		int bookingId = js6.getInt("id");
 		String status = js6.getString("status");
@@ -364,7 +354,6 @@ public class LookUp {
 		LookUp.login("v", context);
 		// Get the vendor's booked timeslots
 		Response vendorTimeslotRes = VendorEndPoints.vendor_TimeslotEP(context);
-		vendorTimeslotRes.then().log().all();
 		JsonPath vendorTimeslotJs = CommonMethods.jsonToString(vendorTimeslotRes);
 		List<String> bookedTimeslots = vendorTimeslotJs.getList("bookedTimeslots");
 
@@ -376,7 +365,6 @@ public class LookUp {
 		        log.info("Timeslot is not booked by vendor, accepting booking");
 		        //Accept booking
 		        Response response7 = VendorEndPoints.vendor_AcceptBookingEP(context,bookingId);
-		        response7.then().log().all();
 		        JsonPath js7 = CommonMethods.jsonToString(response7);
 		        String vendorStatus = js7.getString("status");
 		        Assert.assertEquals(response7.statusCode(), 200);
@@ -390,7 +378,6 @@ public class LookUp {
 		    log.info("Vendor does not have any booked timeslots, accepting booking");
 		    // Accept booking
 		    Response response7 = VendorEndPoints.vendor_AcceptBookingEP(context,bookingId);
-		    response7.then().log().all();
 		    JsonPath js7 = CommonMethods.jsonToString(response7);
 		    String vendorStatus = js7.getString("status");
 		    Assert.assertEquals(response7.statusCode(), 200);

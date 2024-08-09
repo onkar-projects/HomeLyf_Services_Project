@@ -33,7 +33,7 @@ public class DataProviderClass {
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 0; j < 18; j++) {
 				apiData[i - 1][j] = lu.getCellData("user", i, j);
-				System.out.println("Given data: " + apiData[i - 1][j]);
+				//System.out.println("Given data: " + apiData[i - 1][j]);
 			}
 		}
 		return apiData;
@@ -184,7 +184,7 @@ public class DataProviderClass {
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 1; j <= 5; j++) {
 				apiData[i - 1][j - 1] = lu.getCellData("Customer", i, j);
-				System.out.println("Given data: " + apiData[i - 1][j - 1]);
+				//System.out.println("Given data: " + apiData[i - 1][j - 1]);
 			}
 		}
 		return apiData;
@@ -216,7 +216,7 @@ public class DataProviderClass {
 		for (int i = 1; i <= rownum; i++) {
 //				apiData[i-1][0] = lu.getCellData("Customer", i,18);
 			apiData[i - 1][0] = lu.getCellData("Customer", i, 19);
-			System.out.println("Given data: " + apiData[i - 1][0]);
+			//System.out.println("Given data: " + apiData[i - 1][0]);
 //			System.out.println("Given data: "+ apiData[i-1][1]);
 		}
 		return apiData;
@@ -231,8 +231,8 @@ public class DataProviderClass {
 		for (int i = 1; i <= rownum; i++) {
 			apiData[i - 1][0] = lu.getCellData("Customer", i, 20);
 			apiData[i - 1][1] = lu.getCellData("Customer", i, 21);
-			System.out.println("Given data: " + apiData[i - 1][0]);
-			System.out.println("Given data: " + apiData[i - 1][1]);
+//			System.out.println("Given data: " + apiData[i - 1][0]);
+//			System.out.println("Given data: " + apiData[i - 1][1]);
 		}
 		return apiData;
 	}
@@ -244,7 +244,7 @@ public class DataProviderClass {
 		for (int i = 1; i <= rownum; i++) {
 			for (int j = 0; j < 5; j++) {
 				apiData[i - 1][j] = lu.getCellData("UnverifiedVendor", i, j);
-				System.out.println("Given data: " + apiData[i - 1][j]);
+				//System.out.println("Given data: " + apiData[i - 1][j]);
 			}
 		}
 		return apiData;
