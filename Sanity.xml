@@ -8,7 +8,7 @@
 	 <groups>
             <run>
                 <include name="Customer"/> 
-                <include name="Vendor"/><!-- Include all methods in the 'acceptBooking' group -->
+                <include name="Vendor"/>
             </run>
         </groups>
     <classes>

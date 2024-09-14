@@ -59,8 +59,8 @@ public class ExtentReport implements ITestListener {
         ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName(),
                 result.getMethod().getDescription());
         test.set(extentTest);
-        testMap.put((int) Thread.currentThread().threadId(), extentTest);
-        System.out.println((int) Thread.currentThread().threadId());
+        testMap.put((int) Thread.currentThread().getId(), extentTest);
+        //System.out.println((int) Thread.currentThread().getId());
     }
 
     public void onTestSuccess(ITestResult result) {

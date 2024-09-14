@@ -735,7 +735,7 @@ public class Vendor {
 
 	// $********
 	@Test(priority = 11, enabled = true, dataProvider = "UnverifiedVendor", dataProviderClass = DataProviderClass.class)
-	public void TC_10_validateUnverifiedVendorFlow(ITestContext context, String mobileNumber, String type,
+	public void TC_11_validateUnverifiedVendorFlow(ITestContext context, String mobileNumber, String type,
 			String emailAddress, String password, String location) {
 		// VendorLogin
 		LookUp.login("v", context);
