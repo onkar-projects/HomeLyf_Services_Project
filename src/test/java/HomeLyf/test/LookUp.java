@@ -1,12 +1,17 @@
 package HomeLyf.test;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.Test;
+
 import HomeLyf.EndPoints.CustomerEndPoints;
 import HomeLyf.EndPoints.UserEndPoints;
 import HomeLyf.EndPoints.VendorEndPoints;
+import HomeLyf.Payload.UserLogin_Payload;
 import HomeLyf.Utilities.CommonMethods;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -153,7 +158,7 @@ public class LookUp {
 		Assert.assertEquals(response.statusCode(), 200);
 		log.info("vendor_get_booking is shown successfully");
 	}
-
+	
 //	  public static void customerGetBooking(ITestContext context) { 
 //		  log.info("");
 //	  //String[] status = {"New", "expertassigned", "inprogress", "cancelled","completed"}; 
@@ -169,7 +174,8 @@ public class LookUp {
 //	  context.setAttribute("startOtp", startOtp); context.setAttribute("endOtp",
 //	  endOtp); String stat = js.getString("[0].status"); Assert.assertEquals(stat,
 //	  "ExpertAssigned"); Assert.assertEquals(response.statusCode(), 200);
-//	  log.info("Customer booking shown successfully of Status" + stat); }
+//	  log.info("Customer booking shown successfully of Status" + stat); 
+//	}
 
 	public static void createBooking(ITestContext context) {
 		log.info("Getting categoryId");
@@ -177,7 +183,6 @@ public class LookUp {
 		LookUp.getCategory(context);
 		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context,
 				(String) context.getAttribute("postCode1"), "");
-		response1.then().log().all();
 		JsonPath js1 = CommonMethods.jsonToString(response1);
 		int categoryId = js1.getInt("[5].id");
 		String categoryName = js1.getString("[5].name");
@@ -189,7 +194,6 @@ public class LookUp {
 		log.info("Getting subCategoryId");
 		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
 				(int) context.getAttribute("categoryId"));
-		response2.then().log().all();
 		JsonPath js2 = CommonMethods.jsonToString(response2);
 		int subCategoryId = js2.getInt("[1].id");
 		String subCategoryName = js2.getString("[1].name");
@@ -199,7 +203,6 @@ public class LookUp {
 
 		log.info("Starting customer_service...");
 		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
-		response3.then().log().all();
 		JsonPath js3 = CommonMethods.jsonToString(response3);
 		int serviceId = js3.getInt("[0].id");
 		String serviceName = js3.getString("[0].name");
@@ -209,23 +212,180 @@ public class LookUp {
 
 		log.info("Getting Customer profile");
 		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
-		response4.then().log().all();
 		JsonPath js4 = CommonMethods.jsonToString(response4);
 		int addressId = js4.get("addresses[0].id");
 		context.setAttribute("addressId", addressId);
 		Assert.assertEquals(response4.statusCode(), 200);
 		log.info("Customer profile shown successfully " + addressId);
 
-		log.info("Getting Customer Timeslot for book service...");
+	}
+	
+	public  static void login(String userTypeCode, ITestContext context) {
+	    log.debug("Received userTypeCode: {}", userTypeCode);
+
+	    if (userTypeCode.equalsIgnoreCase("v")) {
+	        log.info("Vendor login test...");
+	        Response vresponse = UserEndPoints.userLogin(CommonMethods.vendor_Login_01());
+	        JsonPath vloginjs = new JsonPath(vresponse.asPrettyString());
+	        String Vtoken = vloginjs.getString("token");
+	        context.setAttribute("VToken", Vtoken);
+	        log.debug("Generated Token Id: {}", Vtoken);
+	        Assert.assertEquals(vresponse.statusCode(), 200);
+	        Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
+			Assert.assertNotNull(vresponse, "Vendor Login response is getting succesfully");
+	        log.info("Vendor logged in successfully");
+	    } else if (userTypeCode.equalsIgnoreCase("c")) {
+	        log.info("Customer Login start");
+	        Response cresponse = CustomerEndPoints.customer_Login(CommonMethods.customer_Login_01(), context);
+	        JsonPath cloginjs = CommonMethods.jsonToString(cresponse);
+	        String Ctoken = cloginjs.getString("token");
+	        context.setAttribute("CToken", Ctoken);
+	        log.debug("Generated Token Id: {}", Ctoken);
+	        Assert.assertEquals(cresponse.statusCode(), 200);
+	        Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+	        Assert.assertNotNull(cresponse, "Customer Login response is getting succesfully");
+	        log.info("Customer logged in successfully " + Ctoken);
+	    } else {
+	        log.error("Invalid user type code specified: {}", userTypeCode);
+	        throw new IllegalArgumentException("Invalid user type code: " + userTypeCode);
+	    }
+	}
+	//new
+	public static void login(String userTypeCode, String userIdentifier, ITestContext context) {
+	    log.debug("Received userTypeCode: {}", userTypeCode);
+	    log.debug("Received userIdentifier: {}", userIdentifier);
+
+	    UserLogin_Payload loginPayload = CommonMethods.getLoginDetails(userTypeCode, userIdentifier);
+
+	    if (userTypeCode.equalsIgnoreCase("v")) {
+	        log.info("Vendor login test...");
+	        Response vresponse = UserEndPoints.userLogin(loginPayload);
+	        JsonPath vloginjs = new JsonPath(vresponse.asPrettyString());
+	        String Vtoken = vloginjs.getString("token");
+	        context.setAttribute("VToken", Vtoken);
+	        log.debug("Generated Token Id: {}", Vtoken);
+	        Assert.assertEquals(vresponse.statusCode(), 200);
+	        Assert.assertEquals(vresponse.statusLine(), "HTTP/1.1 200 OK");
+	        Assert.assertNotNull(vresponse, "Vendor Login response is getting successfully");
+	        log.info("Vendor logged in successfully");
+	        
+	    } else if (userTypeCode.equalsIgnoreCase("c")) {
+	        log.info("Customer Login start");
+	        Response cresponse = CustomerEndPoints.customer_Login(loginPayload, context);
+	        JsonPath cloginjs = CommonMethods.jsonToString(cresponse);
+	        String Ctoken = cloginjs.getString("token");
+	        context.setAttribute("CToken", Ctoken);
+	        log.debug("Generated Token Id: {}", Ctoken);
+	        Assert.assertEquals(cresponse.statusCode(), 200);
+	        Assert.assertEquals(cresponse.statusLine(), "HTTP/1.1 200 OK");
+	        Assert.assertNotNull(cresponse, "Customer Login response is getting successfully");
+	        log.info("Customer logged in successfully " + Ctoken);
+	        
+	    } else {
+	        log.error("Invalid user type code specified: {}", userTypeCode);
+	        throw new IllegalArgumentException("Invalid user type code: " + userTypeCode);
+	    }
+	}
+	
+	public static void createBookingBasedOnAvailableTimeslot(ITestContext context) {
+		//CustomerLogin----------------------------------
+		LookUp.login("c", context);
+		//Create the booking
+		log.info("Getting categoryId");
+		LookUp.getPostCode(context);
+		//LookUp.getCategory(context);
+		Response response1 = CustomerEndPoints.customer_GetCategoryEP(context, (String) context.getAttribute("postCode1"), "");
+		JsonPath js1 = CommonMethods.jsonToString(response1);
+		int categoryId = js1.getInt("[5].id");
+		String categoryName = js1.getString("[5].name");
+		context.setAttribute("categoryId", categoryId);
+		Assert.assertEquals(js1.getString("[5].name"), "Electricals");
+		Assert.assertEquals(response1.statusCode(), 200);
+		log.info("CategoryId fetched successfully :" + categoryId + " of category " + categoryName);
+
+		log.info("Getting subCategoryId");
+		Response response2 = CustomerEndPoints.customer_SubCategoryEP(context,
+				(int) context.getAttribute("categoryId"));
+		JsonPath js2 = CommonMethods.jsonToString(response2);
+		int subCategoryId = js2.getInt("[3].id");
+		String subCategoryName = js2.getString("[3].name");
+		context.setAttribute("subCategoryId", subCategoryId);
+		Assert.assertEquals(response2.getStatusCode(), 200);
+		log.info("SubCategoryId Fetched Successfully :" + subCategoryId + " of subCategory :" + subCategoryName);
+
+		log.info("Starting customer_service");
+		Response response3 = CustomerEndPoints.customer_service(context, (int) context.getAttribute("subCategoryId"));
+		JsonPath js3 = CommonMethods.jsonToString(response3);
+		int serviceId = js3.getInt("[3].id");
+		String serviceName = js3.getString("[3].name");
+		context.setAttribute("serviceId", serviceId);
+		Assert.assertEquals(response3.statusCode(), 200);
+		log.info("customer_service subcategory is shown successfully " + serviceId + " of service " + serviceName);
+
+		log.info("Getting Customer profile");
+		Response response4 = CustomerEndPoints.customer_GetMyProfileEP(context);
+		JsonPath js4 = CommonMethods.jsonToString(response4);
+		int addressId = js4.getInt("addresses[0].id");
+		context.setAttribute("addressId", addressId);
+		Assert.assertEquals(response4.statusCode(), 200);
+		log.info("Customer profile shown successfully " + addressId);
+		
+		log.info("Getting Customer Timeslot for book service");
 		Response response5 = CustomerEndPoints.customer_GetTimeSlot((int) context.getAttribute("addressId"),
 				(int) context.getAttribute("categoryId"), context);
-		response5.then().log().all();
 		JsonPath js5 = CommonMethods.jsonToString(response5);
-		String sTime = js5.getString("[3].startTime");
+		
+		String sTime = js5.getString("[10].startTime");
 		context.setAttribute("StartTime", sTime);
-		String eTime = js5.getString("[3].endTime");
+		String eTime = js5.getString("[10].endTime");
 		System.out.println("Start Time: " + sTime + "\n End Time: " + eTime);
 		Assert.assertEquals(response5.statusCode(), 200);
 		log.info("Available booking Timeslot with startTime " + sTime + " endTime " + eTime);
+		
+		Response response6 = CustomerEndPoints.customer_CreateBookingEndPoint(context, CommonMethods.createBooking(context));
+		JsonPath js6 = CommonMethods.jsonToString(response6);
+		int bookingId = js6.getInt("id");
+		String status = js6.getString("status");
+		context.setAttribute("bookingId", bookingId);
+		Assert.assertEquals(response6.statusCode(), 200);
+		Assert.assertEquals(status, "New");
+		log.info("New booking created successfully with bookingId :" + bookingId);
+		//VendorLogin
+		LookUp.login("v", context);
+		// Get the vendor's booked timeslots
+		Response vendorTimeslotRes = VendorEndPoints.vendor_TimeslotEP(context);
+		JsonPath vendorTimeslotJs = CommonMethods.jsonToString(vendorTimeslotRes);
+		List<String> bookedTimeslots = vendorTimeslotJs.getList("bookedTimeslots");
+
+		// Check if bookedTimeslots is not null or empty
+		if (bookedTimeslots != null && !bookedTimeslots.isEmpty()) {
+		    // Check if the scheduled timeslot is already booked
+		    String scheduledTimeslot = sTime + "-" + eTime;
+		    if (!bookedTimeslots.contains(scheduledTimeslot)) {
+		        log.info("Timeslot is not booked by vendor, accepting booking");
+		        //Accept booking
+		        Response response7 = VendorEndPoints.vendor_AcceptBookingEP(context,bookingId);
+		        JsonPath js7 = CommonMethods.jsonToString(response7);
+		        String vendorStatus = js7.getString("status");
+		        Assert.assertEquals(response7.statusCode(), 200);
+		        Assert.assertEquals(vendorStatus, "ExpertAssigned");
+		        log.info("Booking accepted by vendor");
+		    } else {
+		        log.error("Timeslot is already booked by vendor, cannot accept booking");
+		        Assert.fail("Timeslot is already booked by vendor, cannot accept booking");
+		    }
+		} else {
+		    log.info("Vendor does not have any booked timeslots, accepting booking");
+		    // Accept booking
+		    Response response7 = VendorEndPoints.vendor_AcceptBookingEP(context,bookingId);
+		    JsonPath js7 = CommonMethods.jsonToString(response7);
+		    String vendorStatus = js7.getString("status");
+		    Assert.assertEquals(response7.statusCode(), 200);
+		    Assert.assertEquals(vendorStatus, "ExpertAssigned");
+		    log.info("Booking accepted by vendor");
+		}
 	}
+	
+	
+
 }

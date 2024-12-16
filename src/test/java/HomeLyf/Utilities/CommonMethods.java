@@ -268,7 +268,7 @@ public class CommonMethods {
 	}
 
 	
-	public static UserLogin_Payload vendor_LoginV() {
+	public static UserLogin_Payload vendor_Login() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("ritu@orkutt.com");
 		userlogin.setMobileNumber(Long.parseLong("9343434565"));
@@ -286,7 +286,7 @@ public class CommonMethods {
 		userlogin.setLocation("Pune");
 		return userlogin;
 	}
-	public static UserLogin_Payload vendor_Login() {
+	public static UserLogin_Payload vendor_Login_01() {
 		userlogin = new UserLogin_Payload();
 		userlogin.setEmailAddress("dason.sava@floodouts.com");
 		userlogin.setMobileNumber(Long.parseLong("9657400368"));
@@ -340,5 +340,43 @@ public class CommonMethods {
 			}
 		}
 		return ithbookingid;
+	}
+	
+	public static UserLogin_Payload getLoginDetails(String userTypeCode, String userIdentifier) {
+	    if("v".equalsIgnoreCase(userTypeCode)) {
+	        return getVendorLoginDetails(userIdentifier);
+	    } else if ("c".equalsIgnoreCase(userTypeCode)) {
+	        return getCustomerLoginDetails(userIdentifier);
+	    } else {
+	        throw new IllegalArgumentException("Invalid user type code: " + userTypeCode);
+	    }
+	}
+	
+	public static UserLogin_Payload getVendorLoginDetails(String userIdentifier) {
+	    if("vendor01".equalsIgnoreCase(userIdentifier)) {
+	        return vendor_Login_01(); // Default vendor login
+	    } else if ("vmultiplescenario".equalsIgnoreCase(userIdentifier)) {
+	        return VendorLoginformultiplescenario(); // Multiple scenario vendor login
+	    } else if ("vendor".equalsIgnoreCase(userIdentifier)) {
+	        return vendor_Login(); // Specific vendor login V
+	    } 
+	    // Add more conditions for additional vendor identifiers
+	    else {
+	        throw new IllegalArgumentException("Invalid vendor identifier: " + userIdentifier);
+	    }
+	}
+
+	public static UserLogin_Payload getCustomerLoginDetails(String userIdentifier) {
+	    if("customer01".equalsIgnoreCase(userIdentifier)) {
+	        return customer_Login_01(); // Specific customer login 01
+	    } else if ("cmultiplescenario".equalsIgnoreCase(userIdentifier)) {
+	        return CustomerLoginformultiplescenario(); // Multiple scenario customer login
+	    } else if ("customer".equalsIgnoreCase(userIdentifier)) {
+	        return customer_Login(); // Default customer login
+	    } 
+	    // Add more conditions for additional customer identifiers
+	    else {
+	        throw new IllegalArgumentException("Invalid customer identifier: " + userIdentifier);
+	    }
 	}
 }
